@@ -1,97 +1,78 @@
-﻿using System;
-using CriWare;
-
-/// <summary> CRIを用いたAudioManager </summary>
+﻿/// <summary> CRIを用いたAudioManager </summary>
 public class CriAudioManager
 {
+    private readonly CriAudioSystem _audioSystem = default;
+
     private static CriAudioManager _instance = default;
-
-    //CriAtomExPlayer：音源再生用のクラス
-    private readonly CriAtomExPlayer _criBGMPlayer = new();
-    private readonly CriAtomExPlayer _criSEPlayer = new();
-
-    private readonly CriAtomExPlayback _bgmPlayback = default;
-
-    private float _bgmVolume = 1f;
-    private float _seVolume = 1f;
-
-    //音量変更時に発行されるイベント
-    public event Action<float> OnValueChangedBGMVolume;
-    public event Action<float> OnValueChangedSEVolume;
-
-    public float BGMVolume
-    {
-        get => _bgmVolume;
-        set
-        {
-            _bgmVolume = value;
-            OnValueChangedBGMVolume?.Invoke(value);
-        }
-    }
-    public float SEVolume
-    {
-        get => _seVolume;
-        set
-        {
-            _seVolume = value;
-            OnValueChangedSEVolume?.Invoke(value);
-        }
-    }
-
 
     public static CriAudioManager Instance
     {
         get
         {
-            _instance ??= new();
+            _instance ??= new CriAudioManager();
             return _instance;
         }
     }
 
     private CriAudioManager()
     {
-        //コンストラクタ
-        OnValueChangedBGMVolume += value =>
-        {
-            _criBGMPlayer.SetVolume(value * _bgmVolume);
-            _criBGMPlayer.Update(_bgmPlayback);
-        };
-
-        OnValueChangedSEVolume += value =>
-        {
-            _criSEPlayer.SetVolume(value * _bgmVolume);
-        };
+        _audioSystem ??= new CriAudioSystem();
+        _audioSystem.OnValueChangedSetting();
     }
 
-    ~CriAudioManager() { }
+    ~CriAudioManager()
+    {
+        //登録した関数の破棄とか
+    }
 
+    //=============== BGM ===============
+    #region BGM
     public void PlayBGM(string cueSheetName, string cueName)
     {
-        //どの音を再生するか選択する
-        var acb = CriAtom.GetCueSheet(cueSheetName).acb;
-        _criBGMPlayer.SetCue(acb, cueName);
-
-        _criBGMPlayer.Start();
+        _audioSystem.PlayBGM(cueSheetName, cueName);
     }
 
-    public void PauseBGM() { _criBGMPlayer.Pause(); }
+    public void PauseBGM() { _audioSystem.PauseBGM(); }
 
-    public void ResumrBGM() { }
+    public void ResumeBGM()
+    {
+        //Pause()によって停止したBGMを再生する
+        _audioSystem.ResumeBGM();
+    }
 
-    public void StopBGM() { }
+    public void StopBGM() { _audioSystem.StopBGM(); }
+    #endregion
 
+    //=============== SE ===============
+    #region SE
     public void PlaySE(string cueSheetName, string cueName)
     {
         //どの音を再生するか選択する
-        var acb = CriAtom.GetCueSheet(cueSheetName).acb;
-        _criSEPlayer.SetCue(acb, cueName);
-
-        _criSEPlayer.Start();
+        _audioSystem.PlaySE(cueSheetName, cueName);
     }
 
-    public void PauseSE() { }
+    public void PauseSE(int index)
+    {
+        if (index < 0) { return; }
+        _audioSystem.PauseSE(index);
+    }
 
-    public void ResumeSE() { }
+    public void ResumeSE(int index)
+    {
+        if (index < 0) { return; }
+        _audioSystem.ResumeSE(index);
+    }
 
-    public void StopSE() { }
+    public void StopSE(int index)
+    {
+        _audioSystem.StopSE(index);
+    }
+
+    public void StopAllSE()
+    {
+        _audioSystem.StopAllSE();
+    }
+    #endregion
+
+    public void Play3D() { }
 }
