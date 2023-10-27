@@ -7,7 +7,7 @@ public class SitMotion : IState
 {
     public void InitialState(StateMachineController stateMachine)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("À‚éI€”õŠ®—¹I");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
