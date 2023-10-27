@@ -19,8 +19,14 @@ namespace StateMachine
         // Start is called before the first frame update
         public void Init()
         {
+            IState[] state = new IState[3] {_walk,_sit,_emotion};
+            for (var i = 0; i < state.Length; i++)
+            {
+                _currentState = state[i];
+                _currentState.InitialState(this);
+            }
+            Debug.Log("行くぞ！ステート戦隊！マシーンジャー！");
             _currentState = _walk;
-            _currentState.InitialState(this);
             _currentState.OnEnterState(this);
         }
 

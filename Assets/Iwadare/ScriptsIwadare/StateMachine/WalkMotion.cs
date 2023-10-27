@@ -11,7 +11,7 @@ public class WalkMotion : IState
     MotionState _state = MotionState.Walk;
     public void InitialState(StateMachineController stateMachine)
     {
-
+        Debug.Log("•à‚­I€”õŠ®—¹I");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
