@@ -7,6 +7,7 @@ public class EmotionScript : IState
 {
     public void InitialState(StateMachineController stateMachine)
     {
+        Debug.Log("エモーション！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
