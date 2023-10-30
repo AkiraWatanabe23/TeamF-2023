@@ -34,6 +34,7 @@ namespace Alpha
 
         /// <summary>
         /// Receiverがメッセージを受信した際の処理
+        /// 現在のスコアに加算してUIに反映する
         /// </summary>
         void OnMessageReceived(ScoreEventMessage msg)
         {

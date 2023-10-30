@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace Alpha
 {
+    public enum ItemType
+    {
+        Alcohol,
+        Food,
+        Gold,
+    }
+
     /// <summary>
     /// 投げるアイテム全てが共通して持つコンポーネント
     /// </summary>

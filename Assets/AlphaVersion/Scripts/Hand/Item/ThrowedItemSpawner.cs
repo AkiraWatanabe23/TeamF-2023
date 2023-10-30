@@ -19,7 +19,7 @@ namespace Alpha
         /// プールから取り出す
         /// </summary>
         /// <returns>生成済みのアイテム</returns>
-        public ThrowedItem Spawn()
+        public ThrowedItem Spawn(ItemType item)
         {
             return _itemHolder.PopItem();
         }
@@ -29,7 +29,7 @@ namespace Alpha
         /// </summary>
         public void Release(ThrowedItem item)
         {
-            // TODO:現在は生成しているので削除する
+            // TODO:プーリングする際はプールに戻す処理に修正する
             Destroy(item.gameObject); ;
         }
     }
