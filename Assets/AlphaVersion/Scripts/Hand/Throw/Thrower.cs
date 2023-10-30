@@ -10,9 +10,13 @@ namespace Alpha
     public class Thrower : MonoBehaviour
     {
         [SerializeField] ThrowedItem _prefab;
-        [Header("アイテムを積む際位置のオフセット")]
+        [Header("アイテムを積む位置のオフセット")]
         [SerializeField] Vector3 _offset;
-        [Header("任意:最低威力")]
+        [Header("積む位置のランダムなずらし幅")]
+        [SerializeField] float _randomShift = 0.1f;
+        [Header("積める最大数")]
+        [SerializeField] int _maxStack = 6;
+        [Header("最低威力")]
         [SerializeField] float _minPower = 0;
 
         Queue<ThrowedItem> _tower = new();
@@ -29,17 +33,30 @@ namespace Alpha
         public int StackCount => _tower.Count;
 
         /// <summary>
-        /// アイテムを積んでいく
+        /// 最大数に達していない場合は、アイテムを積んでいく
         /// </summary>
-        public void Stack(ThrowedItem item)
+        /// <returns>積んだ:true 最大数に達している:false</returns>
+        public bool TryStack(ThrowedItem item)
         {
+            // 最大数積んでいる場合は弾く
+            if (_tower.Count >= _maxStack) return false;
+
+            // 音を再生
+            Cri.PlaySE("SE_ItemSet");
+
+            // 生成位置を基準の位置からランダムにずらす
+            Vector3 shift = new Vector3(Random.Range(0, _randomShift), 0, Random.Range(0, _randomShift));
+
             // 一番上に積んで、次に積む際の高さを更新する
-            Vector3 spawnPoint = transform.position + _offset;
-            spawnPoint.y += _stackHeight;
+            Vector3 stackPoint = transform.position + _offset + shift;
+            stackPoint.y += _stackHeight;
             _stackHeight += item.Height;
 
-            item.transform.position = spawnPoint;
+            item.transform.position = stackPoint;
+            item.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0); // 回転
             _tower.Enqueue(item);
+
+            return true;
         }
 
         /// <summary>
@@ -47,9 +64,11 @@ namespace Alpha
         /// </summary>
         public void Throw(Vector3 velocity)
         {
-            // 任意:最低威力を足すことで指定した距離は必ず飛ぶようになる
-            Vector3 minVelocity = velocity.normalized * _minPower;
+            // 1つ以上積んでいる場合は音を再生
+            if (StackCount > 0) Cri.PlaySE("SE_Slide");
 
+            // 最低限飛ぶ距離を設定
+            Vector3 minVelocity = velocity.normalized * _minPower;
             foreach (ThrowedItem item in _tower)
             {
                 item.Throw(velocity + minVelocity);

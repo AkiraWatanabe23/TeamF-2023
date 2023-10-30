@@ -64,7 +64,9 @@ namespace Alpha
             }
             else
             {
-                _thrower.Stack(_itemSpawner.Spawn());
+                // アイテムが積めなかった場合はプールに戻す
+                ThrowedItem item = _itemSpawner.Spawn();
+                if (!_thrower.TryStack(item)) _itemSpawner.Release(item);
             }
 
             // 矢印を消す
