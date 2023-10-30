@@ -17,11 +17,11 @@ public class CameraMoverScript : MonoBehaviour
 
     //カメラの移動量
     [SerializeField, Range(0.1f, 10.0f)]
-    private float _positionStep = 2.0f;
+    private float _positionStep = 4.0f;
 
     //マウス感度
     [SerializeField, Range(30.0f, 150.0f)]
-    private float _mouseSensitive = 90.0f;
+    private float _mouseSensitive = 120.0f;
 
     //カメラの有効無効
     private bool _cameraMoveActive = true;

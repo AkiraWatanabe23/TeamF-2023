@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class AnimationScripts : MonoBehaviour
 {
     bool _sitBool;
-    bool _surprisedBool;
     Animator _animator;
 
     [SerializeField]
