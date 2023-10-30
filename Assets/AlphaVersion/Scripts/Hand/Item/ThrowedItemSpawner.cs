@@ -4,16 +4,33 @@ using UnityEngine;
 
 namespace Alpha
 {
+    // 現状、プールが1つしかないのでこのクラスがある意味が無いが
+    // アイテムの種類が増えた場合は、このクラスにどのアイテムを生成するかを渡して
+    // 対応するプールから取り出してもらう、仲介役？
+
     /// <summary>
-    /// 投げるアイテムを生成する機能のクラス
+    /// 投げるアイテムをプールから生成/戻す機能のクラス
     /// </summary>
     public class ThrowedItemSpawner : MonoBehaviour
     {
         [SerializeField] ThrowedItemHolder _itemHolder;
 
-        public ThrowedItem Spawn()
+        /// <summary>
+        /// プールから取り出す
+        /// </summary>
+        /// <returns>生成済みのアイテム</returns>
+        public ThrowedItem Spawn(ItemType item)
         {
             return _itemHolder.PopItem();
+        }
+
+        /// <summary>
+        /// 不要になった際にプールに戻す
+        /// </summary>
+        public void Release(ThrowedItem item)
+        {
+            // TODO:プーリングする際はプールに戻す処理に修正する
+            Destroy(item.gameObject); ;
         }
     }
 }

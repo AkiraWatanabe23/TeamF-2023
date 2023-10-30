@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Alpha
         [SerializeField] Thrower _thrower;
         [SerializeField] ThrowPowerCalculator _powerCalculator;
         [SerializeField] ThrowPowerVisualizer _powerVisualizer;
-        [SerializeField] ThrowedItemSpawner _itemSpawner;
+        [SerializeField] SelectedItemSpawner _itemSpawner;
         [SerializeField] ThrowedItemCleaner _itemCleaner;
         [SerializeField] MouseMovementChecker _mouseMovementChecker;
 
@@ -21,6 +22,8 @@ namespace Alpha
             HandInputHandler.OnLeftClickDown += OnClickDown;
             HandInputHandler.OnLeftClicking += OnClicking;
             HandInputHandler.OnLeftClickUp += OnClickUp;
+            HandInputHandler.OnMouseWheelAxis += OnMouseWheelAxis;
+            HandInputHandler.OnGetSelectKeyDown += OnGetSelectKeyDown;
 
             // 左右移動ハンドラ
             // 右クリックハンドラ
@@ -31,6 +34,8 @@ namespace Alpha
             HandInputHandler.OnLeftClickDown -= OnClickDown;
             HandInputHandler.OnLeftClicking -= OnClicking;
             HandInputHandler.OnLeftClickUp -= OnClickUp;
+            HandInputHandler.OnMouseWheelAxis -= OnMouseWheelAxis;
+            HandInputHandler.OnGetSelectKeyDown -= OnGetSelectKeyDown;
         }
 
         void OnClickDown()
@@ -64,11 +69,26 @@ namespace Alpha
             }
             else
             {
-                _thrower.Stack(_itemSpawner.Spawn());
+                // アイテムが積めなかった場合はプールに戻す
+                ThrowedItem item = _itemSpawner.Spawn();
+                if (!_thrower.TryStack(item)) _itemSpawner.Release(item);
             }
 
             // 矢印を消す
             _powerVisualizer.Delete();
         }
+
+        void OnMouseWheelAxis(float fov)
+        {
+            _itemSpawner.Select(fov);
+        }
+
+        void OnGetSelectKeyDown(KeyCode key)
+        {
+            _itemSpawner.Select(key);
+        }
     }
 }
+
+// アイテムを選択する処理
+// 
