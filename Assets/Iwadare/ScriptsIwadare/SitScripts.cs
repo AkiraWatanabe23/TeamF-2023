@@ -28,8 +28,7 @@ public class SitScripts : MonoBehaviour
 
     public Vector3 SitDownRotation()
     {
-        Vector3 vec = transform.localEulerAngles;
-        return vec;
+        return transform.eulerAngles;
     }
 
     public Vector3 StandUp()
