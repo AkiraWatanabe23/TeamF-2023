@@ -13,17 +13,12 @@ namespace Alpha
         [SerializeField] ThrowedItemHolder _itemHolder;
         [Header("削除する範囲の設定")]
         [SerializeField] float _radius = 1;
-        [Header("任意:周囲のアイテム削除を無効化")]
-        [SerializeField] bool _invalid;
 
         /// <summary>
         /// このオブジェクトからの水平方向の移動距離が一定以下のアイテムを削除する
         /// </summary>
         public void Clean()
         {
-            // 任意:削除処理を無効化する
-            if (_invalid) return;
-
             List<ThrowedItem> items = _itemHolder.Items;
             for (int i = items.Count - 1; i >= 0; i--)
             {

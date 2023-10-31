@@ -9,13 +9,14 @@ using UnityEngine.XR;
 public class WalkMotion : IState
 {
     MotionState _state = MotionState.Walk;
-    public void InitialState(StateMachineController stateMachine)
+    public void InitialState()
     {
-
+        Debug.Log("•à‚­I€”õŠ®—¹I");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
+        stateMachine.Anim.Play(stateMachine.WalkName);
         Debug.Log("•à‚«‚Í‚¶‚ß‚é‚ºI");
     }
 

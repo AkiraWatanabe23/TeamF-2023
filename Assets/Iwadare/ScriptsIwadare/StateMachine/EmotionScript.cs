@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class EmotionScript : IState
 {
-    public void InitialState(StateMachineController stateMachine)
+    public void InitialState()
     {
+        Debug.Log("エモーション！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
+        stateMachine.Anim.Play(stateMachine.EmotionName);
         Debug.Log("わ...わあ！");
     }
 
