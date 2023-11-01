@@ -21,18 +21,14 @@ namespace Alpha
         [SerializeField] CatchTimer _timer;
         [SerializeField] CatchCollision _collision;
         [SerializeField] CatchTransform _transform;
+        [SerializeField] OrderView _view;
 
         CancellationTokenSource _cts = new();
-        bool _isFerver; // テスト用のフィーバータイムフラグ
-        bool _currentSize;
-
+        
         void OnDestroy()
         {
-            if (_cts != null)
-            {
-                _cts.Cancel();
-                _cts.Dispose();
-            }
+            _cts.Cancel();
+            _cts.Dispose();
         }
 
         void Update()
@@ -40,7 +36,7 @@ namespace Alpha
             // テスト用
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Valid(ItemType.Alcohol, r => Debug.Log(r));
+                Valid(ItemType.Gold, r => Debug.Log(r));
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
@@ -54,6 +50,7 @@ namespace Alpha
         public void Valid(ItemType order, UnityAction<OrderResult> onCatched = null)
         {
             CatchAsync(order, onCatched).Forget();
+            _view.Active(order, transform.position);
         }
 
         /// <summary>
@@ -61,7 +58,9 @@ namespace Alpha
         /// </summary>
         public void Invalid()
         {
-            _cts.Cancel(); // ここまで
+            _cts.Cancel();
+            _view.Inactive();
+            _timer.Invisible();
         }
 
         /// <summary>
