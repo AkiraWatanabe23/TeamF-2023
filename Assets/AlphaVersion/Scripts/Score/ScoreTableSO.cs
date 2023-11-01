@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Alpha
 {
     /// <summary>
-    /// スコアの計算に関する値をまとめたクラス
+    /// スコアの計算に関する値の設定
     /// </summary>
     [CreateAssetMenu(fileName = "ScoreTableSO", menuName = "ScoreData")]
     public class ScoreTableSO : ScriptableObject

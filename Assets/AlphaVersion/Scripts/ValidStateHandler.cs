@@ -13,6 +13,8 @@ namespace Alpha
     {
         bool _isValid = true; // ここ修正
 
+        // メッセージングに変更して良い
+
         void OnEnable()
         {
             //InGame.OnGameStart += () => _isValid = true;
