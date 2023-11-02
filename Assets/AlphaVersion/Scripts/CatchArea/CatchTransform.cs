@@ -12,37 +12,28 @@ namespace Alpha
     /// </summary>
     public class CatchTransform : FerverHandler
     {
-        enum Size
-        {
-            Normal,
-            Fever,
-        }
-
+        [SerializeField] CatchSettingsSO _settings;
         [Header("設置する位置の設定")]
         [SerializeField] float _height = 0.5f;
         [SerializeField] float _border = 1.0f;
 
         Vector3 _basePosition;
-        Vector3 _prevPosition;
-
-        Size _size = Size.Normal;
 
         protected override void OnAwakeOverride()
         {
+            SetScale(_settings.NormalSize);
             // 基準位置の設定
             _basePosition = transform.position;
         }
 
         protected override void OnFerverTimeEnter()
         {
-            //_prevPosition = transform.position;
-            SetScale(2);
+            SetScale(_settings.FerverSize);
         }
 
         protected override void OnFerverTimeExit()
         {
-            //transform.position = _prevPosition;
-            SetScale(1);
+            SetScale(_settings.NormalSize);
         }
 
         /// <summary>
@@ -56,13 +47,19 @@ namespace Alpha
         /// <summary>
         /// ランダムな位置にセットする
         /// </summary>
-        public void SetRandomPosition(float size)
+        /// <returns>セットした位置</returns>
+        public Vector3 SetRandomPosition()
+        {
+            return SetRandomPosition(_settings.NormalSize);
+        } 
+
+        public Vector3 SetRandomPosition(float size)
         {
             // 範囲からはみ出さないように半径の分だけ位置を制限する
             float x = Random.Range(-_border + size / 2, _border - size / 2);
-            Vector3 pos = new Vector3(x, _height, _basePosition.z);
+            Vector3 pos = new Vector3(_basePosition.x + x, _height, _basePosition.z);
 
-            transform.position = pos;
+            return transform.position = pos;
         }
 
         void OnDrawGizmos()

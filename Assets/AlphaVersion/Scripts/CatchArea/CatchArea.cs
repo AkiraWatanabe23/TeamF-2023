@@ -36,7 +36,7 @@ namespace Alpha
             // テスト用
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Valid(ItemType.Gold, r => Debug.Log(r));
+                Valid(99, ItemType.Gold, r => Debug.Log(r));
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
@@ -47,10 +47,11 @@ namespace Alpha
         /// <summary>
         /// キャッチするアイテムと、コールバックを登録して、有効化する
         /// </summary>
-        public void Valid(ItemType order, UnityAction<OrderResult> onCatched = null)
+        public void Valid(float timeLimit, ItemType order, UnityAction<OrderResult> onCatched = null)
         {
-            CatchAsync(order, onCatched).Forget();
-            _view.Active(order, transform.position);
+            CatchAsync(timeLimit, order, onCatched).Forget();
+            Vector3 setPosition = _transform.SetRandomPosition();
+            _view.Active(order, setPosition);
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Alpha
         /// タイマーの時間切れ: 失敗
         /// コライダーでキャッチ判定: 成功
         /// </summary>
-        async UniTaskVoid CatchAsync(ItemType order, UnityAction<OrderResult> onCatched = null)
+        async UniTaskVoid CatchAsync(float timeLimit, ItemType order, UnityAction<OrderResult> onCatched = null)
         {
             // 無効にせず連続で有効にした場合、キャンセルされないのでチェックしておく
             if (!_cts.IsCancellationRequested) _cts.Cancel();
@@ -78,7 +79,7 @@ namespace Alpha
             // 時間切れとキャッチ判定のどちらかが完了するまで待つ
             (int win, OrderResult timerResult, OrderResult collisionResult) result;
             result = await UniTask.WhenAny(
-                _timer.WaitAsync(2.0f, _cts.Token),
+                _timer.WaitAsync(timeLimit, _cts.Token),
                 _collision.WaitAsync(order, _cts.Token));
 
             if (result.win == 0)

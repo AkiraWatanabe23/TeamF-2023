@@ -22,9 +22,9 @@ namespace Alpha
         public class Actor
         {
             [Header("¬Œ÷‚µ‚½Û‚Ì‰ÁZ—Ê")]
-            [SerializeField] int SuccessBonus = BaseActionScore;
+            public int SuccessBonus = BaseActionScore;
             [Header("¸”s‚µ‚½Û‚ÌŒ¸­—Ê")]
-            [SerializeField] int FailurePenalty = BaseActionScore;
+            public int FailurePenalty = BaseActionScore;
         }
 
         [Header("‹­“")]

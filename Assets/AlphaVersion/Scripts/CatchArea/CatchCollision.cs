@@ -17,11 +17,12 @@ namespace Alpha
     /// </summary>
     public class CatchCollision : MonoBehaviour
     {
+        [SerializeField] CatchSettingsSO _settings;
+
+        IObservable<Collider> _onTriggerStay;
         // Observableの作成はAwake時点で行うのに対して
         // 注文は待機時に決まるのでメンバとして保持しておく必要がある。
         ItemType _order;
-
-        IObservable<Collider> _onTriggerStay;
 
         void Awake()
         {
@@ -39,7 +40,7 @@ namespace Alpha
         {
             if (collider.TryGetComponent(out ICatchable catchable))
             {
-                if (catchable.Type == _order && catchable.SqrSpeed <= 1)
+                if (catchable.Type == _order && catchable.SqrSpeed <= _settings.CatchableSpeed)
                 {
                     catchable.OnCatched();
                     return true;

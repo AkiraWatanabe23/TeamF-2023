@@ -7,7 +7,8 @@ namespace Alpha
     /// <summary>
     /// 客がアイテムをキャッチするエリアの設定
     /// </summary>
-    public class CatchAreaSettingSO : ScriptableObject
+    [CreateAssetMenu(fileName = "CatchSettingsSO", menuName = "CatchSettings")]
+    public class CatchSettingsSO : ScriptableObject
     {
         [Header("大きさの設定")]
         [Range(0.1f, 0.8f)]
