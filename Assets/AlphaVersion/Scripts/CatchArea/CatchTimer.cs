@@ -20,6 +20,8 @@ namespace Alpha
         /// <returns>ŠÔØ‚ê:¸”s ƒLƒƒƒ“ƒZƒ‹:¸”s</returns>
         public async UniTask<OrderResult> WaitAsync(float timeLimit, CancellationToken token)
         {
+            _circleUI.color = Color.white;
+
             float current = timeLimit;
             while (!token.IsCancellationRequested && current >= 0)
             {
@@ -30,6 +32,11 @@ namespace Alpha
             }
 
             return OrderResult.Failure;
+        }
+
+        public void Invisible()
+        {
+            _circleUI.color = Color.clear;
         }
     }
 }
