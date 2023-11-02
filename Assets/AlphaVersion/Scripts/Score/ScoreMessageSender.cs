@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using EventResult = Alpha.ScoreEventMessage.EventResult;
-using EventState = Alpha.ScoreEventMessage.EventState;
-using EventActor = Alpha.ScoreEventMessage.EventActor;
 
 namespace Alpha
 {
+    using static ScoreEventMessage;
+
     /// <summary>
     /// メッセージを送信する処理のラッパー
     /// </summary>
@@ -55,7 +54,7 @@ namespace Alpha
         /// <summary>
         /// メッセージ用のActorに変換する
         /// </summary>
-        static ScoreEventMessage.EventActor Convert(ActorType actor)
+        static EventActor Convert(ActorType actor)
         {
             if (actor == ActorType.Male) return EventActor.Male;
             if (actor == ActorType.Female) return EventActor.Female;

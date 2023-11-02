@@ -12,8 +12,8 @@ namespace Alpha
     {
         [SerializeField] ScoreMessageReceiver _messageReceiver;
         [SerializeField] ScoreUI _scoreUI;
-        
-        ScoreCalculator _calculator = new();
+        [SerializeField] ScoreCalculator _calculator;
+
         int _totalScore;
 
         void OnEnable()

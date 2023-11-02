@@ -14,6 +14,11 @@ namespace Alpha
     {
         [SerializeField] Image _circleUI;
 
+        void Awake()
+        {
+            _circleUI.fillAmount = 0;
+        }
+
         /// <summary>
         /// 制限時間だけ待ち、毎フレームUIを更新する
         /// </summary>
