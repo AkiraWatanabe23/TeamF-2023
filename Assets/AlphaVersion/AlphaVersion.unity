@@ -186,6 +186,8 @@ MonoBehaviour:
   _type: 1
   _next:
   - {fileID: 1410690573}
+  _prev:
+  - {fileID: 1671459958}
 --- !u!1 &29242255
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 0
   _next: []
+  _prev:
+  - {fileID: 1410690573}
 --- !u!1 &71542178
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,9 +348,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71542179}
+  - component: {fileID: 71542183}
+  - component: {fileID: 71542182}
+  - component: {fileID: 71542181}
   - component: {fileID: 71542180}
   m_Layer: 0
-  m_Name: Waypoint
+  m_Name: Actor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,6 +391,48 @@ MonoBehaviour:
     Lead: {fileID: 1492464543}
   - Type: 1
     Lead: {fileID: 1420926110}
+--- !u!114 &71542181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71542178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a2e000ed5cbf48a0704b7ff21f0b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &71542182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71542178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8608de3e0de935c43a97fa2676467726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 71542181}
+  _pathCreator: {fileID: 71542180}
+--- !u!114 &71542183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71542178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33519589d1dc8b44aa3dde70d5a12d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initializer: {fileID: 71542182}
 --- !u!1001 &81460596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,6 +630,8 @@ MonoBehaviour:
   _type: 2
   _next:
   - {fileID: 453712198}
+  _prev:
+  - {fileID: 479570491}
 --- !u!1 &190804603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1234,8 @@ MonoBehaviour:
   _type: 2
   _next:
   - {fileID: 1290387202}
+  _prev:
+  - {fileID: 1420926110}
 --- !u!1 &453712195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1248,7 @@ GameObject:
   - component: {fileID: 453712197}
   - component: {fileID: 453712198}
   m_Layer: 0
-  m_Name: Waypoint_4
+  m_Name: Waypoint_5
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1244,6 +1297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 0
   _next: []
+  _prev: []
 --- !u!1 &467158028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1501,8 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 102790315}
+  _prev:
+  - {fileID: 1585493019}
 --- !u!1 &576384848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,6 +2773,8 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 1526968636}
+  _prev:
+  - {fileID: 449299913}
 --- !u!1 &1304316352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,7 +2861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1340804539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3100,6 +3158,10 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 42410021}
+  _prev:
+  - {fileID: 1993402221}
+  - {fileID: 9884305}
+  - {fileID: 1865693037}
 --- !u!1 &1420926107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,6 +3225,7 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 449299913}
+  _prev: []
 --- !u!1 &1443264199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3407,7 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 1671459958}
+  _prev: []
 --- !u!1 &1526968633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,6 +3471,8 @@ MonoBehaviour:
   _type: 0
   _next:
   - {fileID: 1585493019}
+  _prev:
+  - {fileID: 1290387202}
 --- !u!1 &1560102485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,6 +3688,8 @@ MonoBehaviour:
   _type: 2
   _next:
   - {fileID: 479570491}
+  _prev:
+  - {fileID: 1526968636}
 --- !u!1 &1588330380
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,6 +3928,8 @@ MonoBehaviour:
   - {fileID: 1993402221}
   - {fileID: 9884305}
   - {fileID: 1865693037}
+  _prev:
+  - {fileID: 1492464543}
 --- !u!1 &1796657819
 GameObject:
   m_ObjectHideFlags: 0
@@ -4079,6 +4149,8 @@ MonoBehaviour:
   _type: 1
   _next:
   - {fileID: 1410690573}
+  _prev:
+  - {fileID: 1671459958}
 --- !u!1 &1993402218
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,6 +4214,8 @@ MonoBehaviour:
   _type: 1
   _next:
   - {fileID: 1410690573}
+  _prev:
+  - {fileID: 1671459958}
 --- !u!1001 &2078069187
 PrefabInstance:
   m_ObjectHideFlags: 0
