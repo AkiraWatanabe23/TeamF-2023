@@ -18,6 +18,9 @@ namespace Alpha
         Robber,
     }
 
+    /// <summary>
+    /// キャラクターのクラス
+    /// </summary>
     public class Actor : MonoBehaviour
     {
         [SerializeField] ActorType _actorType;
@@ -27,5 +30,13 @@ namespace Alpha
 
         public ActorType ActorType => _actorType;
         public BehaviorType BehaviorType => _behaviorType;
+
+        /// <summary>
+        /// 初期化、Awakeの代わりに使用する
+        /// </summary>
+        public void Init(Waypoint lead)
+        {
+            _lead = lead;
+        }
     }
 }

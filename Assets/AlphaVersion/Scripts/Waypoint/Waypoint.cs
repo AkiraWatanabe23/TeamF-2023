@@ -18,8 +18,10 @@ namespace Alpha
     {
         [SerializeField] WaypointType _type;
         [SerializeField] Waypoint[] _next;
+        [SerializeField] Waypoint[] _prev;
 
         public IReadOnlyCollection<Waypoint> Next => _next;
+        public IReadOnlyCollection<Waypoint> Prev => _prev;
 
         void Start()
         {

@@ -10,16 +10,33 @@ namespace Alpha
     /// </summary>
     public class ActorInitializer : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] ActorSpawner _spawner;
+        [Header("初期化に必要なもの")]
+        [SerializeField] PathCreator _pathCreator;
 
+        /// <summary>
+        /// 生成したキャラクターを初期化して返す
+        /// </summary>
+        /// <returns>生成した初期化済みのキャラクター</returns>
+        public Actor Initialize(BehaviorType behavior)
+        {
+            Actor actor = _spawner.Spawn(behavior);
+            Waypoint lead = _pathCreator.GetPath(ToPathType(behavior));
+            actor.Init(lead);
+
+            return actor;
         }
 
-        // Update is called once per frame
-        void Update()
+        /// <summary>
+        /// 引数の振る舞いに対応した経路の種類を返す
+        /// </summary>
+        /// <returns></returns>
+        PathType ToPathType(BehaviorType behavior)
         {
+            if (behavior == BehaviorType.Customer) return PathType.Customer;
+            if (behavior == BehaviorType.Robber) return PathType.Robber;
 
+            throw new System.ArgumentException("振る舞いに対応した経路が無い: " + behavior);
         }
     }
 }

@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActorSpawnManager : MonoBehaviour
+namespace Alpha
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ActorSpawnManager : MonoBehaviour
     {
-        
-    }
+        [SerializeField] ActorInitializer _initializer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Start()
+        {
+
+        }
+
+        void Update()
+        {
+            // テスト用:キー入力でキャラクターを生成する
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                _initializer.Initialize(BehaviorType.Customer);
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _initializer.Initialize(BehaviorType.Robber);
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace Alpha
 {
     /// <summary>
     /// キャラクターの生成を行うクラス
+    /// 生成 -> 初期化 -> プールへの格納 の手順のうち、生成を担当
     /// </summary>
     public class ActorSpawner : MonoBehaviour
     {
