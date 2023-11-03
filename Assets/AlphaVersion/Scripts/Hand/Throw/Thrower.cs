@@ -9,7 +9,7 @@ namespace Alpha
     /// </summary>
     public class Thrower : MonoBehaviour
     {
-        [SerializeField] ThrowedItem _prefab;
+        [SerializeField] HandSettingsSO _settings;
         [Header("アイテムを積む位置のオフセット")]
         [SerializeField] Vector3 _offset;
         [Header("積む位置のランダムなずらし幅")]
@@ -19,6 +19,7 @@ namespace Alpha
         [Header("最低威力")]
         [SerializeField] float _minPower = 0;
 
+        ThrowEffector _effector;
         Queue<ThrowedItem> _tower = new();
         float _stackHeight;
 
@@ -32,6 +33,11 @@ namespace Alpha
         /// </summary>
         public int StackCount => _tower.Count;
 
+        void Awake()
+        {
+            _effector = new(_settings);
+        }
+
         /// <summary>
         /// 最大数に達していない場合は、アイテムを積んでいく
         /// </summary>
@@ -40,9 +46,6 @@ namespace Alpha
         {
             // 最大数積んでいる場合は弾く
             if (_tower.Count >= _maxStack) return false;
-
-            // 音を再生
-            Cri.PlaySE("SE_ItemSet");
 
             // 生成位置を基準の位置からランダムにずらす
             Vector3 shift = new Vector3(Random.Range(0, _randomShift), 0, Random.Range(0, _randomShift));
@@ -56,6 +59,9 @@ namespace Alpha
             item.transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0); // 回転
             _tower.Enqueue(item);
 
+            // アイテムの位置に音とパーティクルを再生
+            _effector.PlayStackEffect(item.transform);
+
             return true;
         }
 
@@ -64,8 +70,11 @@ namespace Alpha
         /// </summary>
         public void Throw(Vector3 velocity)
         {
-            // 1つ以上積んでいる場合は音を再生
-            if (StackCount > 0) Cri.PlaySE("SE_Slide");
+            // 1つ以上積んでいる場合は、最下段のアイテムの位置に音とパーティクルを再生
+            if (StackCount > 0)
+            {
+                _effector.PlayThrowEffect(_tower.Peek().transform);
+            }
 
             // 最低限飛ぶ距離を設定
             Vector3 minVelocity = velocity.normalized * _minPower;

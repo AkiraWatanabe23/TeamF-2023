@@ -44,8 +44,6 @@ namespace Alpha
         public void Select(KeyCode key)
         {
             _selectedItem = _selector.Select(key);
-            
-            // テムの種類をメッセージングする、音を出す
         }
 
         /// <summary>
@@ -54,8 +52,6 @@ namespace Alpha
         public void Select(float fov)
         {
             _selectedItem = _selector.Select(fov);
-
-            // テムの種類をメッセージングする、音を出す
         }
     }
 }

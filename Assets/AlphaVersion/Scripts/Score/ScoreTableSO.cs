@@ -7,7 +7,7 @@ namespace Alpha
     /// <summary>
     /// スコアの計算に関する値の設定
     /// </summary>
-    [CreateAssetMenu(fileName = "ScoreTableSO", menuName = "ScoreData")]
+    [CreateAssetMenu(fileName = "ScoreTableSO", menuName = "Settings/ScoreTable")]
     public class ScoreTableSO : ScriptableObject
     {
         /// <summary>

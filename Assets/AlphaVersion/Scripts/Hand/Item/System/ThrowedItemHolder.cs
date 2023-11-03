@@ -10,7 +10,8 @@ namespace Alpha
     /// </summary>
     public class ThrowedItemHolder : MonoBehaviour
     {
-        [SerializeField] ThrowedItem _prefab;
+        [SerializeField] ItemType _type;
+        [SerializeField] ThrowedItemInitializer _initializer;
 
         List<ThrowedItem> _items = new();
 
@@ -23,7 +24,7 @@ namespace Alpha
         public ThrowedItem PopItem()
         {
             // TODO:本来ならプーリング
-            ThrowedItem item = Instantiate(_prefab);
+            ThrowedItem item = _initializer.Initialize(_type);
             Items.Add(item);
 
             return item;
