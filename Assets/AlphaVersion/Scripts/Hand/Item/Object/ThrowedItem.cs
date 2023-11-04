@@ -6,9 +6,10 @@ namespace Alpha
 {
     public enum ItemType
     {
-        Alcohol,
-        Food,
-        Gold,
+        Scotch,  // Glass01
+        Bourbon, // Glass02
+        Cognac,  // Glass03
+        Potato,  // Potato01
     }
 
     /// <summary>
@@ -23,6 +24,7 @@ namespace Alpha
         [Header("積む際に必要な値の設定")]
         [SerializeField] float _height = 0.25f;
 
+        HandSettingsSO _settings;
         Vector3 _startingPoint;
         public bool IsThrowed { get; private set; }
 
@@ -41,8 +43,12 @@ namespace Alpha
             }
         }
 
-        void Awake()
+        /// <summary>
+        /// 外部から生成時に初期化する、Awakeの代用メソッド
+        /// </summary>
+        public void Init(HandSettingsSO settings)
         {
+            _settings = settings;
             FreezeXZ();
         }
 
@@ -76,19 +82,23 @@ namespace Alpha
             // 床判定
             if (collision.gameObject.TryGetComponent(out FloorMarker _))
             {
-                Crush();
+                Crash();
             }
         }
 
         /// <summary>
         /// 破裂させる
         /// </summary>
-        void Crush()
+        void Crash()
         {
             // TODO:現在はアイテムの硬さに関わらず、ビンが割れる音を再生する
             Cri.PlaySE("SE_ItemCrash_short");
+            Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
+            ParticleMessageSender.SendMessage(ParticleType.Crash, particlePosition);
 
             // TODO:削除処理が必要
         }
     }
 }
+
+// 次やる:アイテム側にも手のセッティングSOが必要。パーティクルの生成のオフセットに使いたい

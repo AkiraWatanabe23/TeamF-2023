@@ -36,7 +36,7 @@ namespace Alpha
             // テスト用
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Valid(99, ItemType.Gold, r => Debug.Log(r));
+                Valid(99, ItemType.Cognac, r => Debug.Log(r));
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {

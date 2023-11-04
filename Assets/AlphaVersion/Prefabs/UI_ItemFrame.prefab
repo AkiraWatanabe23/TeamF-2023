@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2490707642583363974}
   - component: {fileID: 7272562062015965703}
   m_Layer: 5
-  m_Name: ItemFrame
+  m_Name: UI_ItemFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
