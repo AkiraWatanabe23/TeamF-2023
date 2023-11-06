@@ -209,8 +209,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70389863}
-  m_LocalRotation: {x: 0.019024061, y: 0.9446681, z: -0.3227056, w: 0.055689838}
-  m_LocalPosition: {x: 0.47751468, y: 2.5, z: 1.5792204}
+  m_LocalRotation: {x: 0.019024068, y: 0.9446681, z: -0.3227056, w: 0.055689864}
+  m_LocalPosition: {x: 0.47751456, y: 2.5, z: 1.5792204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2608,7 +2608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978209325}
-  m_LocalRotation: {x: 0.020033874, y: 0.93864197, z: -0.33983526, w: 0.055334557}
+  m_LocalRotation: {x: 0.020033883, y: 0.93864197, z: -0.33983526, w: 0.055334587}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2747,7 +2747,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043451265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47751468, y: 2.5, z: 1.5792204}
+  m_LocalPosition: {x: 0.47751456, y: 2.5, z: 1.5792204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3028,7 +3028,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194934947}
-  m_LocalRotation: {x: 0.018010633, y: 0.950367, z: -0.30551487, w: 0.05602579}
+  m_LocalRotation: {x: 0.018010642, y: 0.950367, z: -0.30551487, w: 0.056025807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3549,6 +3549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2015801789939694296, guid: 07749d1cac3fdbe409a219f34cb2bec6,
         type: 3}
+      propertyPath: _stateMachine._nGWordbool
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015801789939694296, guid: 07749d1cac3fdbe409a219f34cb2bec6,
+        type: 3}
       propertyPath: _stateMachine._sitScripts
       value: 
       objectReference: {fileID: 2117239209}
@@ -3582,6 +3587,11 @@ PrefabInstance:
       propertyPath: _allSitScripts.Array.data[3]
       value: 
       objectReference: {fileID: 730129102}
+    - target: {fileID: 2015801789939694296, guid: 07749d1cac3fdbe409a219f34cb2bec6,
+        type: 3}
+      propertyPath: _stateMachine._failedAniName
+      value: Failed
+      objectReference: {fileID: 0}
     - target: {fileID: 2063721095066879688, guid: 07749d1cac3fdbe409a219f34cb2bec6,
         type: 3}
       propertyPath: m_Controller
@@ -4542,7 +4552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593579679}
-  m_LocalRotation: {x: 0.019024048, y: 0.9446681, z: -0.3227056, w: 0.055689808}
+  m_LocalRotation: {x: 0.019024055, y: 0.9446681, z: -0.3227056, w: 0.055689827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

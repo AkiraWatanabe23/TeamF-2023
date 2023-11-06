@@ -35,7 +35,7 @@ public class RobotAnimationScripts : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         if (_sitButton != null) { _sitButton.onClick.AddListener(() => SitAnimation()); }
-        if (_surprisedButton != null) { _surprisedButton.onClick.AddListener(() => SuprizedAnimation()); }
+        if (_surprisedButton != null) { _surprisedButton.onClick.AddListener(() => SuccessAnimation()); }
         if (_danceButton != null) { _danceButton.onClick.AddListener(() => DanceAnimation()); }
         if(_changeSitChairButton != null) { _changeSitChairButton.onClick.AddListener(() => SitReceipt(_allSitScripts[(_chairCount + 1) % _allSitScripts.Length])); }
         _stateMachine.Init(ref _animator);
@@ -59,11 +59,23 @@ public class RobotAnimationScripts : MonoBehaviour
         }
     }
 
-    public void SuprizedAnimation()
+    public void SuccessAnimation()
     {
-        if (_stateMachine.CurrentState != _stateMachine.GetEmotion)
+        if (_stateMachine.CurrentState != _stateMachine.GetSuccessMotion)
         {
-            _stateMachine.OnChangeState(_stateMachine.GetEmotion);
+            _stateMachine.OnChangeState(_stateMachine.GetSuccessMotion);
+        }
+        else
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetWalk);
+        }
+    }
+
+    public void FailedAnimation()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetFailedMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetFailedMotion);
         }
         else
         {
