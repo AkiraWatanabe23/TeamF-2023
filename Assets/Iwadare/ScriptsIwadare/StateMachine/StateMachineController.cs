@@ -9,22 +9,26 @@ namespace StateMachine
         /// <summary>ì‡ïîéQè∆</summary>
         private WalkMotion _walk = new();
         private SitMotion _sit = new();
-        private EmotionScript _emotion = new();
+        private SuccessMotionScript _successMotion = new();
+        private FailedMotion _failedMotion = new();
         private DanceMotion _dance = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
-        public EmotionScript GetEmotion => _emotion;
+        public SuccessMotionScript GetSuccessMotion => _successMotion;
+        public FailedMotion GetFailedMotion => _failedMotion;
         public DanceMotion GetDance => _dance;
         private IState _currentState = null;
         public IState CurrentState => _currentState;
 
         [SerializeField] private string _walkAniName = "Walk";
         [SerializeField] private string _sitAniName = "Sitting";
-        [SerializeField] private string _emotionAniName = "Surprized";
+        [SerializeField] private string _successAniName = "Surprized";
+        [SerializeField] private string _failedAniName = "Failed";
         [SerializeField] private string _danceAniName = "Dance";
         public string WalkName => _walkAniName;
         public string SitName => _sitAniName;
-        public string EmotionName => _emotionAniName;
+        public string SuccessName => _successAniName;
+        public string FailedName => _failedAniName;
         public string DanceName => _danceAniName;
 
         private float _time;
@@ -36,11 +40,13 @@ namespace StateMachine
 
         public Transform _avatorTrams;
 
+        public bool _nGWordbool;
+
         // Start is called before the first frame update
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[3] { _walk, _sit, _emotion };
+            IState[] state = new IState[5] { _walk, _sit, _successMotion ,_failedMotion,_dance};
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
@@ -77,7 +83,7 @@ namespace StateMachine
                 case MotionState.Sit:
                     return _sit;
                 case MotionState.Emotion:
-                    return _emotion;
+                    return _successMotion;
             }
             return null;
         }
