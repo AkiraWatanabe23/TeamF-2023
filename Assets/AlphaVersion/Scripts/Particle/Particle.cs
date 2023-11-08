@@ -9,6 +9,14 @@ namespace Alpha
         Swoosh,
         Crash,
         Thun,
+        Angry,
+        Boo01,
+        Boo02,
+        Boo03,
+        Good01,
+        Good02,
+        Happy01,
+        Shock01,
     }
 
     /// <summary>
@@ -16,14 +24,6 @@ namespace Alpha
     /// </summary>
     public class Particle : MonoBehaviour
     {
-        void Start()
-        {
 
-        }
-
-        void Update()
-        {
-
-        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace Alpha
 {
@@ -8,13 +9,15 @@ namespace Alpha
     /// 現在のスコアを管理するクラス
     /// メッセージの受信で増減を行う
     /// </summary>
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager : MonoBehaviour, ITotalScoreReader
     {
         [SerializeField] ScoreMessageReceiver _messageReceiver;
         [SerializeField] ScoreUI _scoreUI;
         [SerializeField] ScoreCalculator _calculator;
 
-        int _totalScore;
+        ReactiveProperty<int> _totalScore = new(0);
+
+        public IReadOnlyReactiveProperty<int> TotalScore => _totalScore;
 
         void OnEnable()
         {
@@ -38,8 +41,9 @@ namespace Alpha
         /// </summary>
         void OnMessageReceived(ScoreEventMessage msg)
         {
-            _totalScore += _calculator.ToInt(msg);
-            _scoreUI.Draw(_totalScore);
+            _totalScore.Value += _calculator.ToInt(msg);
+            _totalScore.Value = Mathf.Max(_totalScore.Value, 0);
+            _scoreUI.Draw(_totalScore.Value);
         }
     }
 }

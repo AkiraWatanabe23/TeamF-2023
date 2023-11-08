@@ -37,9 +37,17 @@ namespace Alpha
         /// <summary>
         /// Awakeの代わり、外部から生成する際にこのメソッドを呼ぶ以外に必要な初期化は無い。
         /// </summary>
-        public void Init(Waypoint lead, TableManager tableManager, Tension tension)
+        public void Init(Waypoint lead, Tension tension)
         {
-            OnInitOverride(lead, tableManager, tension);
+            OnInitOverride(lead, tension);
+        }
+
+        /// <summary>
+        /// Awakeの代わり、外部から生成する際にこのメソッドを呼ぶ以外に必要な初期化は無い。
+        /// </summary>
+        public void Init<T>(Waypoint lead, Tension tension, T arg)
+        {
+            OnInitOverride(lead, tension, arg);
         }
 
         /// <summary>
@@ -56,7 +64,8 @@ namespace Alpha
             OnStartOverride();
         }
 
-        protected virtual void OnInitOverride(Waypoint lead, TableManager tableManager, Tension tension) { }
+        protected virtual void OnInitOverride(Waypoint lead, Tension tension) { }
+        protected virtual void OnInitOverride<T>(Waypoint lead, Tension tension, T arg) { }
         protected virtual void OnStartOverride() { }
         protected async virtual UniTaskVoid UpdateAsync(CancellationToken token) { }
     }

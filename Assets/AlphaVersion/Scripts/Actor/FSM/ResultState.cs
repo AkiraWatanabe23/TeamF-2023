@@ -9,6 +9,7 @@ namespace Alpha
     /// </summary>
     public class ResultState : BaseState
     {
+        [SerializeField] ActorSettingsSO _settings;
         [Header("アニメーションの再生時間")]
         [SerializeField] float _successPlayTime = 1.0f;
         [SerializeField] float _failurePlayTime = 1.0f;
@@ -72,7 +73,23 @@ namespace Alpha
         /// </summary>
         void PlayEffect()
         {
-            // 演出ｺｺ
+            // パーティクル
+            ParticleType particle = default;
+            Vector3 offset = default;
+            if (_result == OrderResult.Success)
+            {
+                particle = _settings.SuccessParticle;
+                offset = _settings.SuccessParticleOffset;
+            }
+            if (_result == OrderResult.Failure)
+            {
+                particle = _settings.FailureParticle;
+                offset = _settings.FailureParticleOffset;
+            }
+            Vector3 position = transform.position + offset;
+            ParticleMessageSender.SendMessage(particle, position, transform);
+
+            // 音
         }
     }
 }

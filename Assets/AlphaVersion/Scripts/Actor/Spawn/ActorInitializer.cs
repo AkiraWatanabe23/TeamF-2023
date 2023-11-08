@@ -24,8 +24,9 @@ namespace Alpha
             Actor instance = _spawner.Spawn(behavior, actor);
             Waypoint lead = _pathCreator.GetPath(ToPathType(behavior));
 
-            // 経路と席、現在フィーバータイムかどうかを渡す
-            instance.Init(lead, _tableManager, Tension);
+            // 客の場合は、経路と席と現在フィーバータイムかどうかを渡す
+            if (behavior == BehaviorType.Customer) instance.Init(lead, Tension, _tableManager);
+            if (behavior == BehaviorType.Robber) instance.Init(lead, Tension);
 
             return instance;
         }

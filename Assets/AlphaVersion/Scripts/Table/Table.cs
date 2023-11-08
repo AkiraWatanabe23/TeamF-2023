@@ -32,19 +32,6 @@ namespace Alpha
             _cts.Dispose();
         }
 
-        void Update()
-        {
-            // テスト用
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Valid(99, ItemType.Cognac, r => Debug.Log(r));
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                Invalid();
-            }
-        }
-
         /// <summary>
         /// キャッチするアイテムと、コールバックを登録して、有効化する
         /// </summary>
