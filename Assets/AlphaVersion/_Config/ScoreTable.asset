@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robber:
     SuccessBonus: 100
-    FailurePenalty: 100
+    FailurePenalty: 10
   _male:
     SuccessBonus: 100
-    FailurePenalty: 100
+    FailurePenalty: 10
   _female:
     SuccessBonus: 100
-    FailurePenalty: 100
+    FailurePenalty: 10
   _muscle:
     SuccessBonus: 100
-    FailurePenalty: 100
+    FailurePenalty: 10
   _defaultScoreRate: 1
   _feverScoreRate: 2

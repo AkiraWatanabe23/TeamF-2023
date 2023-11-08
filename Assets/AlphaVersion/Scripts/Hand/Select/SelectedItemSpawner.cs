@@ -43,7 +43,7 @@ namespace Alpha
         /// </summary>
         public void Select(KeyCode key)
         {
-            _selectedItem = _selector.Select(key);
+            _selectedItem = SelectWithPlaySE(_selector.Select(key));
         }
 
         /// <summary>
@@ -51,7 +51,16 @@ namespace Alpha
         /// </summary>
         public void Select(float fov)
         {
-            _selectedItem = _selector.Select(fov);
+            _selectedItem = SelectWithPlaySE(_selector.Select(fov));
+        }
+
+        /// <summary>
+        /// ëIëèàóùÇ…SEÇÃçƒê∂Çã≤Çﬁ
+        /// </summary>
+        ItemType SelectWithPlaySE(ItemType next)
+        {
+            if (_selectedItem != next) Cri.PlaySE("SE_ItemSelect_2");
+            return next;
         }
     }
 }

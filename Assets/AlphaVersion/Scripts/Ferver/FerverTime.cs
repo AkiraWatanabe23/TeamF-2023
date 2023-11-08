@@ -37,7 +37,13 @@ namespace Alpha
 
         void Awake()
         {
-            _instance ??= this;
+            if (_instance == null)
+            {
+                _instance = this;
+
+                // 発生条件を管理させる
+                FerverProvider.OnFerverSwitched += Switch;
+            }
         }
 
         void OnDestroy()
@@ -51,15 +57,23 @@ namespace Alpha
             // デバッグ用にキー入力で切り替えられる
             if (_isDebug && Input.GetKeyDown(KeyCode.F))
             {
-                _isFerver = !_isFerver;
-
-                // コールバック呼び出し
-                if (_isFerver) OnEnter?.Invoke();
-                else OnExit?.Invoke();
-                
-                // メッセージング
-                MessageBroker.Default.Publish(new FerverTimeMessage());
+                Switch(!_isFerver);
             }
+        }
+
+        /// <summary>
+        /// フィーバータイムと通常状態を切り替える
+        /// </summary>
+        void Switch(bool flag)
+        {
+            _isFerver = flag;
+
+            // コールバック呼び出し
+            if (_isFerver) OnEnter?.Invoke();
+            else OnExit?.Invoke();
+
+            // メッセージング
+            MessageBroker.Default.Publish(new FerverTimeMessage());
         }
     }
 }

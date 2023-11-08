@@ -78,9 +78,19 @@ namespace Alpha
         /// </summary>
         void OnItemHit(Collision collision)
         {
+            // アイテム以外がぶつかった場合は弾く
+            if (!collision.gameObject.TryGetComponent(out ThrowedItem _)) return;
+
             // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
             _table.Table.Invalid();
             Result = OrderResult.Failure;
+
+            // パーティクル
+            ParticleType particle = _settings.ItemHitParticle;
+            Vector3 position = transform.position + _settings.ItemHitParticleOffset;
+            ParticleMessageSender.SendMessage(particle, position, transform);
+
+            // TODO:ぶつかった音を再生
         }
     }
 }

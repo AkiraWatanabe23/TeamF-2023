@@ -43,12 +43,9 @@ namespace Alpha
         [SerializeField] Offset _swooshParticleOffset;
         [Header("滑っていくパーティクルがアイテムを追従する")]
         [SerializeField] bool _swooshParticleItemFollow = true;
-        [Header("グラスが割れるパーティクルの位置のオフセット")]
-        [SerializeField] Offset _crashParticleOffset;
 
         public Vector3 StackParticleOffset => _thunParticleOffset.Position;
         public Vector3 ThrowParticleOffset => _swooshParticleOffset.Position;
-        public Vector3 CrashParticleOffset => _crashParticleOffset.Position;
         public bool SwooshParticleItemFollow => _swooshParticleItemFollow;
     }
 }

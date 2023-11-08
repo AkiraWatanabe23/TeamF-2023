@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6182bda05eebf4481fb299147d75e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 0}
+  _settings: {fileID: 11400000, guid: 554d42c4486c4da4da204fcb8dccbdae, type: 2}
 --- !u!114 &1268209751450412608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,14 +393,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
   - Order: 0
-    Prefab: {fileID: 5688653169703196306, guid: e3859f4489e9ea043a246e329956fd46,
+    Prefab: {fileID: 3033616701370891420, guid: a22f2954147bd704b9cf004a3e1e4127,
       type: 3}
   - Order: 1
-    Prefab: {fileID: 2071453863009576856, guid: 4885aa1d5fca39847885731b65423505,
+    Prefab: {fileID: 6774575331462912185, guid: 449d230bf9a32c444b71c439792c0c15,
       type: 3}
   - Order: 2
-    Prefab: {fileID: 6060446181909666084, guid: 24d3a86a83918c0439c4bc60d521ef45,
+    Prefab: {fileID: 5499456219034574333, guid: 3795ae6c0ee05de4da96842abe9b729a,
       type: 3}
   - Order: 3
-    Prefab: {fileID: 5688653169703196306, guid: e3859f4489e9ea043a246e329956fd46,
-      type: 3}
+    Prefab: {fileID: 481256606436500293, guid: ef23017d446dc40449d6671a3f698a43, type: 3}
