@@ -9,6 +9,7 @@ namespace Alpha
         Way,    // そのまま次のウェイポイントに向かう
         Table,  // 客が座る椅子
         Stage,  // キャラクターが演出を行う地点
+        Fire,   // 泥棒の射撃地点
     }
 
     /// <summary>

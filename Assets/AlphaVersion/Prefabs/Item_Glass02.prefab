@@ -294,6 +294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076f7afe40b192f4cb257ef9e5b42461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throwedparticle: {fileID: 0}
+  _type: 1
   _hardness: 0
   _height: 0.15
