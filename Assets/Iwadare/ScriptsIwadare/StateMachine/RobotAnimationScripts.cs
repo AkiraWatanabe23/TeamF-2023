@@ -17,7 +17,10 @@ public class RobotAnimationScripts : MonoBehaviour
     Button _sitButton;
 
     [SerializeField]
-    Button _surprisedButton;
+    Button _successButton;
+    
+    [SerializeField] 
+    private Button _failedButton;
 
     [SerializeField]
     Button _danceButton;
@@ -35,9 +38,10 @@ public class RobotAnimationScripts : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         if (_sitButton != null) { _sitButton.onClick.AddListener(() => SitAnimation()); }
-        if (_surprisedButton != null) { _surprisedButton.onClick.AddListener(() => SuccessAnimation()); }
+        if (_successButton != null) { _successButton.onClick.AddListener(() => SuccessAnimation()); }
         if (_danceButton != null) { _danceButton.onClick.AddListener(() => DanceAnimation()); }
         if(_changeSitChairButton != null) { _changeSitChairButton.onClick.AddListener(() => SitReceipt(_allSitScripts[(_chairCount + 1) % _allSitScripts.Length])); }
+        if(_failedButton != null) {_failedButton.onClick.AddListener(() => FailedAnimation()); }
         _stateMachine.Init(ref _animator);
     }
 
@@ -100,5 +104,11 @@ public class RobotAnimationScripts : MonoBehaviour
         _stateMachine._sitScripts = sitScripts;
         _chairCount = (_chairCount + 1) % _allSitScripts.Length;
         Debug.Log(_chairCount);
+    }
+
+    public void SitReceipt(int index)
+    {
+        _stateMachine._sitScripts = _allSitScripts[index];
+        Debug.Log(index);
     }
 }
