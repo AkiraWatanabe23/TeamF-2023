@@ -16,7 +16,8 @@ namespace Alpha
         [SerializeField] Collider _collider;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
-        [SerializeField] FireState _actionState;
+        [SerializeField] AnimationState _animationState;
+        [SerializeField] FireState _fireState;
 
         FootstepRecorder _recorder;
         PathConverter _pathConverter;
@@ -70,8 +71,8 @@ namespace Alpha
                 while (!isItemHit && StepMoveToPathEnd()) await UniTask.Yield(token);
 
                 // 演出地点でのアクション
-                _actionState.Init();
-                while (!isItemHit && StepAction()) await UniTask.Yield(token);
+                _animationState.Init();
+                while (!isItemHit && StepAnimation()) await UniTask.Yield(token);
             }
 
             // 射撃地点までの経路を取得
@@ -82,8 +83,8 @@ namespace Alpha
             while (!isItemHit && StepMoveToPathEnd()) await UniTask.Yield(token);
 
             // 射撃
-            _actionState.Init();
-            while (!isItemHit && StepAction()) await UniTask.Yield(token);
+            _fireState.Init();
+            while (!isItemHit && StepFire()) await UniTask.Yield(token);
 
             // 出口までの経路を取得
             path = _pathConverter.GetPathToExit(pathEnd);
@@ -100,8 +101,8 @@ namespace Alpha
             else
             {
                 // なんかアクション
-                _actionState.Init();
-                while (StepAction()) await UniTask.Yield(token);
+                _animationState.Init();
+                while (StepAnimation()) await UniTask.Yield(token);
 
                 // 帰る
                 path = _recorder.GetReversePathFromCurrentPosition();
@@ -123,12 +124,21 @@ namespace Alpha
         }
 
         /// <summary>
-        /// アクションを実行する
+        /// アニメーションを再生する
         /// </summary>
-        bool StepAction()
+        bool StepAnimation()
         {
-            StepState(_actionState);
-            return _actionState.IsRunning;
+            StepState(_animationState);
+            return _animationState.IsRunning;
+        }
+
+        /// <summary>
+        /// 射撃する
+        /// </summary>
+        bool StepFire()
+        {
+            StepState(_fireState);
+            return _fireState.IsRunning;
         }
 
         /// <summary>
