@@ -11,7 +11,8 @@ namespace Alpha
         Move,
         Order,
         Result,
-        Action,
+        Fire,
+        Animation,
     }
 
     /// <summary>

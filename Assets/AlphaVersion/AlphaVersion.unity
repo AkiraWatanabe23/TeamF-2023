@@ -3470,7 +3470,7 @@ GameObject:
   - component: {fileID: 1373676223}
   - component: {fileID: 1373676225}
   m_Layer: 0
-  m_Name: Gimmick
+  m_Name: Tumbleweed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

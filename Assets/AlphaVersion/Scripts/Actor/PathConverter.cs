@@ -104,6 +104,9 @@ namespace Alpha
         public IReadOnlyList<Vector3> GetPathToLeadFromPosition(Vector3 position)
         {
             List<Vector3> path = new() { position, _lead.Position };
+            
+            
+            
             return path;
         }
 

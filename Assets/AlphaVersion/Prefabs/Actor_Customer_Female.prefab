@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9008692859186237202}
   - component: {fileID: -4441369618419075811}
   - component: {fileID: -3705709529951960130}
+  - component: {fileID: 183877334071728430}
   m_Layer: 0
   m_Name: Actor_Customer_Female
   m_TagString: Untagged
@@ -159,6 +160,36 @@ MonoBehaviour:
   _settings: {fileID: 11400000, guid: c5338bbbb66aa0e4abb6e226f6210995, type: 2}
   _successPlayTime: 1
   _failurePlayTime: 1
+--- !u!114 &183877334071728430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262113813833956895}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf96ff3af1a91f4bb9aab54befd4d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateMachine:
+    _walkAniName: Walk
+    _sitAniName: Sitting
+    _successAniName: Surprized
+    _failedAniName: Failed
+    _danceAniName: Dance
+    _sitScripts: {fileID: 0}
+    _avatorTrams: {fileID: 0}
+    _nGWordbool: 0
+  _sitButton: {fileID: 0}
+  _surprisedButton: {fileID: 0}
+  _danceButton: {fileID: 0}
+  _changeSitChairButton: {fileID: 0}
+  _allSitScripts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &4364187837212439249
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
@@ -12,6 +13,12 @@ namespace Alpha
     /// </summary>
     public class TumbleweedSpawner : MonoBehaviour
     {
+        /// <summary>
+        /// タンブルウィードのギミック発動時に呼び出されるコールバック
+        /// 既にギミック中でキャンセルされた場合は呼び出されない。
+        /// </summary>
+        public static event UnityAction OnSpawned;
+
         [SerializeField] TumbleweedCreator _creator;
         [Header("生成の設定")]
         [SerializeField] Transform _spawnPoint;
@@ -27,6 +34,8 @@ namespace Alpha
 
         void OnDestroy()
         {
+            OnSpawned = null;
+
             if (_cts != null)
             {
                 _cts.Cancel();
@@ -45,6 +54,8 @@ namespace Alpha
                 Debug.LogWarning("既にダンブルウィードのギミック中なのでキャンセルされた: " + Time.time);
                 return;
             }
+
+            OnSpawned?.Invoke();
 
             _cts = new();
             SpawnAsync(_cts.Token).Forget();

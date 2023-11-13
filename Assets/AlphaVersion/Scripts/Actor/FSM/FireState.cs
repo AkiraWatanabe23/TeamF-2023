@@ -7,11 +7,11 @@ using UniRx.Triggers;
 namespace Alpha
 {
     /// <summary>
-    /// 何らかのアクションを実行し、その終了まで待つステート
+    /// 一定時間経過後に射撃を行うステート
     /// </summary>
-    public class ActionState : BaseState
+    public class FireState : BaseState
     {
-        public override StateType Type => StateType.Action;
+        public override StateType Type => StateType.Fire;
         public bool IsRunning { get; private set; }
 
         // TODO:仮でタイマー性にしておく、時間切れで完了
