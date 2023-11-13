@@ -40,6 +40,7 @@ namespace Alpha
         {
             LookAt();
             Animator.Play("Order");
+            Cri.PlaySE("SE_ChinBell");
 
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
             _table.Table.Valid(_settings.OrderTimeLimit, _settings.RandomOrder, result => 
@@ -85,12 +86,11 @@ namespace Alpha
             _table.Table.Invalid();
             Result = OrderResult.Failure;
 
-            // パーティクル
+            // 音とパーティクル
+            Cri.PlaySE("SE_OrderHit");
             ParticleType particle = _settings.ItemHitParticle;
             Vector3 position = transform.position + _settings.ItemHitParticleOffset;
             ParticleMessageSender.SendMessage(particle, position, transform);
-
-            // TODO:ぶつかった音を再生
         }
     }
 }

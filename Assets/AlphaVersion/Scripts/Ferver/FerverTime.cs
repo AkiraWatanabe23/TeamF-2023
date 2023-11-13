@@ -27,6 +27,7 @@ namespace Alpha
 
         static FerverTime _instance;
 
+        [SerializeField] FerverTrigger _trigger;
         [Header("デバッグ用:Fキーでオンオフ切り替え")]
         [SerializeField] bool _isDebug = true;
 
@@ -37,13 +38,18 @@ namespace Alpha
 
         void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
+            _instance ??= this;
+        }
 
-                // 発生条件を管理させる
-                FerverProvider.OnFerverSwitched += Switch;
-            }
+        void OnEnable()
+        {
+            // 発生条件を管理させる
+            if (_instance == this) _trigger.OnFerverEnter += Ferver;
+        }
+
+        void OnDisable()
+        {
+            if (_instance == this) _trigger.OnFerverEnter -= Ferver;
         }
 
         void OnDestroy()
@@ -60,6 +66,11 @@ namespace Alpha
                 Switch(!_isFerver);
             }
         }
+
+        /// <summary>
+        /// フィーバータイム開始、コールバック登録用
+        /// </summary>
+        void Ferver() => Switch(true);
 
         /// <summary>
         /// フィーバータイムと通常状態を切り替える

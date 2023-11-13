@@ -17,6 +17,27 @@ namespace Alpha
         {
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.AddForce(velocity, ForceMode.Impulse);
+
+            // 音とパーティクル
+            Cri.PlaySE("SE_CleanKirakira");
+            ParticleMessageSender.SendMessage(ParticleType.Clean, transform.position, transform);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            // 床判定
+            if (collision.gameObject.TryGetComponent(out FloorMarker _))
+            {
+                Delete();
+            }
+        }
+
+        /// <summary>
+        /// 床についた場合に削除する
+        /// </summary>
+        void Delete()
+        {
+            Destroy(gameObject);
         }
     }
 }

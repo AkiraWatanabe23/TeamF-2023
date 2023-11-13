@@ -70,6 +70,9 @@ namespace Alpha
         [Header("キャラクターを識別する値")]
         [SerializeField] ActorType _actorType;
         [SerializeField] BehaviorType _behaviorType;
+        [SerializeField] string _failureVoice;
+        [SerializeField] string _successVoice;
+        [SerializeField] string _rareSuccessVoice;
         [Header("プランナーが弄る値")]
         [SerializeField] ActorParams _actorParams;
         [Header("デザイナーが弄る値")]
@@ -87,5 +90,8 @@ namespace Alpha
         public Vector3 SuccessParticleOffset => _visualParams.SuccessParticle.Offset.Position;
         public Vector3 FailureParticleOffset => _visualParams.FailureParticle.Offset.Position;
         public Vector3 ItemHitParticleOffset => _visualParams.ItemHitParticle.Offset.Position;
+        public string FailureVoice => _failureVoice;
+        // 1/10の低確率でレアな成功ボイス
+        public string SuccessVoice => Random.value <= 0.1f ? _rareSuccessVoice : _successVoice;
     }
 }

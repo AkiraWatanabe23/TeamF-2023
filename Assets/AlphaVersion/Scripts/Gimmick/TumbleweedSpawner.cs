@@ -12,29 +12,26 @@ namespace Alpha
     /// </summary>
     public class TumbleweedSpawner : MonoBehaviour
     {
-        [SerializeField] GimmickProvider _provider;
+        [SerializeField] TumbleweedCreator _creator;
         [Header("生成の設定")]
-        [SerializeField] Tumbleweed _prefab;
         [SerializeField] Transform _spawnPoint;
         [SerializeField] float _radius = 0.5f;
         [SerializeField] int _quantity = 10;
+        [Header("瓦礫パラパラ時間(秒)")]
+        [SerializeField] float _prevDelay = 2.0f;
+        [Header("1つ落下する毎のディレイ(秒)")]
+        [SerializeField] float _stepDelay;
 
         CancellationTokenSource _cts = new();
-
-        void OnEnable()
-        {
-            _provider.OnTumbleweedSpawned += Spawn;
-        }
-
-        void OnDisable()
-        {
-            _provider.OnTumbleweedSpawned -= Spawn;
-        }
+        bool _isRunning; // ギミック中に再度呼び出さないようにフラグ
 
         void OnDestroy()
         {
-            _cts.Cancel();
-            _cts.Dispose();
+            if (_cts != null)
+            {
+                _cts.Cancel();
+                _cts.Dispose();
+            }
         }
 
         /// <summary>
@@ -42,6 +39,13 @@ namespace Alpha
         /// </summary>
         public void Spawn()
         {
+            // 既にギミック実行中なので弾く
+            if (_isRunning)
+            {
+                Debug.LogWarning("既にダンブルウィードのギミック中なのでキャンセルされた: " + Time.time);
+                return;
+            }
+
             _cts = new();
             SpawnAsync(_cts.Token).Forget();
         }
@@ -51,16 +55,36 @@ namespace Alpha
         /// </summary>
         async UniTaskVoid SpawnAsync(CancellationToken token)
         {
-            // TODO:ダンブルウィードを生成している
+            _isRunning = true;
+
+            // パラパラSE再生後、崩れるSE再生
+            Cri.PlaySE("SE_TumbleweedPrev");
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_prevDelay), cancellationToken: token);
+            Cri.PlaySE("SE_TumbleweedFall");
+
             for (int i = 0; i < _quantity; i++)
             {
-                float x = Random.Range(-_radius, _radius);
-                float z = Random.Range(-_radius, _radius);
-                Vector3 spawnPosition = _spawnPoint.position + new Vector3(x, 0, z);
-                Tumbleweed t = Instantiate(_prefab, spawnPosition, Quaternion.identity);
-
-                await UniTask.Yield(token);
+                RentTumbleweed();
+                await UniTask.Delay(System.TimeSpan.FromSeconds(_stepDelay), cancellationToken: token);
             }
+
+            _isRunning = false;
+        }
+
+        /// <summary>
+        /// タンブルウィードをプールから取り出して落下させる
+        /// </summary>
+        void RentTumbleweed()
+        {
+            // ランダムな位置
+            float x = Random.Range(-_radius, _radius);
+            float z = Random.Range(-_radius, _radius);
+            Vector3 spawnPosition = _spawnPoint.position + new Vector3(x, 0, z);
+
+            // プールから取り出して落下
+            Tumbleweed t = _creator.Create();
+            t.transform.position = spawnPosition;
+            t.Fall();
         }
     }
 }

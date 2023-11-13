@@ -10,6 +10,7 @@ namespace Alpha
         Bourbon, // Glass02
         Cognac,  // Glass03
         Potato,  // Potato01
+        Beef,    // RoastBeef
     }
 
     /// <summary>
@@ -18,6 +19,7 @@ namespace Alpha
     [RequireComponent(typeof(Rigidbody))]
     public class ThrowedItem : MonoBehaviour, ICatchable
     {
+        ThrowedItemPool _pool; // プール
         ItemSettingsSO _settings;
         Rigidbody _rigidbody;
         Vector3 _startingPoint;
@@ -42,12 +44,26 @@ namespace Alpha
         public float SqrSpeed => _rigidbody.velocity.sqrMagnitude;
 
         /// <summary>
-        /// 外部から生成時に初期化する、Awakeの代用メソッド
+        /// 生成してプールに追加した際に1度だけプール側から呼び出されるメソッド
+        /// </summary>
+        public void OnCreate(ThrowedItemPool pool)
+        {
+            _pool = pool;
+        }
+
+        /// <summary>
+        /// 外部からプールから取り出した際に初期化する、Awakeの代用メソッド
         /// </summary>
         public void Init(ItemSettingsSO settings)
         {
+            IsThrowed = false;
+            
             _settings = settings;
+
             _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+
             FreezeXZ();
         }
 
@@ -99,7 +115,7 @@ namespace Alpha
             Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
             ParticleMessageSender.SendMessage(_settings.CrashParticle, particlePosition);
 
-            // TODO:削除処理が必要
+            _pool.Return(this);
         }
 
         /// <summary>
@@ -107,10 +123,7 @@ namespace Alpha
         /// </summary>
         public void OnCatched()
         {
-            Debug.Log("キャッチされた");
+            _pool.Return(this);
         }
     }
 }
-
-// キャッチした際に消えない
-// ダンブルウィード降るギミック

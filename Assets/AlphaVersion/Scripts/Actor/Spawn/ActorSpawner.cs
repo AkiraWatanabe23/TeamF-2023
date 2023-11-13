@@ -13,6 +13,7 @@ namespace Alpha
     {
         [SerializeField] Actor[] _prefabs;
 
+        Transform _parent;
         // 振る舞いで分別した中で、更にキャラ毎の辞書が存在する
         Dictionary<BehaviorType, Dictionary<ActorType, Actor>> _table = new();
 
@@ -28,6 +29,9 @@ namespace Alpha
 
                 _table[prefab.BehaviorType].Add(prefab.ActorType, prefab);
             }
+
+            // 生成したキャラクターを登録する親
+            _parent = new GameObject("ActorPool").transform;
         }
 
         /// <summary>
@@ -40,8 +44,10 @@ namespace Alpha
             {
                 if (dict.TryGetValue(actor, out Actor prefab))
                 {
+                    // TODO:キャラクターのプーリング。現状このクラスに登録する親を持たせている。
+                    
                     // 適当に画面外に生成する
-                    return Instantiate(prefab, new Vector3(100, 100, 100), Quaternion.identity);
+                    return Instantiate(prefab, new Vector3(100, 100, 100), Quaternion.identity, _parent);
                 }
                 else
                 {
