@@ -16,8 +16,9 @@ namespace Alpha
         [SerializeField] Collider _collider;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
-        [SerializeField] ActionState _actionState;
+        [SerializeField] FireState _actionState;
 
+        FootstepRecorder _recorder;
         PathConverter _pathConverter;
         BaseState _currentState;
         Waypoint _lead; // いる？
@@ -25,6 +26,9 @@ namespace Alpha
 
         protected override void OnInitOverride(Waypoint lead, Tension tension)
         {
+            // 経路の先頭から現在地までの経路をリセット
+            _recorder ??= new(transform);
+            _recorder.Reset();
             // リストで経路を取得できるように経路の先頭を渡しておく
             _pathConverter = new(lead);
             // 移動ステートから開始
@@ -45,11 +49,12 @@ namespace Alpha
 
             // アイテムがぶつかったフラグ
             bool isItemHit = false;
-            _collider.OnCollisionStayAsObservable().Subscribe(_ => 
-            {
-                isItemHit = true;
-                Cri.PlaySE("SE_OrderHit");
-            });
+            _collider.OnCollisionStayAsObservable()
+                .Where(c => c.collider.TryGetComponent(out ThrowedItem _)).Subscribe(_ => 
+                {
+                    isItemHit = true;
+                    Cri.PlaySE("SE_OrderHit");
+                });
 
             Waypoint pathEnd = _lead;
             IReadOnlyList<Vector3> path;
@@ -99,7 +104,7 @@ namespace Alpha
                 while (StepAction()) await UniTask.Yield(token);
 
                 // 帰る
-                path = _pathConverter.GetPathToLeadFromPosition(transform.position);
+                path = _recorder.GetReversePathFromCurrentPosition();
                 _moveState.Init(path, ignoreForward: true);
                 while (StepMoveToPathEnd()) await UniTask.Yield(token);
             }
@@ -110,6 +115,9 @@ namespace Alpha
         /// </summary>
         bool StepMoveToPathEnd()
         {
+            // 移動する度に足跡を保持する
+            _recorder.TryRecord();
+
             StepState(_moveState);
             return _moveState.IsRunning;
         }
@@ -129,6 +137,3 @@ namespace Alpha
         void StepState(BaseState nextState) => _currentState = _currentState.Step(nextState);
     }
 }
-
-// きちんと経路をたどらせる
-// ダンブルウィード
