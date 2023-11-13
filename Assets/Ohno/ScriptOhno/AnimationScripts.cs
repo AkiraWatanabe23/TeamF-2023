@@ -48,11 +48,10 @@ public class AnimationScripts : MonoBehaviour
     {
         _walkBool = !_walkBool;
 
-        _text.text = text;
-
         if (_walkBool)
         {
             _animator.Play("Walk");
+            _text.text = text;
         }
     }
 
@@ -60,11 +59,10 @@ public class AnimationScripts : MonoBehaviour
     {
         _sitBool = !_sitBool;
 
-        _text.text = text;
-
         if (_sitBool)
         {
             _animator.Play("Sitting");
+            _text.text = text;
         }
     }
 
@@ -72,11 +70,10 @@ public class AnimationScripts : MonoBehaviour
     {
         _successBool = !_successBool;
 
-        _text.text = text;
-
         if (_successBool)
         {
             _animator.Play("Surprized");
+            _text.text = text;
         }
     }
 
@@ -84,11 +81,10 @@ public class AnimationScripts : MonoBehaviour
     {
         _failedBool = !_failedBool;
 
-        _text.text = text;
-
         if (_failedBool)
         {
             _animator.Play("Failed");
+            _text.text = text;
         }
     }
 
@@ -96,11 +92,10 @@ public class AnimationScripts : MonoBehaviour
     {
         _danceBool = !_danceBool;
 
-        _text.text = text;
-
         if (_danceBool)
         {
             _animator.Play("Dance");
+            _text.text = text;
         }
     }
 
