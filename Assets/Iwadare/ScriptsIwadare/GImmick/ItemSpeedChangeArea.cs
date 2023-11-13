@@ -7,7 +7,6 @@ using UnityEngine.XR;
 
 public class ItemSpeedChangeArea : MonoBehaviour
 {
-    [SerializeField] GimmickProvider _gimmickProvider;
     [SerializeField] float _speed;
     [SerializeField] bool _opeStopbool = false;
     [SerializeField] Renderer _mesh;
@@ -16,12 +15,12 @@ public class ItemSpeedChangeArea : MonoBehaviour
 
     private void OnEnable()
     {
-        _gimmickProvider.OnTumbleweedSpawned += SpeedChangeAreaOperation;
+
     }
 
     private void OnDisable()
     {
-        _gimmickProvider.OnTumbleweedSpawned -= SpeedChangeAreaOperation;
+
     }
 
     void Start()
