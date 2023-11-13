@@ -20,11 +20,17 @@ namespace Alpha
         [SerializeField] ParticleMessageReceiver _messageReceiver;
         [SerializeField] Data[] _data;
 
-        Dictionary<ParticleType, Particle> _dict = new();
+        Dictionary<ParticleType, ParticlePool> _pools;
 
         void Awake()
         {
-            _dict = _data.ToDictionary(d => d.Type, d => d.Prefab);
+            _pools = _data.ToDictionary(d => d.Type, d => new ParticlePool(d.Prefab, $"ParticlePool_{d.Type}"));
+        }
+
+        void OnDestroy()
+        {
+            // 使い終わったプールのDispose
+            foreach (KeyValuePair<ParticleType, ParticlePool> pair in _pools) pair.Value.Dispose();
         }
 
         void OnEnable()
@@ -43,10 +49,11 @@ namespace Alpha
         /// </summary>
         void OnMessageReceived(ParticleMessage msg)
         {
-            // TODO:生成処理、本来ならプーリングしてそこから取り出す
-            Particle prefab = Instantiate(_dict[msg.Type], msg.Parent);
-            prefab.transform.position = msg.Position;
-            prefab.transform.rotation = Quaternion.identity;
+            Particle particle = _pools[msg.Type].Rent();
+            particle.Play();
+            particle.transform.parent = msg.Parent;
+            particle.transform.position = msg.Position;
+            particle.transform.rotation = Quaternion.identity;
         }
     }
 }

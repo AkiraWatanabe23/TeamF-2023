@@ -40,9 +40,16 @@ namespace Alpha
 
         protected async override UniTaskVoid UpdateAsync(CancellationToken token)
         {
+            // 登場音
+            Cri.PlaySE("SE_DoorStrong");
+
             // アイテムがぶつかったフラグ
             bool isItemHit = false;
-            _collider.OnCollisionStayAsObservable().Subscribe(_ => isItemHit = true);
+            _collider.OnCollisionStayAsObservable().Subscribe(_ => 
+            {
+                isItemHit = true;
+                Cri.PlaySE("SE_OrderHit");
+            });
 
             Waypoint pathEnd = _lead;
             IReadOnlyList<Vector3> path;

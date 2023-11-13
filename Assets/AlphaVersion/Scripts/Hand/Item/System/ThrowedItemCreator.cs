@@ -20,22 +20,28 @@ namespace Alpha
 
         [SerializeField] Data[] _data;
 
-        Dictionary<ItemType, ThrowedItem> _dict = new();
+        Dictionary<ItemType, ThrowedItemPool> _pools;
 
         void Awake()
         {
-            _dict = _data.ToDictionary(d => d.Type, d => d.Prefab);
+            _pools = _data.ToDictionary(d => d.Type, d => new ThrowedItemPool(d.Prefab, $"ItemPool_{d.Type}"));
+        }
+
+        void OnDestroy()
+        {
+            // 使い終わったプールのDispose
+            foreach (KeyValuePair<ItemType, ThrowedItemPool> pair in _pools) pair.Value.Dispose();
         }
 
         /// <summary>
-        /// アイテムの種類を指定し、生成して返す
+        /// プールから取り出して返す
         /// </summary>
         /// <returns>辞書内にある:true ない:false</returns>
         public bool TryCreate(ItemType type, out ThrowedItem item)
         {
-            if (_dict.TryGetValue(type, out ThrowedItem prefab))
+            if (_pools.TryGetValue(type, out ThrowedItemPool pool))
             {
-                return item = Instantiate(prefab);
+                return item = pool.Rent();
             }
             else
             {

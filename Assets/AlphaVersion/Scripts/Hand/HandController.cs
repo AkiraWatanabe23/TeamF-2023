@@ -18,6 +18,8 @@ namespace Alpha
         [SerializeField] MouseMovementChecker _mouseMovementChecker;
         [SerializeField] DustClothShooter _dustClothShooter;
 
+        HoldSEPlayer _holdSEPlayer = new();
+
         void OnEnable()
         {
             HandInputHandler.OnLeftClickDown += OnLeftClickDown;
@@ -52,10 +54,12 @@ namespace Alpha
                 Vector3 start = _powerCalculator.StartingPoint;
                 Vector3 end = _powerCalculator.PowerSizePoint;
                 _powerVisualizer.Draw(start, end);
+                _holdSEPlayer.HoldOn();
             }
             else
             {
                 _powerVisualizer.Delete();
+                _holdSEPlayer.HoldOff();
             }
         }
 
