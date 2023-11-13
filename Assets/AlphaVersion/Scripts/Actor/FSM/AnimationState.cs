@@ -6,22 +6,27 @@ namespace Alpha
 {
     /// <summary>
     /// アニメーションを再生するステート
+    /// Enterと同時にアニメーションを再生し、指定した時間経過後に遷移する
     /// </summary>
     public class AnimationState : BaseState
     {
-        [SerializeField] string _animationName;
-        [SerializeField] float _playTime;
+        [SerializeField] protected string _animationName;
+        [SerializeField] protected float _playTime;
 
         float _elapsed;
 
         public override StateType Type => StateType.Animation;
         public bool IsRunning { get; private set; }
 
+        public void Init()
+        {
+            _elapsed = 0;
+            IsRunning = true;
+        }
+
         protected override void Enter()
         {
             Animator.Play(_animationName);
-            _elapsed = 0;
-            IsRunning = true;
         }
 
         protected override void Exit()
@@ -31,7 +36,7 @@ namespace Alpha
         protected override void Stay()
         {
             _elapsed += Time.deltaTime;
-            if (_elapsed > _playTime)
+            if (IsRunning && _elapsed > _playTime)
             {
                 IsRunning = false;
             }
