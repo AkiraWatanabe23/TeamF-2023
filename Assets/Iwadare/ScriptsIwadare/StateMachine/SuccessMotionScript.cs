@@ -13,21 +13,21 @@ public class SuccessMotionScript : IState
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.SuccessName);
-        Debug.Log(stateMachine._nGWordbool ? 
+        Debug.Log(stateMachine.NGWordbool ? 
             "おっ、何かいいものがもらえたぞ！" : 
             "これはあちらのお客様からです。");
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log(stateMachine._nGWordbool ? 
+        Debug.Log(stateMachine.NGWordbool ? 
             "あっ、なるほど！" :
             "素晴らしいものをお持ちで。");
     }
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        Debug.Log(stateMachine._nGWordbool ? 
+        Debug.Log(stateMachine.NGWordbool ? 
             "栗とリスの石像とワインがもらえたのか！これは嬉しいな！" : 
             "また来ます。");
     }

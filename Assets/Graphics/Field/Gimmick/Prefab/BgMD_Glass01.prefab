@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6817466830369466360}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6419380489765994515
 PrefabInstance:
@@ -95,11 +95,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8027769959023234193, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
+    - target: {fileID: -6067185528594298527, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
+    - target: {fileID: -4426203906065802948, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
     - target: {fileID: 919132149155446097, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
         type: 3}
       propertyPath: m_Name
       value: BgMD_Glass01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1564357295548918954, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
+    - target: {fileID: 8647855300334862158, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
+    - target: {fileID: 8671105349360218373, guid: ff4aa8823e61ebd43b9f30db5e2c2c98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2408252e214209448230b253e43f313, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

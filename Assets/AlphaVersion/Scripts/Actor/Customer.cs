@@ -20,21 +20,24 @@ namespace Alpha
         PathConverter _pathConverter;
         TableManager _tableManager;
         BaseState _currentState;
+        Tension _tension;
 
-        protected override void OnInitOverride(Waypoint lead, TableManager tableManager, Tension tension)
+        protected override void OnInitOverride<T>(Waypoint lead, Tension tension, T arg)
         {
             // リストで経路を取得できるように経路の先頭を渡しておく
             _pathConverter = new(lead);
             // 席を取得するのに必要
-            _tableManager = tableManager;
+            _tableManager = arg as TableManager;
             // 移動ステートから開始
             _currentState = _moveState;
+
+            _tension = tension;
         }
 
         protected override void OnStartOverride()
         {
         }
-
+        
         protected async override UniTaskVoid UpdateAsync(CancellationToken token)
         {
             // 席の後ろまで移動
@@ -57,6 +60,8 @@ namespace Alpha
             // 注文結果の演出
             _resultState.Init(result);
             while (PlayResultEffect()) await UniTask.Yield(token);
+
+            OrderScoreSender.SendScore(result, ActorType, _tension);
 
             // 席を解放する
             _tableManager.Release(table);

@@ -10,25 +10,22 @@ namespace Alpha
         Bourbon, // Glass02
         Cognac,  // Glass03
         Potato,  // Potato01
+        Beef,    // RoastBeef
     }
 
     /// <summary>
     /// 投げるアイテム全てが共通して持つコンポーネント
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class ThrowedItem : MonoBehaviour
+    public class ThrowedItem : MonoBehaviour, ICatchable
     {
-        [Header("滑らせる際に必要な値の設定")]
-        [Range(0, 1.0f)]
-        [SerializeField] float _hardness;
-        [Header("積む際に必要な値の設定")]
-        [SerializeField] float _height = 0.25f;
-
-        HandSettingsSO _settings;
+        ThrowedItemPool _pool; // プール
+        ItemSettingsSO _settings;
+        Rigidbody _rigidbody;
         Vector3 _startingPoint;
         public bool IsThrowed { get; private set; }
 
-        public float Height => _height;
+        public float Height => _settings.Height;
 
         /// <summary>
         /// 水平に移動した距離の2乗を返す
@@ -43,12 +40,30 @@ namespace Alpha
             }
         }
 
+        public ItemType Type => _settings.Type;
+        public float SqrSpeed => _rigidbody.velocity.sqrMagnitude;
+
         /// <summary>
-        /// 外部から生成時に初期化する、Awakeの代用メソッド
+        /// 生成してプールに追加した際に1度だけプール側から呼び出されるメソッド
         /// </summary>
-        public void Init(HandSettingsSO settings)
+        public void OnCreate(ThrowedItemPool pool)
         {
+            _pool = pool;
+        }
+
+        /// <summary>
+        /// 外部からプールから取り出した際に初期化する、Awakeの代用メソッド
+        /// </summary>
+        public void Init(ItemSettingsSO settings)
+        {
+            IsThrowed = false;
+            
             _settings = settings;
+
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+
             FreezeXZ();
         }
 
@@ -57,9 +72,8 @@ namespace Alpha
         /// </summary>
         void FreezeXZ()
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezePositionX |
-                             RigidbodyConstraints.FreezePositionZ;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX |
+                                     RigidbodyConstraints.FreezePositionZ;
         }
 
         /// <summary>
@@ -67,9 +81,8 @@ namespace Alpha
         /// </summary>
         public void Throw(Vector3 velocity)
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.None;
-            rb.velocity = velocity;
+            _rigidbody.constraints = RigidbodyConstraints.None;
+            _rigidbody.velocity = velocity;
 
             // 投げた際の位置を保持する
             _startingPoint = transform.position;
@@ -84,21 +97,33 @@ namespace Alpha
             {
                 Crash();
             }
+            // 既に投げられた状態でアイテムとぶつかった
+            if (IsThrowed && collision.gameObject.TryGetComponent(out ThrowedItem item))
+            {
+                // 音鳴らす
+                Cri.PlaySE(_settings.HitSEName);
+            }
         }
 
         /// <summary>
         /// 破裂させる
         /// </summary>
         void Crash()
-        {
-            // TODO:現在はアイテムの硬さに関わらず、ビンが割れる音を再生する
-            Cri.PlaySE("SE_ItemCrash_short");
+        {          
+            // 音とパーティクル
+            Cri.PlaySE(_settings.CrashSEName);
             Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
-            ParticleMessageSender.SendMessage(ParticleType.Crash, particlePosition);
+            ParticleMessageSender.SendMessage(_settings.CrashParticle, particlePosition);
 
-            // TODO:削除処理が必要
+            _pool.Return(this);
+        }
+
+        /// <summary>
+        /// 注文としてキャッチされた際に呼ばれる
+        /// </summary>
+        public void OnCatched()
+        {
+            _pool.Return(this);
         }
     }
 }
-
-// 次やる:アイテム側にも手のセッティングSOが必要。パーティクルの生成のオフセットに使いたい

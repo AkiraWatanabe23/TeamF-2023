@@ -491,14 +491,14 @@ public class CriAudioManager
 
         public float Value { get; set; }
 
-        public static IVolume operator +(IVolume volume, IVolume volume2) => volume;
+        //public static IVolume operator +(IVolume volume, IVolume volume2) => volume;
     }
 
     private class Volume : IVolume
     {
         private float _value = 1.0F;
 
-        private event Action<float> _onVolumeChanged = default;
+        private Action<float> _onVolumeChanged = default;
 
         public event Action<float> OnVolumeChanged
         {

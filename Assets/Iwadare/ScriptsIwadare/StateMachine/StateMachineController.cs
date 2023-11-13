@@ -36,11 +36,13 @@ namespace StateMachine
         private Animator _anim;
         public Animator Anim => _anim;
 
-        [SerializeField] public SitScripts _sitScripts;
+        public SitScripts _sitScripts;
 
         public Transform _avatorTrams;
 
-        public bool _nGWordbool;
+        [SerializeField]
+        bool _ngWordbool;
+        public bool NGWordbool => _ngWordbool;
 
         // Start is called before the first frame update
         public void Init(ref Animator anim)

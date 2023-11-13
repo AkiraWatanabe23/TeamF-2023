@@ -21,7 +21,7 @@ namespace Alpha
             set
             {
                 _currentIndex = value;
-                
+
                 // アイテムの数の範囲にクランプする
                 int length = Enum.GetValues(typeof(ItemType)).Length;
                 _currentIndex = Mathf.Clamp(_currentIndex, 0, length - 1);

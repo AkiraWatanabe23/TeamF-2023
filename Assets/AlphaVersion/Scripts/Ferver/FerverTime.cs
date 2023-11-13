@@ -27,6 +27,7 @@ namespace Alpha
 
         static FerverTime _instance;
 
+        [SerializeField] FerverTrigger _trigger;
         [Header("デバッグ用:Fキーでオンオフ切り替え")]
         [SerializeField] bool _isDebug = true;
 
@@ -40,6 +41,17 @@ namespace Alpha
             _instance ??= this;
         }
 
+        void OnEnable()
+        {
+            // 発生条件を管理させる
+            if (_instance == this) _trigger.OnFerverEnter += Ferver;
+        }
+
+        void OnDisable()
+        {
+            if (_instance == this) _trigger.OnFerverEnter -= Ferver;
+        }
+
         void OnDestroy()
         {
             _instance = null;
@@ -51,15 +63,28 @@ namespace Alpha
             // デバッグ用にキー入力で切り替えられる
             if (_isDebug && Input.GetKeyDown(KeyCode.F))
             {
-                _isFerver = !_isFerver;
-
-                // コールバック呼び出し
-                if (_isFerver) OnEnter?.Invoke();
-                else OnExit?.Invoke();
-                
-                // メッセージング
-                MessageBroker.Default.Publish(new FerverTimeMessage());
+                Switch(!_isFerver);
             }
+        }
+
+        /// <summary>
+        /// フィーバータイム開始、コールバック登録用
+        /// </summary>
+        void Ferver() => Switch(true);
+
+        /// <summary>
+        /// フィーバータイムと通常状態を切り替える
+        /// </summary>
+        void Switch(bool flag)
+        {
+            _isFerver = flag;
+
+            // コールバック呼び出し
+            if (_isFerver) OnEnter?.Invoke();
+            else OnExit?.Invoke();
+
+            // メッセージング
+            MessageBroker.Default.Publish(new FerverTimeMessage());
         }
     }
 }

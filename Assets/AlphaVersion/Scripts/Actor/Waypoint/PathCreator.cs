@@ -30,7 +30,6 @@ namespace Alpha
 
         void Awake()
         {
-            // TODO:必要に応じて経路の作成処理を作る。
             // 現在はWaypoint側に次のWaypointの情報を保持しているので、特に処理をせずそのまま
             _dict = _data.ToDictionary(d => d.Type, d => d.Lead);
         }

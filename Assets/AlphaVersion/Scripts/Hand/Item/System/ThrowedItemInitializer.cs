@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Alpha
 {
@@ -10,9 +11,23 @@ namespace Alpha
     /// </summary>
     public class ThrowedItemInitializer : MonoBehaviour
     {
+        [System.Serializable]
+        public class Data
+        {
+            public ItemType Type;
+            public ItemSettingsSO Settings;
+        }
+
         [SerializeField] ThrowedItemCreator _creator;
         [Header("初期化時に渡すもの")]
-        [SerializeField] HandSettingsSO _settings;
+        [SerializeField] Data[] _settingsData;
+
+        Dictionary<ItemType, ItemSettingsSO> _settingsDict;
+
+        void Awake()
+        {
+            _settingsDict = _settingsData.ToDictionary(d => d.Type, d => d.Settings);
+        }
 
         /// <summary>
         /// 生成し、初期化メソッドを呼び出して必要なものを渡し、返す。
@@ -21,7 +36,7 @@ namespace Alpha
         public ThrowedItem Initialize(ItemType type)
         {
             _creator.TryCreate(type, out ThrowedItem item);
-            item.Init(_settings);
+            item.Init(_settingsDict[type]);
             return item;
         }
     }

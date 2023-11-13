@@ -16,50 +16,54 @@ namespace Alpha
         [SerializeField] SelectedItemSpawner _itemSpawner;
         [SerializeField] ThrowedItemCleaner _itemCleaner;
         [SerializeField] MouseMovementChecker _mouseMovementChecker;
+        [SerializeField] DustClothShooter _dustClothShooter;
+
+        HoldSEPlayer _holdSEPlayer = new();
 
         void OnEnable()
         {
-            HandInputHandler.OnLeftClickDown += OnClickDown;
-            HandInputHandler.OnLeftClicking += OnClicking;
-            HandInputHandler.OnLeftClickUp += OnClickUp;
+            HandInputHandler.OnLeftClickDown += OnLeftClickDown;
+            HandInputHandler.OnLeftClicking += OnLeftClicking;
+            HandInputHandler.OnLeftClickUp += OnLeftClickUp;
             HandInputHandler.OnMouseWheelAxis += OnMouseWheelAxis;
             HandInputHandler.OnGetSelectKeyDown += OnGetSelectKeyDown;
-
-            // 左右移動ハンドラ
-            // 右クリックハンドラ
+            HandInputHandler.OnRightClickUp += OnRightClickUp;
         }
 
         void OnDisable()
         {
-            HandInputHandler.OnLeftClickDown -= OnClickDown;
-            HandInputHandler.OnLeftClicking -= OnClicking;
-            HandInputHandler.OnLeftClickUp -= OnClickUp;
+            HandInputHandler.OnLeftClickDown -= OnLeftClickDown;
+            HandInputHandler.OnLeftClicking -= OnLeftClicking;
+            HandInputHandler.OnLeftClickUp -= OnLeftClickUp;
             HandInputHandler.OnMouseWheelAxis -= OnMouseWheelAxis;
             HandInputHandler.OnGetSelectKeyDown -= OnGetSelectKeyDown;
+            HandInputHandler.OnRightClickUp -= OnRightClickUp;
         }
 
-        void OnClickDown()
+        void OnLeftClickDown()
         {
             _mouseMovementChecker.SetStartingPoint();
             _powerCalculator.SetStartingPoint(_thrower.StackPoint);
             _itemCleaner.Clean();
         }
 
-        void OnClicking()
+        void OnLeftClicking()
         {
             if (_thrower.StackCount > 0 && _mouseMovementChecker.IsMoved())
             {
                 Vector3 start = _powerCalculator.StartingPoint;
                 Vector3 end = _powerCalculator.PowerSizePoint;
                 _powerVisualizer.Draw(start, end);
+                _holdSEPlayer.HoldOn();
             }
             else
             {
                 _powerVisualizer.Delete();
+                _holdSEPlayer.HoldOff();
             }
         }
 
-        void OnClickUp()
+        void OnLeftClickUp()
         {
             // マウスを動かした場合は投げる。動かしていない場合は積む。
             if (_mouseMovementChecker.IsMoved())
@@ -78,6 +82,12 @@ namespace Alpha
             _powerVisualizer.Delete();
         }
 
+        void OnRightClickUp()
+        {
+            // アイテムを積んでいない場合のみ
+            if (_thrower.StackCount == 0) _dustClothShooter.Shoot();
+        }
+
         void OnMouseWheelAxis(float fov)
         {
             _itemSpawner.Select(fov);
@@ -89,6 +99,3 @@ namespace Alpha
         }
     }
 }
-
-// アイテムを選択する処理
-// 

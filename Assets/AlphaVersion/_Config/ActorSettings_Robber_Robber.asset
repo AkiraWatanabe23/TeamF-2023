@@ -14,6 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorType: 3
   _behaviorType: 1
-  _params:
+  _failureVoice: SE_Failure_Robber
+  _successVoice: SE_Success_1_Robber
+  _rareSuccessVoice: SE_Success_2_Robber
+  _actorParams:
     MoveSpeed: 1
-    Orders: 00000000010000000200000003000000
+    Orders: 
+    OrderTimeLimit: 0
+  _visualParams:
+    ItemHitParticle:
+      Particle: 0
+      Offset:
+        x: 0
+        y: 0
+        z: 0
+    SuccessParticle:
+      Particle: 0
+      Offset:
+        x: 0
+        y: 0
+        z: 0
+    FailureParticle:
+      Particle: 0
+      Offset:
+        x: 0
+        y: 0
+        z: 0

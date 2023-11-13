@@ -11,6 +11,8 @@ namespace Alpha
     /// </summary>
     public class OrderView : MonoBehaviour
     {
+        static Transform _parent;
+
         [System.Serializable]
         public class Data
         {
@@ -25,14 +27,23 @@ namespace Alpha
 
         void Awake()
         {
+            // ヒエラルキーを汚さないように共通の親を作り、子にする
+            if (_parent == null) _parent = new GameObject("OrderViewParent").transform;
+
             // 一度生成してから辞書に登録する
             foreach (Data data in _data)
             {
-                GameObject go = Instantiate(data.Prefab);
+                GameObject go = Instantiate(data.Prefab, _parent);
                 _dict.Add(data.Order, go);
 
                 go.SetActive(false);
             }
+        }
+
+        void OnDestroy()
+        {
+            // 共通の親を削除
+            if (_parent != null) { Destroy(_parent); _parent = null; }
         }
 
         public void Active(ItemType order, Vector3 position)
@@ -42,6 +53,7 @@ namespace Alpha
             // 次の注文を表示にする
             _dict[order].SetActive(true);
             _dict[order].transform.position = position;
+            _dict[order].transform.localScale = Vector3.one;
             // 注文を更新
             _order = order;
         }

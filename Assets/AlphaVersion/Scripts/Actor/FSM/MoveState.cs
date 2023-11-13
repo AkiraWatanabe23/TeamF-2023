@@ -12,19 +12,26 @@ namespace Alpha
         [SerializeField] ActorSettingsSO _settings;
         [SerializeField] MoveRaycaster _raycaster;
 
+        Transform _transform;
         IReadOnlyList<Vector3> _path;
         float _lerpProgress;
+        float _distance; // 移動する際に2点間のsqrtではない距離が必要
         int _currentIndex;
         bool _ignoreForward; // 前方の障害物を無視するかのフラグ
 
         int NextIndex => Mathf.Min(_currentIndex + 1, _path.Count - 1);
+        Vector3 From => new Vector3(_path[_currentIndex].x, 0, _path[_currentIndex].z);
+        Vector3 To => new Vector3(_path[NextIndex].x, 0, _path[NextIndex].z);
+
         public bool IsRunning => _currentIndex < _path.Count - 1;
         public override StateType Type => StateType.Move;
 
         public void Init(IReadOnlyList<Vector3> path, bool ignoreForward = false)
         {
+            _transform = transform;
             _path = path;
             _lerpProgress = 0;
+            _distance = 0;
             _currentIndex = 0;
             _ignoreForward = ignoreForward;
         }
@@ -32,6 +39,7 @@ namespace Alpha
         protected override void Enter()
         {
             LookAt();
+            Distance();
             Animator.Play("Walk");
         }
 
@@ -43,11 +51,12 @@ namespace Alpha
         {
             if (_ignoreForward) Move();
             else if (IsClearForward()) Move();
-
+            
             if (_lerpProgress >= 1.0f && IsRunning)
             {
                 TryStepVertex();
                 LookAt();
+                Distance();
             }
         }
 
@@ -76,8 +85,8 @@ namespace Alpha
         /// </summary>
         void Move()
         {
-            _lerpProgress += Time.deltaTime * _settings.MoveSpeed;
-            transform.position = Vector3.Lerp(_path[_currentIndex], _path[NextIndex], _lerpProgress);
+            _lerpProgress += _settings.MoveSpeed * Time.deltaTime / _distance;
+            _transform.position = Vector3.Lerp(From, To, _lerpProgress);
         }
 
         /// <summary>
@@ -96,6 +105,14 @@ namespace Alpha
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 距離を計算する
+        /// </summary>
+        void Distance()
+        {
+            _distance = (To - From).magnitude;
         }
     }
 }

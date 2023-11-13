@@ -40,6 +40,7 @@ namespace Alpha
         {
             LookAt();
             Animator.Play("Order");
+            Cri.PlaySE("SE_ChinBell");
 
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
             _table.Table.Valid(_settings.OrderTimeLimit, _settings.RandomOrder, result => 
@@ -78,9 +79,18 @@ namespace Alpha
         /// </summary>
         void OnItemHit(Collision collision)
         {
+            // アイテム以外がぶつかった場合は弾く
+            if (!collision.gameObject.TryGetComponent(out ThrowedItem _)) return;
+
             // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
             _table.Table.Invalid();
             Result = OrderResult.Failure;
+
+            // 音とパーティクル
+            Cri.PlaySE("SE_OrderHit");
+            ParticleType particle = _settings.ItemHitParticle;
+            Vector3 position = transform.position + _settings.ItemHitParticleOffset;
+            ParticleMessageSender.SendMessage(particle, position, transform);
         }
     }
 }
