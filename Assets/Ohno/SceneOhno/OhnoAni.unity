@@ -1603,7 +1603,7 @@ GameObject:
   - component: {fileID: 1780628875}
   - component: {fileID: 1780628874}
   m_Layer: 0
-  m_Name: Customer
+  m_Name: AnimationTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1637,7 +1637,7 @@ Animator:
   m_GameObject: {fileID: 1780628873}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2367f0eb0685274c9c0f133f50e76d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
