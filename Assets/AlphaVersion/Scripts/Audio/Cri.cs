@@ -21,7 +21,7 @@ namespace Alpha
 
         public static void PlayBGM(string name, string sheet = null)
         {
-            //TempAudioManager.Instance.PlayBGM(name);
+            CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
             
         }
 

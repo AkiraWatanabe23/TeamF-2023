@@ -48,7 +48,12 @@ namespace Alpha
         {
             // ゲーム開始の演出
             await _gameStartEvent.PlayAsync(token);
-            
+
+            // BGM再生、フィーバーでBGM切り替え
+            Cri.PlayBGM("BGM_B_Kari");
+            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
+            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
+
             SendGameStartMessage();
 
             // 時間切れまでループ
