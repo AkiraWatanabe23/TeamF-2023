@@ -36,6 +36,11 @@ namespace Alpha
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
         }
 
+        void OnDestroy()
+        {
+            CriAudioManager.Instance.SE.StopAll(); // ˆê‰
+        }
+
         /// <summary>
         /// ƒCƒ“ƒQ[ƒ€‚Ì—¬‚ê
         /// </summary>

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1730502, g: 0.21627744, b: 0.2982759, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -413,9 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabs:
-  - {fileID: 4147449478124732636, guid: db08f8c29f1b1a64ca56c679c5334037, type: 3}
   - {fileID: 5532910610562004388, guid: 3bca7cfeb8f2d844fb37f9f249d384d5, type: 3}
-  - {fileID: 658578289991207860, guid: 4c1406e35f19ada4f92c910866b76b78, type: 3}
   - {fileID: -7920485267507969772, guid: 6ef0c7c876471ac46b618c1347be00d0, type: 3}
 --- !u!114 &71542182
 MonoBehaviour:
@@ -4353,12 +4351,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acfFile: TeamF_CUE1
   cueSheets:
-  - name: TeamF
+  - name: CueSheet_SE
     acbFile: CueSheet_SE.acb
-    awbFile: CueSheet_SE.awb
+    awbFile: 
     loaderStatus: 0
-  dspBusSetting: DspBusSetting_0
-  dontDestroyOnLoad: 0
+  dspBusSetting: 
+  dontDestroyOnLoad: 1
   dontRemoveExistsCueSheet: 0
 --- !u!4 &1568117257
 Transform:
