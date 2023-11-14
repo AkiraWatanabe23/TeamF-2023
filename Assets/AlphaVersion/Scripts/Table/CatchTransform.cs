@@ -19,9 +19,13 @@ namespace Alpha
 
         Vector3 _basePosition;
 
+        public Vector3 Position => transform.position;
+        public float Radius { get; private set; }
+
         protected override void OnAwakeOverride()
         {
             SetScale(_settings.CatchSettings.NormalSize);
+            
             // äÓèÄà íuÇÃê›íË
             _basePosition = transform.position;
         }
@@ -42,6 +46,7 @@ namespace Alpha
         void SetScale(float size)
         {
             transform.localScale = Vector3.one * size;
+            Radius = size / 2;
         }
 
         /// <summary>

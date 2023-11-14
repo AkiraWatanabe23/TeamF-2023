@@ -22,6 +22,7 @@ namespace Alpha
         public static void PlayBGM(string name, string sheet = null)
         {
             TempAudioManager.Instance.PlayBGM(name);
+            
         }
 
         public static void StopBGM()
