@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
@@ -20,7 +21,8 @@ namespace Alpha
         [SerializeField] GameStartEvent _gameStartEvent;
         [SerializeField] GameOverEvent _gameOverEvent;
         [SerializeField] TimerUI _timerUI;
-        [SerializeField] ActorSpawnTimer _actorSpawnTimer;
+        [SerializeField] TimeSpawnController _timeSpawn;
+        [SerializeField] FerverTrigger _ferver;
 
         /// <summary>
         /// 非同期処理の実行
@@ -52,7 +54,10 @@ namespace Alpha
                 _timerUI.Draw(_settings.TimeLimit, elapsed);
 
                 // キャラクター生成用のタイマーを進める
-                _actorSpawnTimer.Tick();
+                _timeSpawn.Tick(elapsed);
+
+                // フィーバータイム開始までのタイマーを進める
+                _ferver.Tick(elapsed);
 
                 elapsed += Time.deltaTime;
                 await UniTask.Yield(token);
@@ -62,6 +67,7 @@ namespace Alpha
 
             // ゲーム終了の演出
             await _gameOverEvent.PlayAsync("成績", token);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         /// <summary>

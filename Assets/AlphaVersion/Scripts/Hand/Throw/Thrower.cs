@@ -9,7 +9,7 @@ namespace Alpha
     /// </summary>
     public class Thrower : MonoBehaviour
     {
-        [SerializeField] HandSettingsSO _settings;
+        [SerializeField] ThrowEffector _effector;
         [Header("アイテムを積む位置のオフセット")]
         [SerializeField] Vector3 _offset;
         [Header("積む位置のランダムなずらし幅")]
@@ -19,7 +19,6 @@ namespace Alpha
         [Header("最低威力")]
         [SerializeField] float _minPower = 0;
 
-        ThrowEffector _effector;
         Queue<ThrowedItem> _tower = new();
         float _stackHeight;
 
@@ -32,11 +31,6 @@ namespace Alpha
         /// 現在積んでいる数
         /// </summary>
         public int StackCount => _tower.Count;
-
-        void Awake()
-        {
-            _effector = new(_settings);
-        }
 
         /// <summary>
         /// 最大数に達していない場合は、アイテムを積んでいく
