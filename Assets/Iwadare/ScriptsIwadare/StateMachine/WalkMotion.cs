@@ -8,26 +8,26 @@ using UnityEngine.XR;
 [Serializable]
 public class WalkMotion : IState
 {
-    MotionState _state = MotionState.Walk;
+    //MotionState _state = MotionState.Walk;
     public void InitialState()
     {
-        Debug.Log("歩く！準備完了！");
+        DebugLogUtility.PrankLog("歩く！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.WalkName);
-        Debug.Log("歩きはじめるぜ！");
+        DebugLogUtility.PrankLog("歩きはじめるぜ！");
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log("うおおおおおお！");
+        DebugLogUtility.PrankLog("うおおおおおお！");
     }
 
     
     public void OnExitState(StateMachineController stateMachine)
     {
-        Debug.Log("はあ...はあ...歩き終わったぜ...");
+        DebugLogUtility.PrankLog("はあ...はあ...歩き終わったぜ...");
     }
 }

@@ -54,7 +54,7 @@ namespace StateMachine
                 _currentState = state[i];
                 _currentState.InitialState();
             }
-            Debug.Log("行くぞ！ステート戦隊！マシーンジャー！");
+            DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！");
             _currentState = _walk;
             _currentState.OnEnterState(this);
         }
