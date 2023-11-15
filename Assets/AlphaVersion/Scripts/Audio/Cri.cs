@@ -35,6 +35,7 @@ namespace Alpha
         public static void StopBGM()
         {
             CriAudioManager.Instance.BGM.StopLoopCue();
+            CriAudioManager.Instance.BGM.StopAll();
 
             if (TempAudioManager.Instance != null)
             {
