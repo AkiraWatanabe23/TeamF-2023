@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 3
   _height: 0.1
-  _crashSEName: SE_ItemCrash_Soft
+  _crashSEName: SE_FoodCrash_2
   _hitSEName: SE_ItemHit_Soft
   _itemParams:
     _hardness: 0.5

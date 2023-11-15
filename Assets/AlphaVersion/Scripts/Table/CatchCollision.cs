@@ -42,7 +42,7 @@ namespace Alpha
             {
                 if (catchable.Type == _order && catchable.SqrSpeed <= _settings.CatchSettings.CatchableSpeed)
                 {
-                    catchable.OnCatched();
+                    catchable.Catch();
                     return true;
                 }
             }

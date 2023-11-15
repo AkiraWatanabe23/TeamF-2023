@@ -69,9 +69,9 @@ namespace Alpha
             _isRunning = true;
 
             // ƒpƒ‰ƒpƒ‰SEÄ¶ŒãA•ö‚ê‚éSEÄ¶
-            Cri.PlaySE("SE_TumbleweedPrev");
+            Cri.PlaySE("SE_Pre_Tumbleweed_2");
             await UniTask.Delay(System.TimeSpan.FromSeconds(_prevDelay), cancellationToken: token);
-            Cri.PlaySE("SE_TumbleweedFall");
+            Cri.PlaySE("SE_Fall_Tumbleweed_2");
 
             for (int i = 0; i < _quantity; i++)
             {

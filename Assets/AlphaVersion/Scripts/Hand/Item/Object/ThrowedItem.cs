@@ -121,7 +121,7 @@ namespace Alpha
         /// <summary>
         /// ’•¶‚Æ‚µ‚ÄƒLƒƒƒbƒ`‚³‚ê‚½Û‚ÉŒÄ‚Î‚ê‚é
         /// </summary>
-        public void OnCatched()
+        public void Catch()
         {
             _pool.Return(this);
         }

@@ -23,7 +23,6 @@ namespace Alpha
         /// </summary>
         public ThrowedItem PopItem()
         {
-            // TODO:本来ならプーリング
             ThrowedItem item = _initializer.Initialize(_type);
             Items.Add(item);
 

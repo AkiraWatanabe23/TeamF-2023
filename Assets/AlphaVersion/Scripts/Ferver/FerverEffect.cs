@@ -11,8 +11,11 @@ namespace Alpha
     /// </summary>
     public class FerverEffect : FerverHandler
     {
+        [Header("試作したもの")]
         [SerializeField] ParticleSystem _left;
         [SerializeField] ParticleSystem _right;
+        [Header("デザイナーアセット")]
+        [SerializeField] ParticleSystem _fall;
 
         protected override void OnAwakeOverride()
         {
@@ -20,14 +23,16 @@ namespace Alpha
 
         protected override void OnFerverTimeEnter()
         {
-            _left.Play();
-            _right.Play();
+            //_left.Play();
+            //_right.Play();
+            _fall.Play();
         }
 
         protected override void OnFerverTimeExit()
         {
-            _left.Stop();
-            _right.Stop();
+            //_left.Stop();
+            //_right.Stop();
+            _fall.Play();
         }
     }
 }

@@ -60,8 +60,6 @@ namespace Alpha
             // 経路の末端が生成位置(画面外)なので削除する
             copy.RemoveAt(copy.Count - 1);
 
-            copy.ForEach(f => DebugDraw(f));
-
             return copy;
         }
 
