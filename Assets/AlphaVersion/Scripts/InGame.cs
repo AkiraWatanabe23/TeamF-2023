@@ -36,7 +36,7 @@ namespace Alpha
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
             Cri.StopAll(); // ˆê‰ž
         }
