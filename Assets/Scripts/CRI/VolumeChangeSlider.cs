@@ -10,6 +10,11 @@ public class VolumeChangeSlider : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         TryGetComponent(out _volumeSlider);
         _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
 
