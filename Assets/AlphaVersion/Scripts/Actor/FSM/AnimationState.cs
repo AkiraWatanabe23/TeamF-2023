@@ -43,3 +43,5 @@ namespace Alpha
         }
     }
 }
+
+// TempAudioManager‚Æ•¹—p‚µ‚½‰¹‚ÌÀ‘•B’Ç‰Á‚Ì4í—Ş‚ÌDEMO‚ ‚é‚©‚çÀ‘•‚·‚é

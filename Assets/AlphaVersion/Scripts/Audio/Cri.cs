@@ -11,7 +11,11 @@ namespace Alpha
     {
         public static void PlaySE(string name, string sheet = null)
         {
-            CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
+            int i = CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
+            if (i == -1)
+            {
+                TempAudioManager.Instance.PlaySE(name);
+            }
         }
 
         public static void DelayedPlaySE(string name, float delay, string sheet = null)
@@ -21,13 +25,23 @@ namespace Alpha
 
         public static void PlayBGM(string name, string sheet = null)
         {
-            CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
-            
+            int i = CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
+            if (i == -1)
+            {
+                TempAudioManager.Instance.PlayBGM(name);
+            }
         }
 
         public static void StopBGM()
         {
-            //TempAudioManager.Instance.StopBGM();
+            CriAudioManager.Instance.BGM.StopLoopCue();
+            TempAudioManager.Instance.StopBGM();
+        }
+
+        public static void StopAll()
+        {
+            CriAudioManager.Instance.SE.StopAll();
+            StopBGM();
         }
     }
 }

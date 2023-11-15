@@ -38,7 +38,7 @@ namespace Alpha
 
         void OnDestroy()
         {
-            CriAudioManager.Instance.SE.StopAll(); // 一応
+            Cri.StopAll(); // 一応
         }
 
         /// <summary>
@@ -50,9 +50,7 @@ namespace Alpha
             await _gameStartEvent.PlayAsync(token);
 
             // BGM再生、フィーバーでBGM切り替え
-            Cri.PlayBGM("BGM_B_Kari");
-            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
-            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
+            BGM();
 
             SendGameStartMessage();
 
@@ -72,6 +70,8 @@ namespace Alpha
                 elapsed += Time.deltaTime;
                 await UniTask.Yield(token);
             }
+
+            Cri.StopBGM();
 
             SendGameOverMessage();
 
@@ -94,6 +94,17 @@ namespace Alpha
         void SendGameOverMessage()
         {
             MessageBroker.Default.Publish(new GameOverMessage());
+        }
+
+        /// <summary>
+        /// BGMを再生し、フィーバータイム突入でBGM切り替え
+        /// </summary>
+        void BGM()
+        {
+            Cri.PlayBGM("BGM_B_Kari");
+
+            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
+            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
         }
     }
 }

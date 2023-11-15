@@ -645,17 +645,17 @@ PrefabInstance:
     - target: {fileID: 3554215154562622633, guid: 9dafba615fe2a184495d09ce52e47e7d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.528
       objectReference: {fileID: 0}
     - target: {fileID: 3554215154562622633, guid: 9dafba615fe2a184495d09ce52e47e7d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.998
       objectReference: {fileID: 0}
     - target: {fileID: 3554215154562622633, guid: 9dafba615fe2a184495d09ce52e47e7d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.541
       objectReference: {fileID: 0}
     - target: {fileID: 3554215154562622633, guid: 9dafba615fe2a184495d09ce52e47e7d,
         type: 3}
@@ -690,6 +690,16 @@ PrefabInstance:
     - target: {fileID: 3554215154562622633, guid: 9dafba615fe2a184495d09ce52e47e7d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141126101412408463, guid: 9dafba615fe2a184495d09ce52e47e7d,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470002007281868638, guid: 9dafba615fe2a184495d09ce52e47e7d,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8533138508173844157, guid: 9dafba615fe2a184495d09ce52e47e7d,
@@ -1856,6 +1866,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 4532170291123682689}
   _playTime: 1
+--- !u!198 &581627478 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4470002007281868638, guid: 9dafba615fe2a184495d09ce52e47e7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 91155269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &600931786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 711b65fd8c1bb434f9f1a83524b39c1d,
@@ -4168,7 +4184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _left: {fileID: 1842377691}
   _right: {fileID: 1660209519}
-  _fall: {fileID: 0}
+  _fall: {fileID: 581627478}
 --- !u!114 &1483707545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4515,11 +4531,11 @@ MonoBehaviour:
   - Key: SE_Success_2_Robber
     Clip: {fileID: 8300000, guid: cba0b1d86829cac499fc8f77291da494, type: 3}
     Volume: 1
-  - Key: SE_TumbleweedPrev
-    Clip: {fileID: 8300000, guid: 242c124f032d0824ebc5c141214f3d6b, type: 3}
+  - Key: SE_Pre_Tumbleweed_2
+    Clip: {fileID: 8300000, guid: 0289df7ff04f6e440b1aeb3ffe5fccc5, type: 3}
     Volume: 0.299
-  - Key: SE_TumbleweedFall
-    Clip: {fileID: 8300000, guid: 1f0123291495a9d459e8db831d2f9c67, type: 3}
+  - Key: SE_Fall_Tumbleweed_2
+    Clip: {fileID: 8300000, guid: 5ca0414fa7236d741ac4975fd8d19e55, type: 3}
     Volume: 1
   - Key: SE_DoorStrong
     Clip: {fileID: 8300000, guid: 3118927517ab1bb4e8bb3ff789bed924, type: 3}
@@ -4533,11 +4549,11 @@ MonoBehaviour:
   - Key: SE_ThrowHold
     Clip: {fileID: 8300000, guid: 9d82d9197d371fd4f974de3e8534438e, type: 3}
     Volume: 1
-  - Key: SE_ItemCrash_Soft
-    Clip: {fileID: 8300000, guid: 335f3875fd6d88e4f9ec5f0f85871d10, type: 3}
+  - Key: SE_FoodCrash_2
+    Clip: {fileID: 8300000, guid: f2b16a3489ad3e84eb2a9a26badb666d, type: 3}
     Volume: 1
-  - Key: SE_ItemHit_Soft
-    Clip: {fileID: 8300000, guid: 19fcbf113cb805d43bfdd3417ad13dc8, type: 3}
+  - Key: SE_FoodHit_3
+    Clip: {fileID: 8300000, guid: 0e5242c476b7f04489d714efb937f58d, type: 3}
     Volume: 1
   - Key: SE_OrderHit
     Clip: {fileID: 8300000, guid: 2ea564d7c7920e04fb6f0d2a19c7198e, type: 3}
