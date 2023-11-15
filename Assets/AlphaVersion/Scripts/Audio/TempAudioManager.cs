@@ -107,7 +107,10 @@ namespace Alpha
         /// </summary>
         public void StopBGM()
         {
-            _bgmSource.Stop();
+            if (_bgmSource.isPlaying)
+            {
+                _bgmSource.Stop();
+            }
         }
     }
 }
