@@ -227,8 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde00d60b63ad514ab461de02d682f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeType: 2
-  _volumeSlider: {fileID: 0}
+  _volumeType: 1
 --- !u!1 &223026200
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playButton: {fileID: 907434561}
-  _cueName: SE_Slide
+  _cueSheetName: CueSheet_BGM
+  _cueName: BGM_B_Kari
 --- !u!1 &818880028
 GameObject:
   m_ObjectHideFlags: 0

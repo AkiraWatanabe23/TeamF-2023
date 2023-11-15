@@ -240,6 +240,7 @@ public class CriAudioManager
             // CueSheetから情報を取得
             var tempAcb = CriAtom.GetAcb(cueSheetName);
             var tempPlayerData = new CriPlayerData();
+
             tempAcb.GetCueInfo(cueName, out CriAtomEx.CueInfo tempInfo);
             tempPlayerData.CueInfo = tempInfo;
 

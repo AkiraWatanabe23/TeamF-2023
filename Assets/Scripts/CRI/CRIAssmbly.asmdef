@@ -1,13 +1,9 @@
 {
-    "name": "AlphaVersion",
+    "name": "CRI",
     "rootNamespace": "",
     "references": [
-        "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:4307f53044263cf4b835bd812fc161a4",
-        "GUID:3687276fb203c8c46a7e314ab0961983",
-        "GUID:ea79277a10602874886e5cca1e1fe562"
+        "GUID:bd6f7e3ec622d1444bbb205e750a56c8",
+        "GUID:800597811bcc5d848b15e12807d6de45"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
