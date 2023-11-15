@@ -7,23 +7,23 @@ public class DanceMotion : IState
 {
     public void InitialState()
     {
-        Debug.Log("ダンス！準備完了！");
+        DebugLogUtility.PrankLog("ダンス！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        Debug.Log("小梅太夫フィーバータイム！");
+        DebugLogUtility.PrankLog("小梅太夫フィーバータイム！");
         stateMachine.Anim.Play(stateMachine.DanceName);
     }
 
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log("ちゃんちゃかちゃんちゃんちゃちゃんちゃちゃんちゃん");
+        DebugLogUtility.PrankLog("ちゃんちゃかちゃんちゃんちゃちゃんちゃちゃんちゃん");
     }
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        Debug.Log("チックショー！");
+        DebugLogUtility.PrankLog("チックショー！");
     }
 }

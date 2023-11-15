@@ -38,8 +38,6 @@ namespace Alpha
         public void Valid(float timeLimit, ItemType order, UnityAction<OrderResult> onCatched = null)
         {
             CatchAsync(timeLimit, order, onCatched).Forget();
-            Vector3 setPosition = _transform.SetRandomPosition();
-            _view.Active(order, setPosition);
         }
 
         /// <summary>
@@ -64,6 +62,14 @@ namespace Alpha
             if (!_cts.IsCancellationRequested) _cts.Cancel();
             _cts = new();
 
+            // 位置とサイズ変更
+            Vector3 setPosition = _transform.SetRandomPosition();
+            _view.Active(order, setPosition);
+
+            // キャッチ範囲内を掃除、結果を反映するために一応1フレーム待つ
+            CleanTableRange();
+            await UniTask.Yield(_cts.Token);
+
             // 時間切れとキャッチ判定のどちらかが完了するまで待つ
             (int win, OrderResult timerResult, OrderResult collisionResult) result;
             result = await UniTask.WhenAny(
@@ -79,6 +85,22 @@ namespace Alpha
             {
                 // キャッチ判定で 成功
                 onCatched?.Invoke(result.collisionResult);
+            }
+        }
+
+        /// <summary>
+        /// キャッチ範囲のアイテムを削除する
+        /// </summary>
+        public void CleanTableRange()
+        {
+            // TODO:NonAllocにする
+            Collider[] result = Physics.OverlapSphere(_transform.Position, _transform.Radius);
+            for (int i = result.Length - 1; i >= 0; i--)
+            {
+                if (result[i].TryGetComponent(out ICatchable item))
+                {
+                    item.Catch();
+                }
             }
         }
     }

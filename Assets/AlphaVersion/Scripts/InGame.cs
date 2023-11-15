@@ -36,6 +36,11 @@ namespace Alpha
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
         }
 
+        void OnDestroy()
+        {
+            Cri.StopAll(); // 一応
+        }
+
         /// <summary>
         /// インゲームの流れ
         /// </summary>
@@ -43,7 +48,10 @@ namespace Alpha
         {
             // ゲーム開始の演出
             await _gameStartEvent.PlayAsync(token);
-            
+
+            // BGM再生、フィーバーでBGM切り替え
+            BGM();
+
             SendGameStartMessage();
 
             // 時間切れまでループ
@@ -62,6 +70,8 @@ namespace Alpha
                 elapsed += Time.deltaTime;
                 await UniTask.Yield(token);
             }
+
+            Cri.StopBGM();
 
             SendGameOverMessage();
 
@@ -84,6 +94,17 @@ namespace Alpha
         void SendGameOverMessage()
         {
             MessageBroker.Default.Publish(new GameOverMessage());
+        }
+
+        /// <summary>
+        /// BGMを再生し、フィーバータイム突入でBGM切り替え
+        /// </summary>
+        void BGM()
+        {
+            Cri.PlayBGM("BGM_B_Kari");
+
+            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
+            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
         }
     }
 }

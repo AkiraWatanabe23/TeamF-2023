@@ -7,20 +7,20 @@ public class SuccessMotionScript : IState
 {
     public void InitialState()
     {
-        Debug.Log("成功エモーション！準備完了！");
+        DebugLogUtility.PrankLog("成功エモーション！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.SuccessName);
-        Debug.Log(stateMachine.NGWordbool ? 
+        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? 
             "おっ、何かいいものがもらえたぞ！" : 
             "これはあちらのお客様からです。");
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log(stateMachine.NGWordbool ? 
+        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? 
             "あっ、なるほど！" :
             "素晴らしいものをお持ちで。");
     }

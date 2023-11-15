@@ -9,7 +9,7 @@ public class SitMotion : IState
 {
     public void InitialState()
     {
-        Debug.Log("座る！準備完了！");
+        DebugLogUtility.PrankLog("座る！準備完了！");
     }
 
     public void OnEnterState(StateMachineController stateMachine)
@@ -20,12 +20,12 @@ public class SitMotion : IState
             stateMachine._avatorTrams.position = stateMachine._sitScripts.SitDownPosition();
             stateMachine._avatorTrams.rotation = Quaternion.Euler(stateMachine._sitScripts.SitDownRotation());
         }
-        Debug.Log("いいかいいか？今から座るぞ？今後悔しても遅いゾ？");
+        DebugLogUtility.PrankLog("いいかいいか？今から座るぞ？今後悔しても遅いゾ？");
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log("す、座ったぁ！？こいつぁ座りやがった！");
+        DebugLogUtility.PrankLog("す、座ったぁ！？こいつぁ座りやがった！");
     }
 
     public void OnExitState(StateMachineController stateMachine)
@@ -34,6 +34,6 @@ public class SitMotion : IState
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.StandUp();
         }
-        Debug.Log("お立ち台");
+        DebugLogUtility.PrankLog("お立ち台");
     }
 }
