@@ -19,6 +19,7 @@ public class VolumeChangeSlider : MonoBehaviour
         _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
 
         _volumeSlider.value = 1f;
+        OnVolumeChanged(_volumeSlider.value);
     }
 
     private void OnVolumeChanged(float value)
