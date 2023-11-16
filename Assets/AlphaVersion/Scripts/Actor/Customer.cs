@@ -49,7 +49,7 @@ namespace Alpha
             while (GetEmptyTable(out table)) await UniTask.Yield(token);
 
             // 席まで移動
-            _moveState.Init(_pathConverter.GetPathToTable(table.Waypoint));
+            _moveState.Init(_pathConverter.GetPathToTable(table.Waypoint), ignoreForward: true);
             while (StepMoveToPathEnd()) await UniTask.Yield(token);
 
             // 注文を待つ
@@ -69,6 +69,9 @@ namespace Alpha
             // 帰る
             _moveState.Init(_pathConverter.GetPathToExit(table.Waypoint), ignoreForward: true);
             while (StepMoveToPathEnd()) await UniTask.Yield(token);
+
+            // TODO:プーリングする
+            Destroy(gameObject);
         }
 
         /// <summary>
