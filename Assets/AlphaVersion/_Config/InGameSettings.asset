@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffa874e1155d094798f87f61673a553, type: 3}
   m_Name: InGameSettings
   m_EditorClassIdentifier: 
-  _timeLimit: 60
+  _timeLimit: 70
   _ferverTime: 20
-  _customerSpawnRate: 3
+  _customerSpawnRate: 2
   _tumbleweed:
     _timing:
     - 0
     - 3
     - 10
-    _random: 0
+    _random: 0.603
   _robber:
     _timing:
     - 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   _catchSettings:
     _normalSize: 0.455
     _ferverSize: 0.603
-    _catchableSpeed: 1
+    _catchableSpeed: 1.35
   _spawnRateSettings:
     _maleRate: 1
     _femaleRate: 0

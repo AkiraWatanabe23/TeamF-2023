@@ -11,10 +11,9 @@ namespace Alpha
     /// </summary>
     public class ThrowPowerCalculator : MonoBehaviour
     {
+        [SerializeField] HandSettingsSO _settings;
         [SerializeField] TableRaycaster _tableRaycaster;
-        [Header("投げる威力の倍率の設定")]
         [SerializeField] DistanceEvaluate _evaluate;
-        [SerializeField] float _power = 1.0f;
 
         Vector3 _startCursorViewPoint;
         Vector3 _endCursorViewPoint;
@@ -66,7 +65,7 @@ namespace Alpha
 
                 // ビューポイント座標系の2点を評価関数に通して01にリマップする
                 float remap = _evaluate.Evaluate(_endCursorViewPoint, _startCursorViewPoint);
-                return (EndingPoint - StartingPoint) * _power * remap;
+                return (EndingPoint - StartingPoint) * _settings.Power * remap;
 
             }
             else

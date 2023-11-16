@@ -27,7 +27,7 @@ namespace Alpha
         {
             // このステートがStayの際は当たり判定が有効になる
             // Initは初期化される度に呼ばれるのでAwakeのタイミングで1度だけ登録する
-            this.OnCollisionEnterAsObservable().Where(_ => CurrentStage == Stage.Stay).Subscribe(OnItemHit);
+            _collider.OnCollisionEnterAsObservable().Where(_ => CurrentStage == Stage.Stay).Subscribe(OnItemHit);
         }
 
         public void Init(EmptyTable table)
@@ -80,14 +80,13 @@ namespace Alpha
         void OnItemHit(Collision collision)
         {
             // アイテム以外がぶつかった場合は弾く
-            if (!collision.gameObject.TryGetComponent(out ThrowedItem _)) return;
+            if (!collision.gameObject.TryGetComponent(out ThrowedItem item)) return;
 
             // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
             _table.Table.Invalid();
             Result = OrderResult.Failure;
 
-            // 音とパーティクル
-            Cri.PlaySE("SE_OrderHit");
+            // パーティクル、音はアイテム側が再生
             ParticleType particle = _settings.ItemHitParticle;
             Vector3 position = transform.position + _settings.ItemHitParticleOffset;
             ParticleMessageSender.SendMessage(particle, position, transform);
