@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6772918915026142164}
   - component: {fileID: 4288452310687556680}
-  m_Layer: 0
+  - component: {fileID: 8368852354727965704}
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +55,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &8368852354727965704
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678419708464237483}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2557079388860693978
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +87,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8957395761618099356}
-  - component: {fileID: -9081993356459801532}
   - component: {fileID: -7920485267507969772}
   - component: {fileID: 3375512258191824490}
   - component: {fileID: 1407029755498377793}
@@ -71,7 +94,7 @@ GameObject:
   - component: {fileID: -2767248010141152771}
   - component: {fileID: 101322329182786075}
   m_Layer: 0
-  m_Name: Actor_Robber_Robber
+  m_Name: Actor_Robber_Muscle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,29 +116,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &-9081993356459801532
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557079388860693978}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 0.9572331
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.48861653, z: 0}
 --- !u!114 &-7920485267507969772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 6580b2ba70db17143b1e9f2bfb946b46, type: 2}
-  _collider: {fileID: -9081993356459801532}
+  _collider: {fileID: 8368852354727965704}
   _moveState: {fileID: 3375512258191824490}
   _animationState: {fileID: 4303363890649392196}
   _fireState: {fileID: -2767248010141152771}
@@ -165,7 +165,7 @@ MonoBehaviour:
   _eyeHeight: 0.5
   _actorLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!114 &4303363890649392196
 MonoBehaviour:
   m_ObjectHideFlags: 0

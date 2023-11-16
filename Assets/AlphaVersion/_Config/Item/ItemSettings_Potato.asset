@@ -15,7 +15,7 @@ MonoBehaviour:
   _type: 3
   _height: 0.1
   _crashSEName: SE_FoodCrash_2
-  _hitSEName: SE_ItemHit_Soft
+  _hitSEName: SE_FoodHit_3
   _itemParams:
     _hardness: 0.5
   _visualParams:

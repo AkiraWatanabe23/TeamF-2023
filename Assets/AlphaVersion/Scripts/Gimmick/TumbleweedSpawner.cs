@@ -23,7 +23,6 @@ namespace Alpha
         [Header("生成の設定")]
         [SerializeField] Transform _spawnPoint;
         [SerializeField] float _radius = 0.5f;
-        [SerializeField] int _quantity = 10;
         [Header("瓦礫パラパラ時間(秒)")]
         [SerializeField] float _prevDelay = 2.0f;
         [Header("1つ落下する毎のディレイ(秒)")]
@@ -46,7 +45,7 @@ namespace Alpha
         /// <summary>
         /// 非道期でタンブルウィードを生成するギミック
         /// </summary>
-        public void Spawn()
+        public void Spawn(int count)
         {
             // 既にギミック実行中なので弾く
             if (_isRunning)
@@ -58,13 +57,13 @@ namespace Alpha
             OnSpawned?.Invoke();
 
             _cts = new();
-            SpawnAsync(_cts.Token).Forget();
+            SpawnAsync(count, _cts.Token).Forget();
         }
 
         /// <summary>
         /// 基準地点からランダムな位置に生成する
         /// </summary>
-        async UniTaskVoid SpawnAsync(CancellationToken token)
+        async UniTaskVoid SpawnAsync(int count, CancellationToken token)
         {
             _isRunning = true;
 
@@ -73,7 +72,7 @@ namespace Alpha
             await UniTask.Delay(System.TimeSpan.FromSeconds(_prevDelay), cancellationToken: token);
             Cri.PlaySE("SE_Fall_Tumbleweed_2");
 
-            for (int i = 0; i < _quantity; i++)
+            for (int i = 0; i < count; i++)
             {
                 RentTumbleweed();
                 await UniTask.Delay(System.TimeSpan.FromSeconds(_stepDelay), cancellationToken: token);

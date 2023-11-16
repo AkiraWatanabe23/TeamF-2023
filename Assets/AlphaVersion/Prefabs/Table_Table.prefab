@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 4605794233371752097}
   - component: {fileID: 5650623271576466076}
   - component: {fileID: 8582349990399274421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6182bda05eebf4481fb299147d75e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 53662e7f22520014192310e3463f6687, type: 2}
+  _settings: {fileID: 11400000, guid: 7e12ee0f35d611b42992477c693ad161, type: 2}
 --- !u!114 &1268209751450412608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e603ceb4a1d491468589303d92ef253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 53662e7f22520014192310e3463f6687, type: 2}
+  _settings: {fileID: 11400000, guid: 7e12ee0f35d611b42992477c693ad161, type: 2}
   _height: 0.401
   _border: 0.4
 --- !u!114 &2739255665146518390

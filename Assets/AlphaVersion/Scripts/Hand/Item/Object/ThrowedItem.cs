@@ -97,11 +97,22 @@ namespace Alpha
             {
                 Crash();
             }
-            // 既に投げられた状態でアイテムとぶつかった
-            if (IsThrowed && collision.gameObject.TryGetComponent(out ThrowedItem item))
+
+            // 既に投げられた状態
+            if (IsThrowed)
             {
-                // 音鳴らす
-                Cri.PlaySE(_settings.HitSEName);
+                // アイテムとぶつかった
+                if (collision.gameObject.TryGetComponent(out ThrowedItem _))
+                {
+                    // 音鳴らす
+                    Cri.PlaySE(_settings.HitSEName);
+                }
+                // キャラクターにぶつかった。子にコライダーがあり、親にスクリプトがある
+                if (collision.transform.parent != null && 
+                    collision.transform.parent.TryGetComponent(out Actor _))
+                {
+                    Crash();
+                }
             }
         }
 

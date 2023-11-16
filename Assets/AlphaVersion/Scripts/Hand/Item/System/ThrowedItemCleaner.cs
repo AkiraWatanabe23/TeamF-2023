@@ -10,9 +10,8 @@ namespace Alpha
     /// </summary>
     public class ThrowedItemCleaner : MonoBehaviour
     {
+        [SerializeField] HandSettingsSO _settings;
         [SerializeField] ThrowedItemTable _itemTable;
-        [Header("削除する範囲の設定")]
-        [SerializeField] float _sqrRadius = 1;
 
         /// <summary>
         /// このオブジェクトからの水平方向の移動距離が一定以下のアイテムを削除する
@@ -26,7 +25,7 @@ namespace Alpha
                 for (int i = items.Count - 1; i >= 0; i--)
                 {
                     // 投げ済み、かつ距離が一定以下
-                    if (items[i].IsThrowed && items[i].MovingSqrDistance < _sqrRadius)
+                    if (items[i].IsThrowed && items[i].MovingSqrDistance < _settings.ThrowedAreaSqrRadius)
                     {
                         Destroy(items[i].gameObject);
                         items.RemoveAt(i);
@@ -43,7 +42,7 @@ namespace Alpha
         void DrawCleanRange()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, _sqrRadius);
+            Gizmos.DrawWireSphere(transform.position, _settings.ThrowedAreaSqrRadius);
         }
     }
 }
