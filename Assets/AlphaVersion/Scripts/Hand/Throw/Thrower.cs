@@ -9,15 +9,10 @@ namespace Alpha
     /// </summary>
     public class Thrower : MonoBehaviour
     {
+        [SerializeField] HandSettingsSO _settings;
         [SerializeField] ThrowEffector _effector;
         [Header("アイテムを積む位置のオフセット")]
         [SerializeField] Vector3 _offset;
-        [Header("積む位置のランダムなずらし幅")]
-        [SerializeField] float _randomShift = 0.1f;
-        [Header("積める最大数")]
-        [SerializeField] int _maxStack = 6;
-        [Header("最低威力")]
-        [SerializeField] float _minPower = 0;
 
         Queue<ThrowedItem> _tower = new();
         float _stackHeight;
@@ -39,10 +34,10 @@ namespace Alpha
         public bool TryStack(ThrowedItem item)
         {
             // 最大数積んでいる場合は弾く
-            if (_tower.Count >= _maxStack) return false;
+            if (_tower.Count >= _settings.MaxStack) return false;
 
             // 生成位置を基準の位置からランダムにずらす
-            Vector3 shift = new Vector3(Random.Range(0, _randomShift), 0, Random.Range(0, _randomShift));
+            Vector3 shift = new Vector3(Random.Range(0, _settings.RandomShift), 0, Random.Range(0, _settings.RandomShift));
 
             // 一番上に積んで、次に積む際の高さを更新する
             Vector3 stackPoint = transform.position + _offset + shift;
@@ -71,7 +66,7 @@ namespace Alpha
             }
 
             // 最低限飛ぶ距離を設定
-            Vector3 minVelocity = velocity.normalized * _minPower;
+            Vector3 minVelocity = velocity.normalized * _settings.MinPower;
             foreach (ThrowedItem item in _tower)
             {
                 item.Throw(velocity + minVelocity);

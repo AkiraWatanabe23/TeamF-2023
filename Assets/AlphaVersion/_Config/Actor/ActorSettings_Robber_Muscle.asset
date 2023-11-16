@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7510f3cdd9aeba47886f76f039bcd63, type: 3}
-  m_Name: ActorSettings_Robber_Robber
+  m_Name: ActorSettings_Robber_Muscle
   m_EditorClassIdentifier: 
-  _actorType: 3
+  _actorType: 2
   _behaviorType: 1
   _failureVoice: SE_Failure_Robber
   _successVoice: SE_Success_1_Robber
