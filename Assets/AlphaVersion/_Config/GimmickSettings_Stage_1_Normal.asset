@@ -9,7 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8edf6b0dc85e4b249a43ec3dc99b424f, type: 3}
-  m_Name: SpawnRateSettings
+  m_Script: {fileID: 11500000, guid: 6424981766afe7c48b85dc762ac929a0, type: 3}
+  m_Name: GimmickSettings_Stage_1_Normal
   m_EditorClassIdentifier: 
-  _customerSpawnRate: 0.5
+  _tumbleweed:
+    _timing:
+    - _elapsed: 0
+      _count: 1
+    - _elapsed: 15
+      _count: 10
+  _robber:
+    _timing:
+    - 0
+    - 10
