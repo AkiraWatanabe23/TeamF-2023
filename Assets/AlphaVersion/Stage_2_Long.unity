@@ -1956,9 +1956,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618cb0a6654e4944abbaab9e07462b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _message: {fileID: 4543117550402401861}
-  _resultMessage: {fileID: 1045121478369653061}
-  _shutter: {fileID: 4216452099745709799}
+  _uiInvisible: {fileID: 0}
+  _door: {fileID: 0}
+  _result: {fileID: 0}
 --- !u!114 &570152010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,103 +2240,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5612113656888086426, guid: e8eca3b0396dbe14b9c8019ed8da290c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 685398656}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8eca3b0396dbe14b9c8019ed8da290c, type: 3}
---- !u!1 &685398655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5612113656888086426, guid: e8eca3b0396dbe14b9c8019ed8da290c,
-    type: 3}
-  m_PrefabInstance: {fileID: 685398654}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &685398656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685398655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de94deb8bbe6eb4187e947ab1003a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-  - Key: SE_ItemCrash_short
-    Clip: {fileID: 8300000, guid: 0cd1d517fd2038a4e80506871ec1e828, type: 3}
-    Volume: 0.5
-  - Key: SE_ItemSet
-    Clip: {fileID: 8300000, guid: d06f429a4aba9274796216eef0b79eff, type: 3}
-    Volume: 0.5
-  - Key: SE_Slide
-    Clip: {fileID: 8300000, guid: a2e47c5609d7e06458fb7d62adf75996, type: 3}
-    Volume: 0.5
-  - Key: SE_ItemSelect_2
-    Clip: {fileID: 8300000, guid: 938e792991802e04a9c052c38fb8dc59, type: 3}
-    Volume: 0.17
-  - Key: SE_ItemHit_2
-    Clip: {fileID: 8300000, guid: ea498f77ee911c244987e56f6c2bff9a, type: 3}
-    Volume: 0.482
-  - Key: SE_ChinBell
-    Clip: {fileID: 8300000, guid: 2739d00a0d188f34f9ec1249db717f56, type: 3}
-    Volume: 1
-  - Key: SE_Failure_Man
-    Clip: {fileID: 8300000, guid: f8312fb2031f9e24a9c61ec46a0dd303, type: 3}
-    Volume: 1
-  - Key: SE_Failure_Woman
-    Clip: {fileID: 8300000, guid: a4bbdc66e6973934faed1842ee914234, type: 3}
-    Volume: 1
-  - Key: SE_Failure_Robber
-    Clip: {fileID: 8300000, guid: 13b81100a5c61844cb8d18b959907355, type: 3}
-    Volume: 1
-  - Key: SE_Success_1_Man
-    Clip: {fileID: 8300000, guid: 4cfcad8ec791ea84a873464c2ed83028, type: 3}
-    Volume: 1
-  - Key: SE_Success_1_Woman
-    Clip: {fileID: 8300000, guid: f89b04e545df7f44d9b3647408bf2ce4, type: 3}
-    Volume: 1
-  - Key: SE_Success_1_Robber
-    Clip: {fileID: 8300000, guid: 6962bbfb5349b574ba8f13c70d3ff7eb, type: 3}
-    Volume: 1
-  - Key: SE_Success_2_Man
-    Clip: {fileID: 8300000, guid: 8e9ee18040ed4614fac69315e8a7b37d, type: 3}
-    Volume: 1
-  - Key: SE_Success_2_Woman
-    Clip: {fileID: 8300000, guid: 255debe7bc553714e8f8bdbc5fc5ba1b, type: 3}
-    Volume: 1
-  - Key: SE_Success_2_Robber
-    Clip: {fileID: 8300000, guid: cba0b1d86829cac499fc8f77291da494, type: 3}
-    Volume: 1
-  - Key: SE_Pre_Tumbleweed_2
-    Clip: {fileID: 8300000, guid: 0289df7ff04f6e440b1aeb3ffe5fccc5, type: 3}
-    Volume: 0.299
-  - Key: SE_Fall_Tumbleweed_2
-    Clip: {fileID: 8300000, guid: 5ca0414fa7236d741ac4975fd8d19e55, type: 3}
-    Volume: 1
-  - Key: SE_DoorStrong
-    Clip: {fileID: 8300000, guid: 3118927517ab1bb4e8bb3ff789bed924, type: 3}
-    Volume: 0.835
-  - Key: SE_DoorClose
-    Clip: {fileID: 8300000, guid: 37c0194d808f2ed49b220dd7e8783345, type: 3}
-    Volume: 0.835
-  - Key: SE_CleanKirakira
-    Clip: {fileID: 8300000, guid: 0e2e284f00f78c146940c4923251a19c, type: 3}
-    Volume: 0.835
-  - Key: SE_ThrowHold
-    Clip: {fileID: 8300000, guid: 9d82d9197d371fd4f974de3e8534438e, type: 3}
-    Volume: 1
-  - Key: SE_FoodCrash_2
-    Clip: {fileID: 8300000, guid: f2b16a3489ad3e84eb2a9a26badb666d, type: 3}
-    Volume: 1
-  - Key: SE_FoodHit_3
-    Clip: {fileID: 8300000, guid: 0e5242c476b7f04489d714efb937f58d, type: 3}
-    Volume: 1
-  - Key: SE_OrderHit
-    Clip: {fileID: 8300000, guid: 2ea564d7c7920e04fb6f0d2a19c7198e, type: 3}
-    Volume: 1
 --- !u!1 &709159975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12464,6 +12369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 8425516604372177827}
+  _ferverSelector: {fileID: 0}
 --- !u!114 &8425516604372177830
 MonoBehaviour:
   m_ObjectHideFlags: 0

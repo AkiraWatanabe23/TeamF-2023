@@ -11,6 +11,7 @@ namespace Alpha
     public class SelectedItemSpawner : MonoBehaviour
     {
         [SerializeField] ThrowedItemSpawner _spawner;
+        [SerializeField] FerverItemSelector _ferverSelector;
 
         ItemSelector _selector = new();
         ItemType _selectedItem;
@@ -27,7 +28,8 @@ namespace Alpha
         /// <returns>ê∂ê¨çœÇ›ÇÃÉAÉCÉeÉÄ</returns>
         public ThrowedItem Spawn()
         {
-            return _spawner.Spawn(_selectedItem);
+            ItemType item = _ferverSelector.Select(_selectedItem);
+            return _spawner.Spawn(item);
         }
 
         /// <summary>

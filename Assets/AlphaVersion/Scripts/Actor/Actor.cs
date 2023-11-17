@@ -55,11 +55,14 @@ namespace Alpha
         /// </summary>
         void Start()
         {
-            CancellationTokenSource cts = new();
+            ExtendCTS cts = new();
             UpdateAsync(cts.Token).Forget();
 
+            // ゲームオーバー時にトークンをDisposeする
+            MessageBroker.Default.Receive<GameOverMessage>()
+                .Subscribe(_ => cts.Dispose()).AddTo(gameObject);
             // オブジェクトの破棄時にトークンをDisposeする
-            this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
+            this.OnDestroyAsObservable().Subscribe(_ => cts.Dispose());
 
             OnStartOverride();
         }
