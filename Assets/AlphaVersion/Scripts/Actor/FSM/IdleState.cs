@@ -11,9 +11,15 @@ namespace Alpha
     {
         public override StateType Type => StateType.Idle;
 
+        protected override void OnFerverTimeEnter()
+        {
+            DanceIfStayStage();
+        }
+
         protected override void Enter()
         {
-            Animator.Play("Idle");
+            // 既にフィーバーなら、このステートでトリガー出来ないのでここでチェックする
+            if (!DanceIfFerverTime()) Animator.Play("Idle");
         }
 
         protected override void Exit()

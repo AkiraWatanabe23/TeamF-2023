@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2857021751560862059}
   - component: {fileID: 5237572970980748626}
   - component: {fileID: 2707684115003321593}
+  - component: {fileID: -1275662342167067072}
   - component: {fileID: 831789885350875923}
   m_Layer: 0
   m_Name: Actor_Customer_Male
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c534e63bd8528a245a2bf3fc8cc3b2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 5174805452265063560}
+  _animator: {fileID: -1275662342167067072}
   _model: {fileID: 1238691042547359474}
   _settings: {fileID: 11400000, guid: d67df5e1e31677a4198754ab85fdc5f7, type: 2}
   _raycaster: {fileID: -7963415403440171818}
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925888b79957d0b43a36c170e76bc41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 5174805452265063560}
+  _animator: {fileID: -1275662342167067072}
   _model: {fileID: 1238691042547359474}
 --- !u!114 &5237572970980748626
 MonoBehaviour:
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33ba7b0fb370fd47a6d904b7b138496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 5174805452265063560}
+  _animator: {fileID: -1275662342167067072}
   _model: {fileID: 1238691042547359474}
   _settings: {fileID: 11400000, guid: d67df5e1e31677a4198754ab85fdc5f7, type: 2}
   _collider: {fileID: 7084940657676293888}
@@ -131,11 +132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2797d9561e4dd744ab5e4a6ab6b8db30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 5174805452265063560}
+  _animator: {fileID: -1275662342167067072}
   _model: {fileID: 1238691042547359474}
   _settings: {fileID: 11400000, guid: d67df5e1e31677a4198754ab85fdc5f7, type: 2}
   _successPlayTime: 1
   _failurePlayTime: 1
+--- !u!114 &-1275662342167067072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015718531278538175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633cd5e55601a8149b6abd522c3c0044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5174805452265063560}
 --- !u!114 &831789885350875923
 MonoBehaviour:
   m_ObjectHideFlags: 0
