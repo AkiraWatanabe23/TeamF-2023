@@ -45,6 +45,9 @@ namespace Alpha
         {
             PlayAnimation();
             PlayEffect();
+
+            // スコアの送信
+            OrderScoreSender.SendScore(_result, _settings.ActorType, Tension);
         }
 
         protected override void Exit()
