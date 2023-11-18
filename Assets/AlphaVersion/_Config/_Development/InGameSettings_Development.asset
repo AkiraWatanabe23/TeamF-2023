@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8edf6b0dc85e4b249a43ec3dc99b424f, type: 3}
-  m_Name: SpawnRateSettings
+  m_Script: {fileID: 11500000, guid: 1ffa874e1155d094798f87f61673a553, type: 3}
+  m_Name: InGameSettings_Development
   m_EditorClassIdentifier: 
-  _customerSpawnRate: 0.5
+  _timeLimit: 60
+  _ferverTime: 1
