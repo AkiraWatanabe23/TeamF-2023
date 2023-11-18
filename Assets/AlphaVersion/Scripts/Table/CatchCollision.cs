@@ -17,7 +17,7 @@ namespace Alpha
     /// </summary>
     public class CatchCollision : MonoBehaviour
     {
-        [SerializeField] InGameSettingsSO _settings;
+        [SerializeField] CatchSettingsSO _settings;
 
         IObservable<Collider> _onTriggerStay;
         // Observable‚Ìì¬‚ÍAwake“_‚Ås‚¤‚Ì‚É‘Î‚µ‚Ä
@@ -40,7 +40,7 @@ namespace Alpha
         {
             if (collider.TryGetComponent(out ICatchable catchable))
             {
-                if (catchable.Type == _order && catchable.SqrSpeed <= _settings.CatchSettings.CatchableSpeed)
+                if (catchable.Type == _order && catchable.SqrSpeed <= _settings.CatchableSpeed)
                 {
                     catchable.Catch();
                     return true;

@@ -29,7 +29,7 @@ namespace Alpha
             if (Physics.Raycast(GetRay(to), out RaycastHit hit, _rayDistance, _actorLayer))
             {
                 // キャラクターの基底クラスのコンポーネントを持っているで判定
-                if (hit.collider.TryGetComponent(out Actor actor) &&
+                if (hit.collider.transform.parent.TryGetComponent(out Actor actor) &&
                     actor.GetInstanceID() != GetInstanceID())
                 {
                     return false;

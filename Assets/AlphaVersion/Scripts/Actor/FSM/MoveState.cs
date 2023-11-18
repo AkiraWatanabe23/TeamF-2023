@@ -36,11 +36,18 @@ namespace Alpha
             _ignoreForward = ignoreForward;
         }
 
+        protected override void OnFerverTimeEnter()
+        {
+            DanceIfStayStage();
+        }
+
         protected override void Enter()
         {
             LookAt();
             Distance();
-            Animator.Play("Walk");
+
+            // 既にフィーバーなら、このステートでトリガー出来ないのでここでチェックする
+            if (!DanceIfFerverTime()) Animator.Play("Walk");
         }
 
         protected override void Exit()

@@ -14,13 +14,13 @@ namespace Alpha
             int i = CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
             if (i == -1)
             {
-                TempAudioManager.Instance.PlaySE(name);
+                Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
             }
         }
 
         public static void DelayedPlaySE(string name, float delay, string sheet = null)
         {
-            //TempAudioManager.Instance.DelayedPlaySE(name, delay);
+            Debug.LogWarning("’x‰„‚ÅSE‚ª–Â‚é: " + name);
         }
 
         public static void PlayBGM(string name, string sheet = null)
@@ -28,24 +28,19 @@ namespace Alpha
             int i = CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
             if (i == -1)
             {
-                TempAudioManager.Instance.PlayBGM(name);
+                Debug.LogWarning("BGM‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
             }
         }
 
         public static void StopBGM()
         {
-            CriAudioManager.Instance.BGM.StopLoopCue();
-
-            if (TempAudioManager.Instance != null)
-            {
-                TempAudioManager.Instance.StopBGM();
-            }
+            CriAudioManager.Instance.BGM.StopAll();
         }
 
         public static void StopAll()
         {
             CriAudioManager.Instance.SE.StopAll();
-            StopBGM();
+            CriAudioManager.Instance.BGM.StopAll();
         }
     }
 }
