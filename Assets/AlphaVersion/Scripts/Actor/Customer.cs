@@ -61,8 +61,6 @@ namespace Alpha
             _resultState.Init(result);
             while (PlayResultEffect()) await UniTask.Yield(token);
 
-            OrderScoreSender.SendScore(result, ActorType, _tension);
-
             // È‚ğ‰ğ•ú‚·‚é
             _tableManager.Release(table);
 

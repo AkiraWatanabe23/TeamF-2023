@@ -1,31 +1,29 @@
 using StateMachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class SitMotion : IState
 {
-    public void InitialState()
+    public void InitialState(bool disDebugLog)
     {
-        DebugLogUtility.PrankLog("座る！準備完了！");
+        DebugLogUtility.PrankLog("座る！準備完了！", disDebugLog);
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.SitName);
-        if(stateMachine._sitScripts != null && stateMachine._avatorTrams != null) 
+        if (stateMachine._sitScripts != null && stateMachine._avatorTrams != null)
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.SitDownPosition();
             stateMachine._avatorTrams.rotation = Quaternion.Euler(stateMachine._sitScripts.SitDownRotation());
         }
-        DebugLogUtility.PrankLog("いいかいいか？今から座るぞ？今後悔しても遅いゾ？");
+        DebugLogUtility.PrankLog("いいかいいか？今から座るぞ？今後悔しても遅いゾ？", stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("す、座ったぁ！？こいつぁ座りやがった！");
+        DebugLogUtility.PrankLog("す、座ったぁ！？こいつぁ座りやがった！", stateMachine.DisplayLog);
     }
 
     public void OnExitState(StateMachineController stateMachine)
@@ -34,6 +32,6 @@ public class SitMotion : IState
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.StandUp();
         }
-        DebugLogUtility.PrankLog("お立ち台");
+        DebugLogUtility.PrankLog("お立ち台", stateMachine.DisplayLog);
     }
 }

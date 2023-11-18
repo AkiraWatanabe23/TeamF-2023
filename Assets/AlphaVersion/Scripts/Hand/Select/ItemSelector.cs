@@ -24,7 +24,8 @@ namespace Alpha
 
                 // アイテムの数の範囲にクランプする
                 int length = Enum.GetValues(typeof(ItemType)).Length;
-                _currentIndex = Mathf.Clamp(_currentIndex, 0, length - 1);
+                // 末尾がミニキャラなので -2 して弾く
+                _currentIndex = Mathf.Clamp(_currentIndex, 0, length - 2);
 
                 // 選択したアイテムをメッセージングする
                 ItemMessageSender.SendMessage((ItemType)CurrentIndex);

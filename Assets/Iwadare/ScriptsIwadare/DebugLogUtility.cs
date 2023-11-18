@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DebugLogUtility : MonoBehaviour
 {
-    public static void PrankLog(string log)
+    public static void PrankLog(string log, bool viewFlag = false)
     {
-        //Debug.Log(log);
+        if (viewFlag) { Debug.Log(log); }
     }
 }

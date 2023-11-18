@@ -11,6 +11,7 @@ namespace Alpha
         Cognac,  // Glass03
         Potato,  // Potato01
         Beef,    // RoastBeef
+        MiniActor, // ––”ö‚É‚ ‚é‚±‚Æ‚Å”»’è‚·‚é‚Ì‚Åºº
     }
 
     /// <summary>
@@ -23,6 +24,7 @@ namespace Alpha
         ItemSettingsSO _settings;
         Rigidbody _rigidbody;
         Vector3 _startingPoint;
+        RigidbodyConstraints _defaultConstraints;
         public bool IsThrowed { get; private set; }
 
         public float Height => _settings.Height;
@@ -49,6 +51,7 @@ namespace Alpha
         public void OnCreate(ThrowedItemPool pool)
         {
             _pool = pool;
+            _defaultConstraints = GetComponent<Rigidbody>().constraints;
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace Alpha
         /// </summary>
         public void Throw(Vector3 velocity)
         {
-            _rigidbody.constraints = RigidbodyConstraints.None;
+            _rigidbody.constraints = _defaultConstraints;
             _rigidbody.velocity = velocity;
 
             // “Š‚°‚½Û‚ÌˆÊ’u‚ğ•Û‚·‚é

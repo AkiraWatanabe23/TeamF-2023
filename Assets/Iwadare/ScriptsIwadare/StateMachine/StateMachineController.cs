@@ -12,11 +12,13 @@ namespace StateMachine
         private SuccessMotionScript _successMotion = new();
         private FailedMotion _failedMotion = new();
         private DanceMotion _dance = new();
+        private WaitState _waitState = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
         public SuccessMotionScript GetSuccessMotion => _successMotion;
         public FailedMotion GetFailedMotion => _failedMotion;
         public DanceMotion GetDance => _dance;
+        public WaitState GetWaitState => _waitState;
         private IState _currentState = null;
         public IState CurrentState => _currentState;
 
@@ -41,20 +43,26 @@ namespace StateMachine
         public Transform _avatorTrams;
 
         [SerializeField]
-        bool _ngWordbool;
+        private bool _ngWordbool;
+
+        [SerializeField]
+        private bool _displayLog = true;
+        public bool DisplayLog => _displayLog;
         public bool NGWordbool => _ngWordbool;
+
+        private bool _feverBool;
 
         // Start is called before the first frame update
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[5] { _walk, _sit, _successMotion ,_failedMotion,_dance};
+            IState[] state = new IState[6] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState };
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
-                _currentState.InitialState();
+                _currentState.InitialState(_displayLog);
             }
-            DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！");
+            DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！", _displayLog);
             _currentState = _walk;
             _currentState.OnEnterState(this);
         }
@@ -71,9 +79,22 @@ namespace StateMachine
         }
         public void OnChangeState(IState state)
         {
-            _currentState.OnExitState(this);
-            _currentState = state;
-            _currentState.OnEnterState(this);
+            if (!_feverBool)
+            {
+                _currentState.OnExitState(this);
+                _currentState = state;
+                _currentState.OnEnterState(this);
+            }
+        }
+
+        public void FeverTimeBool()
+        {
+            _feverBool = true;
+        }
+
+        public void FalseFeverTimeBool()
+        {
+            _feverBool = false;
         }
 
         public IState GetState(MotionState state)
