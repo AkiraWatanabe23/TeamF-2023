@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class FadeLoadButton : MonoBehaviour
 {
-    [SerializeField]
-    private SceneName _loadScene = SceneName.Title;
+    //[SerializeField]
+    //private SceneName _loadScene = SceneName.Title;
 
     public void OnClickFade()
     {
-        Fade.Instance.RegisterFadeOutEvent(new Action[] { () => SceneManager.LoadScene(Consts.Scenes[_loadScene]) });
+        //Fade.Instance.RegisterFadeOutEvent(new Action[] { () => SceneManager.LoadScene(Consts.Scenes[_loadScene]) });
         Fade.Instance.StartFadeOut();
     }
 }

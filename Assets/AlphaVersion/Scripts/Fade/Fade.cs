@@ -17,8 +17,8 @@ public class Fade : MonoBehaviour
     [SerializeField]
     private float _fadeTime = 1f;
 
-    private Action[] _onCompleteFadeIn = new Action[0];
-    private Action[] _onCompleteFadeOut = new Action[0];
+    //private Action[] _onCompleteFadeIn = new Action[0];
+    //private Action[] _onCompleteFadeOut = new Action[0];
 
     public static Fade Instance { get; private set; }
 
@@ -38,12 +38,12 @@ public class Fade : MonoBehaviour
     }
 
     /// <summary> フェードイン開始 </summary>
-    public void StartFadeIn() { StartCoroutine(FadeIn()); }
+    public void StartFadeIn(Action onCompleted = null) { StartCoroutine(FadeIn(onCompleted)); }
 
     /// <summary> フェードアウト開始 </summary>
-    public void StartFadeOut() { StartCoroutine(FadeOut()); }
+    public void StartFadeOut(Action onCompleted = null) { StartCoroutine(FadeOut(onCompleted)); }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeIn(Action onCompleted = null)
     {
         _fadePanel.gameObject.SetActive(true);
 
@@ -64,13 +64,15 @@ public class Fade : MonoBehaviour
 
         _fadePanel.gameObject.SetActive(false);
 
-        if (_onCompleteFadeIn != null)
-        {
-            foreach (var action in _onCompleteFadeIn) { action?.Invoke(); }
-        }
+        onCompleted?.Invoke();
+
+        //if (_onCompleteFadeIn != null)
+        //{
+        //    foreach (var action in _onCompleteFadeIn) { action?.Invoke(); }
+        //}
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator FadeOut(Action onCompleted = null)
     {
         _fadePanel.gameObject.SetActive(true);
 
@@ -89,15 +91,17 @@ public class Fade : MonoBehaviour
             yield return null;
         }
 
-        if (_onCompleteFadeOut != null)
-        {
-            foreach (var action in _onCompleteFadeOut) { action?.Invoke(); }
-        }
+        onCompleted?.Invoke();
+
+        //if (_onCompleteFadeOut != null)
+        //{
+        //    foreach (var action in _onCompleteFadeOut) { action?.Invoke(); }
+        //}
     }
 
     /// <summary> フェードイン実行後の処理を登録（上書き）する </summary>
-    public void RegisterFadeInEvent(Action[] actions = null) { _onCompleteFadeIn = actions; }
+    //public void RegisterFadeInEvent(Action[] actions = null) { _onCompleteFadeIn = actions; }
 
     /// <summary> フェードアウト実行後の処理を登録（上書き）する </summary>
-    public void RegisterFadeOutEvent(Action[] actions = null) { _onCompleteFadeOut = actions; }
+    //public void RegisterFadeOutEvent(Action[] actions = null) { _onCompleteFadeOut = actions; }
 }

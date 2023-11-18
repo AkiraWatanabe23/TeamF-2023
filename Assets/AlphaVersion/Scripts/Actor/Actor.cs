@@ -70,6 +70,6 @@ namespace Alpha
         protected virtual void OnInitOverride(Waypoint lead, Tension tension) { }
         protected virtual void OnInitOverride<T>(Waypoint lead, Tension tension, T arg) { }
         protected virtual void OnStartOverride() { }
-        protected async virtual UniTaskVoid UpdateAsync(CancellationToken token) { }
+        protected async virtual UniTaskVoid UpdateAsync(CancellationToken token) { await UniTask.Yield(token); }
     }
 }
