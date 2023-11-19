@@ -24,7 +24,7 @@ namespace Alpha
                 List<ThrowedItem> items = holder.Items;
                 for (int i = items.Count - 1; i >= 0; i--)
                 {
-                    // “Š‚°Ï‚İA‚©‚Â‹——£‚ªˆê’èˆÈ‰º
+                    // –¢“Š‚°‚ğŠÜ‚Şê‡‚à‚µ‚­‚Í“Š‚°Ï‚İA‚©‚Â‹——£‚ªˆê’èˆÈ‰º
                     if (items[i].IsThrowed && items[i].MovingSqrDistance < _settings.ThrowedAreaSqrRadius)
                     {
                         Destroy(items[i].gameObject);
