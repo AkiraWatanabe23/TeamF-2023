@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using System.Threading;
+using UniRx;
 using UnityEngine.Events;
 
 namespace Alpha
@@ -24,11 +24,17 @@ namespace Alpha
         [SerializeField] CatchTransform _transform;
         [SerializeField] OrderView _view;
 
-        CancellationTokenSource _cts = new();
+        ExtendCTS _cts = new();
         
+        void Awake()
+        {
+            // ゲームオーバー時にトークンをDisposeする
+            MessageBroker.Default.Receive<GameOverMessage>()
+                .Subscribe(_ => _cts.Dispose()).AddTo(gameObject);
+        }
+
         void OnDestroy()
         {
-            _cts.Cancel();
             _cts.Dispose();
         }
 

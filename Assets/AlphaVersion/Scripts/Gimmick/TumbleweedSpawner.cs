@@ -75,6 +75,8 @@ namespace Alpha
             for (int i = 0; i < count; i++)
             {
                 RentTumbleweed();
+                CameraShakeMessageSender.SendMessage();
+
                 await UniTask.Delay(System.TimeSpan.FromSeconds(_stepDelay), cancellationToken: token);
             }
 

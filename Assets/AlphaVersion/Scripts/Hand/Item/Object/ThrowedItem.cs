@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace Alpha
 {
@@ -51,7 +52,12 @@ namespace Alpha
         public void OnCreate(ThrowedItemPool pool)
         {
             _pool = pool;
-            _defaultConstraints = GetComponent<Rigidbody>().constraints;
+            _rigidbody = GetComponent<Rigidbody>();
+            _defaultConstraints = _rigidbody.constraints;
+
+            // ゲームオーバー時にトークンをDisposeする
+            MessageBroker.Default.Receive<GameOverMessage>()
+                .Subscribe(_ => OnGameOver()).AddTo(gameObject);
         }
 
         /// <summary>
@@ -59,15 +65,19 @@ namespace Alpha
         /// </summary>
         public void Init(ItemSettingsSO settings)
         {
-            IsThrowed = false;
-            
+            IsThrowed = false;      
             _settings = settings;
 
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.velocity = Vector3.zero;
-            _rigidbody.angularVelocity = Vector3.zero;
-
+            Stop();
             FreezeXZ();
+        }
+
+        /// <summary>
+        /// ゲームオーバーになった際に呼ばれる。
+        /// </summary>
+        void OnGameOver()
+        {
+            Stop(isKinematic: true);
         }
 
         /// <summary>
@@ -138,6 +148,16 @@ namespace Alpha
         public void Catch()
         {
             _pool.Return(this);
+        }
+
+        /// <summary>
+        /// Rigidbodyを止める操作
+        /// </summary>
+        void Stop(bool isKinematic = false)
+        {
+            _rigidbody.isKinematic = isKinematic;
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
         }
     }
 }
