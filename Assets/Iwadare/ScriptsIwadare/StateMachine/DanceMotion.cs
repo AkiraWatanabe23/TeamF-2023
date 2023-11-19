@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class DanceMotion : IState
 {
-    public void InitialState()
+    public void InitialState(bool disDebugLog)
     {
-        DebugLogUtility.PrankLog("ダンス！準備完了！");
+        DebugLogUtility.PrankLog("ダンス！準備完了！", disDebugLog);
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("小梅太夫フィーバータイム！");
+        DebugLogUtility.PrankLog("小梅太夫フィーバータイム！", stateMachine.DisplayLog);
         stateMachine.Anim.Play(stateMachine.DanceName);
     }
 
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("ちゃんちゃかちゃんちゃんちゃちゃんちゃちゃんちゃん");
+        DebugLogUtility.PrankLog("ちゃんちゃかちゃんちゃんちゃちゃんちゃちゃんちゃん", stateMachine.DisplayLog);
     }
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("チックショー！");
+        DebugLogUtility.PrankLog("チックショー！", stateMachine.DisplayLog);
     }
 }

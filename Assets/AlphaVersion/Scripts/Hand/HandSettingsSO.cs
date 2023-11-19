@@ -26,6 +26,7 @@ namespace Alpha
         [Range(0.1f, 20.0f)]
         [SerializeField] float _minPower = 1.0f;
         [Header("Ï‚ß‚éÅ‘å”")]
+        [Range(1, 6)]
         [SerializeField] int _maxStack = 6;
         [Header("Ï‚ŞˆÊ’u‚Ìƒ‰ƒ“ƒ_ƒ€‚È‚¸‚ç‚µ•")]
         [Range(0, 0.1f)]

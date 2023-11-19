@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,7 +16,7 @@ public class ChangeAreaCallBackTest : MonoBehaviour
     void Update()
     {
         _time += Time.deltaTime;
-        if(_time > _changeTime)
+        if (_time > _changeTime)
         {
             OnCallBackArea?.Invoke();
             _time = 0;

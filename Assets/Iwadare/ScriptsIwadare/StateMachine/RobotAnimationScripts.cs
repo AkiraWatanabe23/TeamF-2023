@@ -1,104 +1,112 @@
 using StateMachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Alpha;
 
 public class RobotAnimationScripts : MonoBehaviour
 {
-    bool _sitBool;
-    bool _surprisedBool;
-    Animator _animator;
+    [SerializeField]
+    private Animator _animator;
 
     [SerializeField]
     private StateMachineController _stateMachine;
 
     [SerializeField]
-    Button _sitButton;
+    private Button _changeSitChairButton;
 
     [SerializeField]
-    Button _successButton;
-    
-    [SerializeField] 
-    private Button _failedButton;
+    private SitScripts[] _allSitScripts;
 
     [SerializeField]
-    Button _danceButton;
+    bool _animationCallBackTestBool;
 
-    [SerializeField]
-    Button _changeSitChairButton;
+    private SitRequest _sitRequest;
 
-    [SerializeField]
-    SitScripts[] _allSitScripts;
+    private int _chairCount = 0;
 
-    int _chairCount = 0;
-
-    // Start is called before the first frame update
     void Start()
     {
-        _animator = GetComponent<Animator>();
-        if (_sitButton != null) { _sitButton.onClick.AddListener(() => SitAnimation()); }
-        if (_successButton != null) { _successButton.onClick.AddListener(() => SuccessAnimation()); }
-        if (_danceButton != null) { _danceButton.onClick.AddListener(() => DanceAnimation()); }
-        if(_changeSitChairButton != null) { _changeSitChairButton.onClick.AddListener(() => SitReceipt(_allSitScripts[(_chairCount + 1) % _allSitScripts.Length])); }
-        if(_failedButton != null) {_failedButton.onClick.AddListener(() => FailedAnimation()); }
+        _sitRequest = FindObjectOfType<SitRequest>();
+        _allSitScripts = _sitRequest.SitScriptsRequest();
+        if (_changeSitChairButton != null) { _changeSitChairButton.onClick.AddListener(() => SitReceipt(_allSitScripts[(_chairCount + 1) % _allSitScripts.Length])); }
         _stateMachine.Init(ref _animator);
     }
 
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        if (_animationCallBackTestBool)
+        {
+            AnimationCallBackTest.OnAnimationWalk += WalkAnimation;
+            AnimationCallBackTest.OnAnimationSit += SitAnimation;
+            AnimationCallBackTest.OnAnimationSuccess += SuccessAnimation;
+            AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
+            AnimationCallBackTest.OnAnimationStay += WaitState;
+        }
+        FerverTime.OnEnter += DanceAnimation;
+        if (FerverTime.IsFerver) {  DanceAnimation(); };
+    }
+
+    private void OnDisable()
+    {
+        if (_animationCallBackTestBool)
+        {
+            AnimationCallBackTest.OnAnimationWalk -= WalkAnimation;
+            AnimationCallBackTest.OnAnimationSit -= SitAnimation;
+            AnimationCallBackTest.OnAnimationSuccess -= SuccessAnimation;
+            AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
+            AnimationCallBackTest.OnAnimationStay -= WaitState;
+        }
+        FerverTime.OnEnter -= DanceAnimation;
+    }
+
     void Update()
     {
         _stateMachine.Update();
     }
 
+    /// <summary>歩きアニメーション</summary>
+    public void WalkAnimation()
+    {
+        _stateMachine.OnChangeState(_stateMachine.GetWalk);
+    }
+
+    /// <summary>座るアニメーション</summary>
     public void SitAnimation()
+    {
+        _stateMachine.OnChangeState(_stateMachine.GetSit);
+    }
+
+    /// <summary>成功アニメーション</summary>
+    public void SuccessAnimation()
+    {
+        _stateMachine.OnChangeState(_stateMachine.GetSuccessMotion);
+    }
+
+    /// <summary>失敗アニメーション</summary>
+    public void FailedAnimation()
+    {
+        _stateMachine.OnChangeState(_stateMachine.GetFailedMotion);
+    }
+
+    /// <summary>ダンスアニメーション</summary>
+    public void DanceAnimation()
+    {
+        _stateMachine.FalseFeverTimeBool();
+        _stateMachine.OnChangeState(_stateMachine.GetDance);
+        _stateMachine.FeverTimeBool();
+    }
+
+    /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
+    public void WaitState()
     {
         if (_stateMachine.CurrentState != _stateMachine.GetSit)
         {
-            _stateMachine.OnChangeState(_stateMachine.GetSit);
-        }
-        else
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetWalk);
+            _stateMachine.OnChangeState(_stateMachine.GetWaitState);
         }
     }
 
-    public void SuccessAnimation()
-    {
-        if (_stateMachine.CurrentState != _stateMachine.GetSuccessMotion)
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetSuccessMotion);
-        }
-        else
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetWalk);
-        }
-    }
-
-    public void FailedAnimation()
-    {
-        if(_stateMachine.CurrentState != _stateMachine.GetFailedMotion)
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetFailedMotion);
-        }
-        else
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetWalk);
-        }
-    }
-
-    public void DanceAnimation()
-    {
-        if (_stateMachine.CurrentState != _stateMachine.GetDance)
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetDance);
-        }
-        else
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetWalk);
-        }
-    }
-
+    /// <summary>座る場所指定(引数SitScripts)</summary>
+    /// <param name="sitScripts">SitScripts</param>
     public void SitReceipt(SitScripts sitScripts)
     {
         _stateMachine._sitScripts = sitScripts;
@@ -106,6 +114,7 @@ public class RobotAnimationScripts : MonoBehaviour
         Debug.Log(_chairCount);
     }
 
+    /// <summary>座る場所指定(引数int)</summary>
     public void SitReceipt(int index)
     {
         _stateMachine._sitScripts = _allSitScripts[index];
