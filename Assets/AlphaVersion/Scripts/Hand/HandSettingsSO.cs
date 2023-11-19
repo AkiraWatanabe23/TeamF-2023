@@ -33,6 +33,8 @@ namespace Alpha
         [SerializeField] float _randomShift = 0.03f;
         [Header("積む際に強制的にアイテムを消す範囲")]
         [SerializeField] float _throwedAreaSqrRadius = 0.31f;
+        [Header("強盗の攻撃を受けた際のペナルティ(秒)")]
+        [SerializeField] float _damagedPenalty = 2.0f;
 
         public AnimationCurve Evaluate => _evaluate;
         public float Power => _power;
@@ -40,5 +42,6 @@ namespace Alpha
         public int MaxStack => _maxStack;
         public float RandomShift => _randomShift;
         public float ThrowedAreaSqrRadius => _throwedAreaSqrRadius;
+        public float DamagedPenalty => _damagedPenalty;
     }
 }

@@ -50,11 +50,11 @@ namespace Alpha
 
             // アイテムがぶつかったフラグ
             bool isItemHit = false;
-            _collider.OnCollisionStayAsObservable()
+            _collider.OnCollisionEnterAsObservable().Where(_ => !isItemHit)
                 .Where(c => c.collider.TryGetComponent(out ThrowedItem _)).Subscribe(_ => 
                 {
                     isItemHit = true;
-                    Cri.PlaySE("SE_OrderHit");
+                    Cri.PlaySE("SE_Robber_Voice_2");
                 });
 
             Waypoint pathEnd = _lead;
