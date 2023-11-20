@@ -40,7 +40,9 @@ namespace Alpha
         {
             if (collider.TryGetComponent(out ICatchable catchable))
             {
-                if (catchable.Type == _order && catchable.SqrSpeed <= _settings.CatchableSpeed)
+                // フィーバー時に投げられるミニキャラクターの場合も成功とする。
+                if ((catchable.Type == _order || catchable.Type == ItemType.MiniActor)&& 
+                    catchable.SqrSpeed <= _settings.CatchableSpeed)
                 {
                     catchable.Catch();
                     return true;
