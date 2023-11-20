@@ -25,6 +25,9 @@ namespace Alpha
         [SerializeField] TimerUI _timerUI;
         [SerializeField] TimeSpawnController _timeSpawn;
         [SerializeField] FerverTrigger _ferver;
+        [SerializeField] ScoreManager _score;
+        [SerializeField] TempRanking _ranking;
+        [SerializeField] RetryUI _retry;
 
         /// <summary>
         /// 非同期処理の実行
@@ -66,8 +69,10 @@ namespace Alpha
             SendGameOverMessage();
 
             await _gameOverEvent.PlayAsync("成績", token);
+            _ranking.GetTmpScoreEffect(_score.TotalScore.Value); // 一時ランキグン、二宮君が完成したらawaitにしてもらう
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            string nextScene = await _retry.ButtonClickAsync(token);
+            SceneManager.LoadScene(nextScene);
         }
 
         /// <summary>
