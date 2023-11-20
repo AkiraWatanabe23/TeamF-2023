@@ -41,7 +41,9 @@ public class Ranking : MonoBehaviour
         _rankingSystem.AddPlayerScore(tmpCurrentScore);
         var scores = _rankingSystem.GetScores(5);
 
-        _scorePanel.transform.DOLocalMoveX(0, 5f).OnComplete(() =>
+        var moveAnimation = _scorePanel.transform.DOLocalMoveX(0, 5f).SetLink(gameObject);
+
+        moveAnimation.OnComplete(() =>
         {
             _scorePanel.transform.DOLocalMoveX(0, 01f);
             _currentText.text = $"Score  :  {tmpCurrentScore}";
@@ -51,7 +53,7 @@ public class Ranking : MonoBehaviour
               var sequence = DOTween.Sequence();
               for (int i = 1; i <= scores.Count; i++)
               {
-                  sequence.Append(_texts[i - 1].DOFade(endValue: 1, duration: 1));
+                  sequence.Append(_texts[i - 1].DOFade(endValue: 1, duration: 1).SetLink(gameObject));
                   //_texts[i - 1].DOCounter(0, scores[i - 1].Score, 1f);
                   _texts[i - 1].text = $"{i}st : {scores[i - 1].Score}";
               }
