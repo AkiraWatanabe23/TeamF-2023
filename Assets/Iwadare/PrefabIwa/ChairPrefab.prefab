@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: be6b7762eb4794a45ab9009b38b4878c,
         type: 3}
       propertyPath: m_Name
-      value: BgMD_Chair01 Variant
+      value: ChairPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84,7 +84,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: be6b7762eb4794a45ab9009b38b4878c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9129527575999560805}
+      addedObject: {fileID: 2937647153700936103}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be6b7762eb4794a45ab9009b38b4878c, type: 3}
 --- !u!4 &367852062333277374 stripped
@@ -129,7 +129,7 @@ PrefabInstance:
     - target: {fileID: 2812780137312926046, guid: e508547c9381f314bb12b7ebcb94be54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.302
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2812780137312926046, guid: e508547c9381f314bb12b7ebcb94be54,
         type: 3}
@@ -195,6 +195,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _sitDown.Position.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _sitDown.Position.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _sitDown.Position.z
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _sitDown.Rotation.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _standUp.Position.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _standUp.Position.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _standUp.Position.z
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200460791887234264, guid: e508547c9381f314bb12b7ebcb94be54,
+        type: 3}
+      propertyPath: _standUp.Rotation.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8944991123603869488, guid: e508547c9381f314bb12b7ebcb94be54,
         type: 3}
@@ -267,7 +307,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1623012411334422672, guid: e508547c9381f314bb12b7ebcb94be54, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5827839717417535692, guid: e508547c9381f314bb12b7ebcb94be54,
@@ -275,7 +316,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5555710371252403830}
   m_SourcePrefab: {fileID: 100100000, guid: e508547c9381f314bb12b7ebcb94be54, type: 3}
---- !u!1 &5940463024277928857 stripped
+--- !u!1 &290136748157279835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5827839717417535692, guid: e508547c9381f314bb12b7ebcb94be54,
     type: 3}
@@ -287,7 +328,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5940463024277928857}
+  m_GameObject: {fileID: 290136748157279835}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -302,7 +343,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &9129527575999560805 stripped
+--- !u!4 &2937647153700936103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8944991123603869488, guid: e508547c9381f314bb12b7ebcb94be54,
     type: 3}

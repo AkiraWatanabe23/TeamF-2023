@@ -5,18 +5,23 @@ using Alpha;
 
 public class RobotAnimationScripts : MonoBehaviour
 {
+    [Header("お客さんのアニメーター")]
     [SerializeField]
     private Animator _animator;
 
+
+    [Header("AnimationStateMachine")]
     [SerializeField]
     private StateMachineController _stateMachine;
-
+    [Header("デバック用(アタッチしなくても良い)")]
     [SerializeField]
     private Button _changeSitChairButton;
 
+    [Header("SitScript全部を入れる。")]
     [SerializeField]
     private SitScripts[] _allSitScripts;
 
+    [Header("デバック用(基本false)")]
     [SerializeField]
     bool _animationCallBackTestBool;
 
@@ -42,8 +47,6 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
             AnimationCallBackTest.OnAnimationStay += WaitState;
         }
-        FerverTime.OnEnter += DanceAnimation;
-        if (FerverTime.IsFerver) {  DanceAnimation(); };
     }
 
     private void OnDisable()
@@ -56,7 +59,6 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
         }
-        FerverTime.OnEnter -= DanceAnimation;
     }
 
     void Update()
