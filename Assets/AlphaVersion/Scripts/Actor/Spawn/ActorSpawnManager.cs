@@ -9,11 +9,15 @@ namespace Alpha
     /// </summary>
     public class ActorSpawnManager : MonoBehaviour
     {
-        [SerializeField] InGameSettingsSO _settings;
         [SerializeField] ActorInitializer _initializer;
         [SerializeField] SpawnRangeChecker _checker;
         [Header("デバッグ用: Zキーで客/Cキーで強盗を生成")]
         [SerializeField] bool _isDebug;
+
+        /// <summary>
+        /// 男か女かを同じ確率のランダム
+        /// </summary>
+        ActorType RandomCustomer => Random.value <= 0.5f ? ActorType.Male : ActorType.Female;
 
         void Update()
         {
@@ -26,7 +30,7 @@ namespace Alpha
 
                 if (Input.GetKeyDown(KeyCode.C))
                 {
-                    _initializer.Initialize(BehaviorType.Robber, ActorType.Robber);
+                    _initializer.Initialize(BehaviorType.Robber, ActorType.Muscle);
                 }
             }
         }
@@ -39,8 +43,8 @@ namespace Alpha
         {
             if (!_isDebug && _checker.Check())
             {
-                // 生成するキャラクターは重み付きで抽選される
-                _initializer.Initialize(BehaviorType.Customer, _settings.RandomCustomerType);
+                // TODO:現状男だけ、女はモデルが出来てから
+                _initializer.Initialize(BehaviorType.Customer, ActorType.Male);
                 return true;
             }
 
@@ -52,7 +56,7 @@ namespace Alpha
         /// </summary>
         public void SpawnRobber()
         {
-            _initializer.Initialize(BehaviorType.Robber, ActorType.Robber);
+            _initializer.Initialize(BehaviorType.Robber, ActorType.Muscle);
         }
     }
 }

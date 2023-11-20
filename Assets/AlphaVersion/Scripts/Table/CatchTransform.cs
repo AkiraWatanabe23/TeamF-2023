@@ -12,28 +12,32 @@ namespace Alpha
     /// </summary>
     public class CatchTransform : FerverHandler
     {
-        [SerializeField] InGameSettingsSO _settings;
+        [SerializeField] CatchSettingsSO _settings;
         [Header("設置する位置の設定")]
         [SerializeField] float _height = 0.5f;
         [SerializeField] float _border = 1.0f;
 
         Vector3 _basePosition;
 
+        public Vector3 Position => transform.position;
+        public float Radius { get; private set; }
+
         protected override void OnAwakeOverride()
         {
-            SetScale(_settings.CatchSettings.NormalSize);
+            SetScale(_settings.NormalSize);
+            
             // 基準位置の設定
             _basePosition = transform.position;
         }
 
         protected override void OnFerverTimeEnter()
         {
-            SetScale(_settings.CatchSettings.FerverSize);
+            SetScale(_settings.FerverSize);
         }
 
         protected override void OnFerverTimeExit()
         {
-            SetScale(_settings.CatchSettings.NormalSize);
+            SetScale(_settings.NormalSize);
         }
 
         /// <summary>
@@ -42,6 +46,7 @@ namespace Alpha
         void SetScale(float size)
         {
             transform.localScale = Vector3.one * size;
+            Radius = size / 2;
         }
 
         /// <summary>
@@ -50,7 +55,7 @@ namespace Alpha
         /// <returns>セットした位置</returns>
         public Vector3 SetRandomPosition()
         {
-            return SetRandomPosition(_settings.CatchSettings.NormalSize);
+            return SetRandomPosition(_settings.NormalSize);
         } 
 
         public Vector3 SetRandomPosition(float size)

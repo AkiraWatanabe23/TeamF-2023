@@ -10,9 +10,6 @@ namespace Alpha
     [RequireComponent(typeof(LineRenderer))]
     public class ThrowPowerVisualizer : MonoBehaviour
     {
-        [Header("–îˆó‚Ì’·‚³‚Ì”{—¦")]
-        [SerializeField] float _lengthPower = 1;
-
         LineRenderer _line;
 
         void Awake()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4599181146677063982}
   - component: {fileID: 5589189957506352000}
   - component: {fileID: 4790013463615852783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gimmick_Tumbleweed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4599181146677063982}
+  _floorHeight: 0.2
   _floorFalledDelay: 1
 --- !u!1001 &1659634886624715432
 PrefabInstance:

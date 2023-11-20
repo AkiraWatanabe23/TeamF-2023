@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 6543945797078965468}
   - component: {fileID: 4605794233371752097}
   - component: {fileID: 5650623271576466076}
-  - component: {fileID: 4387354838826472777}
-  m_Layer: 0
+  - component: {fileID: 8582349990399274421}
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,8 +187,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4387354838826472777
-SphereCollider:
+--- !u!136 &8582349990399274421
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -205,8 +205,10 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
+  serializedVersion: 2
+  m_Radius: 0.49999997
+  m_Height: 6
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3535494385216696900
 GameObject:
@@ -320,7 +322,7 @@ Transform:
   - {fileID: 7950838413336044773}
   - {fileID: 6543945797078965468}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4762407675300126629
 MonoBehaviour:
@@ -363,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6182bda05eebf4481fb299147d75e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 53662e7f22520014192310e3463f6687, type: 2}
+  _settings: {fileID: 11400000, guid: 7e12ee0f35d611b42992477c693ad161, type: 2}
 --- !u!114 &1268209751450412608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e603ceb4a1d491468589303d92ef253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 53662e7f22520014192310e3463f6687, type: 2}
+  _settings: {fileID: 11400000, guid: 7e12ee0f35d611b42992477c693ad161, type: 2}
   _height: 0.401
   _border: 0.4
 --- !u!114 &2739255665146518390

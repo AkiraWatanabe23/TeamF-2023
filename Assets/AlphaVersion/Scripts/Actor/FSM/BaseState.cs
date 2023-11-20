@@ -11,13 +11,14 @@ namespace Alpha
         Move,
         Order,
         Result,
-        Action,
+        Fire,
+        Animation,
     }
 
     /// <summary>
     /// 各ステートの基底クラス
     /// </summary>
-    public abstract class BaseState : MonoBehaviour
+    public abstract class BaseState : FerverHandler
     {
         protected enum Stage
         {
@@ -26,7 +27,7 @@ namespace Alpha
             Exit,
         }
 
-        [SerializeField] Animator _animator;
+        [SerializeField] AnimationAdapter _animator;
         [SerializeField] Transform _model;
 
         Stage _stage;
@@ -34,13 +35,8 @@ namespace Alpha
 
         public abstract StateType Type { get; }
         protected Stage CurrentStage => _stage;
-        protected Animator Animator => _animator;
+        protected AnimationAdapter Animator => _animator;
         protected Transform Model => _model;
-
-        void Awake()
-        {
-            OnAwakeOverride();
-        }
 
         /// <summary>
         /// 1度の呼び出しでステートの段階に応じてEnter() Stay() Exit()のうちどれか1つが実行される
@@ -72,7 +68,6 @@ namespace Alpha
             return this;
         }
 
-        protected virtual void OnAwakeOverride() { }
         protected abstract void Enter();
         protected abstract void Stay();
         protected abstract void Exit();
@@ -104,6 +99,24 @@ namespace Alpha
         {
             string s = _nextState != null ? _nextState.ToString() : string.Empty;
             Debug.Log($"状態:{Type} ステージ:{_stage} 次:{s}");
+        }
+
+        /// <summary>
+        /// もしステートが進行中の場合はダンスを再生する
+        /// </summary>
+        protected bool DanceIfStayStage()
+        {
+            if (CurrentStage == Stage.Stay) Animator.Play("Dance");
+            return CurrentStage == Stage.Stay;
+        }
+
+        /// <summary>
+        /// もしフィーバータイム中の場合はダンスを再生する
+        /// </summary>
+        protected bool DanceIfFerverTime()
+        {
+            if (Tension == Tension.Ferver) Animator.Play("Dance");
+            return Tension == Tension.Ferver;
         }
     }
 }

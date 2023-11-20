@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Alpha
 {
@@ -11,23 +13,27 @@ namespace Alpha
     /// </summary>
     public class FerverEffect : FerverHandler
     {
-        [SerializeField] ParticleSystem _left;
-        [SerializeField] ParticleSystem _right;
+        [Header("デザイナーアセット")]
+        [SerializeField] ParticleSystem _fall;
 
         protected override void OnAwakeOverride()
         {
+            // ゲームオーバー時に止めて非表示にする
+            MessageBroker.Default.Receive<GameOverMessage>().Subscribe(_ => 
+            {
+                _fall.Stop();
+                _fall.gameObject.SetActive(false);
+            }).AddTo(gameObject);
         }
 
         protected override void OnFerverTimeEnter()
         {
-            _left.Play();
-            _right.Play();
+            _fall.Play();
         }
 
         protected override void OnFerverTimeExit()
         {
-            _left.Stop();
-            _right.Stop();
+            _fall.Stop();
         }
     }
 }

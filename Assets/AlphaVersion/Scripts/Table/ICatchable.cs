@@ -21,8 +21,8 @@ namespace Alpha
         public float SqrSpeed { get; }
 
         /// <summary>
-        /// キャッチした際に呼ばれる
+        /// キャッチ際に呼ばれる
         /// </summary>
-        public void OnCatched();
+        public void Catch();
     }
 }

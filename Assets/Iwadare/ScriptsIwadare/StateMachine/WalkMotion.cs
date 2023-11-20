@@ -1,33 +1,30 @@
 using StateMachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR;
 
 [Serializable]
 public class WalkMotion : IState
 {
-    MotionState _state = MotionState.Walk;
-    public void InitialState()
+    //MotionState _state = MotionState.Walk;
+    public void InitialState(bool disDebugLog)
     {
-        Debug.Log("歩く！準備完了！");
+        DebugLogUtility.PrankLog("歩く！準備完了！", disDebugLog);
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        stateMachine.Anim.Play(stateMachine.WalkName);
-        Debug.Log("歩きはじめるぜ！");
+        stateMachine.Anim.Play(stateMachine.WalkName + "Start");
+        DebugLogUtility.PrankLog("歩きはじめるぜ！", stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        Debug.Log("うおおおおおお！");
+        DebugLogUtility.PrankLog("うおおおおおお！", stateMachine.DisplayLog);
     }
 
-    
+
     public void OnExitState(StateMachineController stateMachine)
     {
-        Debug.Log("はあ...はあ...歩き終わったぜ...");
+        stateMachine.Anim.Play(stateMachine.WalkName + "End");
+        DebugLogUtility.PrankLog("はあ...はあ...歩き終わったぜ...", stateMachine.DisplayLog);
     }
 }

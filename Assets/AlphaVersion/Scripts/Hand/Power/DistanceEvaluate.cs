@@ -14,7 +14,7 @@ namespace Alpha
         const float Max = 1.40f;
         const float Min = 0.01f;
 
-        [SerializeField] AnimationCurve _evaluate;
+        [SerializeField] HandSettingsSO _settings;
 
         /// <summary>
         /// ViewPoint座標系(0,0 ~ 1,1)の2点の距離を評価関数に通し、補正された値を返す
@@ -26,7 +26,7 @@ namespace Alpha
             float time = (viewPointB - viewPointA).magnitude;
             time = math.remap(Min, Max, 0, 1, time);
 
-            return time * _evaluate.Evaluate(time);
+            return time * _settings.Evaluate.Evaluate(time);
         }
     }
 }

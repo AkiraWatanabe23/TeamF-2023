@@ -55,11 +55,14 @@ namespace Alpha
         /// </summary>
         void Start()
         {
-            CancellationTokenSource cts = new();
+            ExtendCTS cts = new();
             UpdateAsync(cts.Token).Forget();
 
+            // ゲームオーバー時にトークンをDisposeする
+            MessageBroker.Default.Receive<GameOverMessage>()
+                .Subscribe(_ => cts.Dispose()).AddTo(gameObject);
             // オブジェクトの破棄時にトークンをDisposeする
-            this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
+            this.OnDestroyAsObservable().Subscribe(_ => cts.Dispose());
 
             OnStartOverride();
         }
@@ -67,28 +70,6 @@ namespace Alpha
         protected virtual void OnInitOverride(Waypoint lead, Tension tension) { }
         protected virtual void OnInitOverride<T>(Waypoint lead, Tension tension, T arg) { }
         protected virtual void OnStartOverride() { }
-        protected async virtual UniTaskVoid UpdateAsync(CancellationToken token) { }
+        protected async virtual UniTaskVoid UpdateAsync(CancellationToken token) { await UniTask.Yield(token); }
     }
 }
-
-// 客
-//  席まで歩いてくる
-//  注文がキャッチできるまで待機
-//  アニメーション
-//  帰る
-// 強盗
-//  カウンター隣まで移動
-//  構える
-//  歩いてくる
-//  発砲
-//  帰る
-// 確定事項
-//  頂点にいる状態 と 頂点から頂点に移動する状態 が交互になる
-//  フィーバータイムは、アニメーションが切り替わるだけ、現在の行動をキャンセルして何かする訳ではない
-
-// 現在のウェイポイントと経路を保持するクラス
-//  現在と離接するウェイポイントに移動可能
-//  移動中にキャンセル可能
-
-// キャラ毎に分けるのではなく、頂点の種類ごとに分けるアプローチ？
-// キャンセレーショントークンのように各種フラグが参照型で渡されるアプローチ？

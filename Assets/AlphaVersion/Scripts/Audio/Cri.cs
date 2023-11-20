@@ -11,22 +11,36 @@ namespace Alpha
     {
         public static void PlaySE(string name, string sheet = null)
         {
-            TempAudioManager.Instance.PlaySE(name);
+            int i = CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
+            if (i == -1)
+            {
+                Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
+            }
         }
 
         public static void DelayedPlaySE(string name, float delay, string sheet = null)
         {
-            TempAudioManager.Instance.DelayedPlaySE(name, delay);
+            Debug.LogWarning("’x‰„‚ÅSE‚ª–Â‚é: " + name);
         }
 
         public static void PlayBGM(string name, string sheet = null)
         {
-            TempAudioManager.Instance.PlayBGM(name);
+            int i = CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
+            if (i == -1)
+            {
+                Debug.LogWarning("BGM‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
+            }
         }
 
         public static void StopBGM()
         {
-            TempAudioManager.Instance.StopBGM();
+            CriAudioManager.Instance.BGM.StopAll();
+        }
+
+        public static void StopAll()
+        {
+            CriAudioManager.Instance.SE.StopAll();
+            CriAudioManager.Instance.BGM.StopAll();
         }
     }
 }

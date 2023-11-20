@@ -9,7 +9,8 @@ namespace Alpha
     /// </summary>
     public class TimeSpawnController : MonoBehaviour
     {
-        [SerializeField] InGameSettingsSO _settings;
+        [SerializeField] GimmickSettingsSO _gimmickSettings;
+        [SerializeField] SpawnRateSettingsSO _spawnRateSettings;
         [SerializeField] ActorSpawnManager _actorSpawnManager;
         [SerializeField] TumbleweedSpawner _tumbleweedSpawner;
 
@@ -25,32 +26,32 @@ namespace Alpha
         public void Tick(float elapsed)
         {
             _customerElapsed += Time.deltaTime;
-            _robberElapsed += _settings.Robber.FixedDelta * Time.deltaTime;
-            _tumbleweedElapsed += _settings.TumbleWeed.FixedDelta * Time.deltaTime;
+            _robberElapsed += Time.deltaTime;
+            _tumbleweedElapsed += Time.deltaTime;
 
             // ãq
-            if (_customerElapsed > _settings.CustomerSpawnRate)
+            if (_customerElapsed > _spawnRateSettings.CustomerSpawnRate)
             {
                 _customerElapsed = 0;
                 _actorSpawnManager.TrySpawnRandomCustomer();
             }
 
             // ã≠ìê
-            if (_robberTimingIndex < _settings.Robber.Timing.Count &&
-                _robberElapsed > _settings.Robber.Timing[_robberTimingIndex])
+            if (_robberTimingIndex < _gimmickSettings.Robber.Max &&
+                _robberElapsed > _gimmickSettings.Robber.Timing[_robberTimingIndex])
             {
-                _robberTimingIndex++;
-                //_robberElapsed = 0;
                 _actorSpawnManager.SpawnRobber();
+                _robberTimingIndex++;
             }
 
             // É^ÉìÉuÉã
-            if (_tumbleweedIndex < _settings.TumbleWeed.Timing.Count &&
-                _tumbleweedElapsed > _settings.TumbleWeed.Timing[_tumbleweedIndex])
+            if (_tumbleweedIndex < _gimmickSettings.Tumbleweed.Max &&
+                _tumbleweedElapsed > _gimmickSettings.Tumbleweed.Timing[_tumbleweedIndex].Elapsed)
             {
+                int count = _gimmickSettings.Tumbleweed.Timing[_tumbleweedIndex].Count;
+                _tumbleweedSpawner.Spawn(count);
                 _tumbleweedIndex++;
-                //_tumbleweedElapsed = 0;
-                _tumbleweedSpawner.Spawn();
+
             }
         }
     }
