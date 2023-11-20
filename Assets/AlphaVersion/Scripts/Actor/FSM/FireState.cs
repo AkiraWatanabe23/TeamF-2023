@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UniRx;
 
 namespace Alpha
 {
+    public struct FireMessage { }
+
     /// <summary>
     /// 一定時間経過後に射撃を行うステート
     /// アニメーション再生のステートのEnterに射撃の非同期処理を追加する
@@ -47,12 +50,16 @@ namespace Alpha
         }
 
         /// <summary>
-        /// 一定時間後に射撃する
+        /// 一定時間後に射撃したメッセージを送信するする
         /// </summary>
         async UniTaskVoid FireAsync(CancellationToken token)
         {
+            Cri.PlaySE("SE_Robber_Voice_1");
+
             await UniTask.Delay(System.TimeSpan.FromSeconds(_fireDelay), cancellationToken: token);
-            Debug.Log("Bang!!");
+
+            MessageBroker.Default.Publish(new FireMessage());
+            CameraShakeMessageSender.SendMessage(3.0f); // ベタ書き
         }
     }
 }

@@ -8,32 +8,55 @@ using UniRx.Triggers;
 namespace Alpha
 {
     /// <summary>
-    /// フィーバータイムのパーティクルを制御するクラス
-    /// このパーティクルはプーリングされず、シーン開始時に生成済みのものを再生/停止を行う
+    /// フィーバータイム用の演出を行うクラス
     /// </summary>
     public class FerverEffect : FerverHandler
     {
-        [Header("デザイナーアセット")]
-        [SerializeField] ParticleSystem _fall;
+        [Header("フィーバー時に無効化される")]
+        [SerializeField] GameObject _normalReflectionProbe;
+        [SerializeField] GameObject _normalDirectionalLight;
+        [Header("フィーバー時に有効になる")]
+        [SerializeField] GameObject _ferverDirectionalLight;
+        [SerializeField] GameObject _ferverSpotLight;
+        [SerializeField] GameObject _ferverReflectionProbe;
+        [SerializeField] GameObject _mirrorBall;
+        [SerializeField] ParticleSystem _fallParticle;
 
         protected override void OnAwakeOverride()
         {
             // ゲームオーバー時に止めて非表示にする
             MessageBroker.Default.Receive<GameOverMessage>().Subscribe(_ => 
             {
-                _fall.Stop();
-                _fall.gameObject.SetActive(false);
+                OnFerverTimeExit();
+                _fallParticle.gameObject.SetActive(false);
             }).AddTo(gameObject);
+        }
+
+        void Start()
+        {
+            OnFerverTimeExit();
         }
 
         protected override void OnFerverTimeEnter()
         {
-            _fall.Play();
+            _normalReflectionProbe.SetActive(false);
+            _normalDirectionalLight.SetActive(false);
+            _ferverDirectionalLight.SetActive(true);
+            _ferverSpotLight.SetActive(true);
+            _ferverReflectionProbe.SetActive(true);
+            _mirrorBall.SetActive(true);
+            _fallParticle.Play();
         }
 
         protected override void OnFerverTimeExit()
         {
-            _fall.Stop();
+            _normalReflectionProbe.SetActive(true);
+            _normalDirectionalLight.SetActive(true);
+            _ferverDirectionalLight.SetActive(false);
+            _ferverSpotLight.SetActive(false);
+            _ferverReflectionProbe.SetActive(false);
+            _mirrorBall.SetActive(false);
+            _fallParticle.Stop();
         }
     }
 }

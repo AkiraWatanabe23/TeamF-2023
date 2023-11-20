@@ -22,6 +22,7 @@ namespace StateMachine
         private IState _currentState = null;
         public IState CurrentState => _currentState;
 
+        [Header("アニメーションの名前")]
         [SerializeField] private string _walkAniName = "Walk";
         [SerializeField] private string _sitAniName = "Sitting";
         [SerializeField] private string _successAniName = "Surprized";
@@ -39,12 +40,14 @@ namespace StateMachine
         public Animator Anim => _anim;
 
         public SitScripts _sitScripts;
-
+        [Header("お客さん(自身)の位置")]
         public Transform _avatorTrams;
 
+        [Header("遊び用(基本false)")]
         [SerializeField]
         private bool _ngWordbool;
 
+        [Header("StateのDebugLogの表示非表示")]
         [SerializeField]
         private bool _displayLog = true;
         public bool DisplayLog => _displayLog;
@@ -96,6 +99,7 @@ namespace StateMachine
         {
             _feverBool = false;
         }
+
 
         public IState GetState(MotionState state)
         {

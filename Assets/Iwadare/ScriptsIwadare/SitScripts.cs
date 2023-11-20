@@ -1,38 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SitScripts : MonoBehaviour
 {
     [SerializeField]
-    Transform _sitDownTrans;
-
+    Trans _sitDown;
     [SerializeField]
-    Transform _standUpTrans;
+    Trans _standUp;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + _sitDown.Position,0.05f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(transform.position + _standUp.Position,new Vector3(0.1f,0.1f,0.1f));
     }
+
 
     public Vector3 SitDownPosition()
     {
-        return _sitDownTrans.position;
+        return transform.position + _sitDown.Position;
     }
 
     public Vector3 SitDownRotation()
     {
-        return transform.eulerAngles;
+        return _sitDown.Rotation;
     }
 
     public Vector3 StandUp()
     {
-        return _standUpTrans.position;
+        return transform.position + _standUp.Position;
+    }
+
+    public Vector3 StandUpRotation() 
+    {
+        return _standUp.Rotation;
+    }
+
+    [Serializable]
+    public struct Trans
+    {
+        public Vector3 Position;
+        public Vector3 Rotation;
     }
 }

@@ -28,7 +28,8 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < _maxCount; i++)
         {
-            GetDumbleweed(this.transform.position).transform.position = _transforms[Random.Range(0, _transforms.Length)].position;
+            GetDumbleweed(this.transform.position).transform.position =
+                _transforms[Random.Range(0, _transforms.Length)].position;
         }
         _time = 0;
     }

@@ -17,6 +17,7 @@ namespace Alpha
         [SerializeField] ThrowedItemCleaner _itemCleaner;
         [SerializeField] MouseMovementChecker _mouseMovementChecker;
         [SerializeField] DustClothShooter _dustClothShooter;
+        [SerializeField] DamageReceiver _damage;
 
         HoldSEPlayer _holdSEPlayer = new();
 
@@ -65,17 +66,21 @@ namespace Alpha
 
         void OnLeftClickUp()
         {
-            // マウスを動かした場合は投げる。動かしていない場合は積む。
-            if (_mouseMovementChecker.IsMoved())
+            if (!_damage.IsDamaged)
             {
-                Vector3 velocity = _powerCalculator.CalculateThrowVelocity();
-                _thrower.Throw(velocity);
-            }
-            else
-            {
-                // アイテムが積めなかった場合はプールに戻す
-                ThrowedItem item = _itemSpawner.Spawn();
-                if (!_thrower.TryStack(item)) _itemSpawner.Release(item);
+                // マウスを動かした場合は投げる。動かしていない場合は積む。
+                if (_mouseMovementChecker.IsMoved())
+                {
+                    // ダメージを受けている中はその場に投げる
+                    Vector3 velocity = _powerCalculator.CalculateThrowVelocity();
+                    _thrower.Throw(velocity);
+                }
+                else
+                {
+                    // アイテムが積めなかった場合はプールに戻す
+                    ThrowedItem item = _itemSpawner.Spawn();
+                    if (!_thrower.TryStack(item)) _itemSpawner.Release(item);
+                }
             }
 
             // 矢印を消す
@@ -84,6 +89,8 @@ namespace Alpha
 
         void OnRightClickUp()
         {
+            if (_damage.IsDamaged) return;
+
             // アイテムを積んでいない場合のみ
             if (_thrower.StackCount == 0) _dustClothShooter.Shoot();
         }

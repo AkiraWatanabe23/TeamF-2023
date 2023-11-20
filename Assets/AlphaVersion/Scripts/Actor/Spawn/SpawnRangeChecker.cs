@@ -23,7 +23,7 @@ namespace Alpha
             Collider[] result = Physics.OverlapSphere(_spawnPoint.position, _radius, _actorLayer);
             foreach (Collider collider in result)
             {
-                if (collider.TryGetComponent(out Actor _))
+                if (collider.transform.parent.TryGetComponent(out Actor _))
                 {
                     return false;
                 }

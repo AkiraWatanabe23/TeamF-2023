@@ -19,7 +19,10 @@ namespace Alpha
             _cts = new();
         }
 
+        public bool IsCancellationRequested => _cts.IsCancellationRequested;
         public CancellationToken Token => _cts.Token;
+
+        public void Cancel() => _cts.Cancel();
 
         public void Dispose()
         {
