@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AssetStoreTools/Ver1/LocalProto.unity
+    path: Assets/AssetStoreTools/LocalProto.unity
     guid: bbcf84f045834c345acea6eaec0432c7
+  - enabled: 1
+    path: Assets/AlphaVersion/Stage_0_Development.unity
+    guid: c8629d0dd7df6e14893fc1c3fc67299a
+  - enabled: 1
+    path: Assets/AlphaVersion/Stage_1_Normal.unity
+    guid: 504bd7f764d844845a155ae4c650601d
+  - enabled: 1
+    path: Assets/AlphaVersion/Stage_2_Long.unity
+    guid: cc108840f3410ff47addc130159118c2
+  - enabled: 1
+    path: Assets/AlphaVersion/Stage_3_SuperLong.unity
+    guid: 663218fb18cc9014ab0b820b0059223c
+  - enabled: 1
+    path: Assets/AlphaVersion/StageSelect_Temp.unity
+    guid: e90de54648df9dc46a8bcea802dfbb2d
+  - enabled: 1
+    path: Assets/AlphaVersion/Title_Temp.unity
+    guid: ea976c8fd4f48e6478a937c452e590a3
   m_configObjects: {}
