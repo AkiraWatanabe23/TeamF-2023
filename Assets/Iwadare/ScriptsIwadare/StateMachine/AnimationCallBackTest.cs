@@ -13,6 +13,7 @@ public class AnimationCallBackTest : MonoBehaviour
     public static event UnityAction OnAnimationDance;
     public static event UnityAction OnAnimationSuccess;
     public static event UnityAction OnAnimationFailed;
+    public static event UnityAction OnAnimationIdle;
     void Start()
     {
         buttons[0].onClick.AddListener(() => OnAnimationWalk.Invoke());
@@ -21,7 +22,7 @@ public class AnimationCallBackTest : MonoBehaviour
         buttons[3].onClick.AddListener(() => OnAnimationSuccess.Invoke());
         buttons[4].onClick.AddListener(() => OnAnimationFailed.Invoke());
         buttons[6].onClick.AddListener(() => OnAnimationStay.Invoke());
-
+        buttons[7].onClick.AddListener(() => OnAnimationIdle.Invoke());
     }
     private void OnDestroy()
     {
@@ -31,5 +32,6 @@ public class AnimationCallBackTest : MonoBehaviour
         OnAnimationDance = null;
         OnAnimationSuccess = null;
         OnAnimationFailed = null;
+        OnAnimationIdle = null;
     }
 }

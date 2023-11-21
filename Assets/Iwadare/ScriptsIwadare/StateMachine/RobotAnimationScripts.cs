@@ -39,6 +39,7 @@ public class RobotAnimationScripts : MonoBehaviour
 
     private void OnEnable()
     {
+        //デバック用
         if (_animationCallBackTestBool)
         {
             AnimationCallBackTest.OnAnimationWalk += WalkAnimation;
@@ -46,11 +47,13 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationSuccess += SuccessAnimation;
             AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
             AnimationCallBackTest.OnAnimationStay += WaitState;
+            AnimationCallBackTest.OnAnimationIdle += IdleState;
         }
     }
 
     private void OnDisable()
     {
+        //デバック用
         if (_animationCallBackTestBool)
         {
             AnimationCallBackTest.OnAnimationWalk -= WalkAnimation;
@@ -58,6 +61,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationSuccess -= SuccessAnimation;
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
+            AnimationCallBackTest.OnAnimationIdle -= IdleState;
         }
     }
 
@@ -104,6 +108,15 @@ public class RobotAnimationScripts : MonoBehaviour
         if (_stateMachine.CurrentState != _stateMachine.GetSit)
         {
             _stateMachine.OnChangeState(_stateMachine.GetWaitState);
+        }
+    }
+
+    /// <summary>Idleアニメーション(IdleのAnimationの中身はなし。)</summary>
+    public void IdleState()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetIdleState);
         }
     }
 
