@@ -1,6 +1,4 @@
 using UnityEngine;
-//using Alpha;
-
 
 public class BaseGimmickArea : MonoBehaviour
 {
