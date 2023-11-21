@@ -1,7 +1,6 @@
-using Alpha;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Alpha;
+
 
 public class BaseGimmickArea : MonoBehaviour
 {
