@@ -27,9 +27,9 @@ namespace StateMachine
 
         [Header("アニメーションの名前")]
         [SerializeField] private string _walkAniName = "Walk";
-        [SerializeField] private string _sitAniName = "Sitting";
-        [SerializeField] private string _successAniName = "Surprized";
-        [SerializeField] private string _failedAniName = "Failed";
+        [SerializeField] private string _sitAniName = "Order";
+        [SerializeField] private string _successAniName = "Success";
+        [SerializeField] private string _failedAniName = "Failure";
         [SerializeField] private string _danceAniName = "Dance";
         [SerializeField] private string _idleAniName = "Idle";
         public string WalkName => _walkAniName;

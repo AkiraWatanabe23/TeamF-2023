@@ -125,13 +125,11 @@ public class RobotAnimationScripts : MonoBehaviour
     {
         _stateMachine._sitScripts = sitScripts;
         _chairCount = (_chairCount + 1) % _allSitScripts.Length;
-        Debug.Log(_chairCount);
     }
 
     /// <summary>À‚éêŠw’è(ˆø”int)</summary>
     public void SitReceipt(int index)
     {
         _stateMachine._sitScripts = _allSitScripts[index];
-        Debug.Log(index);
     }
 }
