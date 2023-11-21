@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SitScripts : MonoBehaviour
 {
@@ -13,15 +10,15 @@ public class SitScripts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + _sitDown.Position,0.05f);
+        Gizmos.DrawSphere(transform.position + _sitDown.Position, 0.05f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube(transform.position + _standUp.Position,new Vector3(0.1f,0.1f,0.1f));
+        Gizmos.DrawCube(transform.position + _standUp.Position, new Vector3(0.1f, 0.1f, 0.1f));
     }
 
 
@@ -40,7 +37,7 @@ public class SitScripts : MonoBehaviour
         return transform.position + _standUp.Position;
     }
 
-    public Vector3 StandUpRotation() 
+    public Vector3 StandUpRotation()
     {
         return _standUp.Rotation;
     }
