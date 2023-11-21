@@ -13,12 +13,15 @@ namespace StateMachine
         private FailedMotion _failedMotion = new();
         private DanceMotion _dance = new();
         private WaitState _waitState = new();
+        private IdleMotion _idleState = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
         public SuccessMotionScript GetSuccessMotion => _successMotion;
         public FailedMotion GetFailedMotion => _failedMotion;
         public DanceMotion GetDance => _dance;
         public WaitState GetWaitState => _waitState;
+        public IdleMotion GetIdleState => _idleState;
+
         private IState _currentState = null;
         public IState CurrentState => _currentState;
 
@@ -28,11 +31,13 @@ namespace StateMachine
         [SerializeField] private string _successAniName = "Surprized";
         [SerializeField] private string _failedAniName = "Failed";
         [SerializeField] private string _danceAniName = "Dance";
+        [SerializeField] private string _idleAniName = "Idle";
         public string WalkName => _walkAniName;
         public string SitName => _sitAniName;
         public string SuccessName => _successAniName;
         public string FailedName => _failedAniName;
         public string DanceName => _danceAniName;
+        public string IdleAniName => _idleAniName;
 
         private float _time;
         /// <summary>äOïîéQè∆</summary>
@@ -55,11 +60,10 @@ namespace StateMachine
 
         private bool _feverBool;
 
-        // Start is called before the first frame update
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[6] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState };
+            IState[] state = new IState[7] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState,_idleState };
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
@@ -70,7 +74,6 @@ namespace StateMachine
             _currentState.OnEnterState(this);
         }
 
-        // Update is called once per frame
         public void Update()
         {
             _time += Time.deltaTime;
