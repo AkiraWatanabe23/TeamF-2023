@@ -12,8 +12,6 @@ public class CriPlayTest : MonoBehaviour
     [SerializeField]
     private string _cueName = "";
 
-    public string CueSheetName => _cueSheetName;
-
     private void Start()
     {
         _playButton.onClick.AddListener(() => CriAudioManager.Instance.BGM.Play(_cueSheetName, _cueName));
