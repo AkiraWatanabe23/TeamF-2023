@@ -1,7 +1,6 @@
 using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
-using Alpha;
 
 public class RobotAnimationScripts : MonoBehaviour
 {

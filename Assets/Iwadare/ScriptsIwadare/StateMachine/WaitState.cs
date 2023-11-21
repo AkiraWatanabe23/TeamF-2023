@@ -1,19 +1,15 @@
 using StateMachine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 
 public class WaitState : IState
 {
     public void InitialState(bool disDebugLog)
     {
-        DebugLogUtility.PrankLog("待機！準備完了！",disDebugLog);
+        DebugLogUtility.PrankLog("待機！準備完了！", disDebugLog);
     }
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "":"",stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
