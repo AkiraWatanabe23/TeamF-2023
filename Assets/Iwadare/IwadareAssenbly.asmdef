@@ -1,9 +1,7 @@
 {
     "name": "IwadareAssenbly",
     "rootNamespace": "",
-    "references": [
-        "GUID:4c06b5b68185e314bb96a63c30be48f3"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

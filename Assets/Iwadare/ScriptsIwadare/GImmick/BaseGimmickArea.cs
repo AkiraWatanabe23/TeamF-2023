@@ -1,5 +1,5 @@
 using UnityEngine;
-using Alpha;
+//using Alpha;
 
 
 public class BaseGimmickArea : MonoBehaviour
@@ -11,18 +11,18 @@ public class BaseGimmickArea : MonoBehaviour
     [SerializeField] Renderer _mesh;
     [SerializeField] Color _startOpeColor = Color.red;
     [SerializeField] Color _stopOpeColor = Color.white;
-    [SerializeField] bool _tunbleCallBack = true;
+    //[SerializeField] bool _tunbleCallBack = true;
 
     private void OnEnable()
     {
-        if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned += SpeedChangeAreaOperation; }
-        else { ChangeAreaCallBackTest.OnCallBackArea += SpeedChangeAreaOperation; }
+        //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned += SpeedChangeAreaOperation; }
+        ChangeAreaCallBackTest.OnCallBackArea += SpeedChangeAreaOperation;
     }
 
     private void OnDisable()
     {
-        if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned -= SpeedChangeAreaOperation; }
-        else { ChangeAreaCallBackTest.OnCallBackArea -= SpeedChangeAreaOperation; }
+        //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned -= SpeedChangeAreaOperation; }
+        ChangeAreaCallBackTest.OnCallBackArea -= SpeedChangeAreaOperation;
     }
 
     void Start()
