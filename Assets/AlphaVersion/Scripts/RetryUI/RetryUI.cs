@@ -14,9 +14,8 @@ namespace Alpha
     /// </summary>
     public class RetryUI : MonoBehaviour
     {
-        // TODO:現在はリトライボタンのみ、タイトルに戻るボタンを二宮君に作ってもらう
-
-        [SerializeField] Button _button;
+        [SerializeField] Button _retryButton;
+        [SerializeField] Button _titleButton;
 
         /// <summary>
         /// ボタンクリックまで待ち、クリックされたボタンに応じて次に遷移する先を返す
@@ -24,12 +23,15 @@ namespace Alpha
         /// <returns>このシーンもしくはタイトル</returns>
         public async UniTask<string> ButtonClickAsync(CancellationToken token)
         {
-            AsyncUnityEventHandler handler = _button.onClick.GetAsyncEventHandler(token);
-            await handler.OnInvokeAsync();
+            AsyncUnityEventHandler retry = _retryButton.onClick.GetAsyncEventHandler(token);
+            AsyncUnityEventHandler title = _titleButton.onClick.GetAsyncEventHandler(token);
+
+            int result = await UniTask.WhenAny(retry.OnInvokeAsync(), title.OnInvokeAsync());
 
             // 演出待つ
 
-            return SceneManager.GetActiveScene().name;
+            if (result == 0) return SceneManager.GetActiveScene().name;
+            else return "Title_Temp";
         }
     }
 }

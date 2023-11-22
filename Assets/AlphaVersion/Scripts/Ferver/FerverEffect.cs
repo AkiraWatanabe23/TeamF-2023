@@ -21,6 +21,7 @@ namespace Alpha
         [SerializeField] GameObject _ferverReflectionProbe;
         [SerializeField] GameObject _mirrorBall;
         [SerializeField] ParticleSystem _fallParticle;
+        [SerializeField] LightRotate _light;
 
         protected override void OnAwakeOverride()
         {
@@ -46,6 +47,7 @@ namespace Alpha
             _ferverReflectionProbe.SetActive(true);
             _mirrorBall.SetActive(true);
             _fallParticle.Play();
+            _light.Play();
         }
 
         protected override void OnFerverTimeExit()
