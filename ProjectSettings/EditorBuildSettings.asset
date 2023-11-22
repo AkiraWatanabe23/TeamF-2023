@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AssetStoreTools/LocalProto.unity
-    guid: bbcf84f045834c345acea6eaec0432c7
-  - enabled: 1
     path: Assets/AlphaVersion/Stage_0_Development.unity
     guid: c8629d0dd7df6e14893fc1c3fc67299a
   - enabled: 1

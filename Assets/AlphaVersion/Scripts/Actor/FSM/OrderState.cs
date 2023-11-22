@@ -67,7 +67,10 @@ namespace Alpha
         /// </summary>
         void LookAt()
         {
-            Vector3 dir = _table.Position - transform.position;
+            Vector3 p1 = new Vector3(_table.Position.x, 0, _table.Position.z);
+            Vector3 p2 = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 dir = p1 - p2;
+
             if (dir != Vector3.zero)
             {
                 Model.rotation = Quaternion.LookRotation(dir, Vector3.up);

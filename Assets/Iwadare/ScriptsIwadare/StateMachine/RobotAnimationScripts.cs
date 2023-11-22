@@ -1,7 +1,6 @@
 using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
-using Alpha;
 
 public class RobotAnimationScripts : MonoBehaviour
 {
@@ -97,9 +96,9 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        _stateMachine.FalseFeverTimeBool();
+        //_stateMachine.FalseFeverTimeBool();
         _stateMachine.OnChangeState(_stateMachine.GetDance);
-        _stateMachine.FeverTimeBool();
+        //_stateMachine.FeverTimeBool();
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
@@ -126,13 +125,11 @@ public class RobotAnimationScripts : MonoBehaviour
     {
         _stateMachine._sitScripts = sitScripts;
         _chairCount = (_chairCount + 1) % _allSitScripts.Length;
-        Debug.Log(_chairCount);
     }
 
     /// <summary>座る場所指定(引数int)</summary>
     public void SitReceipt(int index)
     {
         _stateMachine._sitScripts = _allSitScripts[index];
-        Debug.Log(index);
     }
 }

@@ -26,7 +26,7 @@ namespace Alpha
 
         protected override void Enter()
         {
-            Animator.Play(_animationName);
+            Animator.Play(_animationName); // TODO:何らかのアニメーションしたい。
         }
 
         protected override void Exit()
@@ -43,5 +43,3 @@ namespace Alpha
         }
     }
 }
-
-// TempAudioManagerと併用した音の実装。追加の4種類のDEMOあるから実装する

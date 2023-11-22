@@ -27,9 +27,9 @@ namespace StateMachine
 
         [Header("アニメーションの名前")]
         [SerializeField] private string _walkAniName = "Walk";
-        [SerializeField] private string _sitAniName = "Sitting";
-        [SerializeField] private string _successAniName = "Surprized";
-        [SerializeField] private string _failedAniName = "Failed";
+        [SerializeField] private string _sitAniName = "Order";
+        [SerializeField] private string _successAniName = "Success";
+        [SerializeField] private string _failedAniName = "Failure";
         [SerializeField] private string _danceAniName = "Dance";
         [SerializeField] private string _idleAniName = "Idle";
         public string WalkName => _walkAniName;
@@ -63,7 +63,7 @@ namespace StateMachine
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[7] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState,_idleState };
+            IState[] state = new IState[7] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState, _idleState };
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
@@ -85,23 +85,20 @@ namespace StateMachine
         }
         public void OnChangeState(IState state)
         {
-            if (!_feverBool)
-            {
-                _currentState.OnExitState(this);
-                _currentState = state;
-                _currentState.OnEnterState(this);
-            }
+            _currentState.OnExitState(this);
+            _currentState = state;
+            _currentState.OnEnterState(this);
         }
 
-        public void FeverTimeBool()
-        {
-            _feverBool = true;
-        }
+        //public void FeverTimeBool()
+        //{
+        //    _feverBool = true;
+        //}
 
-        public void FalseFeverTimeBool()
-        {
-            _feverBool = false;
-        }
+        //public void FalseFeverTimeBool()
+        //{
+        //    _feverBool = false;
+        //}
 
 
         public IState GetState(MotionState state)

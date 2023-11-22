@@ -237,6 +237,8 @@ public class CriAudioManager
 
         public int Play(string cueSheetName, string cueName, float volume = 1.0F)
         {
+            Debug.Log("play");
+
             // CueSheetから情報を取得
             var tempAcb = CriAtom.GetAcb(cueSheetName);
             var tempPlayerData = new CriPlayerData();
@@ -261,6 +263,7 @@ public class CriAudioManager
 
             _cueData[_cueData.Count - 1] = tempPlayerData;
 
+            Debug.Log("played");
             return _cueData.Count - 1;
         }
 

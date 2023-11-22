@@ -1,7 +1,4 @@
 using StateMachine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class FailedMotion : IState
 {
@@ -20,15 +17,15 @@ public class FailedMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? 
-            "ぷんぷん丸って言うのね、取るね手に、カチンコチンな刃で何でも切れそう！" : 
+        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
+            "ぷんぷん丸って言うのね、取るね手に、カチンコチンな刃で何でも切れそう！" :
             "ぷんぷん！ぷんぷーーーん！", stateMachine.DisplayLog);
     }
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? 
-            "チンゲン菜を切って、この刀の切れ味、いかがなものか試してみるね！" : 
+        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
+            "チンゲン菜を切って、この刀の切れ味、いかがなものか試してみるね！" :
             "つまら怒ものを斬ってしまった...", stateMachine.DisplayLog);
     }
 

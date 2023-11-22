@@ -11,6 +11,7 @@ namespace Alpha
     /// </summary>
     public class Customer : Actor
     {
+        [SerializeField] AnimationAdapter _adapter;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
         [SerializeField] IdleState _idleState;
@@ -47,6 +48,7 @@ namespace Alpha
             // 席を取得するまで待機
             EmptyTable table;
             while (GetEmptyTable(out table)) await UniTask.Yield(token);
+            _adapter.ReservedTable(table.Index);
 
             // 席まで移動
             _moveState.Init(_pathConverter.GetPathToTable(table.Waypoint), ignoreForward: true);
