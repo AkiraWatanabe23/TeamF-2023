@@ -19,7 +19,7 @@ namespace Alpha
         protected override void Enter()
         {
             // 既にフィーバーなら、このステートでトリガー出来ないのでここでチェックする
-            if (!DanceIfFerverTime()) Animator.Play("Idle");
+            if (!DanceIfFerverTime()) Animator.Play("Walk");
         }
 
         protected override void Exit()
