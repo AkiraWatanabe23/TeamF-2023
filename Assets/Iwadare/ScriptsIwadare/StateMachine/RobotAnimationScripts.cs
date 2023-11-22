@@ -96,9 +96,9 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        _stateMachine.FalseFeverTimeBool();
+        //_stateMachine.FalseFeverTimeBool();
         _stateMachine.OnChangeState(_stateMachine.GetDance);
-        _stateMachine.FeverTimeBool();
+        //_stateMachine.FeverTimeBool();
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
