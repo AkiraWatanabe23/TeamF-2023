@@ -8,11 +8,26 @@ using UnityEngine;
 /// </summary>
 public class AnimationAdapter : MonoBehaviour
 {
-    // TODO:岩垂君のアニメーション再生スクリプトが良い感じになったら切り替える
-    [SerializeField] Animator _animator;
+    [SerializeField] RobotAnimationScripts _animation;
 
+    /// <summary>
+    /// アニメーションを再生
+    /// </summary>
     public void Play(string name)
     {
-        _animator.Play(name);
+        if (name == "Walk") _animation.WalkAnimation();
+        else if (name == "Idle") _animation.IdleState();
+        else if (name == "Order") _animation.SitAnimation();
+        else if (name == "Success") _animation.SuccessAnimation();
+        else if (name == "Failure") _animation.FailedAnimation();
+        else if (name == "Dance") _animation.DanceAnimation();
+    }
+
+    /// <summary>
+    /// 席を予約
+    /// </summary>
+    public void ReservedTable(int index)
+    {
+        _animation.SitReceipt(index);
     }
 }
