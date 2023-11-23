@@ -23,6 +23,7 @@ namespace Alpha
             // ”ñ•\Ž¦‚É‚µ‚Ä‚¨‚­
             _left.localScale = Vector3.zero;
             _right.localScale = Vector3.zero;
+            _board.localScale = Vector3.zero;
         }
 
         /// <summary>
@@ -32,6 +33,7 @@ namespace Alpha
         {
             _left.localScale = Vector3.one;
             _right.localScale = Vector3.one;
+            _board.localScale = Vector3.one;
 
             _left.DOLocalRotate(Vector3.zero, _duration).SetEase(Ease.OutCubic).SetLink(gameObject);
             _right.DOLocalRotate(Vector3.zero, _duration).SetEase(Ease.OutCubic).SetLink(gameObject);
