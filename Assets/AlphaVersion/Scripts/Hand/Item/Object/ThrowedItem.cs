@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace Alpha
 {
@@ -21,6 +23,8 @@ namespace Alpha
     [RequireComponent(typeof(Rigidbody))]
     public class ThrowedItem : MonoBehaviour, ICatchable
     {
+        [SerializeField] ParticleSystem _trail;
+
         ThrowedItemPool _pool; // プール
         ItemSettingsSO _settings;
         Rigidbody _rigidbody;
@@ -68,6 +72,7 @@ namespace Alpha
             IsThrowed = false;      
             _settings = settings;
 
+            _trail.Stop();
             Stop();
             FreezeXZ();
         }
@@ -97,10 +102,14 @@ namespace Alpha
             _rigidbody.constraints = _defaultConstraints;
             _rigidbody.velocity = velocity;
 
+            _trail.Play();
             // 投げた際の位置を保持する
             _startingPoint = transform.position;
             // 既に投げられたアイテムであるフラグを立てる
             IsThrowed = true;
+
+            // 止まったらパーティクルも止まる
+            OnStopAsync(this.GetCancellationTokenOnDestroy()).Forget();
         }
 
         void OnCollisionEnter(Collision collision)
@@ -161,6 +170,15 @@ namespace Alpha
                 _rigidbody.velocity = Vector3.zero;
                 _rigidbody.angularVelocity = Vector3.zero;
             }
+        }
+
+        /// <summary>
+        /// 止まったらトレイルが止まる
+        /// </summary>
+        async UniTaskVoid OnStopAsync(CancellationToken token)
+        {
+            await UniTask.WaitUntil(() => SqrSpeed < 1, cancellationToken: token);
+            _trail.Stop();
         }
     }
 }
