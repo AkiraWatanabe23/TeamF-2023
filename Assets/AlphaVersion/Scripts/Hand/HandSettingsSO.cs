@@ -15,7 +15,7 @@ namespace Alpha
         /// フィーバータイム中にミニキャラクターを投げる確率
         /// プランナーに弄らせる場合は尻化する
         /// </summary>
-        public readonly float FerverMiniActorPercent = 0.5f;
+        public readonly float FerverMiniActorPercent = float.MaxValue;
 
         [Header("引っ張った距離に応じた威力の増加具合")]
         [SerializeField] AnimationCurve _evaluate;

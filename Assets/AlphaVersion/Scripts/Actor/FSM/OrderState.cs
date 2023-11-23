@@ -13,6 +13,8 @@ namespace Alpha
     {
         [SerializeField] ActorSettingsSO _settings;
         [SerializeField] Collider _collider;
+        [Header("この速さ以上でぶつかるとラグドール化する")]
+        [SerializeField] float _defeatableSpeed = 1.0f;
 
         EmptyTable _table;
 
@@ -85,9 +87,23 @@ namespace Alpha
             // アイテム以外がぶつかった場合は弾く
             if (!collision.gameObject.TryGetComponent(out ThrowedItem item)) return;
 
-            // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
-            _table.Table.Invalid();
-            Result = OrderResult.Failure;
+            // 注文結果
+            if (Result == OrderResult.Unsettled)
+            {
+                // 速度が一定以上の場合は撃破され、ラグドールを生成する
+                if (item.SqrSpeed > _defeatableSpeed)
+                {
+                    Result = OrderResult.Defeated;
+                    RagDollMessageSender.SendMessage(_settings.ActorType, Model, item.transform.position);
+                }
+                else
+                {
+                    Result = OrderResult.Failure;
+                }
+
+                // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
+                _table.Table.Invalid();
+            }
 
             // パーティクル、音はアイテム側が再生
             ParticleType particle = _settings.ItemHitParticle;
