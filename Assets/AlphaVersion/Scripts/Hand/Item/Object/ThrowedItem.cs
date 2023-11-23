@@ -114,6 +114,8 @@ namespace Alpha
 
         void OnCollisionEnter(Collision collision)
         {
+            if (_settings == null) return;
+
             // 床判定
             if (collision.gameObject.TryGetComponent(out FloorMarker _))
             {
@@ -142,7 +144,7 @@ namespace Alpha
         /// 破裂させる
         /// </summary>
         void Crash()
-        {          
+        {
             // 音とパーティクル
             Cri.PlaySE(_settings.CrashSEName);
             Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
