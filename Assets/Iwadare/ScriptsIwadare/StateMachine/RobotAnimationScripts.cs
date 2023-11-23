@@ -47,6 +47,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
             AnimationCallBackTest.OnAnimationStay += WaitState;
             AnimationCallBackTest.OnAnimationIdle += IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
     }
 
@@ -61,6 +62,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
             AnimationCallBackTest.OnAnimationIdle -= IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
     }
 
@@ -116,6 +118,14 @@ public class RobotAnimationScripts : MonoBehaviour
         if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
         {
             _stateMachine.OnChangeState(_stateMachine.GetIdleState);
+        }
+    }
+
+    public void AttackMotion()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
         }
     }
 
