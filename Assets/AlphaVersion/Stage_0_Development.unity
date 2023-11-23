@@ -2364,7 +2364,7 @@ PrefabInstance:
     - target: {fileID: 1658600466718053515, guid: 8041000cd4295284ba3494ab44e2943f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 1658600466718053515, guid: 8041000cd4295284ba3494ab44e2943f,
         type: 3}
@@ -4792,6 +4792,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 5
+  _maxRotSpeed: 15
+  _moveY: 0.75
   _spotLight: {fileID: 1790904194}
   _mirrorBall: {fileID: 699401533}
 --- !u!4 &1485848967 stripped
