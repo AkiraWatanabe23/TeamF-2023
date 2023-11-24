@@ -11,6 +11,7 @@ namespace Alpha
     /// </summary>
     public class Customer : Actor
     {
+        [SerializeField] AnimationAdapter _adapter;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
         [SerializeField] IdleState _idleState;
@@ -47,6 +48,7 @@ namespace Alpha
             // 席を取得するまで待機
             EmptyTable table;
             while (GetEmptyTable(out table)) await UniTask.Yield(token);
+            _adapter.ReservedTable(table.Index);
 
             // 席まで移動
             _moveState.Init(_pathConverter.GetPathToTable(table.Waypoint), ignoreForward: true);
@@ -57,16 +59,22 @@ namespace Alpha
             OrderResult result;
             while (StepWaitOrder(out result)) await UniTask.Yield(token);
 
-            // 注文結果の演出
-            _resultState.Init(result);
-            while (PlayResultEffect()) await UniTask.Yield(token);
+            // 受け取るのに失敗した場合は注文結果の演出、ラグドールな場合は端折る
+            if (result != OrderResult.Defeated)
+            {
+                _resultState.Init(result);
+                while (PlayResultEffect()) await UniTask.Yield(token);
+            }
 
             // 席を解放する
             _tableManager.Release(table);
 
-            // 帰る
-            _moveState.Init(_pathConverter.GetPathToExit(table.Waypoint), ignoreForward: true);
-            while (StepMoveToPathEnd()) await UniTask.Yield(token);
+            // 失敗or成功の場合は帰る、ラグドールな場合は端折る
+            if (result != OrderResult.Defeated)
+            {
+                _moveState.Init(_pathConverter.GetPathToExit(table.Waypoint), ignoreForward: true);
+                while (StepMoveToPathEnd()) await UniTask.Yield(token);
+            }
 
             // TODO:プーリングする
             Destroy(gameObject);

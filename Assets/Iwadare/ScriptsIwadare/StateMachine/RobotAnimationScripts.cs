@@ -1,22 +1,26 @@
 using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
-using Alpha;
 
 public class RobotAnimationScripts : MonoBehaviour
 {
+    [Header("お客さんのアニメーター")]
     [SerializeField]
     private Animator _animator;
 
+
+    [Header("AnimationStateMachine")]
     [SerializeField]
     private StateMachineController _stateMachine;
-
+    [Header("デバック用(アタッチしなくても良い)")]
     [SerializeField]
     private Button _changeSitChairButton;
 
+    [Header("SitScript全部を入れる。")]
     [SerializeField]
     private SitScripts[] _allSitScripts;
 
+    [Header("デバック用(基本false)")]
     [SerializeField]
     bool _animationCallBackTestBool;
 
@@ -34,6 +38,7 @@ public class RobotAnimationScripts : MonoBehaviour
 
     private void OnEnable()
     {
+        //デバック用
         if (_animationCallBackTestBool)
         {
             AnimationCallBackTest.OnAnimationWalk += WalkAnimation;
@@ -41,13 +46,14 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationSuccess += SuccessAnimation;
             AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
             AnimationCallBackTest.OnAnimationStay += WaitState;
+            AnimationCallBackTest.OnAnimationIdle += IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
-        FerverTime.OnEnter += DanceAnimation;
-        if (FerverTime.IsFerver) {  DanceAnimation(); };
     }
 
     private void OnDisable()
     {
+        //デバック用
         if (_animationCallBackTestBool)
         {
             AnimationCallBackTest.OnAnimationWalk -= WalkAnimation;
@@ -55,8 +61,9 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationSuccess -= SuccessAnimation;
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
+            AnimationCallBackTest.OnAnimationIdle -= IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
-        FerverTime.OnEnter -= DanceAnimation;
     }
 
     void Update()
@@ -91,9 +98,9 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        _stateMachine.FalseFeverTimeBool();
+        //_stateMachine.FalseFeverTimeBool();
         _stateMachine.OnChangeState(_stateMachine.GetDance);
-        _stateMachine.FeverTimeBool();
+        //_stateMachine.FeverTimeBool();
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
@@ -105,19 +112,34 @@ public class RobotAnimationScripts : MonoBehaviour
         }
     }
 
+    /// <summary>Idleアニメーション(IdleのAnimationの中身はなし。)</summary>
+    public void IdleState()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetIdleState);
+        }
+    }
+
+    public void AttackMotion()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
+        }
+    }
+
     /// <summary>座る場所指定(引数SitScripts)</summary>
     /// <param name="sitScripts">SitScripts</param>
     public void SitReceipt(SitScripts sitScripts)
     {
         _stateMachine._sitScripts = sitScripts;
         _chairCount = (_chairCount + 1) % _allSitScripts.Length;
-        Debug.Log(_chairCount);
     }
 
     /// <summary>座る場所指定(引数int)</summary>
     public void SitReceipt(int index)
     {
         _stateMachine._sitScripts = _allSitScripts[index];
-        Debug.Log(index);
     }
 }

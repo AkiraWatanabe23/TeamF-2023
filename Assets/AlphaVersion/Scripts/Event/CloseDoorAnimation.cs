@@ -13,15 +13,12 @@ namespace Alpha
     /// </summary>
     public class CloseDoorAnimation : MonoBehaviour
     {
-        [SerializeField] Transform _left;
-        [SerializeField] Transform _right;
-        [SerializeField] float _duration;
+        [SerializeField] Animator _animator;
+        [SerializeField] float _duration = 3.0f;
 
-        void Awake()
+        void Start()
         {
-            // ”ñ•\Ž¦‚É‚µ‚Ä‚¨‚­
-            _left.localScale = Vector3.zero;
-            _right.localScale = Vector3.zero;
+            _animator.transform.localScale = Vector3.zero;
         }
 
         /// <summary>
@@ -29,11 +26,9 @@ namespace Alpha
         /// </summary>
         public async UniTask PlayAsync(CancellationToken token)
         {
-            _left.localScale = Vector3.one;
-            _right.localScale = Vector3.one;
+            _animator.transform.localScale = Vector3.one;
+            _animator.enabled = true;
 
-            _left.DOLocalRotate(Vector3.zero, _duration).SetEase(Ease.OutCubic).SetLink(gameObject);
-            _right.DOLocalRotate(Vector3.zero, _duration).SetEase(Ease.OutCubic).SetLink(gameObject);
             await UniTask.Delay(System.TimeSpan.FromSeconds(_duration), cancellationToken: token);
         }
     }

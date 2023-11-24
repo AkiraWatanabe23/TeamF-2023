@@ -13,6 +13,8 @@ namespace Alpha
     {
         [SerializeField] ActorSettingsSO _settings;
         [SerializeField] Collider _collider;
+        [Header("この速さ以上でぶつかるとラグドール化する")]
+        [SerializeField] float _defeatableSpeed = 1.0f;
 
         EmptyTable _table;
 
@@ -67,7 +69,10 @@ namespace Alpha
         /// </summary>
         void LookAt()
         {
-            Vector3 dir = _table.Position - transform.position;
+            Vector3 p1 = new Vector3(_table.Position.x, 0, _table.Position.z);
+            Vector3 p2 = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 dir = p1 - p2;
+
             if (dir != Vector3.zero)
             {
                 Model.rotation = Quaternion.LookRotation(dir, Vector3.up);
@@ -82,9 +87,23 @@ namespace Alpha
             // アイテム以外がぶつかった場合は弾く
             if (!collision.gameObject.TryGetComponent(out ThrowedItem item)) return;
 
-            // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
-            _table.Table.Invalid();
-            Result = OrderResult.Failure;
+            // 注文結果
+            if (Result == OrderResult.Unsettled)
+            {
+                // 速度が一定以上の場合は撃破され、ラグドールを生成する
+                if (item.SqrSpeed > _defeatableSpeed)
+                {
+                    Result = OrderResult.Defeated;
+                    RagDollMessageSender.SendMessage(_settings.ActorType, Model, item.transform.position);
+                }
+                else
+                {
+                    Result = OrderResult.Failure;
+                }
+
+                // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする
+                _table.Table.Invalid();
+            }
 
             // パーティクル、音はアイテム側が再生
             ParticleType particle = _settings.ItemHitParticle;

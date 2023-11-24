@@ -26,9 +26,6 @@ namespace Alpha
             await _uiInvisible.PlayAsync(token);
             await _door.PlayAsync(token);
             await _result.PlayAsync(result, token);
-
-            // ƒL[“ü—Í‚ÅŽŸ‚Öi‚Þ
-            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.R));
         }
     }
 }

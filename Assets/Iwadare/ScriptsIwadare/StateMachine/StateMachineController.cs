@@ -13,25 +13,36 @@ namespace StateMachine
         private FailedMotion _failedMotion = new();
         private DanceMotion _dance = new();
         private WaitState _waitState = new();
+        private IdleMotion _idleState = new();
+        private AttackMotion _attackMotion = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
         public SuccessMotionScript GetSuccessMotion => _successMotion;
         public FailedMotion GetFailedMotion => _failedMotion;
         public DanceMotion GetDance => _dance;
         public WaitState GetWaitState => _waitState;
+        public IdleMotion GetIdleState => _idleState;
+        public AttackMotion GetAttackMotion => _attackMotion;
+
         private IState _currentState = null;
         public IState CurrentState => _currentState;
 
+        [Header("アニメーションの名前")]
         [SerializeField] private string _walkAniName = "Walk";
-        [SerializeField] private string _sitAniName = "Sitting";
-        [SerializeField] private string _successAniName = "Surprized";
-        [SerializeField] private string _failedAniName = "Failed";
+        [SerializeField] private string _sitAniName = "Order";
+        [SerializeField] private string _successAniName = "Success";
+        [SerializeField] private string _failedAniName = "Failure";
         [SerializeField] private string _danceAniName = "Dance";
+        [SerializeField] private string _idleAniName = "Idle";
+        [SerializeField] private string _attackAniName = "Attack";
         public string WalkName => _walkAniName;
         public string SitName => _sitAniName;
         public string SuccessName => _successAniName;
         public string FailedName => _failedAniName;
         public string DanceName => _danceAniName;
+        public string IdleAniName => _idleAniName;
+
+        public string AttackAniName => _attackAniName;
 
         private float _time;
         /// <summary>外部参照</summary>
@@ -39,12 +50,14 @@ namespace StateMachine
         public Animator Anim => _anim;
 
         public SitScripts _sitScripts;
-
+        [Header("お客さん(自身)の位置")]
         public Transform _avatorTrams;
 
+        [Header("遊び用(基本false)")]
         [SerializeField]
         private bool _ngWordbool;
 
+        [Header("StateのDebugLogの表示非表示")]
         [SerializeField]
         private bool _displayLog = true;
         public bool DisplayLog => _displayLog;
@@ -52,22 +65,20 @@ namespace StateMachine
 
         private bool _feverBool;
 
-        // Start is called before the first frame update
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[6] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState };
+            IState[] state = new IState[8] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState, _idleState ,_attackMotion};
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
                 _currentState.InitialState(_displayLog);
             }
             DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！", _displayLog);
-            _currentState = _walk;
+            _currentState = _waitState;
             _currentState.OnEnterState(this);
         }
 
-        // Update is called once per frame
         public void Update()
         {
             _time += Time.deltaTime;
@@ -79,23 +90,21 @@ namespace StateMachine
         }
         public void OnChangeState(IState state)
         {
-            if (!_feverBool)
-            {
-                _currentState.OnExitState(this);
-                _currentState = state;
-                _currentState.OnEnterState(this);
-            }
+            _currentState.OnExitState(this);
+            _currentState = state;
+            _currentState.OnEnterState(this);
         }
 
-        public void FeverTimeBool()
-        {
-            _feverBool = true;
-        }
+        //public void FeverTimeBool()
+        //{
+        //    _feverBool = true;
+        //}
 
-        public void FalseFeverTimeBool()
-        {
-            _feverBool = false;
-        }
+        //public void FalseFeverTimeBool()
+        //{
+        //    _feverBool = false;
+        //}
+
 
         public IState GetState(MotionState state)
         {
