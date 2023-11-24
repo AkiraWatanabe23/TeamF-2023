@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 1982740953119889110, guid: a336eab678a4ef340ad5fd574011ad3f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1982740953119889110, guid: a336eab678a4ef340ad5fd574011ad3f,
         type: 3}
@@ -90,6 +90,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3414805756221859156}
   m_SourcePrefab: {fileID: 100100000, guid: a336eab678a4ef340ad5fd574011ad3f, type: 3}
+--- !u!198 &2863832286561536380 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7706903117932528966, guid: a336eab678a4ef340ad5fd574011ad3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5569276839034326074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6906048117624331853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1341296344806150775, guid: a336eab678a4ef340ad5fd574011ad3f,
@@ -156,3 +162,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076f7afe40b192f4cb257ef9e5b42461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trail: {fileID: 2863832286561536380}

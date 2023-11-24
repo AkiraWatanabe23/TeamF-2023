@@ -47,6 +47,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed += FailedAnimation;
             AnimationCallBackTest.OnAnimationStay += WaitState;
             AnimationCallBackTest.OnAnimationIdle += IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
     }
 
@@ -61,6 +62,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
             AnimationCallBackTest.OnAnimationIdle -= IdleState;
+            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
         }
     }
 
@@ -96,9 +98,9 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        _stateMachine.FalseFeverTimeBool();
+        //_stateMachine.FalseFeverTimeBool();
         _stateMachine.OnChangeState(_stateMachine.GetDance);
-        _stateMachine.FeverTimeBool();
+        //_stateMachine.FeverTimeBool();
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
@@ -116,6 +118,14 @@ public class RobotAnimationScripts : MonoBehaviour
         if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
         {
             _stateMachine.OnChangeState(_stateMachine.GetIdleState);
+        }
+    }
+
+    public void AttackMotion()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
         }
     }
 

@@ -12,6 +12,7 @@ namespace Alpha
         Success,
         Failure,
         Unsettled, // 未確定
+        Defeated,  // 撃破されてラグドールになる
     }
 
     /// <summary>

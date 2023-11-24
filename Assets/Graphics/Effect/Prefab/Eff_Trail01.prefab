@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2563036122631022374}
   - component: {fileID: 2563036122631022372}
   - component: {fileID: 2563036122631022375}
-  - component: {fileID: 2563036122631022373}
   m_Layer: 0
   m_Name: Eff_Trail01
   m_TagString: Untagged
@@ -4831,22 +4830,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!111 &2563036122631022373
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2563036122631022369}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dca492903327124478666596adc984b1, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: dca492903327124478666596adc984b1, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &2563036122660254363
 GameObject:
   m_ObjectHideFlags: 0
@@ -5718,7 +5701,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9963,7 +9946,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10016,7 +9999,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2

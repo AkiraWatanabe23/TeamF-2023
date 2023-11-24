@@ -44,7 +44,7 @@ Animator:
   m_GameObject: {fileID: 1678419708464237483}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 41ec784ed520f0f45ba674d277680ce1, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1f0fe6486bf23a748a2522c8fb18d7bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 06b5f991510714249bd481e002ac0ecd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
     _failedAniName: Failed
     _danceAniName: Dance
     _idleAniName: Idle
+    _attackAniName: Attack
     _sitScripts: {fileID: 0}
     _avatorTrams: {fileID: 8957395761618099356}
     _ngWordbool: 0

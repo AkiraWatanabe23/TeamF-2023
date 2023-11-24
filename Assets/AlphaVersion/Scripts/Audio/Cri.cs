@@ -11,6 +11,8 @@ namespace Alpha
     {
         public static void PlaySE(string name, string sheet = null)
         {
+            if (CriAudioManager.Instance == null) return;
+
             int i = CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
             if (i == -1)
             {

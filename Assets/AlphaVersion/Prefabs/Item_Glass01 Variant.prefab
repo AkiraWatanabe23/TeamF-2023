@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 5905391754384146052, guid: 4c9fd74d1ab5cb44d8896b4a6797d732,
         type: 3}
       propertyPath: m_RootOrder
-      value: 39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5905391754384146052, guid: 4c9fd74d1ab5cb44d8896b4a6797d732,
         type: 3}
@@ -156,3 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076f7afe40b192f4cb257ef9e5b42461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trail: {fileID: 9190699576807482101}
+--- !u!198 &9190699576807482101 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6296616469905422189, guid: 4c9fd74d1ab5cb44d8896b4a6797d732,
+    type: 3}
+  m_PrefabInstance: {fileID: 2948168646748755352}
+  m_PrefabAsset: {fileID: 0}
