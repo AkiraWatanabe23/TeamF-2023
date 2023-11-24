@@ -40,7 +40,6 @@ namespace Alpha
             if (_robberTimingIndex < _gimmickSettings.Robber.Max &&
                 _robberElapsed > _gimmickSettings.Robber.Timing[_robberTimingIndex])
             {
-                Cri.PlaySE("SE_Robber_In", "CueSheet_SE2");
                 _actorSpawnManager.SpawnRobber();
                 _robberTimingIndex++;
             }

@@ -54,13 +54,9 @@ namespace Alpha
         /// </summary>
         async UniTaskVoid FireAsync(CancellationToken token)
         {
-            Cri.PlaySE("SE_Robber_GunPrepare", "CueSheet_SE2");
- 
-            await UniTask.Delay(System.TimeSpan.FromSeconds(0.5f), cancellationToken: token);
             Cri.PlaySE("SE_Robber_Voice_1");
-            
+
             await UniTask.Delay(System.TimeSpan.FromSeconds(_fireDelay), cancellationToken: token);
-            Cri.PlaySE("SE_Robber_GunShot", "CueSheet_SE2");
 
             MessageBroker.Default.Publish(new FireMessage());
             CameraShakeMessageSender.SendMessage(3.0f); // ÉxÉ^èëÇ´

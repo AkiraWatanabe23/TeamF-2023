@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Alpha
 {
@@ -10,23 +9,23 @@ namespace Alpha
     /// </summary>
     public static class Cri
     {
-        public static void PlaySE(string name, string sheet = "CueSheet_SE")
+        public static void PlaySE(string name, string sheet = null)
         {
-            int i = CriAudioManager.Instance.SE.Play(sheet, name);
+            int i = CriAudioManager.Instance.SE.Play("CueSheet_SE", name);
             if (i == -1)
             {
                 Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
             }
         }
 
-        public static void DelayedPlaySE(string name, float delay, string sheet = "CueSheet_SE")
+        public static void DelayedPlaySE(string name, float delay, string sheet = null)
         {
-            DOVirtual.DelayedCall(delay, () => PlaySE(name, sheet));
+            Debug.LogWarning("’x‰„‚ÅSE‚ª–Â‚é: " + name);
         }
 
-        public static void PlayBGM(string name, string sheet = "CueSheet_BGM")
+        public static void PlayBGM(string name, string sheet = null)
         {
-            int i = CriAudioManager.Instance.BGM.Play(sheet, name);
+            int i = CriAudioManager.Instance.BGM.Play("CueSheet_BGM", name);
             if (i == -1)
             {
                 Debug.LogWarning("BGM‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
