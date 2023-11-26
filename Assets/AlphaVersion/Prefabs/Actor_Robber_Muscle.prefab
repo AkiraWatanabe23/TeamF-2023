@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 4288452310687556680}
   _stateMachine:
-    _walkAniName: WalkStart
+    _walkAniName: Walk
     _sitAniName: Sitting
     _successAniName: Surprized
     _failedAniName: Failed

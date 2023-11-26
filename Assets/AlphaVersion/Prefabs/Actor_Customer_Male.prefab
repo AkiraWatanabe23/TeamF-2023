@@ -121,6 +121,7 @@ MonoBehaviour:
   _model: {fileID: 7463934470548246496}
   _settings: {fileID: 11400000, guid: d67df5e1e31677a4198754ab85fdc5f7, type: 2}
   _collider: {fileID: 7084940657676293888}
+  _defeatableSpeed: 1
 --- !u!114 &2707684115003321593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,12 +166,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 866468930639541878}
   _stateMachine:
-    _walkAniName: WalkStart
+    _walkAniName: Walk
     _sitAniName: Order
     _successAniName: Success
     _failedAniName: Failure
     _danceAniName: Dance
     _idleAniName: Idle
+    _attackAniName: Attack
     _sitScripts: {fileID: 0}
     _avatorTrams: {fileID: 4362156748652391716}
     _ngWordbool: 0

@@ -36,6 +36,7 @@ namespace Alpha
         {
             CancellationTokenSource cts = new();
             UpdateAsync(cts.Token).Forget();
+            DelayedPlayLastSpurtBGM(cts.Token).Forget();
 
             // オブジェクトの破棄時にトークンをDisposeする
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
@@ -98,6 +99,17 @@ namespace Alpha
             _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
             this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
         }
+
+        /// <summary>
+        /// 〆のBGMを再生
+        /// </summary>
+        async UniTaskVoid DelayedPlayLastSpurtBGM(CancellationToken token)
+        {
+            // 制限時間-10秒で残り10秒で再生
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - 10.0f), cancellationToken: token);
+            Cri.PlayBGM("BGM_C'_DEMO", "CueSheet_BGM 1");
+        }
+
 
         /// <summary>
         /// ゲーム開始のメッセージング
