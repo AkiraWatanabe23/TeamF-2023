@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &756387276651955852
 MonoBehaviour:
@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _malePrefab: {fileID: 7191140367278986854, guid: bbffeb2e12de4594f81b71354887eb59,
     type: 3}
-  _femalePrefab: {fileID: 0}
+  _femalePrefab: {fileID: 5292145283266436091, guid: 421f918be220fae4fbb2fcab6c267801,
+    type: 3}
   _max: 5
-  _power: 30
   _lifeTime: 5
+  _power: 30
+  _upPower: 10

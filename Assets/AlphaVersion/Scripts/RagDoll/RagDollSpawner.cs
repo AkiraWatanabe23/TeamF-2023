@@ -78,11 +78,13 @@ namespace Alpha
 
                 // ã•ûŒü‚Æxz•½–Êã‚Ì”ò‚Î‚·•ûŒü‚É‘Î‚µ‚Ä—Í‚ğ‰Á‚¦‚é
                 Vector3 dir = (model.position - hitPosition).normalized;
-                Rigidbody[] children = ragDoll.GetComponentsInChildren<Rigidbody>();
-                foreach (Rigidbody rb in children)
-                {
-                    rb.AddForce(Vector3.up * _upPower + (dir * _power), ForceMode.Impulse);
-                }
+                //Rigidbody[] children = ragDoll.GetComponentsInChildren<Rigidbody>();
+                //foreach (Rigidbody rb in children)
+                //{
+                //    rb.AddForce(Vector3.up * _upPower + (dir * _power), ForceMode.Impulse);
+                //}
+                Rigidbody rb = ragDoll.GetComponentInChildren<Rigidbody>();
+                rb.AddForce(Vector3.up * _upPower + (dir * _power), ForceMode.Impulse);
                 
                 // ˆê’èŠÔŒã‚É‘å‚«‚³‚ğ0‚É‚µ‚Ä‰æ–ÊŠO‚É’Ç‚¢o‚·‚±‚Æ‚Å‰f‚ç‚È‚­‚·‚é
                 DOVirtual.DelayedCall(_lifeTime, () => 
