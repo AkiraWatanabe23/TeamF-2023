@@ -5,15 +5,28 @@ using UnityEngine;
 
 public class MinArea : BaseGimmickArea
 {
-    [SerializeField] float _blinkingTime = 2f;
+    [Header("爆発予兆の時間")]
+    [SerializeField] float _blinkingAllTime = 3f;
+    [SerializeField] float _initBlinkingTime = 0.5f;
+    [SerializeField] float _minBlinkingTime = 0.05f;
+    [Header("爆発の時間(シェーダー入れたらいらないかも)")]
     [SerializeField] float _explosionTime = 1f;
-    [SerializeField] float _explosionPower = 1000f;
-    [SerializeField] float _explosionUpPower = 1000f;
+    [Header("爆発の力")]
+    [SerializeField] float _explosionPower = 30f;
+    [Header("爆発の上へ飛ぶ力")]
+    [SerializeField] float _explosionUpPower = 30f;
+    [Header("爆発の色(シェーダー入れたらいらない)")]
+    [SerializeField] Renderer _explosionRenderer;
     Color _explosionColor = Color.red;
+    [SerializeField]Color _normalExplosionColor = Color.clear;
     bool _explosionEnabled = true;
+    private void Awake()
+    {
+        _explosionRenderer.material.color = _normalExplosionColor;
+    }
     private void Update()
     {
-        if(OpeStopbool && _explosionEnabled)
+        if(GimmickOperationBool && _explosionEnabled)
         {
             StartCoroutine(Explosion());
             _explosionEnabled = false;
@@ -24,32 +37,35 @@ public class MinArea : BaseGimmickArea
     IEnumerator Explosion()
     {
         var blinking = 0f;
-        for(var time = 0f; time < _blinkingTime;time += Time.deltaTime)
+        var initBlinking = _initBlinkingTime;
+        for (var time = 0f; time < _blinkingAllTime; time += Time.deltaTime)
         {
             blinking += Time.deltaTime;
-            if (blinking > 0.2f)
+            if (blinking > initBlinking)
             {
-                if (_opeRenderer.material.color == StartOpeColor)
+                if (_gimmickOpeRenderer.material.color == StartGimmickOpeColor)
                 {
-                    _opeRenderer.material.color = StopOpeColor;
+                    _gimmickOpeRenderer.material.color = StopGimmickOpeColor;
                 }
                 else
                 {
-                    _opeRenderer.material.color = StartOpeColor;
+                    _gimmickOpeRenderer.material.color = StartGimmickOpeColor;
                 }
                 blinking = 0f;
+                initBlinking = Mathf.Max(_minBlinkingTime,initBlinking - 0.15f);
             }
             yield return null;
         }
 
-        _opeRenderer.material.color = _explosionColor;
+        _explosionRenderer.material.color = _explosionColor;
         Collider[] cols = Physics.OverlapSphere(transform.position, ExplosionRadius);
-        foreach(var col in cols)
+        foreach (var col in cols)
         {
             var rb = col.GetComponent<Rigidbody>();
-            if (rb != null) { rb.AddExplosionForce(_explosionPower, transform.position, ExplosionRadius, _explosionUpPower); }
+            if (rb != null) { rb.AddExplosionForce(_explosionPower, transform.position, ExplosionRadius,_explosionUpPower,ForceMode.Impulse); }
         }
         yield return new WaitForSeconds(_explosionTime);
+        _explosionRenderer.material.color = _normalExplosionColor;
         ChangeAreaOperation();
         _explosionEnabled = true;
     }

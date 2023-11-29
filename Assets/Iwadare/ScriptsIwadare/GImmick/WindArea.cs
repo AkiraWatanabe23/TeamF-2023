@@ -4,7 +4,7 @@ public class WindArea : BaseGimmickArea
 {
     private void OnTriggerStay(Collider other)
     {
-        if (OpeStopbool == true)
+        if (GimmickOperationBool == true)
         {
             var rb = other.GetComponent<Rigidbody>();
             var velocity = rb.velocity;
