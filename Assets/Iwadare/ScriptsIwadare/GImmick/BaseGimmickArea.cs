@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
 public class BaseGimmickArea : MonoBehaviour
 {
+    [Header("’e‚Ì‘¬“x‚ð•ÏX‚³‚¹‚éƒMƒ~ƒbƒN‚Ì’e‚Ì‘¬“x")]
     [SerializeField] float _speed;
     public float Speed => _speed;
-    [SerializeField] bool _opeStopbool = false;
-    public bool OpeStopbool => _opeStopbool;
-    public Renderer _opeRenderer;
-    [SerializeField] Color _startOpeColor = Color.red;
-    public Color StartOpeColor => _startOpeColor;
-    [SerializeField] Color _stopOpeColor = Color.white;
-    public Color StopOpeColor => _stopOpeColor;
+    [SerializeField] bool _gimmickOperationBool = false;
+    public bool GimmickOperationBool => _gimmickOperationBool;
+    public Renderer _gimmickOpeRenderer;
+    [SerializeField] Color _startGimmickOpeColor = Color.red;
+
+    public Color StartGimmickOpeColor => _startGimmickOpeColor;
+    [SerializeField] Color _stopGimmickOpeColor = Color.white;
+    public Color StopGimmickOpeColor => _stopGimmickOpeColor;
     //[SerializeField] bool _tunbleCallBack = true;
 
     [SerializeField] float _explosionRadius = 3f;
@@ -30,7 +33,14 @@ public class BaseGimmickArea : MonoBehaviour
 
     void Start()
     {
-        ChangeAreaOperation();
+        if(_gimmickOperationBool == false)
+        {
+            _gimmickOpeRenderer.material.color = _stopGimmickOpeColor;
+        }
+        else
+        {
+            _gimmickOpeRenderer.material.color = _startGimmickOpeColor;
+        }
     }
 
     private void OnDrawGizmos()
@@ -41,15 +51,15 @@ public class BaseGimmickArea : MonoBehaviour
 
     public void ChangeAreaOperation()
     {
-        if (_opeStopbool == true)
+        if (_gimmickOperationBool == true)
         {
-            _opeStopbool = false;
-            _opeRenderer.material.color = _stopOpeColor;
+            _gimmickOperationBool = false;
+            _gimmickOpeRenderer.material.color = _stopGimmickOpeColor;
         }
         else
         {
-            _opeStopbool = true;
-            _opeRenderer.material.color = _startOpeColor;
+            _gimmickOperationBool = true;
+            _gimmickOpeRenderer.material.color = _startGimmickOpeColor;
         }
     }
 }
