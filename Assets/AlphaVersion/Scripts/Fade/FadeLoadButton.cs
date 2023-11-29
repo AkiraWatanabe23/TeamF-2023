@@ -22,6 +22,10 @@ public static class Consts
         { SceneName.Title, "TitleScene" },
         { SceneName.StageSelect, "StageSelectScene" },
         { SceneName.InGame, "MasterGameScene" },
+        { SceneName.TestTitle, "TestTitle" },
+        { SceneName.Test1, "TestStage1" },
+        { SceneName.Test2, "TestStage2" },
+        { SceneName.Test3, "TestStage3" },
     };
 
     public static Dictionary<SceneName, string> Scenes => _scenes;
@@ -32,4 +36,8 @@ public enum SceneName : int
     Title,
     StageSelect,
     InGame,
+    TestTitle,
+    Test1,
+    Test2,
+    Test3,
 }
