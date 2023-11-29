@@ -50,12 +50,29 @@ namespace Alpha
             public int Max => _timing.Length;
         }
 
+        /// <summary>
+        /// UFOギミック
+        /// </summary>
+        [System.Serializable]
+        public class UFOGimmick
+        {
+            [Min(0)]
+            [Header("タイミング(秒)")]
+            [SerializeField] float[] _timing;
+
+            public IReadOnlyList<float> Timing => _timing;
+            public int Max => _timing.Length;
+        }
+
         [Header("タンブルウィードのギミック")]
         [SerializeField] TumbleweedGimmick _tumbleweed;
         [Header("強盗のギミック")]
         [SerializeField] RobberGimmick _robber;
+        [Header("UFOのギミック")]
+        [SerializeField] UFOGimmick _ufo;
 
         public TumbleweedGimmick Tumbleweed => _tumbleweed;
         public RobberGimmick Robber => _robber;
+        public UFOGimmick UFO => _ufo;
     }
 }

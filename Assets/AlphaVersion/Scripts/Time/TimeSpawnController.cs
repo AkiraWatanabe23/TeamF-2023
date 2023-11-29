@@ -13,12 +13,15 @@ namespace Alpha
         [SerializeField] SpawnRateSettingsSO _spawnRateSettings;
         [SerializeField] ActorSpawnManager _actorSpawnManager;
         [SerializeField] TumbleweedSpawner _tumbleweedSpawner;
+        [SerializeField] UfoSpawner _ufoSpawner;
 
         float _customerElapsed;
         float _robberElapsed;
         float _tumbleweedElapsed;
+        float _ufoElapsed;
         int _robberTimingIndex;
         int _tumbleweedIndex;
+        int _ufoIndex;
 
         /// <summary>
         /// インゲーム側から毎フレーム呼ぶことで時間経過により、一定間隔で生成する
@@ -53,6 +56,14 @@ namespace Alpha
                 _tumbleweedSpawner.Spawn(count);
                 _tumbleweedIndex++;
 
+            }
+
+            // UFO
+            if (_ufoIndex < _gimmickSettings.UFO.Max &&
+                _ufoElapsed > _gimmickSettings.UFO.Timing[_ufoIndex])
+            {
+                _ufoSpawner.Spawn();
+                _ufoIndex++;
             }
         }
     }
