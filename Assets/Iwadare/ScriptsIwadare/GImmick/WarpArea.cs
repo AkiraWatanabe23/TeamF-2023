@@ -7,7 +7,7 @@ public class WarpArea : BaseGimmickArea
     [SerializeField] Transform _warpEndArea;
     private void OnTriggerEnter(Collider other)
     {
-        if(OpeStopbool)
+        if(GimmickOperationBool)
         {
             var tmpVec = other.transform.position;
             tmpVec.x = _warpEndArea.position.x;
