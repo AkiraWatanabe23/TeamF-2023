@@ -21,6 +21,17 @@ namespace Alpha
             }
         }
 
+        public static void PlaySE3D(Vector3 position, string name, string sheet = "CueSheet_SE")
+        {
+            if (CriAudioManager.Instance == null) return;
+
+            int i = CriAudioManager.Instance.SE.Play3D(position, sheet, name);
+            if (i == -1)
+            {
+                Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
+            }
+        }
+
         public static void DelayedPlaySE(string name, float delay, string sheet = "CueSheet_SE")
         {
             DOVirtual.DelayedCall(delay, () => PlaySE(name, sheet));

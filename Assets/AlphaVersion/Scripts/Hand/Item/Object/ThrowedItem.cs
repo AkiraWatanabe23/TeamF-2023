@@ -146,7 +146,7 @@ namespace Alpha
         void Crash()
         {
             // 音とパーティクル
-            Cri.PlaySE(_settings.CrashSEName);
+            Cri.PlaySE3D(transform.position, _settings.CrashSEName);
             Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
             ParticleMessageSender.SendMessage(_settings.CrashParticle, particlePosition);
 

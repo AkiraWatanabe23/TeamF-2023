@@ -3154,6 +3154,7 @@ MonoBehaviour:
   _score: {fileID: 29242256}
   _ranking: {fileID: 3126462333071929427}
   _retry: {fileID: 1550122427}
+  _doorCloseTimingOffset: 8.6
 --- !u!1001 &1008841611
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -93,8 +93,8 @@ namespace Alpha
             ParticleMessageSender.SendMessage(particle, position, transform);
 
             // ‰¹
-            if (_result == OrderResult.Success) Cri.PlaySE(_settings.SuccessVoice);
-            if (_result == OrderResult.Failure) Cri.PlaySE(_settings.FailureVoice);
+            if (_result == OrderResult.Success) Cri.PlaySE3D(transform.position, _settings.SuccessVoice);
+            if (_result == OrderResult.Failure) Cri.PlaySE3D(transform.position, _settings.FailureVoice);
         }
     }
 }
