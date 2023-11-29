@@ -19,6 +19,9 @@ namespace Alpha
     /// </summary>
     public class InGame : MonoBehaviour
     {
+        // ドアが閉まるタイミングと曲の終わりを合わせるためのオフセット
+        const float DoorCloseTimingOffset = 8.6f;
+
         [SerializeField] InGameSettingsSO _settings;
         [SerializeField] GameStartEvent _gameStartEvent;
         [SerializeField] GameOverEvent _gameOverEvent;
@@ -66,7 +69,7 @@ namespace Alpha
                 await UniTask.Yield(token);
             }
 
-            Cri.StopBGM();
+            //Cri.StopBGM();
             SendGameOverMessage();
 
             string evaluate = _settings.GetEvaluate(_score.TotalScore.Value);
@@ -107,7 +110,7 @@ namespace Alpha
         async UniTaskVoid DelayedPlayLastSpurtBGM(CancellationToken token)
         {
             // 制限時間-10秒で残り10秒で再生
-            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - 10.0f), cancellationToken: token);
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - DoorCloseTimingOffset), cancellationToken: token);
             Cri.PlayBGM("BGM_C'_DEMO", "CueSheet_BGM 1");
         }
 
