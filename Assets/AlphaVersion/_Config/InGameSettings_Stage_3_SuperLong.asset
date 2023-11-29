@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffa874e1155d094798f87f61673a553, type: 3}
   m_Name: InGameSettings_Stage_3_SuperLong
   m_EditorClassIdentifier: 
-  _timeLimit: 5
-  _ferverTime: 1
-  _evaluate:
-  - Score: 0
-    Evaluate: "\u6700\u4F4E\u8A55\u4FA1"
+  _timeLimit: 70
+  _ferverTime: 18

@@ -18,17 +18,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -1
-      outSlope: -1
+      inSlope: -1.0207778
+      outSlope: -1.0207778
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -1
-      outSlope: -1
+      time: 0.9958191
+      value: -0.01651001
+      inSlope: -1.0207778
+      outSlope: -1.0207778
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -36,8 +36,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _power: 6
-  _minPower: 1
+  _power: 5.5
+  _minPower: 1.6
   _maxStack: 6
-  _randomShift: 0.03
+  _randomShift: 0.0602
   _throwedAreaSqrRadius: 0.31
+  _damagedPenalty: 2
