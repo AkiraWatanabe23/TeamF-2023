@@ -201,7 +201,7 @@ public class CriAudioManager
             // ループしていたら抜ける
             if (_cueData[index].IsLoop) { return; }
 
-            await Task.Delay((int)_cueData[index].CueInfo.length, _cueData[index].CancellationTokenSource.Token);
+            await Task.Delay((int)_cueData[index].CueInfo.length, cancellationToken);
 
             while (true)
             {
@@ -211,10 +211,7 @@ public class CriAudioManager
                     outData.Source?.Dispose();
                     return;
                 }
-                else
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(0.05D), _cueData[index].CancellationTokenSource.Token);
-                }
+                else { await Task.Delay(TimeSpan.FromSeconds(0.05D), _cueData[index].CancellationTokenSource.Token); }
             }
         }
     }
