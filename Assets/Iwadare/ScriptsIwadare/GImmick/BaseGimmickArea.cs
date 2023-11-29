@@ -6,39 +6,50 @@ public class BaseGimmickArea : MonoBehaviour
     public float Speed => _speed;
     [SerializeField] bool _opeStopbool = false;
     public bool OpeStopbool => _opeStopbool;
-    [SerializeField] Renderer _mesh;
+    public Renderer _opeRenderer;
     [SerializeField] Color _startOpeColor = Color.red;
+    public Color StartOpeColor => _startOpeColor;
     [SerializeField] Color _stopOpeColor = Color.white;
+    public Color StopOpeColor => _stopOpeColor;
     //[SerializeField] bool _tunbleCallBack = true;
+
+    [SerializeField] float _explosionRadius = 3f;
+    public float ExplosionRadius => _explosionRadius;
 
     private void OnEnable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned += SpeedChangeAreaOperation; }
-        ChangeAreaCallBackTest.OnCallBackArea += SpeedChangeAreaOperation;
+        ChangeAreaCallBackTest.OnCallBackArea += ChangeAreaOperation;
     }
 
     private void OnDisable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned -= SpeedChangeAreaOperation; }
-        ChangeAreaCallBackTest.OnCallBackArea -= SpeedChangeAreaOperation;
+        ChangeAreaCallBackTest.OnCallBackArea -= ChangeAreaOperation;
     }
 
     void Start()
     {
-        SpeedChangeAreaOperation();
+        ChangeAreaOperation();
     }
 
-    void SpeedChangeAreaOperation()
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,_explosionRadius);
+    }
+
+    public void ChangeAreaOperation()
     {
         if (_opeStopbool == true)
         {
             _opeStopbool = false;
-            _mesh.material.color = _stopOpeColor;
+            _opeRenderer.material.color = _stopOpeColor;
         }
         else
         {
             _opeStopbool = true;
-            _mesh.material.color = _startOpeColor;
+            _opeRenderer.material.color = _startOpeColor;
         }
     }
 }

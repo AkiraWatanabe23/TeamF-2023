@@ -12,7 +12,7 @@ public class ReflectArea : BaseGimmickArea
         var normalVec =  _reverse ? transform.position - Vector3.forward : transform.position + Vector3.forward;
         if(objRb != null) 
         {
-            objRb.AddForce(Vector3.Reflect(objRb.velocity, Vector3.Cross(Vector3.up,normalVec)) * Speed,ForceMode.Impulse);
+            objRb.AddForce(Vector3.Reflect(objRb.velocity, Vector3.Cross(transform.position + Vector3.up,normalVec)) * Speed,ForceMode.Impulse);
         }
     }
 }
