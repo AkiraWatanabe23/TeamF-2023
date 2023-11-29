@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Alpha
 {
@@ -30,8 +31,6 @@ namespace Alpha
         [SerializeField] ActorScore _male;
         [Header("客(女)")]
         [SerializeField] ActorScore _female;
-        [Header("客(ムキムキ)")]
-        [SerializeField] ActorScore _muscle;
         [Header("通常時の倍率")]
         [SerializeField] float _defaultScoreRate = 1;
         [Header("フィーバータイムの倍率")]
@@ -40,7 +39,6 @@ namespace Alpha
         public ActorScore Robber => _robber;
         public ActorScore Male => _male;
         public ActorScore Female => _female;
-        public ActorScore Muscle => _muscle;
         public float DefaultScoreRate => _defaultScoreRate;
         public float FeverScoreRate => _feverScoreRate;
     }

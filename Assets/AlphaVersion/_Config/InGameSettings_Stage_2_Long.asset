@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeLimit: 5
   _ferverTime: 1
+  _evaluate:
+  - Score: 0
+    Evaluate: "\u6700\u4F4E\u8A55\u4FA1"

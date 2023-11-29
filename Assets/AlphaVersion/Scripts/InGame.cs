@@ -69,8 +69,9 @@ namespace Alpha
             Cri.StopBGM();
             SendGameOverMessage();
 
-            await _gameOverEvent.PlayAsync("成績", token);
-            _ranking.GetTmpScoreEffect(_score.TotalScore.Value); // 一時ランキグン、二宮君が完成したらawaitにしてもらう
+            string evaluate = _settings.GetEvaluate(_score.TotalScore.Value);
+            await _gameOverEvent.PlayAsync(evaluate, token);
+            _ranking.GetTmpScoreEffect(_score.TotalScore.Value);
 
             string nextScene = await _retry.ButtonClickAsync(token);
             SceneManager.LoadScene(nextScene);
