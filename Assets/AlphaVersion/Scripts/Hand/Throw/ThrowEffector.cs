@@ -31,6 +31,7 @@ namespace Alpha
         public void PlayThrowEffect(Transform particleParent)
         {
             Cri.PlaySE("SE_Slide");
+            Cri.DelayedPlaySE("SE_Swoosh_KARI", 0.1f, "CueSheet_SE2");
             Vector3 particlePosition = particleParent.position + _throwParticleOffset;
 
             Transform parent = _swooshParticleItemFollow ? particleParent : null;

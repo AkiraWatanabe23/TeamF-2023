@@ -13,10 +13,18 @@ namespace Alpha
     {
         [SerializeField] Button _playButton;
         [SerializeField] string _inGameSceneName = "Stage_1_Normal";
+        [Header("図鑑のレイアウト案2つ")]
+        [SerializeField] GameObject _canvas1;
+        [SerializeField] GameObject _canvas2;
+        [SerializeField] Button _pictureBookButton1;
+        [SerializeField] Button _pictureBookButton2;
+        [SerializeField] Button _closePictureBookButton1;
+        [SerializeField] Button _closePictureBookButton2;
 
         void Awake()
         {
             _playButton.onClick.AddListener(ToInGameScene);
+            PictureBook();
         }
 
         /// <summary>
@@ -34,6 +42,20 @@ namespace Alpha
             {
                 Fade.Instance.StartFadeOut(() => SceneManager.LoadScene(_inGameSceneName));
             }
+        }
+
+        /// <summary>
+        /// 図鑑のレイアウト案2種類をボタンクリックで表示
+        /// </summary>
+        void PictureBook()
+        {
+            _canvas1.SetActive(false);
+            _canvas2.SetActive(false);
+
+            _pictureBookButton1.onClick.AddListener(() => _canvas1.SetActive(true));
+            _pictureBookButton2.onClick.AddListener(() => _canvas2.SetActive(true));
+            _closePictureBookButton1.onClick.AddListener(() => _canvas1.SetActive(false));
+            _closePictureBookButton2.onClick.AddListener(() => _canvas2.SetActive(false));
         }
     }
 }

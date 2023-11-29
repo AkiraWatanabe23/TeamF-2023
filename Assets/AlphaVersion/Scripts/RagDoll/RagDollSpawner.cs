@@ -83,7 +83,7 @@ namespace Alpha
                 {
                     rb.AddForce(Vector3.up * _upPower + (dir * _power), ForceMode.Impulse);
                 }
-                
+
                 // ˆê’èŽžŠÔŒã‚É‘å‚«‚³‚ð0‚É‚µ‚Ä‰æ–ÊŠO‚É’Ç‚¢o‚·‚±‚Æ‚Å‰f‚ç‚È‚­‚·‚é
                 DOVirtual.DelayedCall(_lifeTime, () => 
                 {

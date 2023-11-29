@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -8635428693813735416}
   - component: {fileID: 101322329182786075}
   m_Layer: 0
-  m_Name: Actor_Robber_Muscle
+  m_Name: Actor_Robber_Muscle_Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065c256a445479943ab5f1763849f234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 6580b2ba70db17143b1e9f2bfb946b46, type: 2}
+  _settings: {fileID: 11400000, guid: c77dd79cfd197e24c8774665f0ef32f2, type: 2}
   _collider: {fileID: 8368852354727965704}
   _moveState: {fileID: 3375512258191824490}
   _animationState: {fileID: 4303363890649392196}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: -8635428693813735416}
   _model: {fileID: 6772918915026142164}
-  _settings: {fileID: 11400000, guid: 6580b2ba70db17143b1e9f2bfb946b46, type: 2}
+  _settings: {fileID: 11400000, guid: c77dd79cfd197e24c8774665f0ef32f2, type: 2}
   _raycaster: {fileID: 1407029755498377793}
 --- !u!114 &1407029755498377793
 MonoBehaviour:
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 4288452310687556680}
   _stateMachine:
-    _walkAniName: WalkStart
+    _walkAniName: Walk
     _sitAniName: Sitting
     _successAniName: Surprized
     _failedAniName: Failed

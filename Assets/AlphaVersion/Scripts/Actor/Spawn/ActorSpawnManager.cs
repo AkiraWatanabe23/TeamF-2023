@@ -25,7 +25,7 @@ namespace Alpha
             {
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    _initializer.Initialize(BehaviorType.Customer, ActorType.Male);
+                    _initializer.Initialize(BehaviorType.Customer, RandomCustomer);
                 }
 
                 if (Input.GetKeyDown(KeyCode.C))
@@ -43,8 +43,7 @@ namespace Alpha
         {
             if (!_isDebug && _checker.Check())
             {
-                // TODO:現状男だけ、女はモデルが出来てから
-                _initializer.Initialize(BehaviorType.Customer, ActorType.Male);
+                _initializer.Initialize(BehaviorType.Customer, RandomCustomer);
                 return true;
             }
 

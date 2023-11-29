@@ -11,7 +11,7 @@ namespace Alpha
     /// タンブルウィードを生成するクラス
     /// 基準の位置から一定範囲内にランダムに生成する
     /// </summary>
-    public class TumbleweedSpawner : MonoBehaviour
+    public class TumbleweedSpawner : ValidStateHandler
     {
         /// <summary>
         /// タンブルウィードのギミック発動時に呼び出されるコールバック
@@ -74,6 +74,9 @@ namespace Alpha
 
             for (int i = 0; i < count; i++)
             {
+                // ゲームオーバーになったら生成&カメラの揺れがされないように
+                if (!IsValid) return;
+
                 RentTumbleweed();
                 CameraShakeMessageSender.SendMessage();
 
