@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: ScoreSettings
   m_EditorClassIdentifier: 
   _robber:
-    SuccessBonus: 100
-    FailurePenalty: 100
+    SuccessBonus: 10000
+    FailurePenalty: 5000
   _male:
-    SuccessBonus: 100
-    FailurePenalty: 100
+    SuccessBonus: 500
+    FailurePenalty: 200
   _female:
-    SuccessBonus: 100
-    FailurePenalty: 100
+    SuccessBonus: 500
+    FailurePenalty: 200
   _muscle:
-    SuccessBonus: 100
-    FailurePenalty: 100
+    SuccessBonus: 1000
+    FailurePenalty: 200
   _defaultScoreRate: 1
   _feverScoreRate: 2

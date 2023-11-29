@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffa874e1155d094798f87f61673a553, type: 3}
   m_Name: InGameSettings_Development
   m_EditorClassIdentifier: 
-  _timeLimit: 30
-  _ferverTime: 20
+  _timeLimit: 300
+  _ferverTime: 150

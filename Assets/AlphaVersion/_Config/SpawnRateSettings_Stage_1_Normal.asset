@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8edf6b0dc85e4b249a43ec3dc99b424f, type: 3}
   m_Name: SpawnRateSettings_Stage_1_Normal
   m_EditorClassIdentifier: 
-  _customerSpawnRate: 0.5
+  _customerSpawnRate: 3

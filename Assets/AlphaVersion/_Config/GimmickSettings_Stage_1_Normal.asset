@@ -15,10 +15,17 @@ MonoBehaviour:
   _tumbleweed:
     _timing:
     - _elapsed: 0
-      _count: 1
+      _count: 10
     - _elapsed: 15
       _count: 10
+    - _elapsed: 30
+      _count: 10
+    - _elapsed: 50
+      _count: 15
   _robber:
     _timing:
     - 0
     - 10
+    - 25
+    - 40
+    _robberSpeed: 1

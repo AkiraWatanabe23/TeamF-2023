@@ -19,8 +19,8 @@ MonoBehaviour:
   _rareSuccessVoice: SE_Success_2_Woman
   _actorParams:
     MoveSpeed: 0.27
-    Orders: 00000000010000000200000003000000
-    OrderTimeLimit: 10.2
+    Orders: 0000000001000000020000000300000003000000
+    OrderTimeLimit: 15.6
   _visualParams:
     ItemHitParticle:
       Particle: 4

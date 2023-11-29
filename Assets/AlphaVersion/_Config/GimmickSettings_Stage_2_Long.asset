@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tumbleweed:
     _timing:
-    - _elapsed: 0
-      _count: 1
     - _elapsed: 15
+      _count: 3
+    - _elapsed: 30
       _count: 10
   _robber:
     _timing:

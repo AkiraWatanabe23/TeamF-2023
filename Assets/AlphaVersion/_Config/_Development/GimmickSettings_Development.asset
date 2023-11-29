@@ -20,5 +20,5 @@ MonoBehaviour:
       _count: 10
   _robber:
     _timing:
-    - 0
-    - 10
+    - 111
+    - 1111
