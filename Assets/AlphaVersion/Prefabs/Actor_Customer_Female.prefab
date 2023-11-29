@@ -121,7 +121,7 @@ MonoBehaviour:
   _model: {fileID: 8314225418646270692}
   _settings: {fileID: 11400000, guid: c5338bbbb66aa0e4abb6e226f6210995, type: 2}
   _collider: {fileID: 6839929019107898681}
-  _defeatableSpeed: 1
+  _defeatableSpeed: 5
 --- !u!114 &-3705709529951960130
 MonoBehaviour:
   m_ObjectHideFlags: 0
