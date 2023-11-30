@@ -15,6 +15,8 @@ public class AnimationAdapter : MonoBehaviour
     /// </summary>
     public void Play(string name)
     {
+        if (_animation == null) return;
+
         if (name == "Walk") _animation.WalkAnimation();
         else if (name == "Idle") _animation.IdleState();
         else if (name == "Order") _animation.SitAnimation();
@@ -28,6 +30,8 @@ public class AnimationAdapter : MonoBehaviour
     /// </summary>
     public void ReservedTable(int index)
     {
+        if (_animation == null) return;
+
         _animation.SitReceipt(index);
     }
 }

@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tumbleweed:
     _timing:
-    - _elapsed: 0
-      _count: 1
-    - _elapsed: 15
-      _count: 10
+    - _elapsed: 50
+      _count: 6
   _robber:
     _timing:
-    - 0
-    - 10
+    - 13
+    - 38
+    - 50

@@ -6,7 +6,7 @@ public class ItemSpeedChangeArea : BaseGimmickArea
 
     private void OnTriggerEnter(Collider other)
     {
-        if (OpeStopbool == true)
+        if (GimmickOperationBool == true)
         {
             var rb = other.GetComponent<Rigidbody>();
             var velocity = rb.velocity;

@@ -42,7 +42,7 @@ namespace Alpha
         {
             LookAt();
             Animator.Play("Order");
-            Cri.PlaySE("SE_ChinBell");
+            Cri.PlaySE3D(transform.position, "SE_Order");
 
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
             _table.Table.Valid(_settings.OrderTimeLimit, _settings.RandomOrder, result => 

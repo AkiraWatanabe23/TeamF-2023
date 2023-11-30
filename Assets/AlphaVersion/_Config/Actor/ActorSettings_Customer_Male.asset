@@ -18,7 +18,7 @@ MonoBehaviour:
   _successVoice: SE_Success_1_Man
   _rareSuccessVoice: SE_Success_2_Man
   _actorParams:
-    MoveSpeed: 3
+    MoveSpeed: 1.04
     Orders: 00000000010000000200000003000000
     OrderTimeLimit: 10.2
   _visualParams:

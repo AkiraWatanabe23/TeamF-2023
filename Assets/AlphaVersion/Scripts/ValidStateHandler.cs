@@ -15,6 +15,8 @@ namespace Alpha
     {
         bool _isValid = false; // ここ修正
 
+        protected bool IsValid => _isValid;
+
         void Awake()
         {
             // メッセージの受信

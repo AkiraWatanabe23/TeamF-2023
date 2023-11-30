@@ -19,6 +19,9 @@ namespace Alpha
     /// </summary>
     public class InGame : MonoBehaviour
     {
+        // ドアが閉まるタイミングと曲の終わりを合わせるためのオフセット
+        const float DoorCloseTimingOffset = 8.6f;
+
         [SerializeField] InGameSettingsSO _settings;
         [SerializeField] GameStartEvent _gameStartEvent;
         [SerializeField] GameOverEvent _gameOverEvent;
@@ -36,6 +39,7 @@ namespace Alpha
         {
             CancellationTokenSource cts = new();
             UpdateAsync(cts.Token).Forget();
+            DelayedPlayLastSpurtBGM(cts.Token).Forget();
 
             // オブジェクトの破棄時にトークンをDisposeする
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
@@ -65,11 +69,12 @@ namespace Alpha
                 await UniTask.Yield(token);
             }
 
-            Cri.StopBGM();
+            //Cri.StopBGM();
             SendGameOverMessage();
 
-            await _gameOverEvent.PlayAsync("成績", token);
-            _ranking.GetTmpScoreEffect(_score.TotalScore.Value); // 一時ランキグン、二宮君が完成したらawaitにしてもらう
+            string evaluate = _settings.GetEvaluate(_score.TotalScore.Value);
+            await _gameOverEvent.PlayAsync(evaluate, token);
+            _ranking.GetTmpScoreEffect(_score.TotalScore.Value);
 
             string nextScene = await _retry.ButtonClickAsync(token);
             SceneManager.LoadScene(nextScene);
@@ -98,6 +103,17 @@ namespace Alpha
             _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
             this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
         }
+
+        /// <summary>
+        /// 〆のBGMを再生
+        /// </summary>
+        async UniTaskVoid DelayedPlayLastSpurtBGM(CancellationToken token)
+        {
+            // 制限時間-10秒で残り10秒で再生
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - DoorCloseTimingOffset), cancellationToken: token);
+            Cri.PlayBGM("BGM_C'_DEMO", "CueSheet_BGM 1");
+        }
+
 
         /// <summary>
         /// ゲーム開始のメッセージング

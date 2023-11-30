@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1136827684473e949b5577421b48fdbf, type: 3}
-  m_Name: CatchSettings
+  m_Name: CatchSettings_Stage_2_Long
   m_EditorClassIdentifier: AlphaVersion:Alpha:CatchSettings
   _normalSize: 0.444
   _ferverSize: 0.599

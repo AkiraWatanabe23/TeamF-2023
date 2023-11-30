@@ -26,7 +26,7 @@ namespace Alpha
             ActorScore actor = default;
             if      (msg.Actor == EventActor.Male) actor = _settings.Male;
             else if (msg.Actor == EventActor.Female) actor = _settings.Female;
-            else if (msg.Actor == EventActor.Muscle) actor = _settings.Muscle;
+            else if (msg.Actor == EventActor.Muscle) actor = _settings.Robber;
             else throw new System.Exception("スコアを送信したキャラが想定外: " + actor);
 
             // 成功/失敗で増減する値の基準値を決める

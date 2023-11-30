@@ -102,7 +102,13 @@ namespace Alpha
 
         void OnGetSelectKeyDown(KeyCode key)
         {
-            _itemSpawner.Select(key);
+            if (!_damage.IsDamaged)
+            {
+                _itemSpawner.Select(key);
+                // アイテムが積めなかった場合はプールに戻す
+                ThrowedItem item = _itemSpawner.Spawn();
+                if (!_thrower.TryStack(item)) _itemSpawner.Release(item);
+            }
         }
     }
 }
