@@ -201,6 +201,8 @@ public class CriAudioManager
             // ループしていたら抜ける
             if (_cueData[index].IsLoop) { return; }
 
+            if (cancellationToken.IsCancellationRequested) { return; }
+
             await Task.Delay((int)_cueData[index].CueInfo.length, cancellationToken);
 
             while (true)
