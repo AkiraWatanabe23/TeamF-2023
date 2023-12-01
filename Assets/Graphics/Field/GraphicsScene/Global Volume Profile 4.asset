@@ -48,10 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   color:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
@@ -99,13 +99,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+    m_Value: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.9528302, g: 0.8578332, b: 0.7856355, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: -44
+    m_Value: -79.9
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
