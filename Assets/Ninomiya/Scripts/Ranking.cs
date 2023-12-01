@@ -1,4 +1,4 @@
-using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,48 +17,45 @@ public class Ranking : MonoBehaviour
 
     private RankingSystem _rankingSystem;
 
+    private List<PlayerScore> _playerScores = new();
+
+    [SerializeField, Header("スコア取得までの待ち時間")] private float _waitTime;
+
+    [SerializeField, Header("取得したいスコアの数")] private int _scoreCount;
+
+    [SerializeField, Header("ボタンを格納")] GameObject[] _buttons = new GameObject[2];
+
     // Start is called before the first frame update
     void Start()
     {
         _rankingSystem = FindObjectOfType<RankingSystem>();
+        StartCoroutine(GetScores(100));
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GetTmpScoreEffect(int score)
     {
-        if (!_tmpBool)
+        _rankingSystem.AddPlayerScore(score);
+
+        _playerScores = _rankingSystem.GetScores(_scoreCount);
+
+        _currentText.text = $"Score : {score}";
+
+        for (int i = 1; i <= _playerScores.Count; i++)
         {
-            if (_gameEnd)
-            {
-                GetTmpScoreEffect();
-            }
+            _texts[i - 1].text = $"{i} : {_playerScores[i - 1].Score}";
+            _texts[i - 1].color = new Color(_texts[i - 1].color.r, _texts[i - 1].color.g, _texts[i - 1].color.b, 1);
+        }
+        _currentText.color = new Color(_currentText.color.r, _currentText.color.g, _currentText.color.b, 1);
+
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            _buttons[i].SetActive(true);
         }
     }
 
-    public void GetTmpScoreEffect()
+    public IEnumerator GetScores(int score)
     {
-        int tmpCurrentScore = 2000;　//今回のスコアを入れてもらう(参照する
-        _rankingSystem.AddPlayerScore(tmpCurrentScore);
-        var scores = _rankingSystem.GetScores(5);
+        yield return new WaitForSeconds(_waitTime);
 
-        var moveAnimation = _scorePanel.transform.DOLocalMoveX(0, 5f).SetLink(gameObject);
-
-        moveAnimation.OnComplete(() =>
-        {
-            _scorePanel.transform.DOLocalMoveX(0, 01f);
-            _currentText.text = $"Score  :  {tmpCurrentScore}";
-
-            _currentText.DOFade(endValue: 1f, duration: 0.5f).OnComplete(() =>
-          {
-              var sequence = DOTween.Sequence();
-              for (int i = 1; i <= scores.Count; i++)
-              {
-                  sequence.Append(_texts[i - 1].DOFade(endValue: 1, duration: 1).SetLink(gameObject));
-                  //_texts[i - 1].DOCounter(0, scores[i - 1].Score, 1f);
-                  _texts[i - 1].text = $"{i}st : {scores[i - 1].Score}";
-              }
-              sequence.Play();
-          });
-        });
+        GetTmpScoreEffect(score);
     }
 }
