@@ -25,6 +25,12 @@ namespace Alpha
                 [Range(1, 20)]
                 [SerializeField] int _count;
 
+                public TimingData(float elapsed, int count)
+                {
+                    _elapsed = elapsed;
+                    _count = count;
+                }
+
                 public float Elapsed => _elapsed;
                 public int Count => _count;
             }
@@ -32,7 +38,11 @@ namespace Alpha
             [Header("タイミング(秒)と生成する個数")]
             [SerializeField] TimingData[] _timing;
 
-            public IReadOnlyList<TimingData> Timing => _timing;
+            // ギミックを使わない場合はゲーム時間外を指定するダミーのデータの配列を作って返す
+            public IReadOnlyList<TimingData> Timing => _timing ??= new TimingData[1]
+            {
+                new TimingData(999.0f, 1),
+            };
             public int Max => _timing.Length;
         }
 
@@ -46,7 +56,8 @@ namespace Alpha
             [Header("タイミング(秒)")]
             [SerializeField] float[] _timing;
 
-            public IReadOnlyList<float> Timing => _timing;
+            // ギミックを使わない場合はnullになるのでゲーム時間外を指定する配列を作って返す
+            public IReadOnlyList<float> Timing => _timing ??= new float[1] { 999 };
             public int Max => _timing.Length;
         }
 
@@ -60,7 +71,8 @@ namespace Alpha
             [Header("タイミング(秒)")]
             [SerializeField] float[] _timing;
 
-            public IReadOnlyList<float> Timing => _timing;
+            // ギミックを使わない場合はnullになるのでゲーム時間外を指定する配列を作って返す
+            public IReadOnlyList<float> Timing => _timing ??= new float[1] { 999 };
             public int Max => _timing.Length;
         }
 
