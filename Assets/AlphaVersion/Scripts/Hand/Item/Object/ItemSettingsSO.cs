@@ -57,6 +57,7 @@ namespace Alpha
 
             [Header("割れる際のパーティクルの設定")]
             public ParticleData CrashParticle;
+            public ParticleData CrashEffectParticle;
         }
 
         [Header("アイテムを識別する値")]
@@ -75,6 +76,8 @@ namespace Alpha
         public string HitSEName => _hitSEName;
         public float Hardness => _itemParams._hardness;
         public ParticleType CrashParticle => _visualParams.CrashParticle.Particle;
+        public ParticleType CrashEffectParticle => _visualParams.CrashEffectParticle.Particle;
         public Vector3 CrashParticleOffset => _visualParams.CrashParticle.Offset.Position;
+        public Vector3 CrashEffectParticleOffset => _visualParams.CrashEffectParticle.Offset.Position;
     }
 }

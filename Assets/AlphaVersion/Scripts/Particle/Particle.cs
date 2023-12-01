@@ -19,6 +19,8 @@ namespace Alpha
         Happy01,
         Shock01,
         Clean,
+        Hit02,
+        Hit01,
     }
 
     /// <summary>
