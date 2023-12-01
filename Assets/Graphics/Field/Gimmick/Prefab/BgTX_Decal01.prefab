@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7510140074370649127}
   - component: {fileID: 8672646795479334334}
   m_Layer: 0
-  m_Name: Liquid01
+  m_Name: BgTX_Decal01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
