@@ -11,19 +11,21 @@ namespace Alpha
     /// </summary>
     public class VolumeSwitcher : MonoBehaviour
     {
-        [SerializeField] VolumeProfile _normal;
-        [SerializeField] VolumeProfile _ferver;
-        [SerializeField] VolumeProfile _damage;
-        [SerializeField] Volume _volume;
+        [SerializeField] Volume _damageVolume;
+
+        void Awake()
+        {
+            _damageVolume.enabled = false;
+        }
 
         /// <summary>
         /// VolumeÇïœçX
         /// </summary>
         public void Switch(VolumeType type)
         {
-            if (type == VolumeType.Normal) _volume.profile = _normal;
-            if (type == VolumeType.Ferver) _volume.profile = _ferver;
-            if (type == VolumeType.Damage) _volume.profile = _damage;
+            if (type == VolumeType.Normal) _damageVolume.enabled = false;
+            if (type == VolumeType.Ferver) _damageVolume.enabled = false;
+            if (type == VolumeType.Damage) _damageVolume.enabled = true;
         }
     }
 }

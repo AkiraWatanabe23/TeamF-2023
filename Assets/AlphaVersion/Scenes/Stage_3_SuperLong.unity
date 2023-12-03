@@ -5739,12 +5739,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 577016623}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &581627478 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4470002007281868638, guid: 9dafba615fe2a184495d09ce52e47e7d,
-    type: 3}
-  m_PrefabInstance: {fileID: 91155269}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &590625598
 GameObject:
   m_ObjectHideFlags: 0
@@ -8720,12 +8714,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _texts.Array.data[3]
       value: 
-      objectReference: {fileID: 2112290825}
+      objectReference: {fileID: 0}
     - target: {fileID: 862212157548805290, guid: 308a44326ec8d724e8c1cf3ce554ee80,
         type: 3}
       propertyPath: _texts.Array.data[4]
       value: 
-      objectReference: {fileID: 2112290824}
+      objectReference: {fileID: 0}
     - target: {fileID: 7189082337941324653, guid: 308a44326ec8d724e8c1cf3ce554ee80,
         type: 3}
       propertyPath: m_RootOrder
@@ -10510,7 +10504,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084250879}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -14211,14 +14205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d48d1984c54d0741b5710b7c5313c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalReflectionProbe: {fileID: 0}
-  _normalDirectionalLight: {fileID: 0}
-  _ferverDirectionalLight: {fileID: 0}
-  _ferverSpotLight: {fileID: 0}
-  _ferverReflectionProbe: {fileID: 0}
-  _mirrorBall: {fileID: 2099546662}
-  _fallParticle: {fileID: 581627478}
-  _light: {fileID: 1483707547}
 --- !u!114 &1483707545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16857,6 +16843,11 @@ PrefabInstance:
       propertyPath: _volume
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6610339683145815094, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
+        type: 3}
+      propertyPath: _damageVolume
+      value: 
+      objectReference: {fileID: 1084250881}
     - target: {fileID: 8578523699792755547, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
         type: 3}
       propertyPath: m_Name
@@ -18636,12 +18627,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2099546659}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2099546662 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3952494940848930154, guid: 8041000cd4295284ba3494ab44e2943f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2099546659}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2112290823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18780,30 +18765,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296f5c35faae98d4999541cb5cfaff47, type: 3}
---- !u!114 &2112290824 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9110844635241052306, guid: 296f5c35faae98d4999541cb5cfaff47,
-    type: 3}
-  m_PrefabInstance: {fileID: 2112290823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2112290825 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3299068446447692275, guid: 296f5c35faae98d4999541cb5cfaff47,
-    type: 3}
-  m_PrefabInstance: {fileID: 2112290823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2112290826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8310426036491359177, guid: 296f5c35faae98d4999541cb5cfaff47,

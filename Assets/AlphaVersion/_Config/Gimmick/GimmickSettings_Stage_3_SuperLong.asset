@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6424981766afe7c48b85dc762ac929a0, type: 3}
-  m_Name: GimmickSettings_Stage_2_Long
+  m_Name: GimmickSettings_Stage_3_SuperLong
   m_EditorClassIdentifier: 
   _tumbleweed:
     _timing:
-    - _elapsed: 15
-      _count: 3
-    - _elapsed: 30
-      _count: 10
+    - _elapsed: 50
+      _count: 6
   _robber:
     _timing:
-    - 0
-    - 10
+    - 13
+    - 38
+    - 50
+  _ufo:
+    _timing: []

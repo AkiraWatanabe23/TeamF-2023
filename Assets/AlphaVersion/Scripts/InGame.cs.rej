@@ -1,9 +1,0 @@
-diff a/Assets/AlphaVersion/Scripts/InGame.cs b/Assets/AlphaVersion/Scripts/InGame.cs	(rejected hunks)
-@@ -36,6 +36,7 @@
-         {
-             CancellationTokenSource cts = new();
-             UpdateAsync(cts.Token).Forget();
-+            DelayedPlayLastSpurtBGM(cts.Token).Forget();
- 
-             // �I�u�W�F�N�g�̔j�����Ƀg�[�N����Dispose����
-             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
