@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BaseGimmickArea : MonoBehaviour
 {
-    [Header("弾の速度を変更させるギミックの弾の速度")]
+    [Header("速度を変更させるギミックの速度")]
     [SerializeField] float _speed;
     public float Speed => _speed;
     [SerializeField] bool _gimmickOperationBool = false;
@@ -19,16 +19,20 @@ public class BaseGimmickArea : MonoBehaviour
     [SerializeField] float _explosionRadius = 3f;
     public float ExplosionRadius => _explosionRadius;
 
+    public virtual void GimmickOperation() { }
+
     private void OnEnable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned += SpeedChangeAreaOperation; }
         ChangeAreaCallBackTest.OnCallBackArea += ChangeAreaOperation;
+        ChangeAreaCallBackTest.OnCallBackArea += GimmickOperation;
     }
 
     private void OnDisable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned -= SpeedChangeAreaOperation; }
         ChangeAreaCallBackTest.OnCallBackArea -= ChangeAreaOperation;
+        ChangeAreaCallBackTest.OnCallBackArea -= GimmickOperation;
     }
 
     void Start()
