@@ -38,11 +38,17 @@ namespace Alpha
             [Header("タイミング(秒)と生成する個数")]
             [SerializeField] TimingData[] _timing;
 
-            // ギミックを使わない場合はゲーム時間外を指定するダミーのデータの配列を作って返す
-            public IReadOnlyList<TimingData> Timing => _timing ??= new TimingData[1]
+            public IReadOnlyList<TimingData> Timing
             {
-                new TimingData(999.0f, 1),
-            };
+                get
+                {
+                    if (_timing == null || _timing.Length == 0)
+                    {
+                        _timing = new TimingData[1] { new TimingData(float.MaxValue, 1) };
+                    }
+                    return _timing;
+                }
+            }
             public int Max => _timing.Length;
         }
 
@@ -56,8 +62,17 @@ namespace Alpha
             [Header("タイミング(秒)")]
             [SerializeField] float[] _timing;
 
-            // ギミックを使わない場合はnullになるのでゲーム時間外を指定する配列を作って返す
-            public IReadOnlyList<float> Timing => _timing ??= new float[1] { 999 };
+            public IReadOnlyList<float> Timing
+            {
+                get
+                {
+                    if (_timing == null || _timing.Length == 0)
+                    {
+                        _timing = new float[1] { float.MaxValue };
+                    }
+                    return _timing;
+                }
+            }
             public int Max => _timing.Length;
         }
 
@@ -71,8 +86,17 @@ namespace Alpha
             [Header("タイミング(秒)")]
             [SerializeField] float[] _timing;
 
-            // ギミックを使わない場合はnullになるのでゲーム時間外を指定する配列を作って返す
-            public IReadOnlyList<float> Timing => _timing ??= new float[1] { 999 };
+            public IReadOnlyList<float> Timing
+            {
+                get
+                {
+                    if (_timing == null || _timing.Length == 0)
+                    {
+                        _timing = new float[1] { float.MaxValue };
+                    }
+                    return _timing;
+                }
+            }
             public int Max => _timing.Length;
         }
 

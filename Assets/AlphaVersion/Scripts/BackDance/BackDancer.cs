@@ -15,7 +15,7 @@ public class BackDancer : MonoBehaviour
     [SerializeField] float _duration = 3.0f;
     [SerializeField] float _rotSpeed = 10.0f;
 
-    void Start()
+    public void Play()
     {
         DanceAsync(this.GetCancellationTokenOnDestroy()).Forget();
     }
@@ -39,12 +39,12 @@ public class BackDancer : MonoBehaviour
         await UniTask.Yield();
 
         // セットで動かす
-        Sequence seq = DOTween.Sequence();
-        seq.Append(_root.DOLocalMoveZ(_width, _duration).SetEase(Ease.Linear))
-            .Append(_root.DOLocalMoveZ(-_width, _duration * 2).SetEase(Ease.Linear))
-            .Append(_root.DOLocalMoveZ(0, _duration).SetEase(Ease.Linear))
-            .SetLoops(-1, LoopType.Restart)
-            .SetLink(gameObject);
+        //Sequence seq = DOTween.Sequence();
+        //seq.Append(_root.DOLocalMoveZ(_width, _duration).SetEase(Ease.Linear))
+        //    .Append(_root.DOLocalMoveZ(-_width, _duration * 2).SetEase(Ease.Linear))
+        //    .Append(_root.DOLocalMoveZ(0, _duration).SetEase(Ease.Linear))
+        //    .SetLoops(-1, LoopType.Restart)
+        //    .SetLink(gameObject);
 
         // キャラ毎に動かす
         foreach (Transform t in _models)

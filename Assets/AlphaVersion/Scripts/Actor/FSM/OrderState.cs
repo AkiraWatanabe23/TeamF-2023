@@ -11,6 +11,7 @@ namespace Alpha
     /// </summary>
     public class OrderState : BaseState
     {
+        [SerializeField] GameObject _decal;
         [SerializeField] ActorSettingsSO _settings;
         [SerializeField] Collider _collider;
         [Header("この速さ以上でぶつかるとラグドール化する")]
@@ -27,6 +28,8 @@ namespace Alpha
 
         protected override void OnAwakeOverride()
         {
+            _decal.SetActive(false);
+
             // このステートがStayの際は当たり判定が有効になる
             // Initは初期化される度に呼ばれるのでAwakeのタイミングで1度だけ登録する
             _collider.OnCollisionEnterAsObservable().Where(_ => CurrentStage == Stage.Stay).Subscribe(OnItemHit);
@@ -86,6 +89,8 @@ namespace Alpha
         {
             // アイテム以外がぶつかった場合は弾く
             if (!collision.gameObject.TryGetComponent(out ThrowedItem item)) return;
+
+            _decal.SetActive(true);
 
             // 注文結果
             if (Result == OrderResult.Unsettled)

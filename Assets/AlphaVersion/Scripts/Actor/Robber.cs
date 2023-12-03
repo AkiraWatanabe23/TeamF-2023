@@ -14,6 +14,7 @@ namespace Alpha
     public class Robber : Actor
     {
         [SerializeField] Collider _collider;
+        [SerializeField] GameObject _decal;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
         [SerializeField] AnimationState _animationState;
@@ -27,6 +28,8 @@ namespace Alpha
 
         protected override void OnInitOverride(Waypoint lead, Tension tension)
         {
+            _decal.SetActive(false);
+
             // 経路の先頭から現在地までの経路をリセット
             _recorder ??= new(transform);
             _recorder.Reset();
@@ -55,6 +58,7 @@ namespace Alpha
                 {
                     isItemHit = true;
                     Cri.PlaySE("SE_Robber_Voice_2");
+                    _decal.SetActive(true);
                 });
 
             Waypoint pathEnd = _lead;

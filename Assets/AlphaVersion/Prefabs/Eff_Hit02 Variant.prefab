@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eff_Hit02 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3022681945389465669, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9107651828591778891, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}
       propertyPath: m_RootOrder

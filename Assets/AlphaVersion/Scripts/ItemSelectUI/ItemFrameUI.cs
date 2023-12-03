@@ -14,6 +14,8 @@ namespace Alpha
         [SerializeField] Image _icon;
         [SerializeField] Image _frame;
         [SerializeField] CanvasGroup _canvasGroup;
+        [SerializeField] Sprite _selected;
+        [SerializeField] Sprite _unSelected;
 
         /// <summary>
         /// このUIに割り当てるアイコンを設定して有効化
@@ -37,7 +39,7 @@ namespace Alpha
         /// </summary>
         public void Select()
         {
-            _frame.color = Color.red;
+            _frame.sprite = _selected;
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace Alpha
         /// </summary>
         public void Deselect()
         {
-            _frame.color = Color.black;
+            _frame.sprite = _unSelected;
         }
     }
 }

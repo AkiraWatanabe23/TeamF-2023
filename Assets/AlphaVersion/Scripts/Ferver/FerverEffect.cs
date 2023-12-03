@@ -12,16 +12,9 @@ namespace Alpha
     /// </summary>
     public class FerverEffect : FerverHandler
     {
-        [Header("フィーバー時に無効化される")]
-        [SerializeField] GameObject _normalReflectionProbe;
-        [SerializeField] GameObject _normalDirectionalLight;
-        [Header("フィーバー時に有効になる")]
-        [SerializeField] GameObject _ferverDirectionalLight;
-        [SerializeField] GameObject _ferverSpotLight;
-        [SerializeField] GameObject _ferverReflectionProbe;
-        [SerializeField] GameObject _mirrorBall;
-        [SerializeField] ParticleSystem _fallParticle;
+        [SerializeField] BackDancer _dancer;
         [SerializeField] LightRotate _light;
+        [SerializeField] GameObject _money;
 
         protected override void OnAwakeOverride()
         {
@@ -29,7 +22,6 @@ namespace Alpha
             MessageBroker.Default.Receive<GameOverMessage>().Subscribe(_ => 
             {
                 OnFerverTimeExit();
-                _fallParticle.gameObject.SetActive(false);
             }).AddTo(gameObject);
         }
 
@@ -40,25 +32,15 @@ namespace Alpha
 
         protected override void OnFerverTimeEnter()
         {
-            _normalReflectionProbe.SetActive(false);
-            _normalDirectionalLight.SetActive(false);
-            _ferverDirectionalLight.SetActive(true);
-            _ferverSpotLight.SetActive(true);
-            _ferverReflectionProbe.SetActive(true);
-            _mirrorBall.SetActive(true);
-            _fallParticle.Play();
+            _dancer.Play();
             _light.Play();
+            _money.SetActive(true);
         }
 
         protected override void OnFerverTimeExit()
         {
-            _normalReflectionProbe.SetActive(true);
-            _normalDirectionalLight.SetActive(true);
-            _ferverDirectionalLight.SetActive(false);
-            _ferverSpotLight.SetActive(false);
-            _ferverReflectionProbe.SetActive(false);
-            _mirrorBall.SetActive(false);
-            _fallParticle.Stop();
+            _money.SetActive(false);
+            _light.Stop();
         }
     }
 }

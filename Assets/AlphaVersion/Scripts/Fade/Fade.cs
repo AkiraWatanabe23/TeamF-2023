@@ -21,6 +21,7 @@ public class Fade : MonoBehaviour
     //private Action[] _onCompleteFadeOut = new Action[0];
 
     public static Fade Instance { get; private set; }
+    public float FadeTime { get => _fadeTime; }
 
     private void Awake()
     {
