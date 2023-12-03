@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trail: {fileID: 9190699576807482101}
+  _decal: {fileID: 1179728734537167248, guid: 89c384706c692314c9041e6fee7a1503, type: 3}
 --- !u!198 &9190699576807482101 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6296616469905422189, guid: 4c9fd74d1ab5cb44d8896b4a6797d732,

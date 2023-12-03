@@ -24,7 +24,9 @@ namespace Alpha
     public class ThrowedItem : MonoBehaviour, ICatchable
     {
         [SerializeField] ParticleSystem _trail;
+        [SerializeField] GameObject _decal;
 
+        GameObject _decapu;
         ThrowedItemPool _pool; // プール
         ItemSettingsSO _settings;
         Rigidbody _rigidbody;
@@ -55,6 +57,13 @@ namespace Alpha
         /// </summary>
         public void OnCreate(ThrowedItemPool pool)
         {
+            if (_decal != null)
+            {
+                // デカールを使いまわす
+                _decapu = Instantiate(_decal);
+                _decapu.SetActive(false);
+            }
+
             _pool = pool;
             _rigidbody = GetComponent<Rigidbody>();
             _defaultConstraints = _rigidbody.constraints;
@@ -145,10 +154,17 @@ namespace Alpha
         /// </summary>
         void Crash()
         {
-            // 音とパーティクル
+            // 音とパーティクルとデーカル
             Cri.PlaySE3D(transform.position, _settings.CrashSEName);
             Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
             ParticleMessageSender.SendMessage(_settings.CrashParticle, particlePosition);
+            if (_decal != null) Instantiate(_decal, transform.position, _decal.transform.rotation);
+
+            if (_decapu != null)
+            {
+                _decapu.SetActive(true);
+                _decapu.transform.position = transform.position;
+            }
 
             _pool.Return(this);
         }
