@@ -163,3 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trail: {fileID: 3205273132298731760}
+  _decal: {fileID: 1179728734537167248, guid: 89c384706c692314c9041e6fee7a1503, type: 3}
