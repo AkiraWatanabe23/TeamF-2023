@@ -12,6 +12,10 @@ namespace Alpha
     /// </summary>
     public class FerverEffect : FerverHandler
     {
+        [SerializeField] BackDancer _dancer;
+        [SerializeField] LightRotate _light;
+        [SerializeField] GameObject _money;
+
         protected override void OnAwakeOverride()
         {
             // ゲームオーバー時に止めて非表示にする
@@ -28,12 +32,15 @@ namespace Alpha
 
         protected override void OnFerverTimeEnter()
         {
-
+            _dancer.Play();
+            _light.Play();
+            _money.SetActive(true);
         }
 
         protected override void OnFerverTimeExit()
         {
-
+            _money.SetActive(false);
+            _light.Stop();
         }
     }
 }

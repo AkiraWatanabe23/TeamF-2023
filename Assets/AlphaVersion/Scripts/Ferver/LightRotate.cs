@@ -21,6 +21,9 @@ namespace Alpha
         [SerializeField] Transform _spotLight;
         [SerializeField] Transform _mirrorBall;
 
+        Tween _spotLightTween;
+        Tween _mirrorBallTween;
+
         void Start()
         {
             SetOnDefaultPosition();
@@ -41,7 +44,9 @@ namespace Alpha
         /// </summary>
         public void Play()
         {
-            _spotLight.DORotate(new Vector3(0, 360, 0), _duration, RotateMode.FastBeyond360)
+            _spotLight.gameObject.SetActive(true);
+
+            _spotLightTween = _spotLight.DORotate(new Vector3(0, 360, 0), _duration, RotateMode.FastBeyond360)
                 .SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).SetLink(gameObject);
 
             MirrorBallAnimationAsync(this.GetCancellationTokenOnDestroy()).Forget();
@@ -52,7 +57,7 @@ namespace Alpha
         /// </summary>
         async UniTaskVoid MirrorBallAnimationAsync(CancellationToken token)
         {
-            _mirrorBall.DOLocalMoveY(-_moveY, _duration/2).SetRelative().SetLink(gameObject);
+            _mirrorBallTween = _mirrorBall.DOLocalMoveY(-_moveY, _duration/2).SetRelative().SetLink(gameObject);
             await UniTask.WaitForSeconds(_duration/2, cancellationToken: token);
 
             float delta = 0;
@@ -64,6 +69,16 @@ namespace Alpha
 
                 await UniTask.Yield(token);
             }
+        }
+
+        /// <summary>
+        /// アニメーションを止めて消す
+        /// </summary>
+        public void Stop()
+        {
+            _spotLightTween?.Kill();
+            _mirrorBallTween?.Kill();
+            _spotLight.gameObject.SetActive(false);
         }
     }
 }
