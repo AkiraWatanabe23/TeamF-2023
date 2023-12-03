@@ -9,11 +9,15 @@ public class UFOGimmick : MonoBehaviour
     private int _maxCastCount = 10;
     [SerializeField]
     private Animator _animator = default;
-    [SerializeField]
-    private GameObject _ufoModel = default;
     [Tooltip("吸い上げ地点のoffset")]
     [SerializeField]
     private Vector3 _offset = Vector3.zero;
+    [Tooltip("移動先のゴール")]
+    [SerializeField]
+    private Transform _moveTarget = default;
+
+    [SerializeField]
+    private bool _debug = false;
 
     private Transform _transform = default;
     private Vector3 _halfExtents = Vector3.zero;
@@ -23,6 +27,8 @@ public class UFOGimmick : MonoBehaviour
     private void Start()
     {
         Initialize();
+
+        if (_debug) { Movement(); }
     }
 
     /// <summary> 初期データのセットアップ </summary>
@@ -35,9 +41,17 @@ public class UFOGimmick : MonoBehaviour
             if (!gameObject.TryGetComponent(out _animator)) { _animator = gameObject.AddComponent<Animator>(); }
         }
 
-        if (_ufoModel.TryGetComponent(out Collider _)) { _halfExtents = _transform.localScale / 2f; }
+        if (gameObject.TryGetComponent(out BoxCollider collider)) { _halfExtents = collider.size / 2f; }
+        else { _halfExtents = _transform.localScale; }
 
         _suckUpDatas = new RaycastHit[_maxCastCount];
+    }
+
+    private void Movement()
+    {
+        transform.
+            DOMove(_moveTarget.position, 2f).
+            OnComplete(() =>ItemSearch());
     }
 
     /// <summary> 吸い上げる対象があるか探す </summary>
@@ -59,13 +73,8 @@ public class UFOGimmick : MonoBehaviour
             Debug.Log("見つけた");
 #endif
             //ここに吸い上げ処理
-            var sequence = DOTween.Sequence();
-            sequence.
-                Append(target.transform.DOMove(_transform.position + _offset, 1f)).
-                AppendCallback(() =>
-                {
-
-                }).
+            target.transform.
+                DOMove(_transform.position + _offset, 1f).
                 OnComplete(() =>
                 {
                     Debug.Log("tween finish");
