@@ -1,5 +1,6 @@
 ﻿using Alpha;
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class UFOGimmick : MonoBehaviour
@@ -16,23 +17,21 @@ public class UFOGimmick : MonoBehaviour
     [SerializeField]
     private Transform _moveTarget = default;
 
-    [SerializeField]
-    private bool _debug = false;
-
     private Transform _transform = default;
     private Vector3 _halfExtents = Vector3.zero;
+    private bool _isMoved = false;
 
     private RaycastHit[] _suckUpDatas = default;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        Initialize();
+        yield return Initialize();
 
-        if (_debug) { Movement(); }
+        Movement();
     }
 
     /// <summary> 初期データのセットアップ </summary>
-    private void Initialize()
+    private IEnumerator Initialize()
     {
         _transform = transform;
 
@@ -45,13 +44,30 @@ public class UFOGimmick : MonoBehaviour
         else { _halfExtents = _transform.localScale; }
 
         _suckUpDatas = new RaycastHit[_maxCastCount];
+
+        _isMoved = false;
+
+        yield return null;
     }
 
     private void Movement()
     {
         transform.
             DOMove(_moveTarget.position, 2f).
-            OnComplete(() =>ItemSearch());
+            OnComplete(() =>
+            {
+                ItemSearch();
+                _isMoved = true;
+            }).
+            SetLink(gameObject);
+    }
+
+    private void Update()
+    {
+        if (!_isMoved) { return; }
+
+        //被攻撃判定
+        AttackedSearch();
     }
 
     /// <summary> 吸い上げる対象があるか探す </summary>
@@ -79,7 +95,8 @@ public class UFOGimmick : MonoBehaviour
                 {
                     Debug.Log("tween finish");
                     target.SetActive(false);
-                });
+                }).
+                SetLink(target);
         }
     }
 
