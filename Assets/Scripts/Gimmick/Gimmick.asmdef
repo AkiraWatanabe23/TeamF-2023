@@ -1,0 +1,16 @@
+{
+    "name": "Gimmick",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4c06b5b68185e314bb96a63c30be48f3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
