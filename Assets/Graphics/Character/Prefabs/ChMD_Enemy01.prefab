@@ -95,10 +95,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7798510133437918377, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6609676799057296984, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6066170865212366333, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1581143491258122593, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 680962409796263002, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 519416b240e0cef478349cf813e76ed5,
         type: 3}
       propertyPath: m_Name
       value: ChMD_Enemy01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777469404984745812, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376464967925911668, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916069605973177277, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114243270969802601, guid: 519416b240e0cef478349cf813e76ed5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
