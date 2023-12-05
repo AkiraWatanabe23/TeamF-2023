@@ -10,14 +10,16 @@ namespace Alpha
     /// </summary>
     public class SelectedItemSpawner : MonoBehaviour
     {
+        [SerializeField] ItemType[] _items;
         [SerializeField] ThrowedItemSpawner _spawner;
         [SerializeField] FerverItemSelector _ferverSelector;
 
-        ItemSelector _selector = new();
+        ItemSelector _selector;
         ItemType _selectedItem;
 
         void Start()
         {
+            _selector = new(_items);
             // 初期値としてAキーでアイテムを選択する
             Select(KeyCode.A);
         }

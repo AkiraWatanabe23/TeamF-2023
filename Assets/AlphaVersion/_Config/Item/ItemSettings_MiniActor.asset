@@ -23,10 +23,10 @@ MonoBehaviour:
       Particle: 1
       Offset:
         x: 0
-        y: 0
+        y: 0.165
         z: 0
     CrashEffectParticle:
-      Particle: 13
+      Particle: 12
       Offset:
         x: 0
         y: 0

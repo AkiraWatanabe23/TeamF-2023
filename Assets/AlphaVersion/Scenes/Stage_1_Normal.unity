@@ -9390,14 +9390,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _messageReceiver: {fileID: 1560102488}
   _data:
-  - Type: 0
-    Icon: {fileID: 21300000, guid: 1b5641ec121c95340bae47d4702cc09c, type: 3}
   - Type: 1
     Icon: {fileID: 21300000, guid: ef591a97a490b0347abcf8d2eae86e30, type: 3}
   - Type: 2
     Icon: {fileID: 21300000, guid: 0118d4f15f90aaf4ab26caa0578def9c, type: 3}
-  - Type: 3
-    Icon: {fileID: 21300000, guid: 515edc833a7c80b4cb305b7a74dafd07, type: 3}
   - Type: 4
     Icon: {fileID: 21300000, guid: 0e7b750de6ff0a04cabaf7d712aeddeb, type: 3}
   _frames:
@@ -13471,6 +13467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2294d64ada4add4c8eb45b550c83cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _items: 010000000200000004000000
   _spawner: {fileID: 8425516604372177827}
   _ferverSelector: {fileID: 8425516604372177838}
 --- !u!114 &8425516604372177830

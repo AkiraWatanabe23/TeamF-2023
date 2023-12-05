@@ -15270,8 +15270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _messageReceiver: {fileID: 1560102488}
   _data:
-  - Type: 0
-    Icon: {fileID: 21300000, guid: 1b5641ec121c95340bae47d4702cc09c, type: 3}
   - Type: 1
     Icon: {fileID: 21300000, guid: ef591a97a490b0347abcf8d2eae86e30, type: 3}
   - Type: 2
@@ -20643,6 +20641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2294d64ada4add4c8eb45b550c83cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _items: 01000000020000000300000004000000
   _spawner: {fileID: 8425516604372177827}
   _ferverSelector: {fileID: 1483707546}
 --- !u!114 &8425516604372177830

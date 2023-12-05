@@ -156,8 +156,16 @@ namespace Alpha
         {
             // 音とパーティクルとデーカル
             Cri.PlaySE3D(transform.position, _settings.CrashSEName);
-            Vector3 particlePosition = transform.position + _settings.CrashParticleOffset;
-            ParticleMessageSender.SendMessage(_settings.CrashParticle, particlePosition);
+            Vector3 position1 = transform.position + _settings.CrashParticleOffset;
+            Vector3 position2 = transform.position + _settings.CrashEffectParticleOffset;
+            ParticleMessageSender.SendMessage(_settings.CrashParticle, position1);
+
+            // ミニキャラの場合はエラー対策で生成させない
+            if (_settings.Type != ItemType.MiniActor)
+            {
+                ParticleMessageSender.SendMessage(_settings.CrashEffectParticle, position2);
+            }
+
             if (_decal != null) Instantiate(_decal, transform.position, _decal.transform.rotation);
 
             if (_decapu != null)

@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class UfoSpawner : MonoBehaviour
 {
+    //[SerializeField]  _prefab;
+
     public void Spawn()
     {
         // ê∂ê¨

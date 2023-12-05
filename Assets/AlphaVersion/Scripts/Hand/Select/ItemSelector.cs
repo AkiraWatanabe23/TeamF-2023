@@ -10,8 +10,14 @@ namespace Alpha
     /// </summary>
     public class ItemSelector
     {
+        ItemType[] _selectable;
         int _currentIndex;
-        
+
+        public ItemSelector(ItemType[] selectable)
+        {
+            _selectable = selectable;
+        }
+
         int CurrentIndex
         {
             get
@@ -23,12 +29,14 @@ namespace Alpha
                 _currentIndex = value;
 
                 // アイテムの数の範囲にクランプする
-                int length = Enum.GetValues(typeof(ItemType)).Length;
+                //int length = Enum.GetValues(typeof(ItemType)).Length;
                 // 末尾がミニキャラなので -2 して弾く
-                _currentIndex = Mathf.Clamp(_currentIndex, 0, length - 2);
+                //_currentIndex = Mathf.Clamp(_currentIndex, 0, length - 2);
+
+                _currentIndex = Mathf.Clamp(_currentIndex, 0, _selectable.Length - 1);
 
                 // 選択したアイテムをメッセージングする
-                ItemMessageSender.SendMessage((ItemType)CurrentIndex);
+                ItemMessageSender.SendMessage(_selectable[_currentIndex]);
             }
         }
 
@@ -45,7 +53,7 @@ namespace Alpha
             else if (key == KeyCode.F) CurrentIndex = 3;
             else if (key == KeyCode.G) CurrentIndex = 4;
 
-            return (ItemType)CurrentIndex;
+            return _selectable[CurrentIndex];
         }
 
         /// <summary>
@@ -56,7 +64,7 @@ namespace Alpha
             if (fov > 0) CurrentIndex--;
             if (fov < 0) CurrentIndex++;
 
-            return (ItemType)CurrentIndex;
+            return _selectable[CurrentIndex];
         }
     }
 }

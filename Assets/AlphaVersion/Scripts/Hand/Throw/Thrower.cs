@@ -62,7 +62,7 @@ namespace Alpha
             // 1つ以上積んでいる場合は、最下段のアイテムの位置に音とパーティクルを再生
             if (StackCount > 0)
             {
-                _effector.PlayThrowEffect(_tower.Peek().transform);
+                _effector.PlayThrowEffect(_tower.Peek().transform, transform);
             }
 
             // 最低限飛ぶ距離を設定

@@ -28,12 +28,12 @@ namespace Alpha
         /// <summary>
         /// 引数のTransformの位置で、投げる際の音とパーティクルを再生する
         /// </summary>
-        public void PlayThrowEffect(Transform particleParent)
+        public void PlayThrowEffect(Transform particleParent, Transform pivot)
         {
             Cri.PlaySE("SE_Slide");
             Cri.DelayedPlaySE("SE_Swoosh_KARI", 0.1f, "CueSheet_SE2");
-            Vector3 particlePosition = particleParent.position + _throwParticleOffset;
-
+            Vector3 particlePosition = pivot.position + _throwParticleOffset;
+            
             Transform parent = _swooshParticleItemFollow ? particleParent : null;
             ParticleMessageSender.SendMessage(ParticleType.Swoosh, particlePosition, parent);
         }
