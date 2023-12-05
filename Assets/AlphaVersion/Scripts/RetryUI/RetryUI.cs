@@ -31,7 +31,7 @@ namespace Alpha
             // ‰‰o‘Ò‚Â
 
             if (result == 0) return SceneManager.GetActiveScene().name;
-            else return "Title_Temp";
+            else return "Scene_Opningscene";
         }
     }
 }

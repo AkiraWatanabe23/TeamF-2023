@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4374793905128756399}
   - {fileID: 6545258645035933177}
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6507713162908430640
 Animator:
@@ -336,11 +336,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BgMD_Board01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047202346285826306, guid: e2cbe8eb98a3cdb40a9ecf564d2f5bfd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

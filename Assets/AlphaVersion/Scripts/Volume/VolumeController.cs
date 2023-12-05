@@ -36,6 +36,12 @@ namespace Alpha
             }).AddTo(gameObject);
 
             this.OnDestroyAsObservable().Subscribe(_ => { cts.Cancel(); cts.Dispose(); });
+
+            // ゲームオーバー時に血糊を消す
+            MessageBroker.Default.Receive<GameOverMessage>().Subscribe(_ => 
+            {
+                _switcher.Switch(_currentVolume);
+            });
         }
 
         /// <summary>
@@ -43,7 +49,6 @@ namespace Alpha
         /// </summary>
         protected override void OnFerverTimeEnter()
         {
-            _switcher.Switch(VolumeType.Ferver);
             _currentVolume = VolumeType.Ferver;
         }
 
