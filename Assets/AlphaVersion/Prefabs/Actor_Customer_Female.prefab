@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633cd5e55601a8149b6abd522c3c0044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: {fileID: 0}
+  _animation: {fileID: 183877334071728430}
 --- !u!114 &183877334071728430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,17 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf96ff3af1a91f4bb9aab54befd4d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 6716470895774260778}
   _stateMachine:
     _walkAniName: Walk
-    _sitAniName: Sitting
-    _successAniName: Surprized
-    _failedAniName: Failed
+    _sitAniName: Order
+    _successAniName: Success
+    _failedAniName: Failure
     _danceAniName: Dance
     _idleAniName: Idle
     _attackAniName: Attack
     _sitScripts: {fileID: 0}
-    _avatorTrams: {fileID: 0}
+    _avatorTrams: {fileID: 5292525415206158770}
     _ngWordbool: 0
     _displayLog: 0
   _changeSitChairButton: {fileID: 0}
@@ -270,6 +270,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6839929019107898681}
+    - targetCorrespondingSourceObject: {fileID: 7775441984632267936, guid: 9001f74d27a07ea4990ece41c10c68f4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6716470895774260778}
   m_SourcePrefab: {fileID: 100100000, guid: 9001f74d27a07ea4990ece41c10c68f4, type: 3}
 --- !u!4 &8314225418646270692 stripped
 Transform:
@@ -306,6 +310,27 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!95 &6716470895774260778
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8658697341309511774}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f0fe6486bf23a748a2522c8fb18d7bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3860238516123265612
 PrefabInstance:
   m_ObjectHideFlags: 0

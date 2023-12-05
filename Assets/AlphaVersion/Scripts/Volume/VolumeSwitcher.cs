@@ -23,6 +23,8 @@ namespace Alpha
         /// </summary>
         public void Switch(VolumeType type)
         {
+            if (_damageVolume == null) return;
+
             if (type == VolumeType.Normal) _damageVolume.enabled = false;
             if (type == VolumeType.Ferver) _damageVolume.enabled = false;
             if (type == VolumeType.Damage) _damageVolume.enabled = true;

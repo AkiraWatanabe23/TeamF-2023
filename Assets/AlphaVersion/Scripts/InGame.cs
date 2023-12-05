@@ -72,9 +72,10 @@ namespace Alpha
             //Cri.StopBGM();
             SendGameOverMessage();
 
+
             string evaluate = _settings.GetEvaluate(_score.TotalScore.Value);
-            await _gameOverEvent.PlayAsync(evaluate, token);
             _ranking.GetTmpScoreEffect(_score.TotalScore.Value);
+            await _gameOverEvent.PlayAsync(evaluate, token);
 
             string nextScene = await _retry.ButtonClickAsync(token);
             SceneManager.LoadScene(nextScene);

@@ -25,7 +25,7 @@ namespace Alpha
         {
             await _uiInvisible.PlayAsync(token);
             await _door.PlayAsync(token);
-            await _result.PlayAsync(result, token);
+            //await _result.PlayAsync(result, token);
         }
     }
 }

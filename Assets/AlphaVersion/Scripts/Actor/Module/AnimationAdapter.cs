@@ -17,8 +17,6 @@ public class AnimationAdapter : MonoBehaviour
     {
         if (_animation == null) return;
 
-        Debug.Log(gameObject.name + " " + name);
-
         if (name == "Walk") _animation.WalkAnimation();
         else if (name == "Idle") _animation.IdleState();
         else if (name == "Order") _animation.SitAnimation();

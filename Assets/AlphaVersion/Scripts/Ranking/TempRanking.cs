@@ -23,39 +23,46 @@ namespace Alpha
 
         private TempRankingSystem _rankingSystem;
 
+        private List<PlayerScore> _playerScores = new();
+
+        [SerializeField, Header("スコア取得までの待ち時間")] private float _waitTime;
+
+        [SerializeField, Header("取得したいスコアの数")] private int _scoreCount;
+
+        [SerializeField, Header("ボタンを格納")] GameObject[] _buttons = new GameObject[2];
+
         // Start is called before the first frame update
         void Start()
         {
             _rankingSystem = FindObjectOfType<TempRankingSystem>();
+            StartCoroutine(GetScores(100));
+        }
+        public void GetTmpScoreEffect(int score)
+        {
+            _rankingSystem.AddPlayerScore(score);
+
+            _playerScores = _rankingSystem.GetScores(_scoreCount);
+
+            _currentText.text = $"Score : {score}";
+
+            for (int i = 1; i <= _playerScores.Count; i++)
+            {
+                _texts[i - 1].text = $"{i} : {_playerScores[i - 1].Score}";
+                _texts[i - 1].color = new Color(_texts[i - 1].color.r, _texts[i - 1].color.g, _texts[i - 1].color.b, 1);
+            }
+            _currentText.color = new Color(_currentText.color.r, _currentText.color.g, _currentText.color.b, 1);
+
+            for (int i = 0; i < _buttons.Length; i++)
+            {
+                _buttons[i].SetActive(true);
+            }
         }
 
-        public void GetTmpScoreEffect(int currentScore)
+        public IEnumerator GetScores(int score)
         {
-            _rankingSystem.AddPlayerScore(currentScore);
-            var scores = _rankingSystem.GetScores(5);
+            yield return new WaitForSeconds(_waitTime);
 
-            _scorePanel.transform.DOLocalMoveX(0, 1f).OnComplete(() =>
-            {
-                _scorePanel.transform.DOLocalMoveX(0, 01f);
-                _currentText.text = $"Score  :  {currentScore}";
-
-                // TODO:Dotween再インストールで直るらしいエラー
-                //_currentText.DOFade(endValue: 1f, duration: 0.5f).OnComplete(() =>
-                //{
-                //    var sequence = DOTween.Sequence();
-                //    for (int i = 1; i <= scores.Count; i++)
-                //    {
-                //        sequence.Append(_texts[i - 1].DOFade(endValue: 1, duration: 1));
-                //        //_texts[i - 1].DOCounter(0, scores[i - 1].Score, 1f);
-                //        _texts[i - 1].text = $"{i}st : {scores[i - 1].Score}";
-                //    }
-                //    sequence.Play();
-                //});
-
-                // 一時的
-                _currentText.color = Color.white;
-                _texts.ForEach(t => t.color = Color.white);
-            });
+            GetTmpScoreEffect(score);
         }
     }
 

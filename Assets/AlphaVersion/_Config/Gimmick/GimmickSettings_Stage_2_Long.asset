@@ -23,4 +23,5 @@ MonoBehaviour:
     - 0
     - 10
   _ufo:
-    _timing: []
+    _timing:
+    - 0

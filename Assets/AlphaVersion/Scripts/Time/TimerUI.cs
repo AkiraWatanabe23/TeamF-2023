@@ -17,17 +17,17 @@ namespace Alpha
 
         void Awake()
         {
-            _background.localScale = Vector3.one;
+            //_background.localScale = Vector3.one;
 
-            // フィーバーゲージの長さ設定
-            float f = _settings.FerverTime / _settings.TimeLimit;
-            _ferverGauge.transform.localScale = new Vector3(f, 1, 1);
+            //// フィーバーゲージの長さ設定
+            //float f = _settings.FerverTime / _settings.TimeLimit;
+            //_ferverGauge.transform.localScale = new Vector3(f, 1, 1);
         }
 
         void Update()
         {
             // フィーバーのゲージを虹色にする
-            _ferverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
+            //_ferverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
         }
 
         /// <summary>
@@ -35,12 +35,12 @@ namespace Alpha
         /// </summary>
         public void Draw(float max, float current)
         {
-            current = max - current;
+            //current = max - current;
 
-            Vector3 scale = transform.localScale;
-            scale.x = 1.0f - (current / max);
+            //Vector3 scale = transform.localScale;
+            //scale.x = 1.0f - (current / max);
 
-            _background.localScale = scale;
+            //_background.localScale = scale;
         }
     }
 }

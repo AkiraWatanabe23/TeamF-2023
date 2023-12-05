@@ -55,9 +55,6 @@ namespace Alpha
         }
     }
 
-    /// <summary>
-    /// ランキングの機能のクラス(仮)
-    /// </summary>
     public class TempRankingSystem : MonoBehaviour
     {
         [SerializeField, Header("ジェイソンファイルの名前")] string _fileName;
