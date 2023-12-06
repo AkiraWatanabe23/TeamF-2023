@@ -15,6 +15,7 @@ namespace StateMachine
         private WaitState _waitState = new();
         private IdleMotion _idleState = new();
         private AttackMotion _attackMotion = new();
+        private HitsMotion _hitsMotion = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
         public SuccessMotionScript GetSuccessMotion => _successMotion;
@@ -23,6 +24,7 @@ namespace StateMachine
         public WaitState GetWaitState => _waitState;
         public IdleMotion GetIdleState => _idleState;
         public AttackMotion GetAttackMotion => _attackMotion;
+        public HitsMotion GetHitsMotion => _hitsMotion;
 
         private IState _currentState = null;
         public IState CurrentState => _currentState;
@@ -35,14 +37,15 @@ namespace StateMachine
         [SerializeField] private string _danceAniName = "Dance";
         [SerializeField] private string _idleAniName = "Idle";
         [SerializeField] private string _attackAniName = "Attack";
+        [SerializeField] private string _hitsAniName = "Hits";
         public string WalkName => _walkAniName;
         public string SitName => _sitAniName;
         public string SuccessName => _successAniName;
         public string FailedName => _failedAniName;
         public string DanceName => _danceAniName;
         public string IdleAniName => _idleAniName;
-
         public string AttackAniName => _attackAniName;
+        public string HitsAniName => _hitsAniName;
 
         private float _time;
         /// <summary>ŠO•”QÆ</summary>
