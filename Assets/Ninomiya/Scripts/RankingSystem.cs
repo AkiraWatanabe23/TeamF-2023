@@ -62,7 +62,9 @@ public class RankingSystem : MonoBehaviour
     ScoreData _scoreData;
     private void Awake()
     {
-        LordScore();
+        _fileName = $"{_fileName}.json";
+
+        LoadScore();
     }
     public void AddPlayerScore(int score) //PlayerのScoreを保存する
     {
@@ -75,7 +77,7 @@ public class RankingSystem : MonoBehaviour
         return _scoreData._scores.GetRange(0, Mathf.Min(count, _scoreData._scores.Count));
     }
 
-    private void LordScore()
+    private void LoadScore()
     {
         string filePath = Path.Combine(Application.persistentDataPath, _fileName);
 
@@ -93,6 +95,10 @@ public class RankingSystem : MonoBehaviour
     public void AllClear()　//現在保存されているスコアをすべて消去
     {
         _scoreData.ClearScore();
+        for (int i = 0; i < 5; i++)
+        {
+            _scoreData._scores.Add(new PlayerScore(0));
+        }
         SaveScore();
     }
 
