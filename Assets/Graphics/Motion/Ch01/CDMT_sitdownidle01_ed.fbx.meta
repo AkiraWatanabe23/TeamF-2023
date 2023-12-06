@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 50853e0ee77c1f646952be6bb1243f20
+guid: 03ddbbd1743db39468bbeba42532c31b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
-    materialName: 1
+    materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

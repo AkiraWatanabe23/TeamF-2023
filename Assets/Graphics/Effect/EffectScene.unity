@@ -7672,6 +7672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BgMD_UFO01
       objectReference: {fileID: 0}
+    - target: {fileID: 161134407920833525, guid: 3d09ba610f8893e4b9f16477ca70631e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8497539115943305025, guid: 3d09ba610f8893e4b9f16477ca70631e,
         type: 3}
       propertyPath: m_RootOrder
