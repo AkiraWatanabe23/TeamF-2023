@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// UFOの生成を行う機能のクラス
-/// </summary>
-public class UfoSpawner : MonoBehaviour
+namespace Alpha
 {
-    //[SerializeField]  _prefab;
-
-    public void Spawn()
+    /// <summary>
+    /// UFOの生成を行う機能のクラス
+    /// </summary>
+    public class UfoSpawner : MonoBehaviour
     {
-        // 生成
+        [SerializeField] Ufo _prefab;
+        [SerializeField] Transform _spawnPoint;
+        [SerializeField] Transform _target;
+
+        private void Start()
+        {
+            Spawn();
+        }
+
+        public void Spawn()
+        {
+            var v = Instantiate(_prefab, _spawnPoint.position, Quaternion.identity);
+            v._moveTarget = _target;
+        }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffa874e1155d094798f87f61673a553, type: 3}
   m_Name: InGameSettings_Stage_0_Tutorial
   m_EditorClassIdentifier: 
-  _timeLimit: 30
-  _ferverTime: 15
+  _timeLimit: 60
+  _ferverTime: 30
   _evaluate:
   - Score: 0
     Evaluate: "\u4EEE\u8A55\u4FA1"
