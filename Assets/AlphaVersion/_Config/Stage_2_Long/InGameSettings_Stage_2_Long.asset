@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: InGameSettings_Stage_2_Long
   m_EditorClassIdentifier: 
   _timeLimit: 85
-  _ferverTime: 30
+  _ferverTime: 15
   _evaluate:
   - Score: 0
     Evaluate: "\u4EEE\u8A55\u4FA1"

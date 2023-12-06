@@ -20,11 +20,11 @@ namespace Alpha
             public string Evaluate;
         }
 
-        [Header("制限時間")]
+        [Header("<color=#00FF76>制限時間</color>")]
         [SerializeField] int _timeLimit = 60;
-        [Header("フィーバータイム開始")]
+        [Header("<color=#00FF76>フィーバータイム開始</color>")]
         [SerializeField] int _ferverTime = 20;
-        [Header("スコアに応じた評価")]
+        [Header("<color=#00FF76>スコアに応じた評価</color>")]
         [SerializeField] ScoreEvaluate[] _evaluate;
 
         public float TimeLimit => _timeLimit;

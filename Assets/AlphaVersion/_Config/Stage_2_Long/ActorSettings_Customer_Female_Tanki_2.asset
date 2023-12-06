@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7510f3cdd9aeba47886f76f039bcd63, type: 3}
-  m_Name: ActorSettings_Customer_Male
+  m_Name: ActorSettings_Customer_Female_Tanki_2
   m_EditorClassIdentifier: 
-  _actorType: 0
+  _actorType: 1
   _behaviorType: 0
-  _failureVoice: SE_Failure_Man
-  _successVoice: SE_Success_1_Man
-  _rareSuccessVoice: SE_Success_2_Man
+  _failureVoice: SE_Failure_Woman
+  _successVoice: SE_Success_1_Woman
+  _rareSuccessVoice: SE_Success_2_Woman
   _actorParams:
-    MoveSpeed: 1.04
-    Orders: 00000000010000000200000003000000
-    OrderTimeLimit: 10.2
+    MoveSpeed: 1.03
+    OrderTimeLimit: 15.6
+    Orders: 00000000020000000300000004000000
   _visualParams:
     ItemHitParticle:
       Particle: 4

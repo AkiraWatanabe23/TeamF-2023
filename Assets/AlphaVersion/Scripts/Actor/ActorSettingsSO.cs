@@ -16,14 +16,14 @@ namespace Alpha
         [System.Serializable]
         public struct ActorParams
         {
-            [Header("移動速度")]
+            [Header("<color=#00FF76>移動速度</color>")]
             [Range(0.1f, 3.0f)]
             public float MoveSpeed;
-            [Header("注文品の一覧")]
-            public ItemType[] Orders;
-            [Header("注文を受け取る制限時間(秒)")]
+            [Header("<color=#00FF76>注文を受け取る制限時間(秒)</color>")]
             [Range(1.0f, 60.0f)]
             public float OrderTimeLimit;
+            [Header("注文品の一覧")]
+            public ItemType[] Orders;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Alpha
         [SerializeField] string _failureVoice;
         [SerializeField] string _successVoice;
         [SerializeField] string _rareSuccessVoice;
-        [Header("プランナーが弄る値")]
+        [Header("<color=#00FF76>レベルデザイン用の値</color>")]
         [SerializeField] ActorParams _actorParams;
         [Header("デザイナーが弄る値")]
         [SerializeField] VisualParams _visualParams;

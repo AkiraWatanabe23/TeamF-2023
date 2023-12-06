@@ -12,6 +12,7 @@ namespace Alpha
     public class TimerUI : MonoBehaviour
     {
         [SerializeField] InGameSettingsSO _settings;
+        [SerializeField] Image _feverGauge;
         [SerializeField] Transform _under;
         [SerializeField] Transform _ferverUnder;
         [SerializeField] float _mag = 1.0f;
@@ -19,8 +20,11 @@ namespace Alpha
 
         void Update()
         {
-            // フィーバーのゲージを虹色にする
-            //_ferverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
+            if (_ferverUnder.localScale.x > 0)
+            {
+                // フィーバーのゲージを虹色にする
+                _feverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
+            }
         }
 
         /// <summary>
