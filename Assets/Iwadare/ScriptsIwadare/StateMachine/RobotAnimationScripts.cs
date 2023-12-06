@@ -48,6 +48,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationStay += WaitState;
             AnimationCallBackTest.OnAnimationIdle += IdleState;
             AnimationCallBackTest.OnAnimationAttack += AttackMotion;
+            AnimationCallBackTest.OnAnimationHits += HitsMotion;
         }
     }
 
@@ -62,7 +63,8 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationFailed -= FailedAnimation;
             AnimationCallBackTest.OnAnimationStay -= WaitState;
             AnimationCallBackTest.OnAnimationIdle -= IdleState;
-            AnimationCallBackTest.OnAnimationAttack += AttackMotion;
+            AnimationCallBackTest.OnAnimationAttack -= AttackMotion;
+            AnimationCallBackTest.OnAnimationHits -= HitsMotion;
         }
     }
 
@@ -112,7 +114,7 @@ public class RobotAnimationScripts : MonoBehaviour
         }
     }
 
-    /// <summary>Idleアニメーション(IdleのAnimationの中身はなし。)</summary>
+    /// <summary>Idleアニメーション</summary>
     public void IdleState()
     {
         if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
@@ -126,6 +128,15 @@ public class RobotAnimationScripts : MonoBehaviour
         if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
         {
             _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
+        }
+    }
+
+    /// <summary>Hitsモーション</summary>
+    public void HitsMotion()
+    {
+        if(_stateMachine.CurrentState != _stateMachine.GetHitsMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetHitsMotion);
         }
     }
 

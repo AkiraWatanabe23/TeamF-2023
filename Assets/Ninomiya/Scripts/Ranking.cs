@@ -9,12 +9,6 @@ public class Ranking : MonoBehaviour
 
     [SerializeField, Header("順位スコアを表示するためのTest")] private List<Text> _texts = new List<Text>();
 
-    [SerializeField] private bool _tmpBool = false; //ゲームが終わった際の判定するための仮のBool(使わない
-
-    [SerializeField] private bool _gameEnd = false;//(使わない
-
-    [SerializeField, Header("キャンバス")] private GameObject _scorePanel;
-
     private RankingSystem _rankingSystem;
 
     private List<PlayerScore> _playerScores = new();
@@ -25,11 +19,15 @@ public class Ranking : MonoBehaviour
 
     [SerializeField, Header("ボタンを格納")] GameObject[] _buttons = new GameObject[2];
 
+    [SerializeField, Header("enabledを切り替えるため")] private bool _activeBool = false;
+
+    [SerializeField, Header("Canvasを入れます")] private Canvas _canvas;
+
     // Start is called before the first frame update
     void Start()
     {
         _rankingSystem = FindObjectOfType<RankingSystem>();
-        StartCoroutine(GetScores(100));
+        ActiveChange();
     }
     public void GetTmpScoreEffect(int score)
     {
@@ -50,6 +48,13 @@ public class Ranking : MonoBehaviour
         {
             _buttons[i].SetActive(true);
         }
+    }
+
+    public void ActiveChange()
+    {
+        _activeBool = !_activeBool;
+        if (_activeBool) { _canvas.enabled = true; }
+        else { _canvas.enabled = false; }
     }
 
     public IEnumerator GetScores(int score)

@@ -15,6 +15,10 @@ public class IllustratedBook : MonoBehaviour
 
     [SerializeField] private bool _inputFlag = false;
 
+    [SerializeField, Header("enabledを切り替えるため")] private bool _activeBool = false;
+
+    [SerializeField, Header("Canvasを入れます")] private Canvas _canvas;
+
     private float _scroll = 0;
 
     private int _scrollCount = 0;
@@ -24,6 +28,8 @@ public class IllustratedBook : MonoBehaviour
     [SerializeField, Header("Dotweenのマイナス移動量")] private float _minusMoveY = -1100f;
 
     [SerializeField] IllustratedBookData[] _illustratedBookDatas = default;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,7 @@ public class IllustratedBook : MonoBehaviour
         }
 
         _y = GetComponent<RectTransform>().anchoredPosition.y;
+        ActiveChange();
     }
 
     // Update is called once per frame
@@ -47,12 +54,12 @@ public class IllustratedBook : MonoBehaviour
 
             if (_scroll > 0 && _scrollCount < _illustratedBookDatas.Length - 1)
             {
-                StartTween(1100f);
+                StartTween(_plusMoveY);
                 _scrollCount++;
             }
             else if (_scroll < 0 && _scrollCount > 0)
             {
-                StartTween(-1100f);
+                StartTween(_minusMoveY);
                 _scrollCount--;
             }
         }
@@ -69,11 +76,16 @@ public class IllustratedBook : MonoBehaviour
             _inputFlag = false;
         });
     }
-}
 
-[CreateAssetMenu(fileName = "IllustratedBookData", menuName = "IllustratedBook")]
+    public void ActiveChange()
+    {
+        _activeBool = !_activeBool;
+        if (_activeBool) { _canvas.enabled = true; }
+        else { _canvas.enabled = false; }
+    }
+}
 [System.Serializable]
-public class IllustratedBookData : ScriptableObject
+public class IllustratedBookData
 {
     [SerializeField, Header("使用するText")] private Text[] _charactertexts;　//Textを3つ入れる(name,time,ditail)
 
