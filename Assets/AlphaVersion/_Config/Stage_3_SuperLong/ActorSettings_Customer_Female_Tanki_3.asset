@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7510f3cdd9aeba47886f76f039bcd63, type: 3}
+  m_Name: ActorSettings_Customer_Female_Tanki_3
+  m_EditorClassIdentifier: 
+  _actorType: 1
+  _behaviorType: 0
+  _failureVoice: SE_Failure_Woman
+  _successVoice: SE_Success_1_Woman
+  _rareSuccessVoice: SE_Success_2_Woman
+  _actorParams:
+    MoveSpeed: 1.03
+    OrderTimeLimit: 15.6
+    Orders: 01000000020000000300000004000000
+  _visualParams:
+    ItemHitParticle:
+      Particle: 4
+      Offset:
+        x: 0.287
+        y: 1
+        z: 0
+    SuccessParticle:
+      Particle: 7
+      Offset:
+        x: 0
+        y: 1
+        z: 0
+    FailureParticle:
+      Particle: 3
+      Offset:
+        x: 0
+        y: 1
+        z: 0.174

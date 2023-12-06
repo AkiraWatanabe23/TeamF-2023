@@ -35,7 +35,7 @@ namespace Alpha
                 public int Count => _count;
             }
 
-            [Header("タイミング(秒)と生成する個数")]
+            [Header("<color=#00FF76>タイミング(秒)と生成する個数</color>")]
             [SerializeField] TimingData[] _timing;
 
             public IReadOnlyList<TimingData> Timing
@@ -59,7 +59,7 @@ namespace Alpha
         public class RobberGimmick
         {
             [Min(0)]
-            [Header("タイミング(秒)")]
+            [Header("<color=#00FF76>タイミング(秒)</color>")]
             [SerializeField] float[] _timing;
 
             public IReadOnlyList<float> Timing
@@ -83,7 +83,7 @@ namespace Alpha
         public class UFOGimmick
         {
             [Min(0)]
-            [Header("タイミング(秒)")]
+            [Header("<color=#00FF76>タイミング(秒)</color>")]
             [SerializeField] float[] _timing;
 
             public IReadOnlyList<float> Timing
@@ -100,11 +100,11 @@ namespace Alpha
             public int Max => _timing.Length;
         }
 
-        [Header("タンブルウィードのギミック")]
+        [Header("<color=#00FF76>タンブルウィードのギミック</color>")]
         [SerializeField] TumbleweedGimmick _tumbleweed;
-        [Header("強盗のギミック")]
+        [Header("<color=#00FF76>強盗のギミック</color>")]
         [SerializeField] RobberGimmick _robber;
-        [Header("UFOのギミック")]
+        [Header("<color=#00FF76>UFOのギミック</color>")]
         [SerializeField] UFOGimmick _ufo;
 
         public TumbleweedGimmick Tumbleweed => _tumbleweed;

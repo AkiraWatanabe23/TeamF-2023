@@ -19,21 +19,21 @@ namespace Alpha
         [System.Serializable]
         public class ActorScore
         {
-            [Header("¬Œ÷‚µ‚½Û‚Ì‰ÁZ—Ê")]
+            [Header("<color=#00FF76>¬Œ÷‚µ‚½Û‚Ì‰ÁZ—Ê</color>")]
             public int SuccessBonus = BaseActionScore;
-            [Header("¸”s‚µ‚½Û‚ÌŒ¸­—Ê")]
+            [Header("<color=#00FF76>¸”s‚µ‚½Û‚ÌŒ¸­—Ê</color>")]
             public int FailurePenalty = BaseActionScore;
         }
 
-        [Header("‹­“")]
+        [Header("<color=#00FF76>‹­“</color>")]
         [SerializeField] ActorScore _robber;
-        [Header("‹q(’j)")]
+        [Header("<color=#00FF76>‹q(’j)</color>")]
         [SerializeField] ActorScore _male;
-        [Header("‹q(—)")]
+        [Header("<color=#00FF76>‹q(—)</color>")]
         [SerializeField] ActorScore _female;
-        [Header("’Êí‚Ì”{—¦")]
+        [Header("<color=#00FF76>’Êí‚Ì”{—¦</color>")]
         [SerializeField] float _defaultScoreRate = 1;
-        [Header("ƒtƒB[ƒo[ƒ^ƒCƒ€‚Ì”{—¦")]
+        [Header("<color=#00FF76>ƒtƒB[ƒo[ƒ^ƒCƒ€‚Ì”{—¦</color>")]
         [SerializeField] float _feverScoreRate = 2;
 
         public ActorScore Robber => _robber;

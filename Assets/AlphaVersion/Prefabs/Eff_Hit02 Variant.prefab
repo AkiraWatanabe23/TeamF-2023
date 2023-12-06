@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 263008147188141637, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296254325350670483, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3022681945389465669, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}
       propertyPath: m_Name
@@ -18,10 +28,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4648644201870400596, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470079927278611485, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529892441379989864, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312040451899528460, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9107651828591778891, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9107651828591778891, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}

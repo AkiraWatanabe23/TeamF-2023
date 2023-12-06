@@ -26,6 +26,7 @@ namespace Alpha
 
         void Start()
         {
+            _spotLight.gameObject.SetActive(false);
             SetOnDefaultPosition();
         }
 

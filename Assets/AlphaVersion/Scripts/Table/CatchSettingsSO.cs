@@ -11,12 +11,12 @@ namespace Alpha
     [System.Serializable]
     public class CatchSettingsSO : ScriptableObject
     {
-        [Header("キャッチ判定の大きさの設定")]
+        [Header("<color=#00FF76>キャッチ判定の大きさの設定</color>")]
         [Range(0.1f, 0.8f)]
         [SerializeField] float _normalSize = 0.25f;
         [Range(0.1f, 0.8f)]
         [SerializeField] float _ferverSize = 0.8f;
-        [Header("商品をキャッチできる速度")]
+        [Header("<color=#00FF76>商品をキャッチできる速度</color>")]
         [SerializeField] float _catchableSpeed = 1.0f;
 
         public float NormalSize => _normalSize;

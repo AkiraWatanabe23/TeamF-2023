@@ -57,7 +57,7 @@ namespace Alpha
                 .Where(c => c.collider.TryGetComponent(out ThrowedItem _)).Subscribe(_ => 
                 {
                     isItemHit = true;
-                    Cri.PlaySE("SE_Robber_Voice_2");
+                    Cri.PlaySE3D(transform.position, "SE_Robber_Voice_2");
                     _decal.SetActive(true);
                 });
 

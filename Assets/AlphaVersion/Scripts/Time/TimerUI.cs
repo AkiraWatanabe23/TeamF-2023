@@ -12,22 +12,19 @@ namespace Alpha
     public class TimerUI : MonoBehaviour
     {
         [SerializeField] InGameSettingsSO _settings;
-        [SerializeField] Transform _background;
-        [SerializeField] Image _ferverGauge;
-
-        void Awake()
-        {
-            //_background.localScale = Vector3.one;
-
-            //// フィーバーゲージの長さ設定
-            //float f = _settings.FerverTime / _settings.TimeLimit;
-            //_ferverGauge.transform.localScale = new Vector3(f, 1, 1);
-        }
+        [SerializeField] Image _feverGauge;
+        [SerializeField] Transform _under;
+        [SerializeField] Transform _ferverUnder;
+        [SerializeField] float _mag = 1.0f;
+        [SerializeField] float _feverMag = 1.0f;
 
         void Update()
         {
-            // フィーバーのゲージを虹色にする
-            //_ferverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
+            if (_ferverUnder.localScale.x > 0)
+            {
+                // フィーバーのゲージを虹色にする
+                _feverGauge.color = Color.HSVToRGB(Time.time % 1, 1, 1);
+            }
         }
 
         /// <summary>
@@ -35,12 +32,20 @@ namespace Alpha
         /// </summary>
         public void Draw(float max, float current)
         {
-            //current = max - current;
+            Debug.Log(current + " " + max);
 
-            //Vector3 scale = transform.localScale;
-            //scale.x = 1.0f - (current / max);
-
-            //_background.localScale = scale;
+            if (_under.localScale.x <= 1)
+            {
+                Vector3 scale = _under.localScale;
+                scale.x += Time.deltaTime * _mag;
+                _under.localScale = scale;
+            }
+            else
+            {
+                Vector3 scale = _ferverUnder.localScale;
+                scale.x += Time.deltaTime * _feverMag;
+                _ferverUnder.localScale = scale;
+            }
         }
     }
 }

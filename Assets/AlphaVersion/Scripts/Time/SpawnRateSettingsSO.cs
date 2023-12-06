@@ -11,7 +11,7 @@ namespace Alpha
     [System.Serializable]
     public class SpawnRateSettingsSO : ScriptableObject
     {
-        [Header("‹q‚Ì¶¬ŠÔŠu(•b)")]
+        [Header("<color=#00FF76>‹q‚Ì¶¬ŠÔŠu(•b)</color>")]
         [SerializeField] float _customerSpawnRate = 3.0f;
 
         public float CustomerSpawnRate => _customerSpawnRate;
