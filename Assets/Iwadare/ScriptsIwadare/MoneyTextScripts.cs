@@ -9,9 +9,9 @@ public class MoneyTextScripts : MonoBehaviour
 {
     [SerializeField] TextMesh _moneyTextPrefab;
     [Header("Instantiateした際の物の高さの差")]
-    [SerializeField] float _insUpDifference = 5;
+    [SerializeField] float _insUpDifference = 1f;
     [Header("テキストのy方向への移動の終点と始点の差")]
-    [SerializeField] float _moveUpDifference = 10f;
+    [SerializeField] float _moveUpDifference = 0.5f;
     [SerializeField] float _fadeTime = 3f;
     [SerializeField] float _destroyTime = 5f;
     [SerializeField] bool _textReverse = true;
