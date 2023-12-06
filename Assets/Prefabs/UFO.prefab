@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1044104922129351344}
   - component: {fileID: 6966248249687412686}
   - component: {fileID: 1376648317131292103}
-  - component: {fileID: 4314060560232671075}
   m_Layer: 0
   m_Name: UFO
   m_TagString: Untagged
@@ -31,7 +30,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5109025892247554770}
   - {fileID: 5476219645484149782}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -49,10 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxCastCount: 10
-  _animator: {fileID: 4314060560232671075}
-  _offset: {x: 0, y: 0, z: 0}
-  _moveTarget: {fileID: 5109025892247554770}
-  _debug: 1
+  _suckUpOffset: {x: 0, y: -1, z: 0}
+  _moveOffset: {x: 5, y: 0, z: 0}
 --- !u!65 &1376648317131292103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74,58 +70,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!95 &4314060560232671075
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331896381402653166}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!1 &6788187103061474081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5109025892247554770}
-  m_Layer: 0
-  m_Name: MovePos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5109025892247554770
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788187103061474081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1044104922129351344}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4472674819427578711
 PrefabInstance:
   m_ObjectHideFlags: 0
