@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class TestSceneChenger : MonoBehaviour
 {
+    [SerializeField] private string sceneName;
     public void TestChenger()
     {
-        SceneManager.LoadScene("TestTitle"); // シーン遷移
+        SceneManager.LoadScene(sceneName); // シーン遷移
     }
 }
