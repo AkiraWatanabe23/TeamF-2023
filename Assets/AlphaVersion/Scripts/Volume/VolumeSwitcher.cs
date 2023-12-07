@@ -11,11 +11,27 @@ namespace Alpha
     /// </summary>
     public class VolumeSwitcher : MonoBehaviour
     {
+        [Header("フィーバーのタイミングをトリガーする")]
+        [SerializeField] FerverTrigger _trigger;
+
+        [SerializeField] Volume _volume;
         [SerializeField] Volume _damageVolume;
+        [SerializeField] VolumeProfile _normalProfile;
+        [SerializeField] VolumeProfile _feverProfile;
 
         void Awake()
         {
             _damageVolume.enabled = false;
+        }
+
+        void OnEnable()
+        {
+            _trigger.OnFerverEnter += () => Switch(VolumeType.Ferver);
+        }
+
+        void OnDisable()
+        {
+            _trigger.OnFerverEnter -= () => Switch(VolumeType.Ferver);
         }
 
         /// <summary>
@@ -25,9 +41,20 @@ namespace Alpha
         {
             if (_damageVolume == null) return;
 
-            if (type == VolumeType.Normal) _damageVolume.enabled = false;
-            if (type == VolumeType.Ferver) _damageVolume.enabled = false;
-            if (type == VolumeType.Damage) _damageVolume.enabled = true;
+            if (type == VolumeType.Normal)
+            {
+                _damageVolume.enabled = false;
+
+            }
+            if (type == VolumeType.Ferver)
+            {
+                _volume.profile = _feverProfile;
+                _damageVolume.enabled = false;
+            }
+            if (type == VolumeType.Damage)
+            {
+                _damageVolume.enabled = true;
+            }
         }
     }
 }

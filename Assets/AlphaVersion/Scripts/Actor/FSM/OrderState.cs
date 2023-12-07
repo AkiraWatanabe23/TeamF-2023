@@ -19,6 +19,9 @@ namespace Alpha
 
         EmptyTable _table;
 
+        // 生成したタイミングで初期化処理として初期化クラスから渡す
+        public ItemType[] Orders;
+
         public override StateType Type => StateType.Order;
         
         /// <summary>
@@ -45,10 +48,10 @@ namespace Alpha
         {
             LookAt();
             Animator.Play("Order");
-            Cri.PlaySE3D(transform.position, "SE_Order");
+            Cri.PlaySE3D(transform.position, _settings.OrderVoice, "CueSheet_SE4");
 
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
-            _table.Table.Valid(_settings.OrderTimeLimit, _settings.RandomOrder, result => 
+            _table.Table.Valid(_settings.OrderTimeLimit, Orders[Random.Range(0, Orders.Length)], result => 
             {
                 Result = result;
                 _table.Table.Invalid();

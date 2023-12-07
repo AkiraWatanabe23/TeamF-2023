@@ -11,6 +11,8 @@ namespace Alpha
     public class ActorInitializer : FerverHandler
     {
         [SerializeField] ActorSpawner _spawner;
+        [Header("このステージで注文可能(Hand側と合わせる)")]
+        [SerializeField] ItemType[] _orders;
         [Header("初期化に必要なもの")]
         [SerializeField] PathCreator _pathCreator;
         [SerializeField] TableManager _tableManager;
@@ -23,6 +25,12 @@ namespace Alpha
         {
             Actor instance = _spawner.Spawn(behavior, actor);
             Waypoint lead = _pathCreator.GetPath(ToPathType(behavior));
+
+            // 客の場合はOrderStateを持っているので生成したタイミングでどの注文を頼めるかを渡す
+            if (instance.TryGetComponent(out OrderState orderState))
+            {
+                orderState.Orders = _orders;
+            }
 
             // 客の場合は、経路と席と現在フィーバータイムかどうかを渡す
             if (behavior == BehaviorType.Customer) instance.Init(lead, Tension, _tableManager);

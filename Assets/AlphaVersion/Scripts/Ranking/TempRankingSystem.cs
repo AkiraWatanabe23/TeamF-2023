@@ -64,7 +64,9 @@ namespace Alpha
         ScoreData _scoreData;
         private void Awake()
         {
-            LordScore();
+            _fileName = $"{_fileName}.json";
+
+            LoadScore();
         }
         public void AddPlayerScore(int score) //Player‚ÌScore‚ğ•Û‘¶‚·‚é
         {
@@ -77,7 +79,7 @@ namespace Alpha
             return _scoreData._scores.GetRange(0, Mathf.Min(count, _scoreData._scores.Count));
         }
 
-        private void LordScore()
+        private void LoadScore()
         {
             string filePath = Path.Combine(Application.persistentDataPath, _fileName);
 
@@ -95,6 +97,10 @@ namespace Alpha
         public void AllClear() //Œ»İ•Û‘¶‚³‚ê‚Ä‚¢‚éƒXƒRƒA‚ğ‚·‚×‚ÄÁ‹
         {
             _scoreData.ClearScore();
+            for (int i = 0; i < 5; i++)
+            {
+                _scoreData._scores.Add(new PlayerScore(0));
+            }
             SaveScore();
         }
 
