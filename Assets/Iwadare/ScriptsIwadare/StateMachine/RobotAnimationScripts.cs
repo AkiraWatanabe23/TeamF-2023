@@ -123,6 +123,7 @@ public class RobotAnimationScripts : MonoBehaviour
         }
     }
 
+    /// <summary>Attackアニメーション</summary>
     public void AttackMotion()
     {
         if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)

@@ -24,6 +24,7 @@ public class AttackMotion : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
+        stateMachine.Anim.Play(stateMachine.AttackAniName + "End");
         DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
     }
 }
