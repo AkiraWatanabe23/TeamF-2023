@@ -615,7 +615,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -740,7 +740,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1361, y: -600}
-  m_SizeDelta: {x: 1000, y: 400}
+  m_SizeDelta: {x: 1000, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1186758456607753355
 CanvasRenderer:
@@ -1308,23 +1308,23 @@ MonoBehaviour:
     - {fileID: 4657385647926974583}
     - {fileID: 2356033721374989383}
     - {fileID: 2313137079976100787}
-    _characterName: a
-    _characterTime: a
-    _characterDetail: a
+    _characterName: "\u30AB\u30A6\u30DC\u30FC\u30A4"
+    _characterTime: "\u5F85\u3061\u6642\u9593 : \u77ED\n\u5831\u916C : \u591A\u3044"
+    _characterDetail: "\u5730\u5143\u306E\u30AB\u30A6\u30DC\u30FC\u30A4\u3067\u5E38\u9023\u3002\r\n\u4ED5\u4E8B\u7D42\u308F\u308A\u306E\u7652\u3057\u3092\u6C42\u3081\u3066\u3084\u3063\u3066\u6765\u308B\u3002\u6C17\u306F\u77ED\u3044\u304C\u3001\u91D1\u6255\u3044\u306F\u826F\u3044\u3002\r\n\u300C\u30DE\u30B9\u30BF\u30FC\u3001\u3044\u3064\u3082\u306E\u3002\u300D\r\n\u300C\u3084\u3093\u306E\u304B\u30B3\u30E9\u3002\u300D\r"
   - _charactertexts:
     - {fileID: 3387253577095940886}
     - {fileID: 3196908493151044260}
     - {fileID: 1288152879971077393}
-    _characterName: b
-    _characterTime: b
-    _characterDetail: b
+    _characterName: "\u30AB\u30A6\u30AC\u30FC\u30EB"
+    _characterTime: "\u5F85\u3061\u6642\u9593 : \u77ED\n\u5831\u916C : \u9AD8\u3044"
+    _characterDetail: "\u3055\u3059\u3089\u3044\u306E\u30AB\u30A6\u30AC\u30FC\u30EB\u3002\r\n\u5E7C\u3044\u9803\u304B\u3089\u65C5\u3092\u3057\u3066\u304A\u308A\r\n\u305D\u306E\u7D4C\u9A13\u304B\u3089\u81EA\u4FE1\u6E80\u3005\uFF01\r\n\u9AD8\u98DB\u8ECA\u306A\u6027\u683C\u3067\u30C8\u30E9\u30D6\u30EB\u3082\u591A\u3044\u3002\r\n\u300C\u3042\u308A\u304C\u3068\u3046\u3002\u300D\u300C\u4FE1\u3058\u3089\u308C\u306A\u3044\uFF01\u300D\r"
   - _charactertexts:
     - {fileID: 7496995834820655787}
     - {fileID: 3846681083994981259}
     - {fileID: 3846681083994981259}
-    _characterName: c
-    _characterTime: c
-    _characterDetail: c
+    _characterName: "\u5F37\u76D7"
+    _characterTime: "\u4F53\u8102\u80AA\u73875\uFF05"
+    _characterDetail: "\u81EA\u5206\u306E\u7B4B\u8089\u3092\u611B\u3059\u308B\u3042\u307E\u308A\u3001\u4EBA\u306B\u8A87\u793A\u3059\u308B\u3088\u3046\u306B\u306A\u3063\u305F\u3002\u5F37\u76D7\u3092\u3059\u308B\u306E\u3082\u3042\u304F\u307E\u3067\u4EBA\u306B\u898B\u3089\u308C\u305F\u3044\u304B\u3089\u3002\r\n\u300C\u898B\u3088\u3053\u306E\u935B\u3048\u629C\u304B\u308C\u305F\u7B4B\u8089\u3092\uFF01\u300D\r\n\u300C\u543E\u8F29\u306E\u62F3\u306F\u62F3\u9283\u3088\u308A\u901F\u3044\u3067\u3059\u305E\u30A9\u300D\r"
 --- !u!1 &5187515556481715216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,10 +1393,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 63
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 122
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1473,10 +1473,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 122
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1737,10 +1737,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 122
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1817,10 +1817,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 122
     m_Alignment: 4
     m_AlignByGeometry: 0
