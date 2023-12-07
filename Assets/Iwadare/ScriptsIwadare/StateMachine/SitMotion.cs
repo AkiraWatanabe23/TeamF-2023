@@ -28,6 +28,7 @@ public class SitMotion : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
+        stateMachine.Anim.Play(stateMachine.SitName + "End");
         if (stateMachine._sitScripts != null && stateMachine._avatorTrams != null)
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.StandUp();

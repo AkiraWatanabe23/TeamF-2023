@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+using UnityEditor;
 
 public class MoneyTextScripts : MonoBehaviour
 {
-    [SerializeField] TextMesh _moneyTextPrefab;
+    [Header("TextMeshProが子にいるWorldCanvas")]
+    [SerializeField] Canvas _moneyTextCanvasPrefab;
     [Header("Instantiateした際の物の高さの差")]
     [SerializeField] float _insUpDifference = 1f;
     [Header("テキストのy方向への移動の終点と始点の差")]
@@ -23,16 +26,31 @@ public class MoneyTextScripts : MonoBehaviour
     {
         if(_button != null)
         {
-            _button.onClick.AddListener(() => MoneyText(500,_custmer.position));
+            _button.onClick.AddListener(() => MoneyText(-500,_custmer.position));
         }
     }
 
-    public void MoneyText(int moneyCount,Vector3 custnerTransform)
+    public void MoneyText(int moneyCount,Vector3 custmerTransform)
     {
-        custnerTransform.y = custnerTransform.y + _insUpDifference;
-        var moneyText = Instantiate(_moneyTextPrefab, custnerTransform, Quaternion.identity);
-        moneyText.transform.LookAt(Camera.main.transform);
-        if (_textReverse) { moneyText.transform.rotation = new Quaternion(0f, 180f, 0f, 0f); }
+        custmerTransform.y = custmerTransform.y + _insUpDifference;
+        if (_moneyTextCanvasPrefab != null)
+        {
+            var moneyText = Instantiate(_moneyTextCanvasPrefab, custmerTransform, Quaternion.identity);
+            var moneyTextMeshPro = moneyText.GetComponentInChildren<TextMeshProUGUI>();
+            var targetPos = Camera.main.transform.position;
+            if (_textReverse)
+            {
+                var rota = moneyText.transform.rotation;
+                rota.y += 180f;
+                moneyText.transform.rotation = rota;
+            }
+            TextMove(moneyTextMeshPro,moneyCount,custmerTransform);
+            Destroy(moneyText.gameObject, _destroyTime);
+        }
+    }
+
+    void TextMove(TextMeshProUGUI moneyText,int moneyCount,Vector3 custmerTransform)
+    {
         //+か-で表示するテキストの内容を変える三項演算子。
         moneyText.text = moneyCount > 0 ? $"+${moneyCount}" : $"-${Math.Abs(moneyCount)}";
         var fadeSeq = DOTween.Sequence();
@@ -40,8 +58,7 @@ public class MoneyTextScripts : MonoBehaviour
             () => moneyText.color,
             color => moneyText.color = color,
             0f, _fadeTime)
-            ).Join(moneyText.transform.DOMoveY(custnerTransform.y + _moveUpDifference ,_fadeTime));
+            ).Join(moneyText.transform.DOMoveY(custmerTransform.y + _moveUpDifference, _fadeTime));
         fadeSeq.Play().SetLink(moneyText.gameObject);
-        Destroy(moneyText.gameObject,_destroyTime);
     }
 }
