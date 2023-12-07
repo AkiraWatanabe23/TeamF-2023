@@ -1608,6 +1608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 71542181}
+  _orders: 01000000020000000300000004000000
   _pathCreator: {fileID: 71542180}
   _tableManager: {fileID: 71542185}
 --- !u!114 &71542183
@@ -9005,6 +9006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5826759798527996735, guid: 308a44326ec8d724e8c1cf3ce554ee80,
         type: 3}
+      propertyPath: _canvas
+      value: 
+      objectReference: {fileID: 1352106125}
+    - target: {fileID: 5826759798527996735, guid: 308a44326ec8d724e8c1cf3ce554ee80,
+        type: 3}
       propertyPath: _scorePanel
       value: 
       objectReference: {fileID: 729503624}
@@ -10971,7 +10977,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 5231c7e47431ab149ba0860f7103ecda, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 586809de2793e09429dedcaa7c0f202c, type: 2}
 --- !u!1001 &1084569504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13316,6 +13322,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be6b7762eb4794a45ab9009b38b4878c,
     type: 3}
   m_PrefabInstance: {fileID: 1349052092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1352106125 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5150035874034689169, guid: 6234f9c3639cef649bd0c8f10cd694d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 280162643}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1362872056
 PrefabInstance:
@@ -17697,12 +17709,29 @@ PrefabInstance:
         type: 3}
       propertyPath: _volume
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1084250882}
+    - target: {fileID: 6610339683145815094, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
+        type: 3}
+      propertyPath: _trigger
+      value: 
+      objectReference: {fileID: 1483707545}
     - target: {fileID: 6610339683145815094, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
         type: 3}
       propertyPath: _damageVolume
       value: 
       objectReference: {fileID: 1084250881}
+    - target: {fileID: 6610339683145815094, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
+        type: 3}
+      propertyPath: _feverProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 5231c7e47431ab149ba0860f7103ecda,
+        type: 2}
+    - target: {fileID: 6610339683145815094, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
+        type: 3}
+      propertyPath: _normalProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 586809de2793e09429dedcaa7c0f202c,
+        type: 2}
     - target: {fileID: 8578523699792755547, guid: efe9f4d95d20c0c44aeecb18aa32f1c9,
         type: 3}
       propertyPath: m_Name

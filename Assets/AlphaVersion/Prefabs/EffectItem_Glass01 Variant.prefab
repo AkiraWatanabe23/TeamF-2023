@@ -158,3 +158,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particle: {fileID: 3022681945389465669, guid: 412e10c7a26268741bef53bf480a2e11,
     type: 3}
+  _power: 5

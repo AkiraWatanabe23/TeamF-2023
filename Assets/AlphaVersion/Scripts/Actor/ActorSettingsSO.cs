@@ -22,8 +22,6 @@ namespace Alpha
             [Header("<color=#00FF76>注文を受け取る制限時間(秒)</color>")]
             [Range(1.0f, 60.0f)]
             public float OrderTimeLimit;
-            [Header("注文品の一覧")]
-            public ItemType[] Orders;
         }
 
         /// <summary>
@@ -72,6 +70,7 @@ namespace Alpha
         [SerializeField] BehaviorType _behaviorType;
         [SerializeField] string _failureVoice;
         [SerializeField] string _successVoice;
+        [SerializeField] string _orderVoice;
         [SerializeField] string _rareSuccessVoice;
         [Header("<color=#00FF76>レベルデザイン用の値</color>")]
         [SerializeField] ActorParams _actorParams;
@@ -79,8 +78,6 @@ namespace Alpha
         [SerializeField] VisualParams _visualParams;
 
         public float MoveSpeed => _actorParams.MoveSpeed;
-        public ItemType[] Orders => _actorParams.Orders;
-        public ItemType RandomOrder => Orders[Random.Range(0, Orders.Length)];
         public float OrderTimeLimit => _actorParams.OrderTimeLimit;
         public ActorType ActorType => _actorType;
         public BehaviorType BehaviorType => _behaviorType;
@@ -91,6 +88,7 @@ namespace Alpha
         public Vector3 FailureParticleOffset => _visualParams.FailureParticle.Offset.Position;
         public Vector3 ItemHitParticleOffset => _visualParams.ItemHitParticle.Offset.Position;
         public string FailureVoice => _failureVoice;
+        public string OrderVoice => _orderVoice;
         // 1/10の低確率でレアな成功ボイス
         public string SuccessVoice => Random.value <= 0.1f ? _rareSuccessVoice : _successVoice;
     }

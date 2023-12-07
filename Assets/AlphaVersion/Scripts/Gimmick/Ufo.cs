@@ -28,6 +28,9 @@ namespace Alpha
         {
             yield return Initialize();
 
+            // ‰¹–Â‚ç‚·
+            Cri.PlaySE("SE_UFO_1_Long", "CueSheet_SE4");
+
             Movement();
         }
 

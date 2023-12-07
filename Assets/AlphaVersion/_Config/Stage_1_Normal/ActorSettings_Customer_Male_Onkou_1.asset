@@ -16,6 +16,7 @@ MonoBehaviour:
   _behaviorType: 0
   _failureVoice: SE_Failure_Man
   _successVoice: SE_Success_1_Man
+  _orderVoice: SE_Order_Man
   _rareSuccessVoice: SE_Success_2_Man
   _actorParams:
     MoveSpeed: 1.04

@@ -16,6 +16,7 @@ MonoBehaviour:
   _behaviorType: 0
   _failureVoice: SE_Failure_Woman
   _successVoice: SE_Success_1_Woman
+  _orderVoice: SE_Order_Woman
   _rareSuccessVoice: SE_Success_2_Woman
   _actorParams:
     MoveSpeed: 1.03
