@@ -1,7 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using DG.Tweening;
 
 public class IllustratedBook : MonoBehaviour
 {
@@ -29,15 +28,15 @@ public class IllustratedBook : MonoBehaviour
 
     [SerializeField] IllustratedBookData[] _illustratedBookDatas = default;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < _illustratedBookDatas.Length; i++)
+        for (int i = 0; i < _illustratedBookDatas.Length; i++)
         {
             _illustratedBookDatas[i].CharacterTexts[0].text = $"{_illustratedBookDatas[i].CharacterName}";
-            _illustratedBookDatas[i].CharacterTexts[1].text = $"待ち時間 : {_illustratedBookDatas[i].CharacterTime}";
+            _illustratedBookDatas[i].CharacterTexts[1].text = $"{_illustratedBookDatas[i].CharacterTime}";
             _illustratedBookDatas[i].CharacterTexts[2].text = $"{_illustratedBookDatas[i].CharacterDetail}";
         }
 
@@ -94,12 +93,12 @@ public class IllustratedBookData
     [SerializeField, Header("キャラクターの名前")] private string _characterName;
 
     public string CharacterName => _characterName;
-
+    [TextArea(1, 2)]
     [SerializeField, Header("キャラクターの待ち時間")] private string _characterTime;
 
     public string CharacterTime => _characterTime;
 
-    [TextArea(1, 5)]
+    [TextArea(1, 6)]
     [SerializeField, Header("キャラクターの説明")] private string _characterDetail;
 
     public string CharacterDetail => _characterDetail;
