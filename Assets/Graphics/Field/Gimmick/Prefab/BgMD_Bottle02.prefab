@@ -270,6 +270,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6498542043689072380, guid: 63d72edec29efee4aae1c01f9c3348a8,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1583240717891302461, guid: 84c1dd4503f0070469d5eb768e8cae5b,
+        type: 3}
     - target: {fileID: 7772769150240451959, guid: 63d72edec29efee4aae1c01f9c3348a8,
         type: 3}
       propertyPath: m_LocalPosition.z

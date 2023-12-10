@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 1266683014550862359}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1593869651768401404
 PrefabInstance:
@@ -205,6 +205,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1450027305946260959, guid: 63d72edec29efee4aae1c01f9c3348a8,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5640046835394500771, guid: 84c1dd4503f0070469d5eb768e8cae5b,
+        type: 3}
     - target: {fileID: 225472055254594902, guid: 63d72edec29efee4aae1c01f9c3348a8,
         type: 3}
       propertyPath: m_IsActive
