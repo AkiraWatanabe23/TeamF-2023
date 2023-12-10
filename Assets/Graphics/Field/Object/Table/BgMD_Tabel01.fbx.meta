@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BgMat_Tabel01
-    second: {fileID: 2100000, guid: e84c8342326f14845be1f72bdbbfbbc0, type: 2}
+    second: {fileID: 2100000, guid: 281111ceee2c5ef498722c173b830249, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
