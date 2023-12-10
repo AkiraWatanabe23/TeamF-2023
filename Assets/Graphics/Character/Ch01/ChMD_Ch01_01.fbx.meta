@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50853e0ee77c1f646952be6bb1243f20
+guid: dc2312cb7f37ce34ca790fe317e2213f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,16 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ChMat_ch02_01_body
-    second: {fileID: 2100000, guid: e3ec7a15c6716c343806f623b72e6b56, type: 2}
+      name: ChMat_man_01_body
+    second: {fileID: 2100000, guid: 2a1b56ddff8d3534c8f555b3a7965200, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ChMat_ch02_01_face
-    second: {fileID: 2100000, guid: 27bc135d1c8eebb4381247ec8ae394b0, type: 2}
+      name: ChMat_man_01_face
+    second: {fileID: 2100000, guid: b65260d6df0af4b488c9fdf16fa6a0c9, type: 2}
   materials:
     materialImportMode: 2
-    materialName: 1
+    materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
