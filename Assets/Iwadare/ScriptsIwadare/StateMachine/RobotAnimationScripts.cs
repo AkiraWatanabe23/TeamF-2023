@@ -1,5 +1,7 @@
 using StateMachine;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class RobotAnimationScripts : MonoBehaviour
@@ -7,8 +9,7 @@ public class RobotAnimationScripts : MonoBehaviour
     [Header("お客さんのアニメーター")]
     [SerializeField]
     private Animator _animator;
-
-
+    [SerializeField] float _attackTime = 3f;
     [Header("AnimationStateMachine")]
     [SerializeField]
     private StateMachineController _stateMachine;
@@ -27,6 +28,8 @@ public class RobotAnimationScripts : MonoBehaviour
     private SitRequest _sitRequest;
 
     private int _chairCount = 0;
+
+    public UnityAction<float> OnWaitAction;
 
     void Start()
     {
@@ -130,6 +133,13 @@ public class RobotAnimationScripts : MonoBehaviour
         {
             _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
         }
+        StartCoroutine(EndAction(_attackTime));
+    }
+
+    public IEnumerator EndAction(float time)
+    {
+        yield return new WaitForSeconds(_attackTime);
+        WaitState();
     }
 
     /// <summary>Hitsモーション</summary>

@@ -66,7 +66,7 @@ namespace StateMachine
         public bool DisplayLog => _displayLog;
         public bool NGWordbool => _ngWordbool;
 
-        private bool _feverBool;
+        public bool _waitBool = false;
 
         public void Init(ref Animator anim)
         {
@@ -78,7 +78,7 @@ namespace StateMachine
                 _currentState.InitialState(_displayLog);
             }
             DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！", _displayLog);
-            _currentState = _waitState;
+            _currentState = _idleState;
             _currentState.OnEnterState(this);
         }
 
@@ -97,16 +97,8 @@ namespace StateMachine
             _currentState = state;
             _currentState.OnEnterState(this);
         }
+        
 
-        //public void FeverTimeBool()
-        //{
-        //    _feverBool = true;
-        //}
-
-        //public void FalseFeverTimeBool()
-        //{
-        //    _feverBool = false;
-        //}
 
 
         public IState GetState(MotionState state)
