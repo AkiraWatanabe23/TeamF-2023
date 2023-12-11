@@ -79,39 +79,53 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>歩きアニメーション</summary>
     public void WalkAnimation()
     {
-        _stateMachine.OnChangeState(_stateMachine.GetWalk);
+        if (_stateMachine.CurrentState != _stateMachine.GetWalk)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetWalk);
+        }
     }
 
     /// <summary>座るアニメーション</summary>
     public void SitAnimation()
     {
-        _stateMachine.OnChangeState(_stateMachine.GetSit);
+        if (_stateMachine.CurrentState != _stateMachine.GetSit)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetSit);
+        }
     }
 
     /// <summary>成功アニメーション</summary>
     public void SuccessAnimation()
     {
-        _stateMachine.OnChangeState(_stateMachine.GetSuccessMotion);
+        if (_stateMachine.CurrentState != _stateMachine.GetSuccessMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetSuccessMotion);
+        }
     }
 
     /// <summary>失敗アニメーション</summary>
     public void FailedAnimation()
     {
-        _stateMachine.OnChangeState(_stateMachine.GetFailedMotion);
+        if (_stateMachine.CurrentState != _stateMachine.GetFailedMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetFailedMotion);
+        }
     }
 
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        //_stateMachine.FalseFeverTimeBool();
-        _stateMachine.OnChangeState(_stateMachine.GetDance);
-        //_stateMachine.FeverTimeBool();
+        if (_stateMachine.CurrentState != _stateMachine.GetDance)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetDance);
+        }
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>
     public void WaitState()
     {
-        if (_stateMachine.CurrentState != _stateMachine.GetSit)
+        if (_stateMachine.CurrentState != _stateMachine.GetSit &&
+            _stateMachine.CurrentState != _stateMachine.GetWaitState)
         {
             _stateMachine.OnChangeState(_stateMachine.GetWaitState);
         }
@@ -129,11 +143,12 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>Attackアニメーション</summary>
     public void AttackMotion()
     {
-        if(_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
+        if (_stateMachine.CurrentState != _stateMachine.GetAttackMotion &&
+            _stateMachine.CurrentState != _stateMachine.GetWaitState)
         {
             _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
+            StartCoroutine(EndAction(_attackTime));
         }
-        StartCoroutine(EndAction(_attackTime));
     }
 
     public IEnumerator EndAction(float time)
