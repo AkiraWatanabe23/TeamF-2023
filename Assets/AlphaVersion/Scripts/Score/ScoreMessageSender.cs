@@ -15,39 +15,42 @@ namespace Alpha
         /// <summary>
         /// 通常時、成功した際のメッセージを送信する
         /// </summary>
-        public static void SendSuccessMessage(ActorType actor)
+        public static void SendSuccessMessage(ActorType actor, Vector3 pos)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
                 Result = EventResult.Success,
                 State = EventState.Normal,
                 Actor = Convert(actor),
+                Position = pos,
             });
         }
 
         /// <summary>
         /// フィーバー時、成功した際のメッセージを送信する
         /// </summary>
-        public static void SendFeverSuccessMessage(ActorType actor)
+        public static void SendFeverSuccessMessage(ActorType actor, Vector3 pos)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
                 Result = EventResult.Success,
                 State = EventState.Ferver,
                 Actor = Convert(actor),
+                Position = pos,
             });
         }
 
         /// <summary>
         /// 通常時、失敗した際のメッセージを送信する
         /// </summary>
-        public static void SendFailureMessage(ActorType actor)
+        public static void SendFailureMessage(ActorType actor, Vector3 pos)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
                 Result = EventResult.Failure,
                 State = EventState.Normal,
                 Actor = Convert(actor),
+                Position = pos,
             });
         }
 

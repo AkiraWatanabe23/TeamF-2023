@@ -13,6 +13,7 @@ namespace Alpha
     /// </summary>
     public class Robber : Actor
     {
+        [SerializeField] AnimationAdapter _adapter;
         [SerializeField] Collider _collider;
         [SerializeField] GameObject _decal;
         [Header("ステート")]

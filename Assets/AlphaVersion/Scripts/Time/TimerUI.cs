@@ -32,7 +32,7 @@ namespace Alpha
         /// </summary>
         public void Draw(float max, float current)
         {
-            Debug.Log(current + " " + max);
+            //Debug.Log(current + " " + max);
 
             if (_under.localScale.x <= 1)
             {

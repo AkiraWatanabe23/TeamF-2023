@@ -22,16 +22,32 @@ namespace Alpha
         Robber,
     }
 
+    public enum CharacterType
+    {
+        Female,
+        FemaleOnkou,
+        FemaleTanki,
+        Male,
+        MaleOnkou,
+        MaleTanki,
+        Robber,
+    }
+
     /// <summary>
     /// キャラクターの基底クラス
     /// 生成時に生成側から呼ばれる Init と Start のオーバーライドが可能
     /// </summary>
     public class Actor : MonoBehaviour
     {
-        [SerializeField] ActorSettingsSO _settings;
+        public ActorSettingsSO _settings;
 
-        public ActorType ActorType => _settings.ActorType;
-        public BehaviorType BehaviorType => _settings.BehaviorType;
+        [SerializeField] CharacterType _character;
+        [SerializeField] ActorType _actor;
+        [SerializeField] BehaviorType _behavior;
+
+        public CharacterType Character => _character;
+        public ActorType ActorType => _actor;
+        public BehaviorType BehaviorType => _behavior;
         protected ActorSettingsSO Settings => _settings;
 
         /// <summary>

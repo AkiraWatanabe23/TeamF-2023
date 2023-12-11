@@ -33,6 +33,7 @@ namespace Alpha
         public EventResult Result;
         public EventState State;
         public EventActor Actor;
+        public Vector3 Position;
     }
 
     /// <summary>

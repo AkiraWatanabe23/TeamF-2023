@@ -9,7 +9,8 @@ namespace Alpha
     /// </summary>
     public class ResultState : BaseState
     {
-        [SerializeField] ActorSettingsSO _settings;
+        public ActorSettingsSO _settings;
+
         [Header("アニメーションの再生時間")]
         [SerializeField] float _successPlayTime = 1.0f;
         [SerializeField] float _failurePlayTime = 1.0f;
@@ -47,7 +48,7 @@ namespace Alpha
             PlayEffect();
 
             // スコアの送信
-            OrderScoreSender.SendScore(_result, _settings.ActorType, Tension);
+            OrderScoreSender.SendScore(_result, _settings.ActorType, Tension, transform.position);
         }
 
         protected override void Exit()
