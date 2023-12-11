@@ -11,12 +11,14 @@ namespace Alpha
     /// </summary>
     public class OrderState : BaseState
     {
+        public ActorSettingsSO _settings;
+
         [SerializeField] GameObject _decal;
-        [SerializeField] ActorSettingsSO _settings;
         [SerializeField] Collider _collider;
         [Header("この速さ以上でぶつかるとラグドール化する")]
         [SerializeField] float _defeatableSpeed = 1.0f;
 
+        FaceChanger _changer;
         EmptyTable _table;
 
         // 生成したタイミングで初期化処理として初期化クラスから渡す
@@ -31,6 +33,7 @@ namespace Alpha
 
         protected override void OnAwakeOverride()
         {
+            _changer = GetComponent<FaceChanger>();
             _decal.SetActive(false);
 
             // このステートがStayの際は当たり判定が有効になる
@@ -53,6 +56,9 @@ namespace Alpha
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
             _table.Table.Valid(_settings.OrderTimeLimit, Orders[Random.Range(0, Orders.Length)], result => 
             {
+                if (result == OrderResult.Success) _changer.ChangeFace(Face.Happy);
+                if (result == OrderResult.Failure) _changer.ChangeFace(Face.Angry);
+
                 Result = result;
                 _table.Table.Invalid();
             });
@@ -102,11 +108,13 @@ namespace Alpha
                 if (item.SqrSpeed > _defeatableSpeed)
                 {
                     Result = OrderResult.Defeated;
+                    _changer.ChangeFace(Face.Panic);
                     RagDollMessageSender.SendMessage(_settings.ActorType, Model, item.transform.position);
                 }
                 else
                 {
                     Result = OrderResult.Failure;
+                    _changer.ChangeFace(Face.Angry);
                 }
 
                 // アイテムがぶつかった場合は席側で判定しないので、こちら側で無効化し、結果を失敗にする

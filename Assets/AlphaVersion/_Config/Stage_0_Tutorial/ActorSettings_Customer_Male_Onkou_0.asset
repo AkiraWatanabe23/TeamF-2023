@@ -16,11 +16,10 @@ MonoBehaviour:
   _behaviorType: 0
   _failureVoice: SE_Failure_Man
   _successVoice: SE_Success_1_Man
-  _orderVoice: SE_Order_Man
   _rareSuccessVoice: SE_Success_2_Man
   _actorParams:
-    MoveSpeed: 1.04
-    OrderTimeLimit: 10.2
+    MoveSpeed: 3
+    OrderTimeLimit: 60
     Orders: 0000000003000000
   _visualParams:
     ItemHitParticle:

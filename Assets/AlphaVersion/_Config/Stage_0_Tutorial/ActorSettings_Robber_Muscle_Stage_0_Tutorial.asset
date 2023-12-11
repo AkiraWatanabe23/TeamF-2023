@@ -18,9 +18,9 @@ MonoBehaviour:
   _successVoice: SE_Success_1_Robber
   _rareSuccessVoice: SE_Success_2_Robber
   _actorParams:
-    MoveSpeed: 1.02
+    MoveSpeed: 3
+    OrderTimeLimit: 60
     Orders: 
-    OrderTimeLimit: 1
   _visualParams:
     ItemHitParticle:
       Particle: 0

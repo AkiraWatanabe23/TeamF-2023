@@ -14,20 +14,22 @@ namespace Alpha
         [SerializeField] Actor[] _prefabs;
 
         Transform _parent;
-        // 振る舞いで分別した中で、更にキャラ毎の辞書が存在する
-        Dictionary<BehaviorType, Dictionary<ActorType, Actor>> _table = new();
+        // 強盗と客でそれぞれリスト
+        List<Actor> _customers = new();
+        List<Actor> _robbers = new();
 
         void Awake()
         {
-            // 振る舞い毎に辞書を作り、その中にキャラ毎に追加していく
-            foreach (Actor prefab in _prefabs)
+            foreach (Actor actor in _prefabs)
             {
-                if (!_table.ContainsKey(prefab.BehaviorType))
+                if (actor.ActorType == ActorType.Male || actor.ActorType == ActorType.Female)
                 {
-                    _table.Add(prefab.BehaviorType, new());
+                    _customers.Add(actor);
                 }
-
-                _table[prefab.BehaviorType].Add(prefab.ActorType, prefab);
+                if (actor.ActorType == ActorType.Muscle || actor.ActorType == ActorType.Robber)
+                {
+                    _robbers.Add(actor);
+                }
             }
 
             // 生成したキャラクターを登録する親
@@ -40,23 +42,15 @@ namespace Alpha
         /// <returns>生成したキャラクター</returns>
         public Actor Spawn(BehaviorType behavior, ActorType actor)
         {
-            if (_table.TryGetValue(behavior, out Dictionary<ActorType, Actor> dict))
+            if (behavior == BehaviorType.Customer)
             {
-                if (dict.TryGetValue(actor, out Actor prefab))
-                {
-                    // TODO:キャラクターのプーリング。現状このクラスに登録する親を持たせている。
-                    
-                    // 適当に画面外に生成する
-                    return Instantiate(prefab, new Vector3(100, 100, 100), Quaternion.identity, _parent);
-                }
-                else
-                {
-                    throw new KeyNotFoundException("キャラの種類に対応したものが生成の辞書に登録されていない: " + actor);
-                }
+                Actor a = _customers[Random.Range(0, _customers.Count)];
+                return Instantiate(a, new Vector3(100, 100, 100), Quaternion.identity, _parent);
             }
             else
             {
-                throw new KeyNotFoundException("振る舞いに対応したものが生成の辞書に登録されていない: " + behavior);
+                Actor a = _robbers[Random.Range(0, _robbers.Count)];
+                return Instantiate(a, new Vector3(100, 100, 100), Quaternion.identity, _parent);
             }
         }
     }

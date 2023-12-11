@@ -14,6 +14,7 @@ namespace Alpha
         [SerializeField] ScoreMessageReceiver _messageReceiver;
         [SerializeField] ScoreUI _scoreUI;
         [SerializeField] ScoreCalculator _calculator;
+        [SerializeField] MoneyTextScripts _money;
 
         ReactiveProperty<int> _totalScore = new(0);
 
@@ -41,9 +42,12 @@ namespace Alpha
         /// </summary>
         void OnMessageReceived(ScoreEventMessage msg)
         {
-            _totalScore.Value += _calculator.ToInt(msg);
+            int add = _calculator.ToInt(msg);
+            _totalScore.Value += add;
             _totalScore.Value = Mathf.Max(_totalScore.Value, 0);
             _scoreUI.Draw(_totalScore.Value);
+
+            _money.MoneyText(add, msg.Position);
         }
     }
 }

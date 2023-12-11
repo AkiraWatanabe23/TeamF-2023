@@ -23,6 +23,8 @@ public class AnimationAdapter : MonoBehaviour
         else if (name == "Success") _animation.SuccessAnimation();
         else if (name == "Failure") _animation.FailedAnimation();
         else if (name == "Dance") _animation.DanceAnimation();
+        else if (name == "Fire") _animation.AttackMotion();
+        //else if (name == "Draw") _animation
     }
 
     /// <summary>

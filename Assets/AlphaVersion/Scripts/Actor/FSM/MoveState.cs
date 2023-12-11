@@ -9,7 +9,8 @@ namespace Alpha
     /// </summary>
     public class MoveState : BaseState
     {
-        [SerializeField] ActorSettingsSO _settings;
+        public ActorSettingsSO _settings;
+
         [SerializeField] MoveRaycaster _raycaster;
 
         Transform _transform;
