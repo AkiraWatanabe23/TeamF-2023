@@ -31,7 +31,7 @@ public class RobotAnimationScripts : MonoBehaviour
 
     public UnityAction<float> OnWaitAction;
 
-    void Start()
+    void Awake()
     {
         _sitRequest = FindObjectOfType<SitRequest>();
         _allSitScripts = _sitRequest.SitScriptsRequest();
