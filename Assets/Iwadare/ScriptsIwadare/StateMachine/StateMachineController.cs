@@ -78,7 +78,7 @@ namespace StateMachine
                 _currentState.InitialState(_displayLog);
             }
             DebugLogUtility.PrankLog("行くぞ！ステート戦隊！マシーンジャー！", _displayLog);
-            _currentState = _idleState;
+            _currentState = _waitState;
             _currentState.OnEnterState(this);
         }
 
