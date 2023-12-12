@@ -13,15 +13,10 @@ namespace Alpha
         [SerializeField] Transform _spawnPoint;
         [SerializeField] Transform _target;
 
-        private void Start()
-        {
-            Spawn();
-        }
-
         public void Spawn()
         {
             var v = Instantiate(_prefab, _spawnPoint.position, Quaternion.identity);
-            v._moveTarget = _target;
+            //v._moveTarget = _target;
         }
     }
 }

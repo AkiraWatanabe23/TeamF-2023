@@ -11,7 +11,6 @@ namespace Alpha
     /// </summary>
     public class Customer : Actor
     {
-        [SerializeField] Material _mat;
         [SerializeField] AnimationAdapter _adapter;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
@@ -38,17 +37,6 @@ namespace Alpha
 
         protected override void OnStartOverride()
         {
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (_mat != null)
-                {
-                    _mat.SetInt("FacialNumber", Random.Range(0, 3));
-                }
-            }
         }
 
         protected async override UniTaskVoid UpdateAsync(CancellationToken token)

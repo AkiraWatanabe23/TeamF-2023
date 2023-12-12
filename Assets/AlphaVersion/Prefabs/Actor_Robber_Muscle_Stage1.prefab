@@ -44,7 +44,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678419708464237483}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 41ec784ed520f0f45ba674d277680ce1, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 519416b240e0cef478349cf813e76ed5, type: 3}
   m_Controller: {fileID: 9100000, guid: 307677f32d1730a4e81d8af4d988c6a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4288452310687556680}
+  _attackTime: 3
   _stateMachine:
     _walkAniName: Walk
     _sitAniName: Sitting
@@ -245,6 +246,7 @@ MonoBehaviour:
     _avatorTrams: {fileID: 8957395761618099356}
     _ngWordbool: 0
     _displayLog: 0
+    _waitBool: 0
   _changeSitChairButton: {fileID: 0}
   _allSitScripts:
   - {fileID: 0}
@@ -283,7 +285,7 @@ PrefabInstance:
     - target: {fileID: 6010169152815880626, guid: 89c384706c692314c9041e6fee7a1503,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.063
+      value: -0.078
       objectReference: {fileID: 0}
     - target: {fileID: 6010169152815880626, guid: 89c384706c692314c9041e6fee7a1503,
         type: 3}
@@ -293,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 6010169152815880626, guid: 89c384706c692314c9041e6fee7a1503,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01
+      value: 0.057
       objectReference: {fileID: 0}
     - target: {fileID: 6010169152815880626, guid: 89c384706c692314c9041e6fee7a1503,
         type: 3}

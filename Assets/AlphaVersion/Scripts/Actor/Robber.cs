@@ -49,6 +49,7 @@ namespace Alpha
 
         protected async override UniTaskVoid UpdateAsync(CancellationToken token)
         {
+            if (token.IsCancellationRequested) return;
             // “oê‰¹
             Cri.PlaySE("SE_DoorStrong");
 
@@ -57,6 +58,7 @@ namespace Alpha
             _collider.OnCollisionEnterAsObservable().Where(_ => !isItemHit)
                 .Where(c => c.collider.TryGetComponent(out ThrowedItem _)).Subscribe(_ => 
                 {
+                    if (token.IsCancellationRequested) return;
                     isItemHit = true;
                     Cri.PlaySE3D(transform.position, "SE_Robber_Voice_2");
                     _decal.SetActive(true);

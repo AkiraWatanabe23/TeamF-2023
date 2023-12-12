@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 0
   _height: 0.1
-  _crashSEName: SE_ItemCrash_short
-  _hitSEName: SE_ItemHit_2
+  _crashSEName: SE_ItemCrash
+  _hitSEName: SE_ItemHit
   _itemParams:
     _hardness: 0.5
   _visualParams:

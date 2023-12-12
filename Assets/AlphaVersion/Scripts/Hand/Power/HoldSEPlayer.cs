@@ -19,7 +19,7 @@ namespace Alpha
         {
             if (_unPlayed)
             {
-                Cri.PlaySE("SE_ThrowHold");
+                Cri.PlaySE("‰¼‚Ì“Š‚°‚é‰¹");
                 _unPlayed = false;
             }
         }

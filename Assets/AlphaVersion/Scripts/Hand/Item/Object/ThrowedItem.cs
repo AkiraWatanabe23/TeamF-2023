@@ -131,6 +131,11 @@ namespace Alpha
                 Crash();
             }
 
+            if(collision.gameObject.TryGetComponent(out Ufo ufo))
+            {
+                Crash();
+            }
+
             // 既に投げられた状態
             if (IsThrowed)
             {
@@ -152,7 +157,7 @@ namespace Alpha
         /// <summary>
         /// 破裂させる
         /// </summary>
-        void Crash()
+        public void Crash()
         {
             // 音とパーティクルとデーカル
             Cri.PlaySE3D(transform.position, _settings.CrashSEName);
