@@ -17,16 +17,17 @@ public class MoneyTextScripts : MonoBehaviour
     [SerializeField] float _moveUpDifference = 0.5f;
     [SerializeField] float _fadeTime = 3f;
     [SerializeField] float _destroyTime = 5f;
-    [SerializeField] bool _textReverse = true;
+    [SerializeField] bool _targetCamera = true;
     [Header("ここより下はデバック用(アタッチしなくて良い)")]
     [SerializeField] Button _button;
+    [SerializeField] int _testnum;
     [SerializeField] Transform _custmer;
 
     private void Start()
     {
         if(_button != null)
         {
-            _button.onClick.AddListener(() => MoneyText(-500,_custmer.position));
+            _button.onClick.AddListener(() => MoneyText(_testnum,_custmer.position));
         }
     }
 
@@ -37,22 +38,32 @@ public class MoneyTextScripts : MonoBehaviour
         {
             var moneyText = Instantiate(_moneyTextCanvasPrefab, custmerTransform, Quaternion.identity);
             var moneyTextMeshPro = moneyText.GetComponentInChildren<TextMeshProUGUI>();
-            var targetPos = Camera.main.transform.position;
-            if (_textReverse)
+            var targetPos = Camera.main.transform.rotation;
+            if (_targetCamera)
+            {
+                moneyText.transform.rotation = targetPos;
+            }
+            else
             {
                 var rota = moneyText.transform.rotation;
                 rota.y += 180f;
                 moneyText.transform.rotation = rota;
             }
+            ColorChangeText(moneyTextMeshPro,moneyCount);
             TextMove(moneyTextMeshPro,moneyCount,custmerTransform);
             Destroy(moneyText.gameObject, _destroyTime);
         }
     }
 
+    void ColorChangeText(TextMeshProUGUI moneyText, int moneyCount)
+    {
+        moneyText.color = moneyCount >= 0 ? Color.yellow : Color.red;
+    }
+
     void TextMove(TextMeshProUGUI moneyText,int moneyCount,Vector3 custmerTransform)
     {
         //+か-で表示するテキストの内容を変える三項演算子。
-        moneyText.text = moneyCount > 0 ? $"+${moneyCount}" : $"-${Math.Abs(moneyCount)}";
+        moneyText.text = moneyCount >= 0 ? $"+${moneyCount}" : $"-${Math.Abs(moneyCount)}";
         var fadeSeq = DOTween.Sequence();
         fadeSeq.Append(DOTween.ToAlpha(
             () => moneyText.color,
