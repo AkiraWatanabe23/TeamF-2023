@@ -907,8 +907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playButton: {fileID: 907434561}
   _pauseButton: {fileID: 1218694232}
-  _cueSheetName: CueSheet_BGM
-  _cueName: BGM_B_Kari
+  _cueSheetName: CueSheet_SE
+  _cueName: SE_ItemHit_2
 --- !u!1 &818880028
 GameObject:
   m_ObjectHideFlags: 0
