@@ -67,6 +67,7 @@ namespace Alpha
         {
             _isRunning = true;
 
+            if (token.IsCancellationRequested) return;
             // ƒpƒ‰ƒpƒ‰SEÄ¶ŒãA•ö‚ê‚éSEÄ¶
             Cri.PlaySE("SE_Pre_Tumbleweed_2");
             await UniTask.Delay(System.TimeSpan.FromSeconds(_prevDelay), cancellationToken: token);

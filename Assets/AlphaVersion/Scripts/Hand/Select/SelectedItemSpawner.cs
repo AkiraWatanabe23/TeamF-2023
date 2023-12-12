@@ -63,7 +63,7 @@ namespace Alpha
         /// </summary>
         ItemType SelectWithPlaySE(ItemType next)
         {
-            if (_selectedItem != next) Cri.PlaySE("SE_ItemSelect_2");
+            if (_selectedItem != next) Cri.PlaySE("SE_ItemSelect");
             return next;
         }
     }

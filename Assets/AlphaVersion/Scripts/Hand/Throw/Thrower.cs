@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Alpha
 {
@@ -63,6 +64,7 @@ namespace Alpha
             if (StackCount > 0)
             {
                 _effector.PlayThrowEffect(_tower.Peek().transform, transform);
+                StartCoroutine(DelayPlay());
             }
 
             // ç≈í·å¿îÚÇ‘ãóó£Çê›íË
@@ -89,6 +91,12 @@ namespace Alpha
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(StackPoint, 0.05f);
+        }
+
+        IEnumerator DelayPlay()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Cri.PlaySE("SE_Swoosh_KARI");
         }
     }
 }

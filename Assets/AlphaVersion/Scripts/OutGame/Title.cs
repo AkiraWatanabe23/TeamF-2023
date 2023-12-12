@@ -11,11 +11,19 @@ namespace Alpha
     {
         [SerializeField] Button _libraryButton;
         [SerializeField] LibraryContent _library;
+        [Header("図鑑ボタンをクリックした際にアニメーションを待つ")]
+        [SerializeField] float _delay = 1.5f;
 
         void Start()
         {
             _library.ActiveChange();
-            _libraryButton.onClick.AddListener(() => _library.ActiveChange());
+            _libraryButton.onClick.AddListener(() => StartCoroutine(ButtonAnimationAsync()));
+        }
+
+        IEnumerator ButtonAnimationAsync()
+        {
+            yield return new WaitForSeconds(_delay);
+            _library.ActiveChange();
         }
     }
 }

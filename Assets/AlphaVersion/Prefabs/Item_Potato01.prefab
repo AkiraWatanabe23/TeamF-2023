@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9031218915720146370}
   - component: {fileID: 5713728612857069898}
   - component: {fileID: 7380582681003925327}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Item_Potato01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trail: {fileID: 8529618390113809559}
+  _decal: {fileID: 0}
 --- !u!1001 &2209665703467494994
 PrefabInstance:
   m_ObjectHideFlags: 0

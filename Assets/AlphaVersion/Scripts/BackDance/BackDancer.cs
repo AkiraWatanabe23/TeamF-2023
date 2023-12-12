@@ -7,13 +7,24 @@ using System.Threading;
 
 public class BackDancer : MonoBehaviour
 {
+    readonly int _facialNumberPropertyId = Shader.PropertyToID("_FacialNumber");
+
     [SerializeField] Transform _root;
     [SerializeField] Transform[] _models;
+    [SerializeField] Renderer[] _renderers;
     [SerializeField] Transform _start;
     [SerializeField] Transform _goal;
     [SerializeField] float _width = 1.0f;
     [SerializeField] float _duration = 3.0f;
     [SerializeField] float _rotSpeed = 10.0f;
+
+    void Start()
+    {
+        foreach (Renderer renderer in _renderers)
+        {
+            renderer.materials[1].SetFloat(_facialNumberPropertyId, 1.0f);
+        }
+    }
 
     public void Play()
     {

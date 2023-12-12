@@ -56,7 +56,7 @@ namespace Alpha
         async UniTaskVoid UpdateAsync(CancellationToken token)
         {
             await TryFadeInAsync(token);
-            await _gameStartEvent.PlayAsync(token);
+            //await _gameStartEvent.PlayAsync(token);
 
             Cri.PlayBGM("BGM_B_Kari");
             RegisterFerverBGM();
@@ -112,7 +112,7 @@ namespace Alpha
         {
             // êßå¿éûä‘-10ïbÇ≈écÇË10ïbÇ≈çƒê∂
             await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - DoorCloseTimingOffset), cancellationToken: token);
-            Cri.PlayBGM("BGM_C'_DEMO", "CueSheet_BGM 1");
+            Cri.PlayBGM("BGM_C'_DEMO");
         }
 
 

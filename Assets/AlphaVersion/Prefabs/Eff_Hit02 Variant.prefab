@@ -26,11 +26,21 @@ PrefabInstance:
     - target: {fileID: 3022681945389465669, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4648644201870400596, guid: 412e10c7a26268741bef53bf480a2e11,
         type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470079927278611485, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470079927278611485, guid: 412e10c7a26268741bef53bf480a2e11,
+        type: 3}
+      propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5470079927278611485, guid: 412e10c7a26268741bef53bf480a2e11,

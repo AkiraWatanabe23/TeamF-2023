@@ -10,46 +10,41 @@ namespace Alpha
     /// </summary>
     public static class Cri
     {
-        const bool _valid = false; // —Ž‚¿‚é‚Ì‚Å–³Œø‰»
+        const string SESheet = "CueSheet_SE4";
+        const string BGMSheet = "CueSheet_BGM 3";
+        const bool _valid = true; // —Ž‚¿‚é‚Ì‚Å–³Œø‰»
 
-        public static void PlaySE(string name, string sheet = "CueSheet_SE")
+        public static void PlaySE(string name)
         {
             if (!_valid) return;
 
             if (CriAudioManager.Instance == null) return;
 
-            int i = CriAudioManager.Instance.SE.Play(sheet, name);
+            int i = CriAudioManager.Instance.SE.Play(SESheet, name);
             if (i == -1)
             {
                 Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
             }
         }
 
-        public static void PlaySE3D(Vector3 position, string name, string sheet = "CueSheet_SE")
+        public static void PlaySE3D(Vector3 position, string name)
         {
             if (!_valid) return;
 
             if (CriAudioManager.Instance == null) return;
 
-            int i = CriAudioManager.Instance.SE.Play3D(position, sheet, name);
+            int i = CriAudioManager.Instance.SE.Play3D(position, SESheet, name);
             if (i == -1)
             {
                 Debug.LogWarning("SE‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
             }
         }
 
-        public static void DelayedPlaySE(string name, float delay, string sheet = "CueSheet_SE")
+        public static void PlayBGM(string name)
         {
             if (!_valid) return;
 
-            DOVirtual.DelayedCall(delay, () => PlaySE(name, sheet));
-        }
-
-        public static void PlayBGM(string name, string sheet = "CueSheet_BGM")
-        {
-            if (!_valid) return;
-
-            int i = CriAudioManager.Instance.BGM.Play(sheet, name);
+            int i = CriAudioManager.Instance.BGM.Play(BGMSheet, name);
             if (i == -1)
             {
                 Debug.LogWarning("BGM‚ª–Â‚Á‚Ä‚¢‚È‚¢: " + name);
