@@ -57,7 +57,6 @@ MonoBehaviour:
   _character: 0
   _actor: 1
   _behavior: 0
-  _mat: {fileID: 0}
   _adapter: {fileID: -4661557517288122911}
   _moveState: {fileID: 5064843654870223073}
   _idleState: {fileID: 9008692859186237202}
@@ -172,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 577944864900915242}
+  _attackTime: 3
   _stateMachine:
     _walkAniName: Walk
     _sitAniName: Order
@@ -185,6 +185,7 @@ MonoBehaviour:
     _avatorTrams: {fileID: 5292525415206158770}
     _ngWordbool: 0
     _displayLog: 0
+    _waitBool: 0
   _changeSitChairButton: {fileID: 0}
   _allSitScripts:
   - {fileID: 0}
@@ -369,6 +370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Decal_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179728734537167248, guid: 89c384706c692314c9041e6fee7a1503,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830787713511303211, guid: 89c384706c692314c9041e6fee7a1503,
         type: 3}

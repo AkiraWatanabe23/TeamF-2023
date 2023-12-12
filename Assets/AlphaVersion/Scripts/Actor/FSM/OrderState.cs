@@ -51,7 +51,7 @@ namespace Alpha
         {
             LookAt();
             Animator.Play("Order");
-            Cri.PlaySE3D(transform.position, _settings.OrderVoice, "CueSheet_SE4");
+            Cri.PlaySE3D(transform.position, _settings.OrderVoice);
 
             // 席を有効化、時間切れ(失敗)もしくはキャッチ判定(成功)でコールバックが呼ばれる
             _table.Table.Valid(_settings.OrderTimeLimit, Orders[Random.Range(0, Orders.Length)], result => 
@@ -99,7 +99,7 @@ namespace Alpha
             // アイテム以外がぶつかった場合は弾く
             if (!collision.gameObject.TryGetComponent(out ThrowedItem item)) return;
 
-            _decal.SetActive(true);
+            //_decal.SetActive(true);
 
             // 注文結果
             if (Result == OrderResult.Unsettled)

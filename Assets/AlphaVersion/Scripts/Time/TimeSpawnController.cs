@@ -31,6 +31,7 @@ namespace Alpha
             _customerElapsed += Time.deltaTime;
             _robberElapsed += Time.deltaTime;
             _tumbleweedElapsed += Time.deltaTime;
+            _ufoElapsed += Time.deltaTime;
 
             // ‹q
             if (_customerElapsed > _spawnRateSettings.CustomerSpawnRate)
@@ -43,7 +44,7 @@ namespace Alpha
             if (_robberTimingIndex < _gimmickSettings.Robber.Max &&
                 _robberElapsed > _gimmickSettings.Robber.Timing[_robberTimingIndex])
             {
-                Cri.PlaySE("SE_Robber_In", "CueSheet_SE2");
+                Cri.PlaySE("SE_Robber_In");
                 _actorSpawnManager.SpawnRobber();
                 _robberTimingIndex++;
             }

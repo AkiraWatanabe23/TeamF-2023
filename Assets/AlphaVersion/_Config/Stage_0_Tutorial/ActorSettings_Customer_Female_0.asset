@@ -16,11 +16,11 @@ MonoBehaviour:
   _behaviorType: 0
   _failureVoice: SE_Failure_Woman
   _successVoice: SE_Success_1_Woman
+  _orderVoice: 
   _rareSuccessVoice: SE_Success_2_Woman
   _actorParams:
-    MoveSpeed: 3
+    MoveSpeed: 1
     OrderTimeLimit: 60
-    Orders: 0000000003000000
   _visualParams:
     ItemHitParticle:
       Particle: 4

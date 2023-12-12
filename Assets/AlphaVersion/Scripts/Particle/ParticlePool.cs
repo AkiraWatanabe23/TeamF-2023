@@ -16,7 +16,7 @@ namespace Alpha
         public ParticlePool(Particle origin, string poolName)
         {
             _origin = origin;
-            _origin.gameObject.SetActive(false);
+            //_origin.gameObject.SetActive(false);
 
             _parent = new GameObject(poolName).transform;
         }
