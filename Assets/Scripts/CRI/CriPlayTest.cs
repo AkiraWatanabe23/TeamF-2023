@@ -14,7 +14,7 @@ public class CriPlayTest : MonoBehaviour
 
     private void Start()
     {
-        _playButton.onClick.AddListener(() => CriAudioManager.Instance.BGM.Play(_cueSheetName, _cueName));
+        _playButton.onClick.AddListener(() => CriAudioManager.Instance.BGM.Play3D(Vector3.zero, _cueSheetName, _cueName));
         _pauseButton.onClick.AddListener(() => CriAudioManager.Instance.BGM.StopAll());
     }
 }
