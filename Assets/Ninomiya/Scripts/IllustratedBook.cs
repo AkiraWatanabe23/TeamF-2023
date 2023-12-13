@@ -28,7 +28,7 @@ public class IllustratedBook : MonoBehaviour
 
     [SerializeField] IllustratedBookData[] _illustratedBookDatas = default;
 
-
+    [SerializeField, Header("slider")] private Slider _slider;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,7 @@ public class IllustratedBook : MonoBehaviour
 
         _y = GetComponent<RectTransform>().anchoredPosition.y;
         ActiveChange();
+        _slider.maxValue = _illustratedBookDatas.Length - 1;
     }
 
     // Update is called once per frame
@@ -55,11 +56,13 @@ public class IllustratedBook : MonoBehaviour
             {
                 StartTween(_plusMoveY);
                 _scrollCount++;
+                _slider.value++;
             }
             else if (_scroll < 0 && _scrollCount > 0)
             {
                 StartTween(_minusMoveY);
                 _scrollCount--;
+                _slider.value--;
             }
         }
     }
