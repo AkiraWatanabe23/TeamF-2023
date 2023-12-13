@@ -30,16 +30,12 @@ public class IllustratedBook : MonoBehaviour
 
     [SerializeField, Header("slider")] private Slider _slider;
 
+    [SerializeField, Header("キャラクターの名前等入れるためのText")] private Text[] _characterTexts;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < _illustratedBookDatas.Length; i++)
-        {
-            _illustratedBookDatas[i].CharacterTexts[0].text = $"{_illustratedBookDatas[i].CharacterName}";
-            _illustratedBookDatas[i].CharacterTexts[1].text = $"{_illustratedBookDatas[i].CharacterTime}";
-            _illustratedBookDatas[i].CharacterTexts[2].text = $"{_illustratedBookDatas[i].CharacterDetail}";
-        }
-
+        TextsChange(_scrollCount);
         _y = GetComponent<RectTransform>().anchoredPosition.y;
         ActiveChange();
         _slider.maxValue = _illustratedBookDatas.Length - 1;
@@ -57,12 +53,14 @@ public class IllustratedBook : MonoBehaviour
                 StartTween(_plusMoveY);
                 _scrollCount++;
                 _slider.value++;
+                TextsChange(_scrollCount);
             }
             else if (_scroll < 0 && _scrollCount > 0)
             {
                 StartTween(_minusMoveY);
                 _scrollCount--;
                 _slider.value--;
+                TextsChange(_scrollCount);
             }
         }
     }
@@ -85,14 +83,17 @@ public class IllustratedBook : MonoBehaviour
         if (_activeBool) { _canvas.enabled = true; }
         else { _canvas.enabled = false; }
     }
+
+    public void TextsChange(int count)
+    {
+        _characterTexts[0].text = $"{_illustratedBookDatas[count].CharacterName}";
+        _characterTexts[1].text = $"{_illustratedBookDatas[count].CharacterTime}";
+        _characterTexts[2].text = $"{_illustratedBookDatas[count].CharacterDetail}";
+    }
 }
 [System.Serializable]
 public class IllustratedBookData
 {
-    [SerializeField, Header("使用するText")] private Text[] _charactertexts;　//Textを3つ入れる(name,time,ditail)
-
-    public Text[] CharacterTexts => _charactertexts;
-
     [SerializeField, Header("キャラクターの名前")] private string _characterName;
 
     public string CharacterName => _characterName;
