@@ -2,9 +2,17 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using UniRx;
+using UniRx.Triggers;
 
 public class UFOGimmick : MonoBehaviour
 {
+    [SerializeField] Collider _suckCollider;
+    [SerializeField] Collider _hitCollider;
+    [SerializeField] float _suckRadius = 1.0f;
+    [Header("撃破された際に吹っ飛んでく奴")]
+    [SerializeField] GameObject _defeatedPrefab;
     [Header("ミニキャラキャラ関連")]
     [Min(1)]
     [SerializeField]
@@ -23,7 +31,7 @@ public class UFOGimmick : MonoBehaviour
     private float _gimmickStartInterval = 1f;
 
     /// <summary> キャラクターの移動間隔 </summary>
-    private readonly float _runAwayDuration = 5f;
+    private readonly float _runAwayDuration = 35f;
 
     [Header("初期移動時の値")]
     [Tooltip("最初にステージ上まで移動する時間")]
@@ -78,6 +86,10 @@ public class UFOGimmick : MonoBehaviour
 
     private Sequence _sequence = default;
 
+    List<GameObject> _actors = new();
+    // 吸われた際にトイーンを中断するため
+    List<Sequence> _miniActorMoveSequences = new();
+
     private IEnumerator Start()
     {
         yield return Initialize();
@@ -95,10 +107,19 @@ public class UFOGimmick : MonoBehaviour
         _transform = transform;
         _initPosition = _transform.position;
 
-        if (TryGetComponent(out BoxCollider collider)) { _halfExtents = collider.size / 2f; }
+        if (TryGetComponent(out BoxCollider collider)) { _halfExtents = Vector3.one * _suckRadius; }
         else { _halfExtents = _transform.localScale; }
 
         _suckUpDatas = new RaycastHit[_maxCastCount];
+
+        _suckCollider.OnTriggerEnterAsObservable()
+            .Where(_ => _isMoved)
+            .Subscribe(c => SuckUp(c.gameObject));
+
+        _hitCollider.OnCollisionEnterAsObservable()
+            .Where(_ => _isMoved)
+            .Where(c => !c.gameObject.TryGetComponent(out SuckUpComponent _))
+            .Subscribe(_ => Crash());
 
         _isMoved = false;
 #if UNITY_EDITOR
@@ -116,16 +137,31 @@ public class UFOGimmick : MonoBehaviour
             var circlePos = _runAwayRadius * Random.insideUnitCircle;
             var spawnPos = _transform.position + new Vector3(circlePos.x, _runAwayOffset, circlePos.y);
 
-            var chara = Instantiate(_miniCharaPrefab, spawnPos, Quaternion.identity);
-
-            var transform = chara.transform;
-            var sequence = DOTween.Sequence();
-
-            sequence.
-                Append(transform.DOMoveX(20f, _runAwayDuration)).
-                AppendInterval(1f).
-                SetLink(chara);
+            StartCoroutine(SpawnAsync(spawnPos));
         }
+    }
+
+    IEnumerator SpawnAsync(Vector3 spawnPos)
+    {
+        yield return new WaitForSeconds(Random.Range(0, 0.5f));
+
+        var chara = Instantiate(_miniCharaPrefab, spawnPos, Quaternion.identity);
+        _actors.Add(chara);
+
+        var transform = chara.transform;
+        var sequence = DOTween.Sequence();
+
+        Vector3 actorOffset = _moveOffset;
+        actorOffset.y = 0;
+
+        sequence.
+            Append(transform.DOMove(spawnPos + actorOffset, _moveDuration)).
+            AppendInterval(1f).
+            // 2番目の子にパーティクルのオブジェクトがあることが前提。止まったら煙のパーティクルを止める
+            OnComplete(() => transform.GetChild(1).gameObject.SetActive(false)).
+            SetLink(chara);
+
+        _miniActorMoveSequences.Add(sequence);
     }
 
     private void Movement()
@@ -135,13 +171,16 @@ public class UFOGimmick : MonoBehaviour
         _sequence.
             AppendCallback(() =>
             {
-                Cri.PlaySE3D(_transform.position, "SE_UFO_1_Long");
+                Cri.PlaySE3D(_transform.position, "SE_UFO");
             }).
             Append(_transform.DOMove(_initPosition + _moveOffset, _moveDuration)).
             AppendCallback(() =>
             {
                 _isMoved = true;
-                _transform.DOMoveY(_upValue, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                _transform.DOMoveY(_upValue, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetRelative();
+
+                _actors.ForEach(a => SuckUp(a));
+                _actors.Clear();
             }).
             SetLink(gameObject);
     }
@@ -151,9 +190,9 @@ public class UFOGimmick : MonoBehaviour
         if (!_isMoved) { return; }
 
         //回収対象探す
-        ItemSearch();
+        //ItemSearch();
         //被攻撃判定（移動前、移動中はやらない）
-        AttackedSearch();
+        //AttackedSearch();
     }
 
     /// <summary> 吸い上げる対象があるか探す </summary>
@@ -176,13 +215,17 @@ public class UFOGimmick : MonoBehaviour
 #endif
             //ここに吸い上げ処理
             target.transform.
-                DOMove(_transform.position + _suckUpOffset, _suckUpDuration).
+                DOMove(_transform.position, _suckUpDuration).
                 OnComplete(() =>
                 {
 #if UNITY_EDITOR
                     Debug.Log("tween finish");
 #endif
                     target.SetActive(false);
+
+                    // 1体目が吸われた時点でキャラ全員のトイーンを止めても大丈夫な気がする。
+                    _miniActorMoveSequences.ForEach(seq => seq.Kill());
+                    _miniActorMoveSequences.Clear();
                 }).
                 SetLink(target);
         }
@@ -202,21 +245,31 @@ public class UFOGimmick : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("攻撃を受けた！！墜落");
 #endif
-        _sequence = DOTween.Sequence();
-        _sequence.
-            AppendCallback(() =>
-            {
-                _transform.DOMoveX(_swayValue, _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                _transform.DOMoveY(-1f, _tweenSpeed).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
+        //_sequence = DOTween.Sequence();
+        //_sequence.
+        //    AppendCallback(() =>
+        //    {
+        //        _transform.DOMoveX(_swayValue, _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        //        _transform.DOMoveY(-1f, _tweenSpeed).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
 
-                _transform.DORotate(new Vector3(0f, 0f, _rotateValue), _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-            }).
-            AppendInterval(_activeFalseInterval).
-            AppendCallback(() =>
-            {
-                ChangeActiveSelf(false);
-            });
+        //        _transform.DORotate(new Vector3(0f, 0f, _rotateValue), _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        //    }).
+        //    AppendInterval(_activeFalseInterval).
+        //    AppendCallback(() =>
+        //    {
+        //        ChangeActiveSelf(false);
+        //    });
+
+        ChangeActiveSelf(false);
+        GameObject instance = Instantiate(_defeatedPrefab, transform.position, Quaternion.identity);
+        Vector3 dir = Vector3.forward * 6.0f + Vector3.up * 0.5f;
+        instance.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Impulse);
     }
 
     private void ChangeActiveSelf(bool flag) { gameObject.SetActive(flag); }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, _halfExtents);
+    }
 }
