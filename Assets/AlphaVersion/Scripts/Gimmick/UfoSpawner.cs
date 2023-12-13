@@ -9,7 +9,7 @@ namespace Alpha
     /// </summary>
     public class UfoSpawner : MonoBehaviour
     {
-        [SerializeField] Ufo _prefab;
+        [SerializeField] UFOGimmick _prefab;
         [SerializeField] Transform _spawnPoint;
         [SerializeField] Transform _target;
 

@@ -11,7 +11,7 @@ namespace Alpha
     {
         [SerializeField] Button _titleButton;
         [SerializeField] Button _libraryButton;
-        [SerializeField] LibraryContent _library;
+        [SerializeField] IllustratedBook _library;
         [Header("図鑑ボタンをクリックした際にアニメーションを待つ")]
         [SerializeField] float _delay = 1.5f;
 

@@ -131,7 +131,7 @@ namespace Alpha
                 Crash();
             }
 
-            if(collision.gameObject.TryGetComponent(out Ufo ufo))
+            if(collision.gameObject.TryGetComponent(out UFOGimmick _) && IsThrowed)
             {
                 Crash();
             }
