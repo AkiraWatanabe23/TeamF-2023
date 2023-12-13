@@ -19,7 +19,7 @@ namespace Alpha
             rb.AddForce(velocity, ForceMode.Impulse);
 
             // 音とパーティクル
-            Cri.PlaySE("SE_Cleaning_1");
+            Cri.PlaySE("SE_Cleaning");
             ParticleMessageSender.SendMessage(ParticleType.Clean, transform.position, transform);
         }
 

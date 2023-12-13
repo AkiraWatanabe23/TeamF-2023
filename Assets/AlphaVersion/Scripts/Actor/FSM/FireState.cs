@@ -58,7 +58,7 @@ namespace Alpha
             Cri.PlaySE("SE_Robber_GunPrepare");
 
             await UniTask.Delay(System.TimeSpan.FromSeconds(0.5f), cancellationToken: token);
-            Cri.PlaySE("SE_Robber_Voice_1");
+            Cri.PlaySE3D(transform.position, "SE_Robber_Voice_1");
 
             await UniTask.Delay(System.TimeSpan.FromSeconds(_fireDelay), cancellationToken: token);
             Cri.PlaySE("SE_Robber_GunShot");

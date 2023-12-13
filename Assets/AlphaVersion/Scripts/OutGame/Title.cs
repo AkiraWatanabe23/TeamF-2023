@@ -9,6 +9,7 @@ namespace Alpha
 {
     public class Title : MonoBehaviour
     {
+        [SerializeField] Button _titleButton;
         [SerializeField] Button _libraryButton;
         [SerializeField] LibraryContent _library;
         [Header("図鑑ボタンをクリックした際にアニメーションを待つ")]
@@ -16,6 +17,7 @@ namespace Alpha
 
         void Start()
         {
+            _titleButton.onClick.AddListener(PlayTitleButtonSE);
             _library.ActiveChange();
             _libraryButton.onClick.AddListener(() => StartCoroutine(ButtonAnimationAsync()));
         }
@@ -24,6 +26,11 @@ namespace Alpha
         {
             yield return new WaitForSeconds(_delay);
             _library.ActiveChange();
+        }
+
+        public void PlayTitleButtonSE()
+        {
+            Cri.PlaySE("SE_Decision");
         }
     }
 }

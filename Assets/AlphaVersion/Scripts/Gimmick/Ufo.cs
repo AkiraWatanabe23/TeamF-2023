@@ -102,7 +102,7 @@ namespace Alpha
             _sequence.
                 AppendCallback(() =>
                 {
-                    Cri.PlaySE3D(_transform.position, "SE_UFO_1_Long");
+                    Cri.PlaySE3D(_transform.position, "SE_UFO");
                 }).
                 Append(_transform.DOMove(_initPosition + _moveOffset, _moveDuration)).
                 AppendCallback(() =>

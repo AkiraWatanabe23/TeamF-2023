@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorType: 1
   _behaviorType: 0
-  _failureVoice: SE_Failure_Woman
-  _successVoice: SE_Success_1_Woman
-  _orderVoice: 
-  _rareSuccessVoice: SE_Success_2_Woman
+  _failureVoice: SE_Girl1_Failure
+  _successVoice: SE_Girl1_Success
+  _orderVoice: SE_Order_Woman
+  _rareSuccessVoice: SE_Girl1_Failure
   _actorParams:
     MoveSpeed: 1
     OrderTimeLimit: 60

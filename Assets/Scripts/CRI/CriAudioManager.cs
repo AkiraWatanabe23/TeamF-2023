@@ -159,10 +159,11 @@ public class CriAudioManager
             {
                 if (_removedCueDataIndex.Count > 0)
                 {
-                    int tempIndex;
-                    if (_removedCueDataIndex.TryTake(out tempIndex))
+                    if (_removedCueDataIndex.TryTake(out int tempIndex))
                     {
-                        _cueData.TryAdd(tempIndex, playerData);
+                        if (_cueData.ContainsKey(tempIndex)) { _cueData[tempIndex] = playerData; }
+                        else { _cueData.TryAdd(tempIndex, playerData); }
+                        //_cueData.TryAdd(tempIndex, playerData);
                     }
 
                     return tempIndex;
@@ -170,16 +171,19 @@ public class CriAudioManager
                 else
                 {
                     _currentMaxCount++;
-                    _cueData.TryAdd(_currentMaxCount, playerData);
+                    if (_cueData.ContainsKey(_currentMaxCount)) { _cueData[_currentMaxCount] = playerData; }
+                    else { _cueData.TryAdd(_currentMaxCount, playerData); }
+                    //_cueData.TryAdd(_currentMaxCount, playerData);
                     return _currentMaxCount;
                 }
             }
             else if (_removedCueDataIndex.Count > 0)
             {
-                int tempIndex;
-                if (_removedCueDataIndex.TryTake(out tempIndex))
+                if (_removedCueDataIndex.TryTake(out int tempIndex))
                 {
-                    _cueData.TryAdd(tempIndex, playerData);
+                    if (_cueData.ContainsKey(tempIndex)) { _cueData[tempIndex] = playerData; }
+                    else { _cueData.TryAdd(tempIndex, playerData); }
+                    //_cueData.TryAdd(tempIndex, playerData);
                 }
 
                 PlaybackDestroyWaitForPlayEnd(tempIndex, playerData.CancellationTokenSource.Token);
@@ -188,7 +192,9 @@ public class CriAudioManager
             else
             {
                 _currentMaxCount++;
-                _cueData.TryAdd(_currentMaxCount, playerData);
+                if (_cueData.ContainsKey(_currentMaxCount)) { _cueData[_currentMaxCount] = playerData; }
+                else { _cueData.TryAdd(_currentMaxCount, playerData); }
+                //_cueData.TryAdd(_currentMaxCount, playerData);
 
                 PlaybackDestroyWaitForPlayEnd(_currentMaxCount, playerData.CancellationTokenSource.Token);
                 return _currentMaxCount;
@@ -207,7 +213,8 @@ public class CriAudioManager
 
             while (true)
             {
-                if (_cueData[index].Playback.GetStatus() == CriAtomExPlayback.Status.Removed && _cueData.TryRemove(index, out CriPlayerData outData))
+                if (_cueData[index].Playback.GetStatus() == CriAtomExPlayback.Status.Removed &&
+                    _cueData.TryRemove(index, out CriPlayerData outData))
                 {
                     _removedCueDataIndex.Add(index);
                     outData.Source?.Dispose();

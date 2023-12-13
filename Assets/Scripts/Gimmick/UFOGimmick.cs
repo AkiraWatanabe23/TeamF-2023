@@ -91,7 +91,7 @@ public class UFOGimmick : MonoBehaviour
         _sequence.
             AppendCallback(() =>
             {
-                Cri.PlaySE3D(_transform.position, "SE_UFO_1_Long", "CueSheet_SE4");
+                Cri.PlaySE3D(_transform.position, "SE_UFO_1_Long");
             }).
             Append(_transform.DOMove(_initPosition + _moveOffset, _moveDuration)).
             AppendCallback(() =>

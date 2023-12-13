@@ -10,15 +10,15 @@ namespace Alpha
     /// </summary>
     public static class Cri
     {
-        const string SESheet = "CueSheet_SE4";
-        const string BGMSheet = "CueSheet_BGM 3";
+        const string SESheet = "CueSheet_SE5";
+        const string BGMSheet = "CueSheet_BGM 4";
         const bool _valid = true; // —Ž‚¿‚é‚Ì‚Å–³Œø‰»
 
         public static void PlaySE(string name)
         {
             if (!_valid) return;
 
-            if (CriAudioManager.Instance == null) return;
+            //if (CriAudioManager.Instance == null) return;
 
             int i = CriAudioManager.Instance.SE.Play(SESheet, name);
             if (i == -1)
@@ -31,7 +31,7 @@ namespace Alpha
         {
             if (!_valid) return;
 
-            if (CriAudioManager.Instance == null) return;
+            //if (CriAudioManager.Instance == null) return;
 
             int i = CriAudioManager.Instance.SE.Play3D(position, SESheet, name);
             if (i == -1)
@@ -43,7 +43,7 @@ namespace Alpha
         public static void PlayBGM(string name)
         {
             if (!_valid) return;
-
+            
             int i = CriAudioManager.Instance.BGM.Play(BGMSheet, name);
             if (i == -1)
             {
