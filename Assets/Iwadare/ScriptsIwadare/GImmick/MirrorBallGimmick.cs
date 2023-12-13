@@ -46,7 +46,6 @@ public class MirrorBallGimmick : BaseGimmickArea
 
     public void Explosion()
     {
-        Debug.Log("ÇÒÅH");
         foreach (Transform trans in _mirrorBallObj.transform)
         {
             var rb = trans.GetComponent<Rigidbody>();
@@ -61,6 +60,7 @@ public class MirrorBallGimmick : BaseGimmickArea
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.TryGetComponent<IwadareGimmickScripts>(out var tmp)) { return; }
         var rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {

@@ -61,6 +61,7 @@ public class MinArea : BaseGimmickArea
         Collider[] cols = Physics.OverlapSphere(transform.position, ExplosionRadius);
         foreach (var col in cols)
         {
+            if (!col.TryGetComponent<IwadareGimmickScripts>(out var tmp)) { continue; }
             var rb = col.GetComponent<Rigidbody>();
             if (rb != null) { rb.AddExplosionForce(_explosionPower, transform.position, ExplosionRadius,_explosionUpPower,ForceMode.Impulse); }
         }

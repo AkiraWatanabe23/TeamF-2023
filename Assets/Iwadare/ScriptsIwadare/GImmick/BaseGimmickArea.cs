@@ -8,9 +8,10 @@ public class BaseGimmickArea : MonoBehaviour
     public float Speed => _speed;
     [SerializeField] bool _gimmickOperationBool = false;
     public bool GimmickOperationBool => _gimmickOperationBool;
+    [Header("オブジェクトの色関連の設定")]
+    [SerializeField] bool _colorChangeBool = true;
     public Renderer _gimmickOpeRenderer;
     [SerializeField] Color _startGimmickOpeColor = Color.red;
-
     public Color StartGimmickOpeColor => _startGimmickOpeColor;
     [SerializeField] Color _stopGimmickOpeColor = Color.white;
     public Color StopGimmickOpeColor => _stopGimmickOpeColor;
@@ -37,13 +38,9 @@ public class BaseGimmickArea : MonoBehaviour
 
     void Start()
     {
-        if(_gimmickOperationBool == false)
+        if(_colorChangeBool)
         {
-            _gimmickOpeRenderer.material.color = _stopGimmickOpeColor;
-        }
-        else
-        {
-            _gimmickOpeRenderer.material.color = _startGimmickOpeColor;
+            _gimmickOpeRenderer.material.color = !_gimmickOperationBool ? _stopGimmickOpeColor : _startGimmickOpeColor;
         }
     }
 
@@ -58,12 +55,18 @@ public class BaseGimmickArea : MonoBehaviour
         if (_gimmickOperationBool == true)
         {
             _gimmickOperationBool = false;
-            _gimmickOpeRenderer.material.color = _stopGimmickOpeColor;
+            if (_colorChangeBool)
+            {
+                _gimmickOpeRenderer.material.color = _stopGimmickOpeColor;
+            }
         }
         else
         {
             _gimmickOperationBool = true;
-            _gimmickOpeRenderer.material.color = _startGimmickOpeColor;
+            if (_colorChangeBool)
+            {
+                _gimmickOpeRenderer.material.color = _startGimmickOpeColor;
+            }
         }
     }
 }
