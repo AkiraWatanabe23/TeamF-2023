@@ -32,6 +32,7 @@ public class IllustratedBook : MonoBehaviour
 
     [SerializeField, Header("キャラクターの名前等入れるためのText")] private Text[] _characterTexts;
 
+    private float _tmpCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class IllustratedBook : MonoBehaviour
         _y = GetComponent<RectTransform>().anchoredPosition.y;
         ActiveChange();
         _slider.maxValue = _illustratedBookDatas.Length - 1;
+        _slider.value = 0;
     }
 
     // Update is called once per frame
@@ -53,14 +55,16 @@ public class IllustratedBook : MonoBehaviour
                 StartTween(_plusMoveY);
                 _scrollCount++;
                 _slider.value++;
-                TextsChange(_scrollCount);
+                _tmpCount++;
+                _tmpCount = _scrollCount;
             }
             else if (_scroll < 0 && _scrollCount > 0)
             {
                 StartTween(_minusMoveY);
                 _scrollCount--;
                 _slider.value--;
-                TextsChange(_scrollCount);
+                _tmpCount--;
+                _tmpCount = _scrollCount;
             }
         }
     }
@@ -68,12 +72,14 @@ public class IllustratedBook : MonoBehaviour
     private void StartTween(float yOffset)
     {
         _inputFlag = true;
-
+        _slider.interactable = false;
         var moveAnim = ScrollGameObject.transform.DOLocalMoveY(_y + yOffset, ScrollTime).SetLink(gameObject);
         moveAnim.OnComplete(() =>
         {
             _y += yOffset;
             _inputFlag = false;
+            TextsChange(_scrollCount);
+            _slider.interactable = true;
         });
     }
 
@@ -89,6 +95,27 @@ public class IllustratedBook : MonoBehaviour
         _characterTexts[0].text = $"{_illustratedBookDatas[count].CharacterName}";
         _characterTexts[1].text = $"{_illustratedBookDatas[count].CharacterTime}";
         _characterTexts[2].text = $"{_illustratedBookDatas[count].CharacterDetail}";
+    }
+
+    public void Slider()
+    {
+        if(!_inputFlag)
+        {
+            if(_tmpCount < _slider.value && _scrollCount < _illustratedBookDatas.Length - 1)
+            {
+                StartTween(_plusMoveY);
+                _scrollCount++;
+                _tmpCount++;
+                _slider.value = _tmpCount;
+            }
+            else if(_scrollCount > 0)
+            {
+                StartTween(_minusMoveY);
+                _scrollCount--;
+                _tmpCount--;
+                _slider.value = _tmpCount;
+            }
+        }
     }
 }
 [System.Serializable]
