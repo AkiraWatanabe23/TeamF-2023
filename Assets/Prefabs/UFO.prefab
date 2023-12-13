@@ -46,9 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10696c6e3ad31464f853e0c80f922313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxCastCount: 10
-  _suckUpOffset: {x: 0, y: -1, z: 0}
+  _spawnCount: 5
+  _miniCharaPrefab: {fileID: 3012995945478873184, guid: 2a70d94730c96b5488c1932edf1ce666,
+    type: 3}
+  _runAwayRadius: 1
+  _runAwayOffset: -1
+  _gimmickStartInterval: 1
+  _moveDuration: 1
   _moveOffset: {x: 5, y: 0, z: 0}
+  _upValue: 1
+  _maxCastCount: 10
+  _suckUpOffset: {x: 0, y: -0.5, z: 0}
+  _suckUpDuration: 1
+  _tweenSpeed: 1
+  _activeFalseInterval: 2
+  _swayValue: 10
+  _rotateValue: 45
 --- !u!65 &1376648317131292103
 BoxCollider:
   m_ObjectHideFlags: 0
