@@ -51,7 +51,7 @@ namespace Alpha
         {
             Particle particle = _pools[msg.Type].Rent();
             particle.Play();
-            //particle.transform.parent = msg.Parent;
+            particle.transform.parent = msg.Parent;
             particle.transform.position = msg.Position;
             particle.transform.rotation = Quaternion.identity;
         }

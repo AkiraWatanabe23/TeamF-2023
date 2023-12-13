@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorType: 2
   _behaviorType: 1
-  _failureVoice: SE_Failure_Robber
-  _successVoice: SE_Success_1_Robber
+  _failureVoice: 
+  _successVoice: 
   _orderVoice: 
-  _rareSuccessVoice: SE_Success_2_Robber
+  _rareSuccessVoice: 
   _actorParams:
     MoveSpeed: 1
     OrderTimeLimit: 60
