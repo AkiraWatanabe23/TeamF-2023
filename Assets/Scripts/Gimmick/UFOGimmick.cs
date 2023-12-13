@@ -5,6 +5,26 @@ using UnityEngine;
 
 public class UFOGimmick : MonoBehaviour
 {
+    [Header("ミニキャラキャラ関連")]
+    [Min(1)]
+    [SerializeField]
+    private int _spawnCount = 1;
+    [Tooltip("逃げるキャラクター")]
+    [SerializeField]
+    private GameObject _miniCharaPrefab = default;
+    [Tooltip("キャラクターの生成範囲の半径")]
+    [SerializeField]
+    private float _runAwayRadius = 1f;
+    [Tooltip("UFOのどれくらい下に生成するか")]
+    [SerializeField]
+    private float _runAwayOffset = -1f;
+    [Tooltip("ミニキャラが逃げてから何秒後にUFOが動き出すか")]
+    [SerializeField]
+    private float _gimmickStartInterval = 1f;
+
+    /// <summary> キャラクターの移動間隔 </summary>
+    private readonly float _runAwayDuration = 5f;
+
     [Header("初期移動時の値")]
     [Tooltip("最初にステージ上まで移動する時間")]
     [SerializeField]
@@ -62,6 +82,10 @@ public class UFOGimmick : MonoBehaviour
     {
         yield return Initialize();
 
+        MiniCharaMovement();
+
+        yield return new WaitForSeconds(_gimmickStartInterval);
+
         Movement();
     }
 
@@ -82,6 +106,26 @@ public class UFOGimmick : MonoBehaviour
 #endif
 
         yield return null;
+    }
+
+    /// <summary> 生成するミニキャラを動かす </summary>
+    private void MiniCharaMovement()
+    {
+        for (int i = 0; i < _spawnCount; i++)
+        {
+            var circlePos = _runAwayRadius * Random.insideUnitCircle;
+            var spawnPos = _transform.position + new Vector3(circlePos.x, _runAwayOffset, circlePos.y);
+
+            var chara = Instantiate(_miniCharaPrefab, spawnPos, Quaternion.identity);
+
+            var transform = chara.transform;
+            var sequence = DOTween.Sequence();
+
+            sequence.
+                Append(transform.DOMoveX(20f, _runAwayDuration)).
+                AppendInterval(1f).
+                SetLink(chara);
+        }
     }
 
     private void Movement()
@@ -125,7 +169,7 @@ public class UFOGimmick : MonoBehaviour
     /// <summary> 吸い上げる </summary>
     private void SuckUp(GameObject target)
     {
-        if (target.TryGetComponent(out ThrowedItem item))
+        if (target.TryGetComponent(out ThrowedItem _) || target.TryGetComponent(out SuckUpComponent _))
         {
 #if UNITY_EDITOR
             Debug.Log("見つけた");
