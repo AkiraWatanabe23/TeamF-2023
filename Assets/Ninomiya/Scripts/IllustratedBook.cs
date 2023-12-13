@@ -48,7 +48,7 @@ public class IllustratedBook : MonoBehaviour
     {
         if (!_inputFlag)
         {
-            _scroll = Input.GetAxis("Mouse ScrollWheel");
+            _scroll = -Input.GetAxis("Mouse ScrollWheel");
 
             if (_scroll > 0 && _scrollCount < _illustratedBookDatas.Length - 1)
             {
