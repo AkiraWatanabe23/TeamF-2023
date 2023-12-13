@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorType: 0
   _behaviorType: 0
-  _failureVoice: SE_Failure_Man
-  _successVoice: SE_Success_1_Man
+  _failureVoice: SE_Boy2_Failure
+  _successVoice: SE_Boy2_Success
   _orderVoice: SE_Order_Man
-  _rareSuccessVoice: SE_Success_2_Man
+  _rareSuccessVoice: SE_Boy2_Success
   _actorParams:
     MoveSpeed: 1.04
     OrderTimeLimit: 10.2
-    Orders: 00000000020000000300000004000000
   _visualParams:
     ItemHitParticle:
       Particle: 4

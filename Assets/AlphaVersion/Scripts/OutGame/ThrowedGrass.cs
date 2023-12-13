@@ -19,9 +19,9 @@ namespace Alpha
                 rb.AddForce(Vector3.left * _power, ForceMode.Impulse);
             }
 
-            //Cri.PlaySE("SE_BECHA", "CueSheet_SE4");
+            Cri.PlaySE("SE_BECHA");
 
-            //Cri.PlaySE("SE_ItemCrash_short"); 鳴るがシーン遷移で必ずエラー落ちするのでコメントアウト中
+            //Cri.PlaySE("SE_ItemCrash");
             Instantiate(_particle, transform.position, Quaternion.identity);
             StartCoroutine(C());
         }

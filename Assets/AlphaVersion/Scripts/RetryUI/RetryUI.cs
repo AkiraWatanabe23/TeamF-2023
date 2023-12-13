@@ -27,7 +27,8 @@ namespace Alpha
             AsyncUnityEventHandler title = _titleButton.onClick.GetAsyncEventHandler(token);
 
             int result = await UniTask.WhenAny(retry.OnInvokeAsync(), title.OnInvokeAsync());
-
+            Cri.PlaySE("SE_Decision");
+            await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
             // ââèoë“Ç¬
 
             if (result == 0) return SceneManager.GetActiveScene().name;

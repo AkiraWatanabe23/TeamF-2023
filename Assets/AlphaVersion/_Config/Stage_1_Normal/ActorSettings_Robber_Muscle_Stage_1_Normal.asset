@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorType: 2
   _behaviorType: 1
-  _failureVoice: SE_Failure_Robber
-  _successVoice: SE_Success_1_Robber
-  _rareSuccessVoice: SE_Success_2_Robber
+  _failureVoice: 
+  _successVoice: 
+  _orderVoice: 
+  _rareSuccessVoice: 
   _actorParams:
     MoveSpeed: 1.02
-    Orders: 
     OrderTimeLimit: 1
   _visualParams:
     ItemHitParticle:

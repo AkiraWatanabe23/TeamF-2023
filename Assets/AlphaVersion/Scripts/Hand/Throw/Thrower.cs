@@ -96,7 +96,7 @@ namespace Alpha
         IEnumerator DelayPlay()
         {
             yield return new WaitForSeconds(0.1f);
-            Cri.PlaySE("SE_Swoosh_KARI");
+            Cri.PlaySE("SE_Swoosh");
         }
     }
 }

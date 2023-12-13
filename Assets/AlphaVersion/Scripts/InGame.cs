@@ -20,7 +20,7 @@ namespace Alpha
     public class InGame : MonoBehaviour
     {
         // ドアが閉まるタイミングと曲の終わりを合わせるためのオフセット
-        const float DoorCloseTimingOffset = 8.6f;
+        //const float DoorCloseTimingOffset = 8.6f;
 
         [SerializeField] InGameSettingsSO _settings;
         [SerializeField] GameStartEvent _gameStartEvent;
@@ -31,6 +31,7 @@ namespace Alpha
         [SerializeField] ScoreManager _score;
         [SerializeField] TempRanking _ranking;
         [SerializeField] RetryUI _retry;
+        float _doorCloseTimingOffset = 9.75f;
 
         /// <summary>
         /// 非同期処理の実行
@@ -49,7 +50,7 @@ namespace Alpha
         {
             Cri.StopAll(); // 一応
         }
-
+        
         /// <summary>
         /// インゲームの流れ
         /// </summary>
@@ -58,7 +59,7 @@ namespace Alpha
             await TryFadeInAsync(token);
             //await _gameStartEvent.PlayAsync(token);
 
-            Cri.PlayBGM("BGM_B_Kari");
+            Cri.PlayBGM("BGM_B");
             RegisterFerverBGM();
             SendGameStartMessage();
 
@@ -68,6 +69,8 @@ namespace Alpha
                 Step(t);
                 await UniTask.Yield(token);
             }
+
+            Cri.PlaySE("SE_GameOver");
 
             //Cri.StopBGM();
             SendGameOverMessage();
@@ -101,8 +104,8 @@ namespace Alpha
         /// </summary>
         void RegisterFerverBGM()
         {
-            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C_DEMO");
-            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C_DEMO"));
+            _ferver.OnFerverEnter += () => Cri.PlayBGM("BGM_C");
+            this.OnDisableAsObservable().Subscribe(_ => _ferver.OnFerverEnter -= () => Cri.PlayBGM("BGM_C"));
         }
 
         /// <summary>
@@ -111,7 +114,7 @@ namespace Alpha
         async UniTaskVoid DelayedPlayLastSpurtBGM(CancellationToken token)
         {
             // 制限時間-10秒で残り10秒で再生
-            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - DoorCloseTimingOffset), cancellationToken: token);
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_settings.TimeLimit - _doorCloseTimingOffset), cancellationToken: token);
             Cri.PlayBGM("BGM_C'_DEMO");
         }
 
