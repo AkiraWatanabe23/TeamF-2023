@@ -9,6 +9,7 @@ public class TextArea : BaseGimmickArea
     [SerializeField] Vector3 _moveVec = Vector3.zero;
     [SerializeField] float _activeTime = 5f;
     [SerializeField] float _power = 5f;
+    bool _active = false;
 
     void Start()
     {
@@ -18,15 +19,18 @@ public class TextArea : BaseGimmickArea
 
     public override void GimmickOperation()
     {
+        if (_active) { return; }
         _rb.velocity = _moveVec.normalized * Speed;
         StartCoroutine(GimmickMove());
     }
 
     public IEnumerator GimmickMove()
     {
+        _active = true;
         for(var time = 0f;time < _activeTime;time += Time.deltaTime){ yield return null; }
         _rb.transform.position = _initPos;
         _rb.velocity = Vector3.zero;
+        _active = false;
     }
 
     private void OnTriggerEnter(Collider other)
