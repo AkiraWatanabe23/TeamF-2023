@@ -213,7 +213,9 @@ public class CriAudioManager
 
             while (true)
             {
-                if (_cueData[index].Playback.GetStatus() == CriAtomExPlayback.Status.Removed &&
+
+                if (_cueData.ContainsKey(index) &&
+                    _cueData[index].Playback.GetStatus() == CriAtomExPlayback.Status.Removed &&
                     _cueData.TryRemove(index, out CriPlayerData outData))
                 {
                     _removedCueDataIndex.Add(index);
