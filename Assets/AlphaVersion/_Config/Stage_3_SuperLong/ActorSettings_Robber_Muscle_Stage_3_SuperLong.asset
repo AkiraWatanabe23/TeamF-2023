@@ -16,10 +16,10 @@ MonoBehaviour:
   _behaviorType: 1
   _failureVoice: SE_Failure_Robber
   _successVoice: SE_Success_1_Robber
+  _orderVoice: 
   _rareSuccessVoice: SE_Success_2_Robber
   _actorParams:
-    MoveSpeed: 1
-    Orders: 
+    MoveSpeed: 1.29
     OrderTimeLimit: 1
   _visualParams:
     ItemHitParticle:

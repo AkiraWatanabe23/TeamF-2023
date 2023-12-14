@@ -22,6 +22,8 @@ MonoBehaviour:
     _timing:
     - 0
     - 10
+    - 25
   _ufo:
     _timing:
-    - 65535
+    - 20
+    - 65

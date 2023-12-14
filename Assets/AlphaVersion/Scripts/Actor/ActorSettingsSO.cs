@@ -22,6 +22,12 @@ namespace Alpha
             [Header("<color=#00FF76>注文を受け取る制限時間(秒)</color>")]
             [Range(1.0f, 60.0f)]
             public float OrderTimeLimit;
+            [Header("<color=#00FF76>失敗時に減少するスコア</color>")]
+            public int DecreaseScore;
+            [Header("<color=#00FF76>成功時に増加するスコア</color>")]
+            public int IncreaseScore;
+            [Header("<color=#00FF76>フィーバー時の獲得スコアの倍率</color>")]
+            public float FeverScoreRate;
         }
 
         /// <summary>
@@ -66,6 +72,7 @@ namespace Alpha
         }
 
         [Header("キャラクターを識別する値")]
+        [SerializeField] ScoreKey _scoreKey;
         [SerializeField] ActorType _actorType;
         [SerializeField] BehaviorType _behaviorType;
         [SerializeField] string _failureVoice;
@@ -91,5 +98,9 @@ namespace Alpha
         public string OrderVoice => _orderVoice;
         // 1/10の低確率でレアな成功ボイス
         public string SuccessVoice => Random.value <= 0.1f ? _rareSuccessVoice : _successVoice;
+
+        public ActorParams ActorParamsSet => _actorParams;
+
+        public ScoreKey ScoreKey => _scoreKey;
     }
 }

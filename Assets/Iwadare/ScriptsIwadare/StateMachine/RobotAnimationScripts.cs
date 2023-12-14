@@ -1,5 +1,5 @@
+using DG.Tweening;
 using StateMachine;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -29,6 +29,8 @@ public class RobotAnimationScripts : MonoBehaviour
 
     private int _chairCount = 0;
 
+    Sequence _attackSeq;
+
     public UnityAction<float> OnWaitAction;
 
     void Awake()
@@ -38,7 +40,6 @@ public class RobotAnimationScripts : MonoBehaviour
         if (_changeSitChairButton != null) { _changeSitChairButton.onClick.AddListener(() => SitReceipt(_allSitScripts[(_chairCount + 1) % _allSitScripts.Length])); }
         _stateMachine.Init(ref _animator);
     }
-
     private void OnEnable()
     {
         //デバック用
@@ -134,7 +135,7 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>Idleアニメーション</summary>
     public void IdleState()
     {
-        if(_stateMachine.CurrentState != _stateMachine.GetIdleState)
+        if (_stateMachine.CurrentState != _stateMachine.GetIdleState)
         {
             _stateMachine.OnChangeState(_stateMachine.GetIdleState);
         }
@@ -143,24 +144,40 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>Attackアニメーション</summary>
     public void AttackMotion()
     {
-        if (_stateMachine.CurrentState != _stateMachine.GetAttackMotion &&
-            _stateMachine.CurrentState != _stateMachine.GetWaitState)
+        if (_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
         {
             _stateMachine.OnChangeState(_stateMachine.GetAttackMotion);
-            StartCoroutine(EndAction(_attackTime));
+            EndAction(_attackTime);
         }
     }
 
-    public IEnumerator EndAction(float time)
+    public void EndAction(float time)
     {
-        yield return new WaitForSeconds(_attackTime);
-        WaitState();
+        _attackSeq = DOTween.Sequence();
+        _attackSeq.AppendInterval(_attackTime)
+            .AppendCallback(() => { EndAttackState(); })
+            .OnUpdate(() =>
+            {
+                if (_stateMachine.CurrentState != _stateMachine.GetAttackMotion)
+                {
+                    this.DOKill();
+                }
+            });
+        _attackSeq.Play().SetLink(gameObject).SetId(this);
+    }
+
+    public void EndAttackState()
+    {
+        if (_stateMachine.CurrentState == _stateMachine.GetAttackMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetWaitState);
+        }
     }
 
     /// <summary>Hitsモーション</summary>
     public void HitsMotion()
     {
-        if(_stateMachine.CurrentState != _stateMachine.GetHitsMotion)
+        if (_stateMachine.CurrentState != _stateMachine.GetHitsMotion)
         {
             _stateMachine.OnChangeState(_stateMachine.GetHitsMotion);
         }
