@@ -15,8 +15,7 @@ public class IdleMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
-
+       return;
     }
 
     public void OnExitState(StateMachineController stateMachine)

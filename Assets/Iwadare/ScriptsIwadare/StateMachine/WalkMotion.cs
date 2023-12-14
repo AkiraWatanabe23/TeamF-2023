@@ -18,7 +18,7 @@ public class WalkMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("Ç§Ç®Ç®Ç®Ç®Ç®Ç®ÅI", stateMachine.DisplayLog);
+        return;
     }
 
 

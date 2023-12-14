@@ -17,9 +17,7 @@ public class FailedMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
-            "ぷんぷん丸って言うのね、取るね手に、カチンコチンな刃で何でも切れそう！" :
-            "ぷんぷん！ぷんぷーーーん！", stateMachine.DisplayLog);
+        return;
     }
 
     public void OnExitState(StateMachineController stateMachine)

@@ -16,7 +16,7 @@ public class DanceMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("‚¿‚á‚ñ‚¿‚á‚©‚¿‚á‚ñ‚¿‚á‚ñ‚¿‚á‚¿‚á‚ñ‚¿‚á‚¿‚á‚ñ‚¿‚á‚ñ", stateMachine.DisplayLog);
+        return;
     }
 
     public void OnExitState(StateMachineController stateMachine)

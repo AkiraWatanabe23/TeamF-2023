@@ -17,9 +17,7 @@ public class SuccessMotionScript : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
-            "Ç†Ç¡ÅAÇ»ÇÈÇŸÇ«ÅI" :
-            "ëfê∞ÇÁÇµÇ¢Ç‡ÇÃÇÇ®éùÇøÇ≈ÅB", stateMachine.DisplayLog);
+        return;
     }
 
     public void OnExitState(StateMachineController stateMachine)
