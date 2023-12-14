@@ -15,7 +15,7 @@ namespace Alpha
         /// <summary>
         /// 通常時、成功した際のメッセージを送信する
         /// </summary>
-        public static void SendSuccessMessage(ActorType actor, Vector3 pos)
+        public static void SendSuccessMessage(ActorType actor, Vector3 pos, ScoreKey key)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
@@ -29,7 +29,7 @@ namespace Alpha
         /// <summary>
         /// フィーバー時、成功した際のメッセージを送信する
         /// </summary>
-        public static void SendFeverSuccessMessage(ActorType actor, Vector3 pos)
+        public static void SendFeverSuccessMessage(ActorType actor, Vector3 pos, ScoreKey key)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
@@ -43,7 +43,7 @@ namespace Alpha
         /// <summary>
         /// 通常時、失敗した際のメッセージを送信する
         /// </summary>
-        public static void SendFailureMessage(ActorType actor, Vector3 pos)
+        public static void SendFailureMessage(ActorType actor, Vector3 pos, ScoreKey key)
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {

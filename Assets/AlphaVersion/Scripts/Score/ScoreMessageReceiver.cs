@@ -7,6 +7,20 @@ using UnityEngine.Events;
 namespace Alpha
 {
     /// <summary>
+    /// どのスコア設定を参照するかのキーになる列挙型
+    /// </summary>
+    public enum ScoreKey
+    {
+        Female,
+        FemaleOnkou,
+        FemaleTanki,
+        Male,
+        MaleOnkou,
+        MaleTanki,
+        Robber,
+    }
+
+    /// <summary>
     /// 発生したスコアを増減させるイベントの情報をメッセージングするための構造体
     /// </summary>
     public struct ScoreEventMessage
@@ -30,6 +44,7 @@ namespace Alpha
             Muscle,
         }
 
+        public ScoreKey Key;
         public EventResult Result;
         public EventState State;
         public EventActor Actor;

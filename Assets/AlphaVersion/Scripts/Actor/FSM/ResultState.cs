@@ -48,7 +48,8 @@ namespace Alpha
             PlayEffect();
 
             // スコアの送信
-            OrderScoreSender.SendScore(_result, _settings.ActorType, Tension, transform.position);
+            OrderScoreSender.SendScore(_result, _settings.ActorType, Tension, 
+                transform.position, _settings.ScoreKey);
         }
 
         protected override void Exit()
@@ -99,3 +100,6 @@ namespace Alpha
         }
     }
 }
+
+// Scoreに各SOを割り当てる
+// SOに自身のScoreKeyを割り当てる。

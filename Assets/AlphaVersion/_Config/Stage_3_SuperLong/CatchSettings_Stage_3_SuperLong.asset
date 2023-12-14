@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: AlphaVersion:Alpha:CatchSettings
   _normalSize: 0.557
   _ferverSize: 0.703
-  _catchableSpeed: 30
+  _catchableSpeed: 50

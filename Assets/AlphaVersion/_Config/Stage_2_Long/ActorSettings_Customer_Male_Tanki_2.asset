@@ -19,8 +19,8 @@ MonoBehaviour:
   _orderVoice: SE_Order_Man
   _rareSuccessVoice: SE_Boy2_Success
   _actorParams:
-    MoveSpeed: 1.04
-    OrderTimeLimit: 10.2
+    MoveSpeed: 3
+    OrderTimeLimit: 5.5
   _visualParams:
     ItemHitParticle:
       Particle: 4

@@ -11512,6 +11512,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4706032519828990765, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 44e6fee9286290b4fa0efc81ae3c308a,
+        type: 3}
     - target: {fileID: 4995961296807306788, guid: cce73f119a998f944a7b26c3a7bb1842,
         type: 3}
       propertyPath: m_IsActive
@@ -11597,6 +11603,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: IllustratedBookCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6605938138152258547, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 44e6fee9286290b4fa0efc81ae3c308a,
+        type: 3}
+    - target: {fileID: 7853620174435899340, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853620174435899340, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853620174435899340, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853620174435899340, guid: cce73f119a998f944a7b26c3a7bb1842,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 44e6fee9286290b4fa0efc81ae3c308a,
+        type: 3}
     - target: {fileID: 7868927062482272146, guid: cce73f119a998f944a7b26c3a7bb1842,
         type: 3}
       propertyPath: m_Enabled

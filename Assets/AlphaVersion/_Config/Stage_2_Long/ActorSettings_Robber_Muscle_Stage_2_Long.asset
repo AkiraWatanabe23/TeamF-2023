@@ -19,7 +19,7 @@ MonoBehaviour:
   _orderVoice: 
   _rareSuccessVoice: 
   _actorParams:
-    MoveSpeed: 1.02
+    MoveSpeed: 1.19
     OrderTimeLimit: 1
   _visualParams:
     ItemHitParticle:

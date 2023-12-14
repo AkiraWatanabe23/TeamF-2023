@@ -298,7 +298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1089b1d5e0076428031876bd0f4ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 54f4b684b57740845bbe7a6bdcb16f9b, type: 2}
+  _female: {fileID: 11400000, guid: c5338bbbb66aa0e4abb6e226f6210995, type: 2}
+  _femaleOnkou: {fileID: 11400000, guid: f5a3cb3521c17e949ad7ee3bd49192d8, type: 2}
+  _femaleTanki: {fileID: 11400000, guid: 1ffebae99b19ecb45bc37edc8b44e3e6, type: 2}
+  _male: {fileID: 11400000, guid: d67df5e1e31677a4198754ab85fdc5f7, type: 2}
+  _maleOnkou: {fileID: 11400000, guid: 707cdceb7db5ed24aad72a712c9b4b9d, type: 2}
+  _maleTanki: {fileID: 11400000, guid: eb4a7f95b8d94fd4081f822941f3a0ed, type: 2}
+  _robber: {fileID: 11400000, guid: 1200d341a75571b44b9e26ac8fe04c6e, type: 2}
 --- !u!114 &29242261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &123787521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1753,7 +1759,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -720, y: -160}
-  m_SizeDelta: {x: 400, y: 300}
+  m_SizeDelta: {x: 472, y: 417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &226724170
 GameObject:
@@ -5443,10 +5449,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 212074587}
   - {fileID: 1022782585}
   - {fileID: 2567756683387740850}
   - {fileID: 3429004350800657871}
-  - {fileID: 212074587}
   m_Father: {fileID: 1588330384}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7475,7 +7481,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _renderers.Array.data[1]
       value: 
-      objectReference: {fileID: 1592449300}
+      objectReference: {fileID: 0}
     - target: {fileID: 5970581929368002419, guid: dd058d5b0381401418ce2dce4db48033,
         type: 3}
       propertyPath: _renderers.Array.data[2]
@@ -9810,15 +9816,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6cec9b1ebd09616438fa2dd123ddf1cf, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10735,12 +10741,6 @@ PrefabInstance:
 --- !u!137 &1592449299 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5187466472467674851, guid: 1e8c36f63edef944abf3d350a0c35d91,
-    type: 3}
-  m_PrefabInstance: {fileID: 1592449298}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1592449300 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7206984466451990577, guid: 1e8c36f63edef944abf3d350a0c35d91,
     type: 3}
   m_PrefabInstance: {fileID: 1592449298}
   m_PrefabAsset: {fileID: 0}
@@ -13575,6 +13575,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733818360828668881, guid: 3f9267bab0e95f44ab548c9a959e0c18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776826435521574404, guid: 3f9267bab0e95f44ab548c9a959e0c18,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6855334362964982190, guid: 3f9267bab0e95f44ab548c9a959e0c18,
         type: 3}
