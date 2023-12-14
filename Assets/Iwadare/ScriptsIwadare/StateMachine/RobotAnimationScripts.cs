@@ -52,7 +52,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationStay += WaitState;
             AnimationCallBackTest.OnAnimationIdle += IdleState;
             AnimationCallBackTest.OnAnimationAttack += AttackMotion;
-            AnimationCallBackTest.OnAnimationHits += HitsMotion;
+            AnimationCallBackTest.OnAnimationHits += HitsBanditMotion;
         }
     }
 
@@ -68,7 +68,7 @@ public class RobotAnimationScripts : MonoBehaviour
             AnimationCallBackTest.OnAnimationStay -= WaitState;
             AnimationCallBackTest.OnAnimationIdle -= IdleState;
             AnimationCallBackTest.OnAnimationAttack -= AttackMotion;
-            AnimationCallBackTest.OnAnimationHits -= HitsMotion;
+            AnimationCallBackTest.OnAnimationHits -= HitsBanditMotion;
         }
     }
 
@@ -180,6 +180,14 @@ public class RobotAnimationScripts : MonoBehaviour
         if (_stateMachine.CurrentState != _stateMachine.GetHitsMotion)
         {
             _stateMachine.OnChangeState(_stateMachine.GetHitsMotion);
+        }
+    }
+
+    public void HitsBanditMotion()
+    {
+        if (_stateMachine.CurrentState != _stateMachine.GetBanditHitsMotion)
+        {
+            _stateMachine.OnChangeState(_stateMachine.GetBanditHitsMotion);
         }
     }
 

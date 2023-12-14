@@ -9,18 +9,17 @@ public class WaitState : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("私まーつーわ、いつまでも", stateMachine.DisplayLog);
 
     }
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
-
+        return;
     }
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("ひとつ！ふたつ！みっつ！よっつ！いつつ！)┳---バーン...!!---┳(", stateMachine.DisplayLog);
     }
 }

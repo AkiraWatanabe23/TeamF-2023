@@ -23,7 +23,7 @@ public class SitMotion : IState
 
     public void OnUpdate(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("す、座ったぁ！？こいつぁ座りやがった！", stateMachine.DisplayLog);
+        return;
     }
 
     public void OnExitState(StateMachineController stateMachine)

@@ -16,6 +16,7 @@ namespace StateMachine
         private IdleMotion _idleState = new();
         private AttackMotion _attackMotion = new();
         private HitsMotion _hitsMotion = new();
+        private BanditHitsMotion _banditHitsMotion = new();
         public WalkMotion GetWalk => _walk;
         public SitMotion GetSit => _sit;
         public SuccessMotionScript GetSuccessMotion => _successMotion;
@@ -25,6 +26,7 @@ namespace StateMachine
         public IdleMotion GetIdleState => _idleState;
         public AttackMotion GetAttackMotion => _attackMotion;
         public HitsMotion GetHitsMotion => _hitsMotion;
+        public BanditHitsMotion GetBanditHitsMotion => _banditHitsMotion;
 
         private IState _currentState = null;
         public IState CurrentState => _currentState;
@@ -71,7 +73,7 @@ namespace StateMachine
         public void Init(ref Animator anim)
         {
             _anim = anim;
-            IState[] state = new IState[8] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState, _idleState ,_attackMotion};
+            IState[] state = new IState[9] { _walk, _sit, _successMotion, _failedMotion, _dance, _waitState, _idleState ,_attackMotion,_banditHitsMotion};
             for (var i = 0; i < state.Length; i++)
             {
                 _currentState = state[i];
