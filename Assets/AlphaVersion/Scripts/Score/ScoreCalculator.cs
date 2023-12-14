@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Alpha
 {
-    using ActorScore = ScoreSettingsSO.ActorScore;
     using static ScoreEventMessage;
 
     /// <summary>
@@ -12,30 +11,39 @@ namespace Alpha
     /// </summary>
     public class ScoreCalculator : MonoBehaviour
     {
-        [SerializeField] ScoreSettingsSO _settings;
+        [SerializeField] ActorSettingsSO _female;
+        [SerializeField] ActorSettingsSO _femaleOnkou;
+        [SerializeField] ActorSettingsSO _femaleTanki;
+        [SerializeField] ActorSettingsSO _male;
+        [SerializeField] ActorSettingsSO _maleOnkou;
+        [SerializeField] ActorSettingsSO _maleTanki;
+        [SerializeField] ActorSettingsSO _robber;
 
         /// <summary>
         /// スコアのテーブルを参照し、増減するスコアの値を返す
         /// </summary>
         public int ToInt(ScoreEventMessage msg)
-        {            
-            // スコアの倍率、フィーバータイムかどうかで変わる
-            float scoreRate = msg.State == EventState.Normal ? _settings.DefaultScoreRate : _settings.FeverScoreRate;
+        {
+            ActorSettingsSO so = null;
+            if (msg.Key == ScoreKey.Female) so = _female;
+            if (msg.Key == ScoreKey.FemaleOnkou) so = _femaleOnkou;
+            if (msg.Key == ScoreKey.FemaleTanki) so = _femaleTanki;
+            if (msg.Key == ScoreKey.Male) so = _male;
+            if (msg.Key == ScoreKey.MaleOnkou) so = _maleOnkou;
+            if (msg.Key == ScoreKey.MaleTanki) so = _maleTanki;
+            if (msg.Key == ScoreKey.Robber) so = _robber;
 
-            // イベントを起こしたキャラクター
-            ActorScore actor = default;
-            if      (msg.Actor == EventActor.Male) actor = _settings.Male;
-            else if (msg.Actor == EventActor.Female) actor = _settings.Female;
-            else if (msg.Actor == EventActor.Muscle) actor = _settings.Robber;
-            else throw new System.Exception("スコアを送信したキャラが想定外: " + actor);
+            if (so == null) { return -1; }
 
-            // 成功/失敗で増減する値の基準値を決める
-            float score = msg.Result == EventResult.Success ? actor.SuccessBonus : -actor.FailurePenalty;
+            float add = msg.Result == EventResult.Success ? so.ActorParamsSet.IncreaseScore : 
+                                                            -so.ActorParamsSet.DecreaseScore;
 
-            // 成功の場合はスコア倍率をかける
-            if (msg.Result == EventResult.Success) score *= scoreRate;
+            //// スコアの倍率、フィーバータイムかどうかで変わる
+            float scoreRate = msg.State == EventState.Normal ? 1 : so.ActorParamsSet.FeverScoreRate;
 
-            return (int)score;
+            if (msg.Result == EventResult.Success) add *= scoreRate;
+
+            return (int)add;
         }
     }
 }

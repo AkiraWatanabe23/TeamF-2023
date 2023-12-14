@@ -34,7 +34,7 @@ namespace Alpha
         protected override void OnAwakeOverride()
         {
             _changer = GetComponent<FaceChanger>();
-            _decal.SetActive(false);
+            //_decal.SetActive(false);
 
             // このステートがStayの際は当たり判定が有効になる
             // Initは初期化される度に呼ばれるのでAwakeのタイミングで1度だけ登録する

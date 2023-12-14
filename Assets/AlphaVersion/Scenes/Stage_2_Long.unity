@@ -298,7 +298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1089b1d5e0076428031876bd0f4ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 54f4b684b57740845bbe7a6bdcb16f9b, type: 2}
+  _female: {fileID: 11400000, guid: 38e22c2ccc47c3546843620e1a3cfcf5, type: 2}
+  _femaleOnkou: {fileID: 11400000, guid: 9b85b8b74f55cb14092a7aab63127286, type: 2}
+  _femaleTanki: {fileID: 11400000, guid: 8ed17aa7c88a41a4c94f1193b95d42a1, type: 2}
+  _male: {fileID: 11400000, guid: d55474c40e8cf9d4697eeb0c5882aa57, type: 2}
+  _maleOnkou: {fileID: 11400000, guid: 1d6aa2adcedbb3b4cb98eef3631c3d9f, type: 2}
+  _maleTanki: {fileID: 11400000, guid: 4ecd17e3fc177de4294f7d1dfb5fbc8e, type: 2}
+  _robber: {fileID: 11400000, guid: d9d5d051245bc6648bb2e0a3e717175e, type: 2}
 --- !u!114 &29242261
 MonoBehaviour:
   m_ObjectHideFlags: 0
