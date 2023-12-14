@@ -29,7 +29,7 @@ namespace Alpha
         [SerializeField] TimeSpawnController _timeSpawn;
         [SerializeField] FerverTrigger _ferver;
         [SerializeField] ScoreManager _score;
-        [SerializeField] TempRanking _ranking;
+        [SerializeField] Ranking _ranking;
         [SerializeField] RetryUI _retry;
         float _doorCloseTimingOffset = 9.75f;
 

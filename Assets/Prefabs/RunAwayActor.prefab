@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7781629433211488675}
   - {fileID: 6134948418401850453}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6291195392428406871
 BoxCollider:
@@ -80,7 +80,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -104,16 +104,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3530612030515721971}
     m_Modifications:
-    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7c95ac7c3286cd943aa09bbeda996696, type: 2}
-    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1926519654116593519, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_Enabled
@@ -123,7 +113,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7c95ac7c3286cd943aa09bbeda996696, type: 2}
+      objectReference: {fileID: 9100000, guid: d3a6b4dd7b2bfc14ebdf7c7dc850f9c5, type: 2}
     - target: {fileID: 7191140367278986854, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_Name
@@ -142,17 +132,17 @@ PrefabInstance:
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
@@ -162,7 +152,7 @@ PrefabInstance:
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
@@ -202,6 +192,21 @@ PrefabInstance:
     - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155798297799390969, guid: a5e32b40e3f6cfc4b86937eb474239cc,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7c95ac7c3286cd943aa09bbeda996696, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 874244544889619524, guid: 0728f683564eb00408dbd34352577569,
@@ -300,6 +305,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eff_Trail01
       objectReference: {fileID: 0}
+    - target: {fileID: 2563036122631022369, guid: 6c9b0d2372dda794896974369e43c9e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2563036122631022374, guid: 6c9b0d2372dda794896974369e43c9e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -313,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 2563036122631022374, guid: 6c9b0d2372dda794896974369e43c9e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2563036122631022374, guid: 6c9b0d2372dda794896974369e43c9e0,
         type: 3}
