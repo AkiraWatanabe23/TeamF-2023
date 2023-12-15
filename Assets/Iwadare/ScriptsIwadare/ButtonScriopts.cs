@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DG.Tweening;
 
-public class ButtonScriopts : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,IPointerEnterHandler,IPointerExitHandler
+public class ButtonScriopts : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     Button _button;
     RectTransform _rectTransform;
@@ -31,17 +29,17 @@ public class ButtonScriopts : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        DebugLogUtility.PrankLog("ポポポポポチ！",_displayLogBool);
+        DebugLogUtility.PrankLog("ポポポポポチ！", _displayLogBool);
 
         _rectTransform.DOScale(_tmpScale * _pushScale, _selectTime).SetLink(gameObject);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        DebugLogUtility.PrankLog("俺のクリックはぁ！世界イチィィィィィ！",_displayLogBool);
+        DebugLogUtility.PrankLog("俺のクリックはぁ！世界イチィィィィィ！", _displayLogBool);
         _rectTransform.localScale = _tmpScale;
         _button.image.color = _pushUpColor;
-        _rectTransform.DOScale(_tmpScale,_selectTime).SetLink(gameObject);
+        _rectTransform.DOScale(_tmpScale, _selectTime).SetLink(gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
