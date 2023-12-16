@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseGimmickArea : MonoBehaviour
 {
@@ -17,37 +17,37 @@ public class BaseGimmickArea : MonoBehaviour
     public Color StopGimmickOpeColor => _stopGimmickOpeColor;
     //[SerializeField] bool _tunbleCallBack = true;
 
-    [SerializeField] float _explosionRadius = 3f;
-    public float ExplosionRadius => _explosionRadius;
+    private UnityAction _gimmickAction;
+    public UnityAction GimmickAction => _gimmickAction;
 
     public virtual void GimmickOperation() { }
+
+
+    private void OnDestroy()
+    {
+        _gimmickAction = null;
+    }
 
     private void OnEnable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned += SpeedChangeAreaOperation; }
-        ChangeAreaCallBackTest.OnCallBackArea += ChangeAreaOperation;
-        ChangeAreaCallBackTest.OnCallBackArea += GimmickOperation;
+        _gimmickAction += ChangeAreaOperation;
+        _gimmickAction += GimmickOperation;
     }
 
     private void OnDisable()
     {
         //if (_tunbleCallBack) { TumbleweedSpawner.OnSpawned -= SpeedChangeAreaOperation; }
-        ChangeAreaCallBackTest.OnCallBackArea -= ChangeAreaOperation;
-        ChangeAreaCallBackTest.OnCallBackArea -= GimmickOperation;
+        _gimmickAction -= ChangeAreaOperation;
+        _gimmickAction -= GimmickOperation;
     }
 
     void Start()
     {
-        if(_colorChangeBool)
+        if (_colorChangeBool)
         {
             _gimmickOpeRenderer.material.color = !_gimmickOperationBool ? _stopGimmickOpeColor : _startGimmickOpeColor;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,_explosionRadius);
     }
 
     public void ChangeAreaOperation()
