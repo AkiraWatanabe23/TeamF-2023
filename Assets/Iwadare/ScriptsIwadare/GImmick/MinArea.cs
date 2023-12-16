@@ -20,6 +20,8 @@ public class MinArea : BaseGimmickArea
     Color _explosionColor = Color.red;
     [SerializeField]Color _normalExplosionColor = Color.clear;
     bool _explosionEnabled = true;
+    [SerializeField] float _explosionRadius = 3f;
+    public float ExplosionRadius => _explosionRadius;
     private void Awake()
     {
         _explosionRenderer.material.color = _normalExplosionColor;
@@ -32,6 +34,13 @@ public class MinArea : BaseGimmickArea
             _explosionEnabled = false;
 
         }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
 
     IEnumerator Explosion()

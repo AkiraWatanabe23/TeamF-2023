@@ -1,16 +1,12 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class ChangeAreaCallBackTest : MonoBehaviour
+public class CallBackEverySecond : MonoBehaviour
 {
-    public static event UnityAction OnCallBackArea;
+    [Header("何秒毎にギミックを作動させるか。")]
     [SerializeField] private float _changeTime = 5f;
+    [Header("ギミックのスクリプトをアタッチ。")]
+    [SerializeField] BaseGimmickArea _gimmickArea;
     float _time;
-
-    private void OnDestroy()
-    {
-        OnCallBackArea = null;
-    }
 
     // Update is called once per frame
     void Update()
@@ -18,7 +14,7 @@ public class ChangeAreaCallBackTest : MonoBehaviour
         _time += Time.deltaTime;
         if (_time > _changeTime)
         {
-            OnCallBackArea?.Invoke();
+            _gimmickArea?.GimmickAction.Invoke();
             _time = 0;
         }
     }
