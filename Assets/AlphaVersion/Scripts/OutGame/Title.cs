@@ -17,6 +17,8 @@ namespace Alpha
 
         void Start()
         {
+            Cri.PlayBGM("BGM_A");
+
             _titleButton.onClick.AddListener(PlayTitleButtonSE);
             _library.ActiveChange();
             _libraryButton.onClick.AddListener(() => StartCoroutine(ButtonAnimationAsync()));

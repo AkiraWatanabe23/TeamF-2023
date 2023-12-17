@@ -6,12 +6,22 @@ using DG.Tweening;
 
 namespace Alpha
 {
+    public enum RagDollType
+    {
+        Female,
+        FemaleOnkou,
+        FemaleTanki,
+        Male,
+        MaleOnkou,
+        MaleTanki,
+    }
+
     /// <summary>
     /// ラグドールを生成する際に元となるモデルとその種類、ぶつかった方向を送受信する
     /// </summary>
     public struct RagDollMessage
     {
-        public ActorType Type;
+        public RagDollType Type;
         public Transform Model;
         public Vector3 HitPosition;
     }
@@ -24,14 +34,18 @@ namespace Alpha
         static Transform _parent;
 
         [SerializeField] GameObject _malePrefab;
+        [SerializeField] GameObject _maleOnkouPrefab;
+        [SerializeField] GameObject _maleTankiPrefab;
         [SerializeField] GameObject _femalePrefab;
+        [SerializeField] GameObject _femaleOnkouPrefab;
+        [SerializeField] GameObject _femaleTankiPrefab;
         [SerializeField] int _max = 5;
         [SerializeField] float _lifeTime = 5.0f;
         [Header("ラグドールが吹っ飛ぶ際に加わる力")]
         [SerializeField] float _power = 10.0f;
         [SerializeField] float _upPower = 10.0f;
 
-        Dictionary<ActorType, GameObject> _table = new();
+        Dictionary<RagDollType, GameObject> _table = new();
         Queue<GameObject> _ragDolls = new();
 
         void Awake()
@@ -52,8 +66,12 @@ namespace Alpha
         /// </summary>
         void CreateTable()
         {
-            _table.Add(ActorType.Male, _malePrefab);
-            _table.Add(ActorType.Female, _femalePrefab);
+            _table.Add(RagDollType.Male, _malePrefab);
+            _table.Add(RagDollType.MaleOnkou, _maleOnkouPrefab);
+            _table.Add(RagDollType.MaleTanki, _maleTankiPrefab);
+            _table.Add(RagDollType.Female, _femalePrefab);
+            _table.Add(RagDollType.FemaleOnkou, _femaleOnkouPrefab);
+            _table.Add(RagDollType.FemaleTanki, _femaleTankiPrefab);
         }
 
         /// <summary>
@@ -65,7 +83,7 @@ namespace Alpha
                 .Subscribe(msg => TrySpawn(msg.Type, msg.Model, msg.HitPosition)).AddTo(gameObject);
         }
 
-        void TrySpawn(ActorType type, Transform model, Vector3 hitPosition)
+        void TrySpawn(RagDollType type, Transform model, Vector3 hitPosition)
         {
             // 最大数に達していたら一番古いものを削除する
             if (_max <= _ragDolls.Count) Destroy(_ragDolls.Dequeue());

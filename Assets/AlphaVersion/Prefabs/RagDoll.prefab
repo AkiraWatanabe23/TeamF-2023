@@ -44,9 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cce04536f42cd40bf78ffb9907bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _malePrefab: {fileID: 7191140367278986854, guid: bbffeb2e12de4594f81b71354887eb59,
+  _malePrefab: {fileID: 7191140367278986854, guid: 9064bdbc29f39d846912c930cc55dc34,
+    type: 3}
+  _maleOnkouPrefab: {fileID: 7191140367278986854, guid: bbffeb2e12de4594f81b71354887eb59,
+    type: 3}
+  _maleTankiPrefab: {fileID: 7191140367278986854, guid: 373dcd16931a81d4d96183de29f67f59,
     type: 3}
   _femalePrefab: {fileID: 5292145283266436091, guid: 421f918be220fae4fbb2fcab6c267801,
+    type: 3}
+  _femaleOnkouPrefab: {fileID: 5292145283266436091, guid: 896305d9a056c0949bd015d34f6c8677,
+    type: 3}
+  _femaleTankiPrefab: {fileID: 5292145283266436091, guid: d93bf5b1f172ab54b815e4d92ddda3e0,
     type: 3}
   _max: 5
   _lifeTime: 5

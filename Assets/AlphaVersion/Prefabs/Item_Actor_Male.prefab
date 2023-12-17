@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7129042508338226967}
   - component: {fileID: 6240184038157588016}
   - component: {fileID: 2349895234979359867}
+  - component: {fileID: 1448303385974027234}
   m_Layer: 0
   m_Name: Item_Actor_Male
   m_TagString: Untagged
@@ -98,6 +99,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trail: {fileID: 4227317120928196427}
   _decal: {fileID: 0}
+--- !u!114 &1448303385974027234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015718531278538175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5b3474d9cf3554680aae0da12da3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1637638516118862105
 PrefabInstance:
   m_ObjectHideFlags: 0

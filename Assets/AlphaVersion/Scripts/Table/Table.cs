@@ -74,7 +74,7 @@ namespace Alpha
             _view.Active(order, setPosition);
 
             // キャッチ範囲内を掃除、結果を反映するために一応1フレーム待つ
-            CleanTableRange();
+            //CleanTableRange();
             await UniTask.Yield(_cts.Token);
 
             // 時間切れとキャッチ判定のどちらかが完了するまで待つ

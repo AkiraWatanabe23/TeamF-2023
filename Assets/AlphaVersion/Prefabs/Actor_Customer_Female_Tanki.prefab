@@ -127,6 +127,7 @@ MonoBehaviour:
   _decal: {fileID: 0}
   _collider: {fileID: 5250115625513141244}
   _defeatableSpeed: 10
+  _ragDoll: 2
   Orders: 
 --- !u!114 &-3705709529951960130
 MonoBehaviour:

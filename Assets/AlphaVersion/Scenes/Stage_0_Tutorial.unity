@@ -960,6 +960,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eff_Bill02
       objectReference: {fileID: 0}
+    - target: {fileID: 8533138508173844157, guid: 9dafba615fe2a184495d09ce52e47e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6807,6 +6812,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RagDollColliders
       objectReference: {fileID: 0}
+    - target: {fileID: 7468490930158130907, guid: 0fc0d5568a3b0244bb9da210c4fc0392,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8871250390261537499, guid: 0fc0d5568a3b0244bb9da210c4fc0392,
         type: 3}
       propertyPath: m_RootOrder
@@ -7481,7 +7491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _renderers.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1592449300}
     - target: {fileID: 5970581929368002419, guid: dd058d5b0381401418ce2dce4db48033,
         type: 3}
       propertyPath: _renderers.Array.data[2]
@@ -10661,7 +10671,7 @@ PrefabInstance:
     - target: {fileID: 446423151864551399, guid: 1e8c36f63edef944abf3d350a0c35d91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.0434136
+      value: -2.7077253
       objectReference: {fileID: 0}
     - target: {fileID: 3788070117301172933, guid: 1e8c36f63edef944abf3d350a0c35d91,
         type: 3}
@@ -10691,7 +10701,7 @@ PrefabInstance:
     - target: {fileID: 7266614913055743911, guid: 1e8c36f63edef944abf3d350a0c35d91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 7266614913055743911, guid: 1e8c36f63edef944abf3d350a0c35d91,
         type: 3}
@@ -10733,6 +10743,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackDancer
       objectReference: {fileID: 0}
+    - target: {fileID: 8036037046029402270, guid: 1e8c36f63edef944abf3d350a0c35d91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10741,6 +10756,12 @@ PrefabInstance:
 --- !u!137 &1592449299 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5187466472467674851, guid: 1e8c36f63edef944abf3d350a0c35d91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1592449298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1592449300 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 106572714635859651, guid: 1e8c36f63edef944abf3d350a0c35d91,
     type: 3}
   m_PrefabInstance: {fileID: 1592449298}
   m_PrefabAsset: {fileID: 0}
@@ -11473,6 +11494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EndDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330191230649082071, guid: 6234f9c3639cef649bd0c8f10cd694d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9182886280368981786, guid: 6234f9c3639cef649bd0c8f10cd694d3,
         type: 3}
@@ -12747,6 +12773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BgMD_MirrorBall
       objectReference: {fileID: 0}
+    - target: {fileID: 3952494940848930154, guid: 8041000cd4295284ba3494ab44e2943f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13101,6 +13132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UfoTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675242543208138964, guid: 93c8e7966a546664e97a73d188b574b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13731,6 +13767,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UfoSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 5946301919917849801, guid: 74b1275910783f244aed1207c01bb49d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6612592841354352489, guid: 74b1275910783f244aed1207c01bb49d,
         type: 3}
       propertyPath: m_RootOrder
@@ -13863,6 +13904,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpotLightDecal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100424626442353512, guid: 79d813910726e6046b4b89e04bc74e45,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

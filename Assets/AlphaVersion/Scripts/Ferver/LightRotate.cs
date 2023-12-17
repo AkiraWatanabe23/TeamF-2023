@@ -35,6 +35,7 @@ namespace Alpha
         /// </summary>
         void SetOnDefaultPosition()
         {
+            if (_mirrorBall == null) return;
             Vector3 pos = _mirrorBall.position;
             pos.y = _DefaultMirrorBallHeight;
             _mirrorBall.position = pos;
@@ -58,6 +59,8 @@ namespace Alpha
         /// </summary>
         async UniTaskVoid MirrorBallAnimationAsync(CancellationToken token)
         {
+            if (_mirrorBall == null) return;
+
             _mirrorBallTween = _mirrorBall.DOLocalMoveY(-_moveY, _duration/2).SetRelative().SetLink(gameObject);
             await UniTask.WaitForSeconds(_duration/2, cancellationToken: token);
 
