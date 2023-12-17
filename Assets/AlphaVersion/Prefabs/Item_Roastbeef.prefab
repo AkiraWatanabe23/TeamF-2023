@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2096330224886126353}
   - component: {fileID: -374951676007534564}
   - component: {fileID: 4886695224690719732}
+  - component: {fileID: 1788329312790376982}
   m_Layer: 0
   m_Name: Item_Roastbeef
   m_TagString: Untagged
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trail: {fileID: 5233242468833962654}
+  _decal: {fileID: 0}
+--- !u!114 &1788329312790376982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000272495686546275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5b3474d9cf3554680aae0da12da3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6308336353823715634
 PrefabInstance:
   m_ObjectHideFlags: 0

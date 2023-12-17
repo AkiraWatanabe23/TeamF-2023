@@ -17,6 +17,7 @@ namespace Alpha
         [SerializeField] Collider _collider;
         [Header("この速さ以上でぶつかるとラグドール化する")]
         [SerializeField] float _defeatableSpeed = 1.0f;
+        [SerializeField] RagDollType _ragDoll;
 
         FaceChanger _changer;
         EmptyTable _table;
@@ -30,6 +31,8 @@ namespace Alpha
         /// 結果が確定した(成功/失敗)場合は外部から次のステートに遷移させる
         /// </summary>
         public OrderResult Result { get; private set; }
+
+        bool _flag = false;
 
         protected override void OnAwakeOverride()
         {
@@ -45,6 +48,7 @@ namespace Alpha
         {
             _table = table;
             Result = OrderResult.Unsettled;
+            _flag = false;
         }
 
         protected override void Enter()
@@ -109,7 +113,7 @@ namespace Alpha
                 {
                     Result = OrderResult.Defeated;
                     _changer.ChangeFace(Face.Panic);
-                    RagDollMessageSender.SendMessage(_settings.ActorType, Model, item.transform.position);
+                    RagDollMessageSender.SendMessage(_ragDoll, Model, item.transform.position);
                 }
                 else
                 {
@@ -121,10 +125,13 @@ namespace Alpha
                 _table.Table.Invalid();
             }
 
-            // パーティクル、音はアイテム側が再生
-            ParticleType particle = _settings.ItemHitParticle;
-            Vector3 position = transform.position + _settings.ItemHitParticleOffset;
-            ParticleMessageSender.SendMessage(particle, position, transform);
+            if (Result != OrderResult.Success)
+            {
+                // パーティクル、音はアイテム側が再生
+                ParticleType particle = _settings.ItemHitParticle;
+                Vector3 position = transform.position + _settings.ItemHitParticleOffset;
+                ParticleMessageSender.SendMessage(particle, position, transform);
+            }
         }
     }
 }

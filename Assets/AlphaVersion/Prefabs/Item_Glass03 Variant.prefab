@@ -89,6 +89,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3414805756221859156}
+    - targetCorrespondingSourceObject: {fileID: 1341296344806150775, guid: a336eab678a4ef340ad5fd574011ad3f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686096592888539133}
   m_SourcePrefab: {fileID: 100100000, guid: a336eab678a4ef340ad5fd574011ad3f, type: 3}
 --- !u!198 &2863832286561536380 stripped
 ParticleSystem:
@@ -164,3 +168,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trail: {fileID: 2863832286561536380}
   _decal: {fileID: 1179728734537167248, guid: 89c384706c692314c9041e6fee7a1503, type: 3}
+--- !u!114 &1686096592888539133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906048117624331853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5b3474d9cf3554680aae0da12da3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

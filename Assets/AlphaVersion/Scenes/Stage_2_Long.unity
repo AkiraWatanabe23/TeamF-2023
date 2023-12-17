@@ -429,7 +429,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &40305797 stripped
 SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7206984466451990577, guid: 1e8c36f63edef944abf3d350a0c35d91,
+  m_CorrespondingSourceObject: {fileID: 106572714635859651, guid: 1e8c36f63edef944abf3d350a0c35d91,
     type: 3}
   m_PrefabInstance: {fileID: 40305795}
   m_PrefabAsset: {fileID: 0}

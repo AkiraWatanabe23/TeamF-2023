@@ -36,7 +36,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _power: 5.5
+  _power: 5.9
   _minPower: 1.6
   _maxStack: 6
   _randomShift: 0.0602

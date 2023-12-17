@@ -15,10 +15,11 @@ namespace Alpha
     {
         [SerializeField] AnimationAdapter _adapter;
         [SerializeField] Collider _collider;
-        [SerializeField] GameObject _decal;
+        //[SerializeField] GameObject _decal;
         [Header("ステート")]
         [SerializeField] MoveState _moveState;
         [SerializeField] AnimationState _animationState;
+        [SerializeField] AnimationState _defeatedAnimationState;
         [SerializeField] FireState _fireState;
 
         FootstepRecorder _recorder;
@@ -29,7 +30,7 @@ namespace Alpha
 
         protected override void OnInitOverride(Waypoint lead, Tension tension)
         {
-            _decal.SetActive(false);
+            //_decal.SetActive(false);
 
             // 経路の先頭から現在地までの経路をリセット
             _recorder ??= new(transform);
@@ -61,7 +62,7 @@ namespace Alpha
                     if (token.IsCancellationRequested) return;
                     isItemHit = true;
                     Cri.PlaySE3D(transform.position, "SE_Robber_Voice_2");
-                    _decal.SetActive(true);
+                    //_decal.SetActive(true);
                 });
 
             Waypoint pathEnd = _lead;
@@ -108,8 +109,8 @@ namespace Alpha
             else
             {
                 // なんかアクション
-                _animationState.Init();
-                while (StepAnimation()) await UniTask.Yield(token);
+                _defeatedAnimationState.Init();
+                while (StepDefeatedAnimation()) await UniTask.Yield(token);
 
                 // 帰る
                 path = _recorder.GetReversePathFromCurrentPosition();
@@ -137,6 +138,16 @@ namespace Alpha
         {
             StepState(_animationState);
             return _animationState.IsRunning;
+        }
+
+        /// <summary>
+        /// 投げ当てられた際のアニメーションを再生する
+        /// </summary>
+        /// <returns></returns>
+        bool StepDefeatedAnimation()
+        {
+            StepState(_defeatedAnimationState);
+            return _defeatedAnimationState.IsRunning;
         }
 
         /// <summary>

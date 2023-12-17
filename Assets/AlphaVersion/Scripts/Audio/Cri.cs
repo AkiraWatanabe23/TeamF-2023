@@ -10,8 +10,8 @@ namespace Alpha
     /// </summary>
     public static class Cri
     {
-        const string SESheet = "CueSheet_SE5";
-        const string BGMSheet = "CueSheet_BGM 4";
+        const string SESheet = "CueSheet_SE6";
+        const string BGMSheet = "CueSheet_BGM 5";
         const bool _valid = true; // —Ž‚¿‚é‚Ì‚Å–³Œø‰»
 
         public static void PlaySE(string name)

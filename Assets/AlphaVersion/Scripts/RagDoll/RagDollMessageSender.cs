@@ -10,7 +10,7 @@ namespace Alpha
     /// </summary>
     public static class RagDollMessageSender
     {
-        public static void SendMessage(ActorType type, Transform model, Vector3 hitPosition)
+        public static void SendMessage(RagDollType type, Transform model, Vector3 hitPosition)
         {
             MessageBroker.Default.Publish(new RagDollMessage() 
             {
