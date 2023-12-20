@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acfFile: TeamF_CUE1 6.acf
+  acfFile: TeamF_CUE1 7.acf
   cueSheets:
   - name: CueSheet_SE
     acbFile: CueSheet_SE.acb
@@ -97,6 +97,14 @@ MonoBehaviour:
   - name: CueSheet_BGM 5
     acbFile: CueSheet_BGM 5.acb
     awbFile: CueSheet_BGM 5.awb
+    loaderStatus: 0
+  - name: CueSheet_BGM 6
+    acbFile: CueSheet_BGM 6.acb
+    awbFile: CueSheet_BGM 6.awb
+    loaderStatus: 0
+  - name: CueSheet_SE7
+    acbFile: CueSheet_SE 7.acb
+    awbFile: 
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 1
