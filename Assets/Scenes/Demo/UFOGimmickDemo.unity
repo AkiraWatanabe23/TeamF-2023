@@ -666,6 +666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10696c6e3ad31464f853e0c80f922313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _suckCollider: {fileID: 0}
+  _hitCollider: {fileID: 0}
+  _suckRadius: 1
+  _defeatedPrefab: {fileID: 0}
   _spawnCount: 1
   _miniCharaPrefab: {fileID: 0}
   _runAwayRadius: 1
