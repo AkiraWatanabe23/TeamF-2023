@@ -9,7 +9,7 @@ public class WaitState : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("私まーつーわ、いつまでも", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("待機するわよ", stateMachine.DisplayLog);
 
     }
 
@@ -20,6 +20,6 @@ public class WaitState : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("ひとつ！ふたつ！みっつ！よっつ！いつつ！)┳---バーン...!!---┳(", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("待機終わり！", stateMachine.DisplayLog);
     }
 }

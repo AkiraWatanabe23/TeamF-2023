@@ -116,10 +116,7 @@ public class RobotAnimationScripts : MonoBehaviour
     /// <summary>ダンスアニメーション</summary>
     public void DanceAnimation()
     {
-        if (_stateMachine.CurrentState != _stateMachine.GetDance)
-        {
-            _stateMachine.OnChangeState(_stateMachine.GetDance);
-        }
+        _stateMachine.OnChangeState(_stateMachine.GetDance);
     }
 
     /// <summary>成功モーションと歩きモーションのAnimationEnd表示用</summary>

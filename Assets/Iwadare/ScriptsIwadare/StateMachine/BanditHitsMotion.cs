@@ -10,7 +10,7 @@ public class BanditHitsMotion : IState
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.HitsAniName);
-        DebugLogUtility.PrankLog("やはり西部か...いつ出発する？私はもう帰る。",stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("BanditにHits！",stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
@@ -21,6 +21,6 @@ public class BanditHitsMotion : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("臆病バンディ院",stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("Hits終わり！Bandit涙目だ！",stateMachine.DisplayLog);
     }
 }

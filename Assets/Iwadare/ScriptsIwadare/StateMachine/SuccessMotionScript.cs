@@ -10,9 +10,7 @@ public class SuccessMotionScript : IState
     public void OnEnterState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.SuccessName + "Start");
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
-            "おっ、何かいいものがもらえたぞ！" :
-            "これはあちらのお客様からです。", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("成功の音ぉ！", stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
@@ -24,9 +22,7 @@ public class SuccessMotionScript : IState
     {
 
         stateMachine.Anim.Play(stateMachine.SuccessName + "End");
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ?
-            "栗とリスの石像とワインがもらえたのか！これは嬉しいな！" :
-            "また来ます。", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("成功終わり", stateMachine.DisplayLog);
     }
 
 }

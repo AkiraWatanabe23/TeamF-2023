@@ -8,9 +8,14 @@ public class DemoPlayScripts : MonoBehaviour
 {
     VideoPlayer _video;
     [SerializeField] RawImage _image;
-    [SerializeField] float _demoPlayTime;
+    [Header("デモプレイが流れるまでの放置時間")]
+    [SerializeField] float _demoPlayWaitTime = 3f;
+    [Header("流すビデオをアタッチ(数種類の場合は0から順番にひとつずつ流れる)")]
+    [SerializeField] VideoClip[] _clips;
+    int index = 0;
     float _time = 0;
     [SerializeField] bool _awakePlaying = false;
+    [SerializeField] bool _isBoth = false;
     [SerializeField] Color _stopColor = Color.clear;
     VideoPlaying _videoState = VideoPlaying.Stopping;
 
@@ -23,7 +28,9 @@ public class DemoPlayScripts : MonoBehaviour
     {
         if (_awakePlaying)
         {
+            _video.clip = _clips[index];
             _video.Play();
+            index = index + 1;
             _videoState = VideoPlaying.Playing;
         }
         else
@@ -47,7 +54,7 @@ public class DemoPlayScripts : MonoBehaviour
                 _time = 0;
             }
 
-            if (_time > _demoPlayTime)
+            if (_time > _demoPlayWaitTime)
             {
                 StartPlayer();
                 Debug.Log("Start！");
@@ -74,13 +81,16 @@ public class DemoPlayScripts : MonoBehaviour
         _time = 0;
         _image.DOFade(1f, 1f).SetLink(gameObject);
         _image.raycastTarget = true;
+        _video.clip = _clips[index];
         _video.Play();
+        index = index + 1;
         _videoState = VideoPlaying.Playing;
     }
 
     private void StopPlayer()
     {
         _video.Stop();
+        index = (index + _clips.Length) % _clips.Length;
         _image.DOFade(0f, 1f).SetLink(gameObject);
         _image.raycastTarget = false;
         _videoState = VideoPlaying.Stopping;

@@ -9,7 +9,7 @@ public class AttackMotion : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("マシンガン装填！乱射乱射乱射あああ！", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("攻撃！マシンガンを発射せよ！", stateMachine.DisplayLog);
         stateMachine.Anim.Play(stateMachine.AttackAniName);
     }
 
@@ -21,6 +21,6 @@ public class AttackMotion : IState
     public void OnExitState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.AttackAniName + "End");
-        DebugLogUtility.PrankLog("刹那、無数の弾丸がバーテンダーに当たる。「き、効いてない！？」彼は不死身であった。", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("攻撃終わり！バーテンダーは全ての弾を躱す。", stateMachine.DisplayLog);
     }
 }

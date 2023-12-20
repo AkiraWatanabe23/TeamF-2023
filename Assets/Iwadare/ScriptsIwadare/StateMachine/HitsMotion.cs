@@ -10,7 +10,7 @@ public class HitsMotion : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("痛てぇ！",stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("Hit！痛いぜ！",stateMachine.DisplayLog);
         if (stateMachine._sitScripts != null && stateMachine._avatorTrams != null)
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.SitDownPosition();
@@ -30,7 +30,7 @@ public class HitsMotion : IState
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.StandUp();
         }
-        DebugLogUtility.PrankLog("帰るわ。",stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("Hit終わり！帰るわ。",stateMachine.DisplayLog);
     }
 
     
