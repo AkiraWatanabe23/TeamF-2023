@@ -9,7 +9,7 @@ public class DanceMotion : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("小梅太夫フィーバータイム！", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("ダンスダンスフィーバータイム！", stateMachine.DisplayLog);
         stateMachine.Anim.Play(stateMachine.DanceName);
     }
 
@@ -21,6 +21,6 @@ public class DanceMotion : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog("チックショー！", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("ダンス終わって冷めたチキン。", stateMachine.DisplayLog);
     }
 }

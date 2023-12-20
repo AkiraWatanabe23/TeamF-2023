@@ -18,7 +18,7 @@ public class SitMotion : IState
             stateMachine._avatorTrams.position = stateMachine._sitScripts.SitDownPosition();
             stateMachine._avatorTrams.rotation = Quaternion.Euler(stateMachine._sitScripts.SitDownRotation());
         }
-        DebugLogUtility.PrankLog("いいかいいか？今から座るぞ？今後悔しても遅いゾ？", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("座るかあ。", stateMachine.DisplayLog);
     }
 
     public void OnUpdate(StateMachineController stateMachine)
@@ -33,6 +33,6 @@ public class SitMotion : IState
         {
             stateMachine._avatorTrams.position = stateMachine._sitScripts.StandUp();
         }
-        DebugLogUtility.PrankLog("お立ち台", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("立つかあ", stateMachine.DisplayLog);
     }
 }

@@ -25,6 +25,6 @@ public class WalkMotion : IState
     public void OnExitState(StateMachineController stateMachine)
     {
         stateMachine.Anim.Play(stateMachine.WalkName + "End");
-        DebugLogUtility.PrankLog("‚Í‚ ...‚Í‚ ...•à‚«I‚í‚Á‚½‚º...", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("•à‚«I‚í‚Á‚½‚º...", stateMachine.DisplayLog);
     }
 }

@@ -9,7 +9,7 @@ public class IdleMotion : IState
 
     public void OnEnterState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("Ž~‚Ü‚é", stateMachine.DisplayLog);
         stateMachine.Anim.Play(stateMachine.IdleAniName);
     }
 
@@ -20,6 +20,6 @@ public class IdleMotion : IState
 
     public void OnExitState(StateMachineController stateMachine)
     {
-        DebugLogUtility.PrankLog(stateMachine.NGWordbool ? "" : "", stateMachine.DisplayLog);
+        DebugLogUtility.PrankLog("Ž~‚Ü‚Á‚½Œã", stateMachine.DisplayLog);
     }
 }
