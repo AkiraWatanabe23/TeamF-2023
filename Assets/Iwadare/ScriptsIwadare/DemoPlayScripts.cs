@@ -12,10 +12,10 @@ public class DemoPlayScripts : MonoBehaviour
     [SerializeField] float _demoPlayWaitTime = 3f;
     [Header("流すビデオをアタッチ(数種類の場合は0から順番にひとつずつ流れる)")]
     [SerializeField] VideoClip[] _clips;
-    int index = 0;
+    int _index = 0;
     float _time = 0;
     [SerializeField] bool _awakePlaying = false;
-    [SerializeField] bool _isBoth = false;
+    bool _isMovieEnd;
     [SerializeField] Color _stopColor = Color.clear;
     VideoPlaying _videoState = VideoPlaying.Stopping;
 
@@ -28,9 +28,9 @@ public class DemoPlayScripts : MonoBehaviour
     {
         if (_awakePlaying)
         {
-            _video.clip = _clips[index];
+            _video.clip = _clips[_index];
             _video.Play();
-            index = index + 1;
+            _index = _index + 1;
             _videoState = VideoPlaying.Playing;
         }
         else
@@ -56,41 +56,66 @@ public class DemoPlayScripts : MonoBehaviour
 
             if (_time > _demoPlayWaitTime)
             {
+                VideoSetUp();
                 StartPlayer();
                 Debug.Log("Start！");
             }
         }
         else
         {
-            if(_video.isPaused)
+            if(_video.isPaused && !_isMovieEnd)
             {
-                StopPlayer();
-                Debug.Log("Stop!");
+                _isMovieEnd = true;
+                ChangePlayer();
+                Debug.Log("動画切り替え");
             }
 
             if (Input.anyKeyDown)
             {
                 StopPlayer();
-                Debug.Log("Stop!b");
+                Debug.Log("Stop!button");
             }
         }
     }
 
-    private void StartPlayer()
+    /// <summary>ビデオ再生する際のセットアップ</summary>
+    void VideoSetUp()
     {
         _time = 0;
+        _index = 0;
         _image.DOFade(1f, 1f).SetLink(gameObject);
         _image.raycastTarget = true;
-        _video.clip = _clips[index];
-        _video.Play();
-        index = index + 1;
         _videoState = VideoPlaying.Playing;
     }
 
+    /// <summary>動画切り替えして再生</summary>
+    void ChangePlayer()
+    {
+        _video.Stop();
+        _index = (_index + _clips.Length) % _clips.Length;
+        Debug.Log(_index);
+        var changeSeq = DOTween.Sequence();
+        changeSeq.Append(_image.DOColor(Color.black, 0.5f))
+            .AppendCallback(() => { StartPlayer(); })
+            .Append(_image.DOColor(Color.white, 0.5f))
+            .OnUpdate(() => { if (Input.anyKeyDown) { changeSeq.Complete(); } })
+            .OnComplete(() => { _isMovieEnd = false; });
+        changeSeq.Play().SetLink(gameObject);
+    }
+
+    /// <summary>ビデオ再生</summary>
+    private void StartPlayer()
+    {
+        Debug.Log(_index);
+        _video.clip = _clips[_index];
+        _video.Play();
+        _index = _index + 1;
+    }
+
+    /// <summary>ビデオ停止</summary>
     private void StopPlayer()
     {
         _video.Stop();
-        index = (index + _clips.Length) % _clips.Length;
         _image.DOFade(0f, 1f).SetLink(gameObject);
         _image.raycastTarget = false;
         _videoState = VideoPlaying.Stopping;
