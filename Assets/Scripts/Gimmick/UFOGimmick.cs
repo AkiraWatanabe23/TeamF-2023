@@ -264,6 +264,8 @@ public class UFOGimmick : MonoBehaviour
         GameObject instance = Instantiate(_defeatedPrefab, transform.position, Quaternion.identity);
         Vector3 dir = Vector3.forward * 6.0f + Vector3.up * 0.5f;
         instance.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Impulse);
+
+        CriAudioManager.Instance.SE.StopAll();
     }
 
     private void ChangeActiveSelf(bool flag) { gameObject.SetActive(flag); }
