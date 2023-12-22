@@ -8,9 +8,12 @@ using UniRx.Triggers;
 
 public class UFOGimmick : MonoBehaviour
 {
-    [SerializeField] Collider _suckCollider;
-    [SerializeField] Collider _hitCollider;
-    [SerializeField] float _suckRadius = 1.0f;
+    [SerializeField]
+    private Collider _suckCollider;
+    [SerializeField]
+    private Collider _hitCollider;
+    [SerializeField]
+    private float _suckRadius = 1.0f;
     [Header("撃破された際に吹っ飛んでく奴")]
     [SerializeField] GameObject _defeatedPrefab;
     [Header("ミニキャラキャラ関連")]
@@ -30,9 +33,6 @@ public class UFOGimmick : MonoBehaviour
     [SerializeField]
     private float _gimmickStartInterval = 1f;
 
-    /// <summary> キャラクターの移動間隔 </summary>
-    private readonly float _runAwayDuration = 35f;
-
     [Header("初期移動時の値")]
     [Tooltip("最初にステージ上まで移動する時間")]
     [SerializeField]
@@ -50,9 +50,6 @@ public class UFOGimmick : MonoBehaviour
     [Tooltip("UFOが一度に最大いくつのオブジェクトを検出するか")]
     [SerializeField]
     private int _maxCastCount = 10;
-    [Tooltip("吸い上げ地点のオフセット（UFOより下の位置）")]
-    [SerializeField]
-    private Vector3 _suckUpOffset = Vector3.zero;
     [Tooltip("オブジェクトが吸い上げられるスピード")]
     [SerializeField]
     private float _suckUpDuration = 1f;
@@ -81,14 +78,14 @@ public class UFOGimmick : MonoBehaviour
     /// <summary> 移動済かどうか </summary>
     private bool _isMoved = false;
 
-    /// <summary> 吸い上げ判定にかかったオブジェクトを格納する </summary>
-    private RaycastHit[] _suckUpDatas = default;
-
     private Sequence _sequence = default;
 
-    List<GameObject> _actors = new();
+    private readonly List<GameObject> _actors = new();
     // 吸われた際にトイーンを中断するため
-    List<Sequence> _miniActorMoveSequences = new();
+    private readonly List<Sequence> _miniActorMoveSequences = new();
+
+    /// <summary> UFOのSEの再生時インデックス </summary>
+    private int _ufoSEIndex = 0;
 
     private IEnumerator Start()
     {
@@ -109,8 +106,6 @@ public class UFOGimmick : MonoBehaviour
 
         if (TryGetComponent(out BoxCollider collider)) { _halfExtents = Vector3.one * _suckRadius; }
         else { _halfExtents = _transform.localScale; }
-
-        _suckUpDatas = new RaycastHit[_maxCastCount];
 
         _suckCollider.OnTriggerEnterAsObservable()
             .Where(_ => _isMoved)
@@ -171,7 +166,8 @@ public class UFOGimmick : MonoBehaviour
         _sequence.
             AppendCallback(() =>
             {
-                Cri.PlaySE3D(_transform.position, "SE_UFO");
+                _ufoSEIndex = CriAudioManager.Instance.SE.Play3D(_transform.position, "CusSheet_SE 7", "SE_UFO");
+                //Cri.PlaySE3D(_transform.position, "SE_UFO");
             }).
             Append(_transform.DOMove(_initPosition + _moveOffset, _moveDuration)).
             AppendCallback(() =>
@@ -193,16 +189,6 @@ public class UFOGimmick : MonoBehaviour
         //ItemSearch();
         //被攻撃判定（移動前、移動中はやらない）
         //AttackedSearch();
-    }
-
-    /// <summary> 吸い上げる対象があるか探す </summary>
-    private void ItemSearch()
-    {
-        var count = Physics.BoxCastNonAlloc(_transform.position, _halfExtents, Vector3.down, _suckUpDatas, Quaternion.identity);
-        if (count > 0)
-        {
-            for (int i = 0; i < count; i++) { SuckUp(_suckUpDatas[i].collider.gameObject); }
-        }
     }
 
     /// <summary> 吸い上げる </summary>
@@ -231,44 +217,21 @@ public class UFOGimmick : MonoBehaviour
         }
     }
 
-    /// <summary> Playerからの追撃がないか調べる </summary>
-    private void AttackedSearch()
-    {
-        if (Physics.BoxCast(_transform.position, _halfExtents, Vector3.zero, out RaycastHit hit, Quaternion.identity))
-        {
-            if (hit.collider.gameObject.TryGetComponent(out ThrowedItem _)) { Crash(); }
-        }
-    }
-
     private void Crash()
     {
 #if UNITY_EDITOR
         Debug.Log("攻撃を受けた！！墜落");
 #endif
-        //_sequence = DOTween.Sequence();
-        //_sequence.
-        //    AppendCallback(() =>
-        //    {
-        //        _transform.DOMoveX(_swayValue, _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        //        _transform.DOMoveY(-1f, _tweenSpeed).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
-
-        //        _transform.DORotate(new Vector3(0f, 0f, _rotateValue), _tweenSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        //    }).
-        //    AppendInterval(_activeFalseInterval).
-        //    AppendCallback(() =>
-        //    {
-        //        ChangeActiveSelf(false);
-        //    });
 
         ChangeActiveSelf(false);
         GameObject instance = Instantiate(_defeatedPrefab, transform.position, Quaternion.identity);
         Vector3 dir = Vector3.forward * 6.0f + Vector3.up * 0.5f;
         instance.GetComponent<Rigidbody>().AddForce(dir, ForceMode.Impulse);
 
-        CriAudioManager.Instance.SE.StopAll();
+        CriAudioManager.Instance.SE.Stop(_ufoSEIndex);
     }
 
-    private void ChangeActiveSelf(bool flag) { gameObject.SetActive(flag); }
+    private void ChangeActiveSelf(bool flag) => gameObject.SetActive(flag);
 
     void OnDrawGizmos()
     {
