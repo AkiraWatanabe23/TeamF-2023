@@ -18,9 +18,7 @@ MonoBehaviour:
       _count: 7
   _robber:
     _timing:
-    - 0
-    - 65535
+    - 20
   _ufo:
     _timing:
-    - 0
-    - 65535
+    - 40

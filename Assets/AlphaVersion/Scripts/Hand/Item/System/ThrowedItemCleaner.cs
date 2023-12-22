@@ -27,7 +27,8 @@ namespace Alpha
                     // –¢“Š‚°‚ğŠÜ‚Şê‡‚à‚µ‚­‚Í“Š‚°Ï‚İA‚©‚Â‹——£‚ªˆê’èˆÈ‰º
                     if (items[i].IsThrowed && items[i].MovingSqrDistance < _settings.ThrowedAreaSqrRadius)
                     {
-                        Destroy(items[i].gameObject);
+                        items[i].Crash();
+                        //Destroy(items[i].gameObject);
                         items.RemoveAt(i);
                     }
                 }

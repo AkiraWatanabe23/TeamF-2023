@@ -48,9 +48,10 @@ namespace Alpha
         {
             _spotLight.gameObject.SetActive(true);
 
-            _spotLightTween = _spotLight.DORotate(new Vector3(0, 360, 0), _duration, RotateMode.FastBeyond360)
-                .SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).SetLink(gameObject);
+            //_spotLightTween = _spotLight.DORotate(new Vector3(0, 360, 0), _duration, RotateMode.FastBeyond360)
+            //    .SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear).SetLink(gameObject);
 
+            LightAnimationAsync(this.GetCancellationTokenOnDestroy()).Forget();
             MirrorBallAnimationAsync(this.GetCancellationTokenOnDestroy()).Forget();
         }
 
@@ -64,12 +65,32 @@ namespace Alpha
             _mirrorBallTween = _mirrorBall.DOLocalMoveY(-_moveY, _duration/2).SetRelative().SetLink(gameObject);
             await UniTask.WaitForSeconds(_duration/2, cancellationToken: token);
 
-            float delta = 0;
+            float delta = 1;
             while (true)
             {
-                _mirrorBall.Rotate(new Vector3(0, delta, 0));
-                delta += Time.deltaTime;
-                delta = Mathf.Clamp(delta, 0, _maxRotSpeed);
+                float speed = Time.deltaTime * delta;
+                _mirrorBall.Rotate(new Vector3(0, speed, 0));
+                delta += Time.deltaTime * 3;
+                delta = Mathf.Clamp(delta, 0, 350);
+
+                await UniTask.Yield(token);
+            }
+        }
+
+        /// <summary>
+        /// ライトがどんどん速度を上げて回転するアニメーション
+        /// </summary>
+        async UniTaskVoid LightAnimationAsync(CancellationToken token)
+        {
+            if (_mirrorBall == null) return;
+
+            float delta = 1;
+            while (true)
+            {
+                float speed = Time.deltaTime * delta;
+                _spotLight.Rotate(new Vector3(0, speed, 0));
+                delta += Time.deltaTime * 3;
+                delta = Mathf.Clamp(delta, 0, 130);
 
                 await UniTask.Yield(token);
             }

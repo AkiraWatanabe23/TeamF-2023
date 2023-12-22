@@ -62,7 +62,10 @@ namespace Alpha
                     if (token.IsCancellationRequested) return;
                     isItemHit = true;
                     Cri.PlaySE3D(transform.position, "SE_Robber_Voice_2");
-                    //_decal.SetActive(true);
+
+                    // スコアの送信
+                    OrderScoreSender.SendScore(OrderResult.Success, ActorType.Muscle, _tension,
+                        transform.position, ScoreKey.Robber);
                 });
 
             Waypoint pathEnd = _lead;
@@ -75,7 +78,7 @@ namespace Alpha
                 pathEnd = _pathConverter.GetPathByType(WaypointType.Stage, out path, pathEnd);
 
                 // 演出地点まで移動
-                _moveState.Init(path);
+                _moveState.Init(_tension, path);
                 while (!isItemHit && StepMoveToPathEnd()) await UniTask.Yield(token);
 
                 // 演出地点でのアクション
@@ -87,7 +90,7 @@ namespace Alpha
             pathEnd = _pathConverter.GetPathByType(WaypointType.Fire, out path, pathEnd);
 
             // 射撃地点まで移動
-            _moveState.Init(path);
+            _moveState.Init(_tension, path);
             while (!isItemHit && StepMoveToPathEnd()) await UniTask.Yield(token);
 
             // 射撃
@@ -98,7 +101,7 @@ namespace Alpha
             path = _pathConverter.GetPathToExit(pathEnd);
             
             // 出口まで移動
-            _moveState.Init(path);
+            _moveState.Init(_tension, path);
             while (!isItemHit && StepMoveToPathEnd()) await UniTask.Yield(token);
 
             // この時点でアイテムにぶつかっていなければ出口到達している
@@ -114,7 +117,7 @@ namespace Alpha
 
                 // 帰る
                 path = _recorder.GetReversePathFromCurrentPosition();
-                _moveState.Init(path, ignoreForward: true);
+                _moveState.Init(_tension, path, ignoreForward: true);
                 while (StepMoveToPathEnd()) await UniTask.Yield(token);
             }
         }

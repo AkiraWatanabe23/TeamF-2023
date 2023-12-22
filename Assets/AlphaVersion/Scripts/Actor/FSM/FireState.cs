@@ -63,8 +63,17 @@ namespace Alpha
             await UniTask.Delay(System.TimeSpan.FromSeconds(_fireDelay), cancellationToken: token);
             Cri.PlaySE("SE_Robber_GunShot");
 
+            OrderScoreSender.SendScore(OrderResult.Failure, ActorType.Muscle, Tension,
+                transform.position, ScoreKey.Robber);
+
             MessageBroker.Default.Publish(new FireMessage());
             CameraShakeMessageSender.SendMessage(3.0f); // ÉxÉ^èëÇ´
+
+            for (int i = 0; i < 5; i++)
+            {
+                await UniTask.Delay(System.TimeSpan.FromSeconds(0.2f), cancellationToken: token);
+                Cri.PlaySE("SE_Robber_GunShot");
+            }
         }
     }
 }

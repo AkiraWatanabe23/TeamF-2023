@@ -4602,7 +4602,7 @@ MonoBehaviour:
   _under: {fileID: 589329630}
   _ferverUnder: {fileID: 1925622476}
   _mag: 0.0191
-  _feverMag: 0.055
+  _feverMag: 0.056
 --- !u!4 &416272691
 Transform:
   m_ObjectHideFlags: 0
@@ -22138,7 +22138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6491281696608275570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3c007582dec2f4795ad3bd3005dc1d, type: 3}
   m_Name: 
@@ -22519,7 +22519,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1381
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -22531,7 +22531,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.08064222
+        value: 0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -22735,6 +22735,14 @@ MonoBehaviour:
   - Type: 5
     Prefab: {fileID: 2349895234979359867, guid: 07ffc2830fff9ed42be542e31ecbfda3,
       type: 3}
+  _fevers:
+  - {fileID: 2349895234979359867, guid: 3f130454ab483294ea8f6308ac984be3, type: 3}
+  - {fileID: 2349895234979359867, guid: 8e713422837cb8640a18fb09b10e4f5a, type: 3}
+  - {fileID: 2349895234979359867, guid: 78b0092e101999c46b0fb320e95fd2d0, type: 3}
+  - {fileID: 2349895234979359867, guid: 07ffc2830fff9ed42be542e31ecbfda3, type: 3}
+  - {fileID: 2349895234979359867, guid: aff1de54dbb207c4e91352114bd407b1, type: 3}
+  - {fileID: 2349895234979359867, guid: 6ef76f5cd57186141a1b7585d48f8eff, type: 3}
+  - {fileID: 2349895234979359867, guid: 00a7e15b30b91024592712a53120b49b, type: 3}
 --- !u!114 &8425516604372177835
 MonoBehaviour:
   m_ObjectHideFlags: 0

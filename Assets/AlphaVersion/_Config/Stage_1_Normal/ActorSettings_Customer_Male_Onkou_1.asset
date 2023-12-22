@@ -22,9 +22,9 @@ MonoBehaviour:
   _actorParams:
     MoveSpeed: 1.04
     OrderTimeLimit: 10.2
-    DecreaseScore: 500
-    IncreaseScore: 1000
-    FeverScoreRate: 2
+    DecreaseScore: 200
+    IncreaseScore: 400
+    FeverScoreRate: 1.5
   _visualParams:
     ItemHitParticle:
       Particle: 4

@@ -27,7 +27,9 @@ namespace Alpha
         public bool IsRunning => _currentIndex < _path.Count - 1;
         public override StateType Type => StateType.Move;
 
-        public void Init(IReadOnlyList<Vector3> path, bool ignoreForward = false)
+        Tension _initedTension;
+
+        public void Init(Tension tension, IReadOnlyList<Vector3> path, bool ignoreForward = false)
         {
             _transform = transform;
             _path = path;
@@ -35,6 +37,7 @@ namespace Alpha
             _distance = 0;
             _currentIndex = 0;
             _ignoreForward = ignoreForward;
+            _initedTension = tension;
         }
 
         protected override void OnFerverTimeEnter()
@@ -49,6 +52,7 @@ namespace Alpha
 
             // 既にフィーバーなら、このステートでトリガー出来ないのでここでチェックする
             if (!DanceIfFerverTime()) { Animator.Play("Walk"); }
+            if (_initedTension == Tension.Ferver) Animator.Play("Dance");
         }
 
         protected override void Exit()

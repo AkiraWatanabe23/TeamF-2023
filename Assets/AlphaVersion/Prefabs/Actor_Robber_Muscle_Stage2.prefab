@@ -220,8 +220,8 @@ MonoBehaviour:
   _animator: {fileID: -8635428693813735416}
   _model: {fileID: 6772918915026142164}
   _animationName: Fire
-  _playTime: 1
-  _fireDelay: 0.5
+  _playTime: 4
+  _fireDelay: 1
 --- !u!114 &-8635428693813735416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +278,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6772918915026142164}
     m_Modifications:
+    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 307677f32d1730a4e81d8af4d988c6a1, type: 2}
     - target: {fileID: 5984242165520484445, guid: 3053ed1fe184c7941b503ae634bdd0ec,
         type: 3}
       propertyPath: m_RootOrder
@@ -333,11 +338,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 307677f32d1730a4e81d8af4d988c6a1, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 41ec784ed520f0f45ba674d277680ce1, type: 3}
     - {fileID: 2668015434438190995, guid: 3053ed1fe184c7941b503ae634bdd0ec, type: 3}

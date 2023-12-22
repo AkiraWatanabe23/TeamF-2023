@@ -16,7 +16,7 @@ public class AnimationAdapter : MonoBehaviour
     public void Play(string name)
     {
         if (_animation == null) return;
-
+        
         if (name == "Walk") _animation.WalkAnimation();
         else if (name == "Idle") _animation.IdleState();
         else if (name == "Order") _animation.SitAnimation();

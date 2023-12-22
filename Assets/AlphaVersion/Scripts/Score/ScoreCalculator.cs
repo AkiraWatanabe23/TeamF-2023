@@ -25,19 +25,18 @@ namespace Alpha
         public int ToInt(ScoreEventMessage msg)
         {
             ActorSettingsSO so = null;
-            if (msg.Key == ScoreKey.Female) so = _female;
+            if (msg.Key == ScoreKey.Female) { so = _female; }
             if (msg.Key == ScoreKey.FemaleOnkou) so = _femaleOnkou;
             if (msg.Key == ScoreKey.FemaleTanki) so = _femaleTanki;
-            if (msg.Key == ScoreKey.Male) so = _male;
+            if (msg.Key == ScoreKey.Male) { so = _male; }
             if (msg.Key == ScoreKey.MaleOnkou) so = _maleOnkou;
             if (msg.Key == ScoreKey.MaleTanki) so = _maleTanki;
-            if (msg.Key == ScoreKey.Robber) so = _robber;
+            if (msg.Key == ScoreKey.Robber) { so = _robber; }
 
             if (so == null) { return -1; }
 
             float add = msg.Result == EventResult.Success ? so.ActorParamsSet.IncreaseScore : 
                                                             -so.ActorParamsSet.DecreaseScore;
-
             //// スコアの倍率、フィーバータイムかどうかで変わる
             float scoreRate = msg.State == EventState.Normal ? 1 : so.ActorParamsSet.FeverScoreRate;
 
