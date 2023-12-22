@@ -34,7 +34,8 @@ namespace Alpha
         public void Release(ThrowedItem item)
         {
             // TODO:プーリングする際はプールに戻す処理に修正する
-            Destroy(item.gameObject);
+            //Destroy(item.gameObject);
+            item.Catch();
         }
     }
 }

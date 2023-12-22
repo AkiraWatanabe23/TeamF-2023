@@ -16,8 +16,8 @@ MonoBehaviour:
   _ferverTime: 15
   _evaluate:
   - Score: 0
-    Evaluate: "\u30B6\u30F3\u30CD\u30F3\u30C0\u30FC"
-  - Score: 1000
-    Evaluate: "\u30D0\u30FC\u30C6\u30F3\u30C0\u30FC"
+    Evaluate: "\u30D8\u30BF\u30C0\u30FC"
   - Score: 3000
-    Evaluate: "\u30DE\u30F3\u30C6\u30F3\u30C0\u30FC"
+    Evaluate: "\u30DE\u30C0\u30DE\u30C0\u30FC"
+  - Score: 15000
+    Evaluate: "\u30AB\u30F3\u30DA\u30AD\u30C0\u30FC"

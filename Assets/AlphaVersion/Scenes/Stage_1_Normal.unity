@@ -2248,8 +2248,8 @@ MonoBehaviour:
   _feverGauge: {fileID: 1749530941}
   _under: {fileID: 1140573581}
   _ferverUnder: {fileID: 1588871704}
-  _mag: 0.0225
-  _feverMag: 0.1
+  _mag: 0.0207
+  _feverMag: 0.06
 --- !u!4 &416272691
 Transform:
   m_ObjectHideFlags: 0
@@ -6859,7 +6859,7 @@ PrefabInstance:
     - target: {fileID: 2654088865719219120, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 334
+      value: 527.2
       objectReference: {fileID: 0}
     - target: {fileID: 2802289026305690237, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
@@ -6979,7 +6979,7 @@ PrefabInstance:
     - target: {fileID: 5889963145638840896, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1600
+      value: 1405
       objectReference: {fileID: 0}
     - target: {fileID: 5889963145638840896, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
@@ -6989,7 +6989,7 @@ PrefabInstance:
     - target: {fileID: 6762193169979269101, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 325.9
+      value: 516
       objectReference: {fileID: 0}
     - target: {fileID: 6762193169979269101, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
@@ -6999,12 +6999,12 @@ PrefabInstance:
     - target: {fileID: 7271015242972718409, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1600
+      value: 1406
       objectReference: {fileID: 0}
     - target: {fileID: 7403497576112682344, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1600
+      value: 1402.6
       objectReference: {fileID: 0}
     - target: {fileID: 7403497576112682344, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
@@ -7014,7 +7014,7 @@ PrefabInstance:
     - target: {fileID: 7627583078531152148, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 334
+      value: 505.2
       objectReference: {fileID: 0}
     - target: {fileID: 7627583078531152148, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
@@ -7024,7 +7024,7 @@ PrefabInstance:
     - target: {fileID: 7627583078531152148, guid: 6731890603ac5af45a476b4a2dff24af,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -629.7
+      value: -444
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13846,7 +13846,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4187037749679797342}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3c007582dec2f4795ad3bd3005dc1d, type: 3}
   m_Name: 
@@ -14527,7 +14527,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 868
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -14539,7 +14539,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.08064222
+        value: 0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -14743,6 +14743,14 @@ MonoBehaviour:
   - Type: 5
     Prefab: {fileID: 2349895234979359867, guid: 07ffc2830fff9ed42be542e31ecbfda3,
       type: 3}
+  _fevers:
+  - {fileID: 2349895234979359867, guid: 3f130454ab483294ea8f6308ac984be3, type: 3}
+  - {fileID: 2349895234979359867, guid: 8e713422837cb8640a18fb09b10e4f5a, type: 3}
+  - {fileID: 2349895234979359867, guid: 78b0092e101999c46b0fb320e95fd2d0, type: 3}
+  - {fileID: 2349895234979359867, guid: 07ffc2830fff9ed42be542e31ecbfda3, type: 3}
+  - {fileID: 2349895234979359867, guid: aff1de54dbb207c4e91352114bd407b1, type: 3}
+  - {fileID: 2349895234979359867, guid: 6ef76f5cd57186141a1b7585d48f8eff, type: 3}
+  - {fileID: 2349895234979359867, guid: 00a7e15b30b91024592712a53120b49b, type: 3}
 --- !u!114 &8425516604372177835
 MonoBehaviour:
   m_ObjectHideFlags: 0

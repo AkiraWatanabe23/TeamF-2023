@@ -16,6 +16,7 @@ namespace Alpha
         [SerializeField] CanvasGroup _canvasGroup;
         [SerializeField] Sprite _selected;
         [SerializeField] Sprite _unSelected;
+        [SerializeField] Outline _line;
 
         /// <summary>
         /// このUIに割り当てるアイコンを設定して有効化
@@ -32,6 +33,7 @@ namespace Alpha
         public void InValid()
         {
             _canvasGroup.alpha = 0;
+            _line.enabled = false;
         }
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Alpha
         public void Select()
         {
             _frame.sprite = _selected;
+            _line.enabled = true;
         }
 
         /// <summary>
@@ -48,6 +51,7 @@ namespace Alpha
         public void Deselect()
         {
             _frame.sprite = _unSelected;
+            _line.enabled = false;
         }
     }
 }

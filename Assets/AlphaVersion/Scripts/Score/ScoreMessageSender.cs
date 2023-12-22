@@ -19,6 +19,7 @@ namespace Alpha
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
+                Key = key,
                 Result = EventResult.Success,
                 State = EventState.Normal,
                 Actor = Convert(actor),
@@ -33,6 +34,7 @@ namespace Alpha
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
+                Key = key,
                 Result = EventResult.Success,
                 State = EventState.Ferver,
                 Actor = Convert(actor),
@@ -47,6 +49,7 @@ namespace Alpha
         {
             MessageBroker.Default.Publish(new ScoreEventMessage()
             {
+                Key = key,
                 Result = EventResult.Failure,
                 State = EventState.Normal,
                 Actor = Convert(actor),

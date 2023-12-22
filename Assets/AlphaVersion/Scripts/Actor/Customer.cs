@@ -42,7 +42,7 @@ namespace Alpha
         protected async override UniTaskVoid UpdateAsync(CancellationToken token)
         {
             // 席の後ろまで移動
-            _moveState.Init(_pathConverter.GetPathToTableBehind());
+            _moveState.Init(_tension, _pathConverter.GetPathToTableBehind());
             while (StepMoveToPathEnd()) await UniTask.Yield(token);
             
             // 席を取得するまで待機
@@ -51,7 +51,7 @@ namespace Alpha
             _adapter.ReservedTable(table.Index);
 
             // 席まで移動
-            _moveState.Init(_pathConverter.GetPathToTable(table.Waypoint), ignoreForward: true);
+            _moveState.Init(_tension, _pathConverter.GetPathToTable(table.Waypoint), ignoreForward: true);
             while (StepMoveToPathEnd()) await UniTask.Yield(token);
 
             // 注文を待つ
@@ -72,7 +72,7 @@ namespace Alpha
             // 失敗or成功の場合は帰る、ラグドールな場合は端折る
             if (result != OrderResult.Defeated)
             {
-                _moveState.Init(_pathConverter.GetPathToExit(table.Waypoint), ignoreForward: true);
+                _moveState.Init(_tension, _pathConverter.GetPathToExit(table.Waypoint), ignoreForward: true);
                 while (StepMoveToPathEnd()) await UniTask.Yield(token);
             }
 

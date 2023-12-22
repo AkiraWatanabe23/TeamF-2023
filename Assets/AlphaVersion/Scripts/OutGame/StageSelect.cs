@@ -32,18 +32,18 @@ namespace Alpha
                 await UniTask.WaitForSeconds(Fade.Instance.FadeTime, cancellationToken: token);
             }
 
-            if (_rotButton == null || _text == null || _slider == null) return;
+            //if (_rotButton == null || _text == null || _slider == null) return;
 
             while (!token.IsCancellationRequested)
             {
                 if (_isRot)
                 {
-                    var v = _slider.value;
-                    float speed = 30 + v * 60;
-                    _text.text = speed.ToString("F2");
+                    //var v = _slider.value;
+                    //float speed = 30 + v * 970;
+                    //_text.text = speed.ToString("F2");
 
-                    _light.Rotate(Vector3.up * Time.deltaTime * speed);
-                    _mirrorball.Rotate(Vector3.up * Time.deltaTime * speed);
+                    _light.Rotate(Vector3.up * Time.deltaTime * 130);
+                    _mirrorball.Rotate(Vector3.up * Time.deltaTime * 130);
                 }
                 await UniTask.Yield(PlayerLoopTiming.Update,token);
             }
