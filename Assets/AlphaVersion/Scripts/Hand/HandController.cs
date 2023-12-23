@@ -10,6 +10,7 @@ namespace Alpha
     /// </summary>
     public class HandController : MonoBehaviour
     {
+        [SerializeField] GameObject _tutorialUI;
         [SerializeField] Thrower _thrower;
         [SerializeField] ThrowPowerCalculator _powerCalculator;
         [SerializeField] ThrowPowerVisualizer _powerVisualizer;
@@ -46,6 +47,11 @@ namespace Alpha
             _mouseMovementChecker.SetStartingPoint();
             _powerCalculator.SetStartingPoint(_thrower.StackPoint);
             _itemCleaner.Clean();
+
+            if (_tutorialUI != null)
+            {
+                _tutorialUI.SetActive(true);
+            }
         }
 
         void OnLeftClicking()
@@ -71,6 +77,11 @@ namespace Alpha
                 // マウスを動かした場合は投げる。動かしていない場合は積む。
                 if (_mouseMovementChecker.IsMoved())
                 {
+                    if (_tutorialUI != null)
+                    {
+                        _tutorialUI.SetActive(false);
+                    }
+
                     // ダメージを受けている中はその場に投げる
                     Vector3 velocity = _powerCalculator.CalculateThrowVelocity();
                     _thrower.Throw(velocity);
@@ -90,7 +101,7 @@ namespace Alpha
         void OnRightClickUp()
         {
             if (_damage.IsDamaged) return;
-
+            
             // アイテムを積んでいない場合のみ
             if (_thrower.StackCount == 0) _dustClothShooter.Shoot();
         }
